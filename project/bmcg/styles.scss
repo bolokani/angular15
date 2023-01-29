@@ -191,20 +191,23 @@ adver-mat-menu-panel {
 }
 
 /******************************************************************************************* */
-.done .mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-selected,
 .mat-step-header .mat-step-icon-state-done,
 .mat-step-header .mat-step-icon-state-edit {
 	background: #9bd84a;
 	color: #fff !important
 }
 
-.doing .mat-step-header .mat-step-icon-selected,
-.mat-step-header .mat-step-icon-state-done,
-.mat-step-header .mat-step-icon-state-edit {
-	border: solidb 1px #9bd84a;
-	color: #fff !important
+[dir=rtl] .shopping .mat-vertical-stepper-header .mat-step-icon {
+	border: solid 1px #9bd84a !important;
+	color: #AEAAAA
 }
 
+.wating .wating_title {
+	color: #AEAAAA !important
+}
+
+.wating_title {}
 
 .mat-step-icon .mat-icon {
 	height: auto !important;
@@ -460,14 +463,23 @@ mat-footer-row {
 	width: 100%
 }
 
+.mat-dialog-title-div1 {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	padding-top: 0.6rem;
+}
+
 .matDialogTitle {
 	cursor: grab;
 	text-align: center !important;
 	margin: 0px !important;
-	font-size: 13px;
-	font-size: 14px;
+	font-size: 1rem !important;
 	font-family: irsans !important;
 	box-shadow: 1px 0px 4px #777;
+	padding: 0px !important;
+	max-height: 3rem;
+	background-color: aliceblue;
 }
 
 .matDialogContent {
@@ -1557,10 +1569,6 @@ input.ng-invalid.ng-touched {
 	opacity: 0;
 }
 
-html,
-body {
-	height: 100%;
-}
 
 body {
 	margin: 0;

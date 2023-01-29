@@ -1,12 +1,7 @@
-<div mat-dialog-title class="matDialogTitle dialog-color" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
-  <div class="div_loading">
-    <div class="my-container" [hidden]="!loading">
-      <mat-progress-bar mode="indeterminate" class="detaile"></mat-progress-bar>
-    </div>
-  </div>
-  مشخصات قرارداد
-  <span (click)="close()">
-    <mat-icon class="close">close</mat-icon>
+<div mat-dialog-title class="matDialogTitle" cdkDragHandle cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+  <div class="mat-dialog-title-div1">مشخصات قرارداد</div>
+  <span class="close" (click)="close()">
+    <mat-icon>close</mat-icon>
   </span>
 </div>
 

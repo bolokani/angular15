@@ -81,7 +81,7 @@ export class ContractListComponent implements OnInit, OnDestroy {
   open_process(id: number, order_id: number) {
     var width = '23rem';
     if (window.innerWidth > 576) {
-      width = '23rem';
+      width = '27rem';
     }
     this.dialog.open(ContractProcessComponent, {
       width: width,

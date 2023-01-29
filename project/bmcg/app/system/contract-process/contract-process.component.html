@@ -1,42 +1,34 @@
-<div mat-dialog-title class="matDialogTitle pe4" [ngClass]="{en4:lang==2}" cdkDragHandle cdkDrag
-    cdkDragRootElement=".cdk-overlay-pane">
-    <div class="my-container" [hidden]="!loading">
-        <mat-progress-bar mode="indeterminate" class="detaile"></mat-progress-bar>
-    </div>
-    <span *ngIf="lang == 1"> لیست مراحل شماره قرارداد {{ order_id }} </span>
+<div mat-dialog-title class="matDialogTitle" cdkDragHandle cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+    <div class="mat-dialog-title-div1">لیست مراحل شماره قرارداد {{ order_id }}</div>
     <span class="close" (click)="close()">
         <mat-icon>close</mat-icon>
     </span>
 </div>
 
+
 <div mat-dialog-content class="matDialogContent" style="padding-top:1rem !important">
-
-
-
     <mat-stepper orientation="vertical" [linear]="isLinear" class="stepper" #stepper>
-
-
         <ng-container *ngFor="let x of list_process;let i = index">
-            <mat-step class="done" state="done" [completed]="false" [editable]="false"
-                *ngIf="x.cprocess_status_done == 1">
+            <mat-step state="done" [completed]="false" [editable]="false" *ngIf="x.cprocess_status_done == 1">
                 <ng-template matStepLabel>{{ x.discharge_process_title }}</ng-template>
-                <div class="comment done">
+                <div class="comment">
                     <span>{{ x.status }} </span>
                 </div>
             </mat-step>
-            <mat-step class="doing" *ngIf="x.cprocess_status_doing == 1" [completed]="false" [editable]="false">
-                <ng-template matStepLabel>{{ x.discharge_process_title }}</ng-template>
+            <mat-step *ngIf="x.cprocess_status_doing == 1" [completed]="false" [editable]="false">
+                <ng-template class="doing" matStepLabel>{{ x.discharge_process_title }}</ng-template>
                 <div class="comment doing">
-                    <span>{{ x.status }} </span>
+                    <span class="doing">{{ x.status }} </span>
                 </div>
             </mat-step>
-            <mat-step class="done2" *ngIf="x.cprocess_status_wating == 1" [completed]="false" [editable]="false">
-                <ng-template matStepLabel>{{ x.discharge_process_title }}</ng-template>
+            <mat-step *ngIf="x.cprocess_status_wating == 1" [completed]="false" [editable]="false">
+                <ng-template matStepLabel class="wating_title">{{ x.discharge_process_title }}</ng-template>
                 <div class="comment" [ngClass]="{wating:x.cprocess_status_done == 0}">
                     <span>{{ x.status }} </span>
                 </div>
             </mat-step>
         </ng-container>
+
 
     </mat-stepper>
 
