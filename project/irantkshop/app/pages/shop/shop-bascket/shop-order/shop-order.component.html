@@ -1,0 +1,111 @@
+<div class="div_loading">
+    <div class="my-container" [hidden]="!loading" class="detaile">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+</div>
+<div class="row" style="background-color: #fff;">
+    <div class='col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9 shop-cart-all' id='box-tab1' *ngIf="show == 'table'">
+        <div class='col-md-12 col-12 col-sm-12  shop-cart'>
+            <table class="table table-condensed table-hover table-bordered table-dashbord table-nowrap">
+                <tr>
+                    <th>عنوان محصول</th>
+                    <th>تعداد</th>
+                    <th>واحد</th>
+                    <th>قیمت بدون تخفیف</th>
+                    <th>درصد تخفیف</th>
+                    <th>قیمت نهایی</th>
+                </tr>
+                <tr *ngFor="let x of list_bascket;let i = index">
+                    <td (click)="open_product(x.wharehouse_material_id,x.wharehouse_material_title)" class="cursor">{{
+                        x.wharehouse_material_title }}</td>
+                    <td>{{ x.wharehouse_order_number }}</td>
+                    <td>عدد</td>
+                    <td>{{ x.product_goods_price_without_discount | number }}</td>
+                    <td>{{ x.product_goods_discount }}</td>
+                    <td>{{ x.product_goods_price_with_discount | number }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class='col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9 shopcart' id='box-tab2' style="padding:1rem !important"
+        *ngIf="show == 'list'">
+        <div class='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 shop-cart'
+            *ngFor="let x of list_bascket;let i = index">
+
+            <div class='col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1 shop-cart-box'>
+                <span (click)="delete(i,x.product_bascket_id)"><i class="fas fa-times-circle cursor"></i></span>
+            </div>
+            <div class='col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-11 shop-cart-box cursor'
+                (click)="open_product(x.wharehouse_material_id,x.wharehouse_material_title)">
+                <img [src]='x.logo' width='100%' height='200px' [title]="x.wharehouse_material_title"
+                    [alt]="x.wharehouse_material_title">
+            </div>
+            <div class='col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 shop-cart-box shop-cart-name'>
+                <p class='cursor' (click)="open_product(x.wharehouse_material_id,x.wharehouse_material_title)">
+                    {{ x.wharehouse_material_title }}
+                    <span class='pro-det'> ( جزئیات محصول )</span>
+                </p>
+                <p>
+                    <span class='one-sale-detaile'> {{ x.product_goods_war }} </span>
+                </p>
+            </div>
+
+            <div class='col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-12 shop-cart-box'>
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-12 shop-cart-num">
+                        <span class='shop-cart-span'>
+                            <input type='number' [value]='x.wharehouse_order_number' min="1"
+                                id='number{{ x.wharehouse_order_id }}'
+                                (change)="change_number(i,x.wharehouse_order_id)"></span>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-12 shop-cart-price">
+                        <span class="discount" *ngIf="x.wharehouse_order_discount > 0">{{ x.wharehouse_order_discount
+                            }}%</span>
+                        <span class="old-price" *ngIf="x.wharehouse_order_discount > 0"><span
+                                style='float:left'>تومان</span>
+                            <del>{{ x.price_without_discount | number }}</del></span>
+                        <br>
+                        <span>{{ x.price_with_discount | number }} تومان</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class='col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 shopcart' id='box-tab2' style="padding:1rem !important">
+        <div class='list-info-detaile-pro col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 col-sm-12'>
+            <span (click)="show_table()" id='list-tab1' [ngClass]='{active_ist:show == "table"}'><i
+                    class="fa fa-list-alt"></i> نمایش جدولی</span>
+            <span (click)="show_list()" id='list-tab2' [ngClass]='{active_ist:show == "list"}'><i
+                    class="fa fa-table"></i> نمایش لیست </span>
+        </div>
+        <div class='price-info-detaile-pro col-12 col-md-12 col-sm-12 col-lg-12' style='margin-top:5px !important'>
+            <div class='sale-detaile-pro'>
+                <i class="icon-info fas fa-truck" style='margin:6px 3px 6px 13px'></i>
+                <span class='one-sale-detaile'> ارسال از 4 روز کاری آینده </span>
+            </div>
+
+            <div class='type-price-detaile'>
+                <div class="type-price-old">
+                    مبلغ قابل پرداخت
+                </div>
+                <div class="type-price-new">
+                    <span class="new-price"><span>تومان</span>
+                        {{ sum | number }}
+                    </span>
+                </div>
+                <button class='button-price-shop' (click)="continue()">
+                    <i class="fas fa-long-arrow-alt-left"></i>
+                    ادامه ثبت سفارش
+                </button>
+                <p class='p-price-shop'>
+                    کالاهای موجود در سبد شما ثبت و رزرو نشده‌اند، برای ثبت سفارش مراحل بعدی را تکمیل کنید.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ****************************************************************************************** -->

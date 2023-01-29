@@ -1,0 +1,12 @@
+<mat-horizontal-stepper class="stepper" #stepper>
+    <mat-step [completed]="false">
+        <ng-template matStepLabel>سبد خرید</ng-template>
+    </mat-step>
+    <mat-step [completed]="false">
+        <ng-template matStepLabel>اطلاعات ارسال و پرداخت</ng-template>
+    </mat-step>
+    <mat-step [completed]="false">
+        <ng-template matStepLabel>اتمام خرید و ارسال</ng-template>
+    </mat-step>
+</mat-horizontal-stepper>
+<router-outlet></router-outlet>

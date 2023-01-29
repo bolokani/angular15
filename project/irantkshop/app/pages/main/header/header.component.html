@@ -1,0 +1,55 @@
+<div class="row baner_main" *ngIf="baner_main_status == true">
+    <a [href]="baner_main_link" target="_blank">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 cursor">
+            <img [src]="baner_main" title="فروش ویژه" alt="فروش">
+        </div>
+    </a>
+</div>
+<header class="site-header" id='fix_menu'>
+    <div class="main-nav">
+        <nav role="navigation" class="container1 menu-desktop">
+            <div class="site-logo__wrapper" [routerLink]="['/']">
+                <a class="site-logo" title="Home" [ngStyle]="{'background-image':'url( ' + logo + ')'}"></a>
+            </div>
+            <div style="width:100%;height:6rem;padding-top:2rem">
+                <div style="float: left;">
+                    <div class="login cursor" [routerLink]="['/login']" *ngIf="!user_cellphone">
+                        <span>ورود</span>
+                        |
+                        <span>ثبت نام</span>
+                    </div>
+                    <div class="user_icon cursor" *ngIf="user_cellphone" [matMenuTriggerFor]="menu_profile">
+                        <mat-icon>account_circle</mat-icon>
+                    </div>
+                    <div class="cart-icon" style="height:2rem;width:2rem;display: inline-block;">
+                        <img src="../../assets/img/bascket.png" class="cursor" style="vertical-align:bottom"
+                            (click)="get_show_bascket();get_count_orders()" [matMenuTriggerFor]="menu" title="سبد خرید"
+                            alt="سبد خرید">
+                        <span mat-raised-button color="primary" matBadge="{{ count }}" matBadgePosition="before"
+                            matBadgeColor="accent">
+                        </span>
+                    </div>
+                </div>
+                <mat-menu #menu="matMenu" class="mat-menu-panel-bascket">
+                    <app-header-bascket></app-header-bascket>
+                </mat-menu>
+                <mat-menu #menu_profile="matMenu" class="mat-menu-panel-profile">
+                    <app-profile-menu></app-profile-menu>
+                </mat-menu>
+
+                <ul class="main-nav__links main-nav__links--closed ul1">
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="main-nav__link" [routerLink]="['/']">صفحه نخست</a>
+                    </li>
+                    <li class="cursor" routerLinkActive="active" (click)="get_group()">
+                        <a class="main-nav__link">دسته کالا ها</a>
+                    </li>
+                    <li class="cursor" routerLinkActive="active" [routerLink]="['/all-goods/-']">
+                        <a class="main-nav__link">همه کالاها</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- ********************************************************************************************************************************* -->

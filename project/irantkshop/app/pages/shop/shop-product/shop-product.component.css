@@ -1,0 +1,361 @@
+.disable{cursor:no-drop !important;}
+
+ 
+
+body {
+  background-color: #f9f9f9;
+  font-family: lato;
+}
+.active{background:#4b79ab;color:#fff !important}
+.shop-cate-all{padding:0px;min-height:10px;float:right;direction:rtl;margin:0px;}
+.shop-cate-right{height: 87vh;overflow-y: auto;box-shadow: 0px 0px 5px 0px #ddd;float: right;width: 17%;position: sticky;right: 0px;top:0px;padding:0px;}
+.product-search-cate{min-height:50px;margin-bottom:15px;text-align:right;padding:10px 10px;background-color: #ffffff;box-shadow: 0px 0px 5px 0px #ddd;margin-bottom:10px;}
+.product-search-span1{width:100%;display:block;padding:5px 5px 5px 7px;border-bottom:solid 1px #ddd;font-size:14px;color:#777;margin-bottom:10px}
+.product-search-span2{width:100%;display:block;padding:5px 7px;font-size:13px;color:#777;}
+.product-search-span3{width:100%;display:block;padding:5px 10px 5px 7px;font-size:13px;color:#000;}
+.product-search-span4{width:100%;display:block;padding:5px 20px 5px 7px;font-size:12px;color:#777;}
+.product-search-input{margin-top:5px;width: 100%;height: 30px;background-color: #fdfdfd;font-size: 12px;color: #777;padding: 5px;outline: none;border-radius: 5px;border: solid 1px #ccc;}
+
+.shop-cate-left{padding:10px 20px;float:right;min-height:10px;width:83%}
+.product-filter{height: 40px;float: right;box-shadow: 0px 0px 5px 0px #ddd;background-color: #fff;margin-bottom: 10px;    text-align: right;padding: 8px;}
+.product-filter-one{padding:5px;font-size:12px;color:#777;margin-left:10px;}
+.product-filter-two{padding: 5px 10px;cursor:pointer;font-size: 12px;color: #517396;margin: 0px 1px;border-radius: 5px;}
+.product-filter-two:hover{background-color: #f9f9f9;}
+.product-rating {
+    padding: 0 10px;
+    font-size: 14px;
+    color: orange;
+    float: left;
+    margin-top: 11px;
+
+}
+.detaile-pro{
+    float: right;
+    width: fit-content;
+    text-align: left;
+    font-size: 11px;
+    position: absolute;
+    left: 0px;
+    bottom: 35px;
+    padding: 5px 10px 5px 10px;
+    color: #ad0e0e;
+    cursor: pointer;
+}
+
+.cate-pro{
+    float: right;
+    width: fit-content;
+    text-align: left;
+    font-size: 11px;
+    position: absolute;
+    right: 0px;
+    bottom: 35px;
+    padding: 5px 10px 5px 10px;
+    color: #3fa6f1;
+    cursor: pointer;
+}
+.product-rating i.grey {
+  color: #777;
+}
+.product {
+  width: 23.4%;
+  margin:5px .8% 10px .8%;
+  z-index: 8;
+  float: right;
+}
+.product.flip .fornt {
+  -webkit-transform: perspective(400px) rotateY(-180deg);
+          transform: perspective(400px) rotateY(-180deg);
+}
+.product.flip .back {
+  -webkit-transform: perspective(400px) rotateY(0deg);
+          transform: perspective(400px) rotateY(0deg);
+  height: 400px;
+}
+.product > div {
+  float: right;
+  box-shadow: 0px 0px 6px 0px #ddd;
+}
+.product .fornt, .product .back {
+  background-color: #fafafa;
+  -webkit-transform: perspective(1000px) rotateY(0deg);
+          transform: perspective(1000px) rotateY(0deg);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+}
+.product .fornt span.new, .product .back span.new {
+  position: absolute;
+  background: #77d596;
+  color: #fff;
+  font-size: 13px;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  padding: 9px 15px 0 7px;
+  width: fit-content;
+  height: 40px;
+  display: inline-block;
+  border-radius: 0% 0% 75% 0%;
+  font-weight: 300;
+}
+.product .fornt .img-wrap, .product .back .img-wrap {
+  padding: 10px 10px 35px;
+  background-color: #fff;
+  min-width: 100%;
+}
+.product .fornt .img-wrap img, .product .back .img-wrap img {
+  max-width: 100%;
+  height: 200px;
+  width: 100%;
+  cursor: pointer;
+}
+.product .fornt .img-wrap i, .product .back .img-wrap i {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  font-size: 20px;
+  color: #EAEAEA;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  cursor: pointer;
+  transition: -webkit-transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+}
+.product .fornt .img-wrap i:hover, .product .back .img-wrap i:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+.product .fornt .img-wrap i.fav, .product .back .img-wrap i.fav {
+  color: #fe7676;
+}
+
+.icon-hear-pro {
+  font-size: 20px;
+  color: #EAEAEA;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  cursor: pointer;
+  transition: -webkit-transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+}
+.icon-hear-pro:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+.icon-hear-pro {
+  color: #fe7676;
+}
+.product .fornt .description, .product .back .description {
+  position: relative;
+  padding: 10px 15px 15px;
+  height: 200px;
+  background: #FDFDFF;
+    
+}
+.product .fornt .description span.discount, .product .back .description span.discount {
+    background-color: #fe7676;
+    border-radius: 20%;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    box-sizing: content-box;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 0px 5px;
+    font-family: serif;
+    display: inline-block;
+    float: right;
+}
+.content{text-align:right;}
+.product .fornt .description .content h3, .product .back .description .content h3 {
+    margin: 0px 0px 25px 0px;
+    font-size: 13px;
+    font-weight: lighter;
+    color: #545454;
+    line-height: 22px;
+    word-spacing: 3px;
+    letter-spacing: .4px;
+}
+.product .fornt .description .content p, .product .back .description .content p {
+  margin: 10px 0 15px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #909090;
+}
+.product .fornt .description .price, .product .back .description .price {
+  float: right;
+  width:100%;
+}
+.product .fornt .description .price .old-price, .product .back .description .price .old-price {
+  font-size: 12px;
+  color: #959595;
+  font-weight: 300;
+  margin-right: 10px;
+  display:inline-block;
+  float: right;
+  line-height: 26px;
+}
+.product .fornt .description .price .new-price, .product .back .description .price .new-price {
+  font-size: 16px;
+  font-weight: 300;
+  color: #48AF6A;
+  display:block;
+  float: right;
+  margin-top: 5px;
+}
+.operation{width:100%;float:right;background: #f1f1f1;
+    height: 35px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;}
+    
+.product-build{width:100%;float:right;background: #f1f1f1;
+    height: 30px;
+    position: absolute;
+    z-index: 1;
+    top:218px;
+    right:0px;
+    cursor: pointer;
+}
+.tooltip {
+  z-index: 8;
+  float: right;
+  opacity:1;
+  position: relative !important;
+
+}
+
+.tooltip .tooltiptext {
+    color: #ab1616;
+    text-align: right;
+    padding:6px 7px 6px 1px;
+    z-index: 1;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    font-size: 12px;
+    padding-top:6px;
+    display:inline-block;
+
+}
+
+
+.product-build h2{
+display:inline-block;
+font-size:12px;
+color:#000;
+margin-right:3px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+.quick-detail-two{color:#777 !important;opacity: 1;}
+.product .fornt .description .quick-detail, .product .back .description .quick-detail {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+     color: #77d596; 
+    font-size: 27px;
+    cursor: pointer;
+    display: inline-block;
+}
+.product .fornt .description .quick-detail i, .product .back .description .quick-detail i {
+  -webkit-transform: translate(0px);
+          transform: translate(0px);
+  transition: -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+.product .fornt.back .img-wrap, .product .back.back .img-wrap {
+  padding: 30px 20px 40px;
+  position: relative;
+}
+.product .fornt.back .img-wrap .colors, .product .back.back .img-wrap .colors {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+.product .fornt.back .img-wrap .colors .main-color, .product .back.back .img-wrap .colors .main-color {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: red;
+  cursor: pointer;
+}
+.product .fornt.back .img-wrap .colors ul, .product .back.back .img-wrap .colors ul {
+  margin: 0;
+  padding: 0;
+  width: 20px;
+}
+.product .fornt.back .img-wrap .colors ul li, .product .back.back .img-wrap .colors ul li {
+  list-style: none;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: red;
+}
+.product .fornt.back .img-wrap ul.indicator, .product .back.back .img-wrap ul.indicator {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.product .fornt.back .img-wrap ul.indicator li, .product .back.back .img-wrap ul.indicator li {
+  list-style: none;
+  display: inline-block;
+  width: 60px;
+  height: 45px;
+  border: 2px solid #ddd;
+  margin: 0 3px;
+  padding: 3px;
+  line-height: 30px;
+}
+.product .fornt.back .img-wrap ul.indicator li img, .product .back.back .img-wrap ul.indicator li img {
+  max-width: 100%;
+}
+.product .fornt.back .description .quick-detail, .product .back.back .description .quick-detail {
+  background-color: #77d596;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.product .fornt.back .description .quick-detail:hover i, .product .back.back .description .quick-detail:hover i {
+  -webkit-transform: rotate(180deg) translateX(3px);
+          transform: rotate(180deg) translateX(3px);
+}
+.product .fornt.back .description .quick-detail i, .product .back.back .description .quick-detail i {
+  -webkit-transform: rotate(180deg) translateX(0px);
+          transform: rotate(180deg) translateX(0px);
+}
+.product .back {
+  -webkit-transform: perspective(1000px) rotateY(180deg);
+          transform: perspective(1000px) rotateY(180deg);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+}
+
+
+
+  
+  
+@media (min-width: 1200px){
+  .container {
+    max-width: 1600px !important;
+}
+
+}
+

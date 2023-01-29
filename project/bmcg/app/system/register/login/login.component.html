@@ -1,0 +1,155 @@
+<div class="preloader" [hidden]="!loading">
+    <div class="spinner"></div>
+</div>
+
+<div class="root" [ngStyle]="{'minHeight':height}" style="padding-bottom: 5rem;">
+    <div class='container'>
+        <div class="row" style="background-color: #fff;">
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 col-sm-12">
+                <div class='boxes'>
+                    <h2 class='contact-title header'>ورود </h2>
+                    <form [formGroup]="form2" (submit)="login()" class='form-login' autocomplete="off">
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+                            <label>
+                                <span class="label pe1"> شماره همراه یا کد ملی : </span>
+                                <input type='text' class='input en1' formControlName="username" autocomplate="off"
+                                    autocomplete="new-password" (keypress)="serverService.get_number($event)"
+                                    style="text-align: center">
+                                <span class='help-block pe1'
+                                    *ngIf="!form2.get('username').valid && form2.get('username').touched">لطفا
+                                    شماره همراه یا کد خود را به درستی وارد نمائید</span>
+                            </label>
+                        </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+                            <label>
+                                <span class="label pe1"> رمز عبور : </span>
+                                <span style="float: left;" class="cursor" (click)="eye()">
+                                    <mat-icon style="font-size:1.2rem;padding-top:0.4rem">visibility</mat-icon>
+                                </span>
+                                <input id="password" type='password' class='input en1' autocomplete="new-password"
+                                    formControlName="password" autocomplate="off"
+                                    (keypress)="serverService.get_number($event)" style="text-align: center">
+                                <span class='help-block pe1'
+                                    *ngIf="!form2.get('password').valid && form2.get('password').touched ">لطفا
+                                    کد ارسال شده را به وارد نمائید.</span>
+                            </label>
+                        </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+                            <label>
+                                <span class="label pe1">
+                                    <mat-checkbox style="vertical-align:sub !important" formControlName="remember">
+                                    </mat-checkbox>
+                                    مرا به خاطر بسپار
+                                </span>
+                            </label>
+                        </div>
+
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+                            <label style='text-align:center;width:auto'>
+                                <button type="submit" class="default-btn-one home-button5 cursor"
+                                    [disabled]="!form2.valid">
+                                    ورود
+                                </button>
+                                <span class="spinner-border spinner-border-sm" [hidden]="!loading_login"></span>
+                                <span style='padding:10px;width:100%;text-align:center;font-size:14px;color:#f50808;'>{{
+                                    text_login }}</span>
+                            </label>
+                        </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
+                    </form>
+                </div>
+                <!-- ****************************************************************************************************** -->
+
+            </div><!-- col-md-6 col-sm-6 col-xs-6 col-sm-12 -->
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 col-sm-12 login-left">
+                <div class='boxes'>
+                    <h2 class='contact-title header'>ثبت نام </h2>
+                    <form [formGroup]="form1" (submit)="signup()" class='form-register' [hidden]="valid_email">
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-sm-12 center">
+                            <label>
+                                <span class="label pe1"> نام و نام خانوادگی : </span>
+                                <input type='text' class='input pe' formControlName="user" minlength="3"
+                                    autocomplete="off">
+                                <div class='help-block pe1'
+                                    *ngIf="!form1.get('user').valid && form1.get('user').touched ">
+                                    لطفا نام خود
+                                    را به درستی وارد نمائید.</div>
+                            </label>
+                        </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
+
+
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-sm-12 center">
+                            <label>
+                                <span class="label pe1"> پست الکترونیک : </span>
+                                <input type='email' class='input en' autocomplete="new-password" formControlName="email"
+                                    minlength="3" email>
+                                <div class='help-block pe1'
+                                    *ngIf="!form1.get('email').valid && form1.get('email').touched "> لطفا
+                                    پست الکترونیک خود را به درستی وارد نمائید </div>
+                            </label>
+                        </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
+
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-sm-12 center">
+                            <label>
+                                <span class="label pe1"> پسورد : </span>
+                                <input type='password' class='input pe' autocomplete="new-password"
+                                    formControlName="password" minlength="6">
+                                <div class='help-block pe1'
+                                    *ngIf="!form1.get('password').valid && form1.get('password').touched ">
+                                    باید پسورد ترکیبی از حروف کوچک و بزرگ و اعداد و حداقل 8 کارکتر باشد </div>
+                            </label>
+                        </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
+
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-sm-12 center">
+                            <label>
+                                <span class="label pe1"> تکرار پسورد : </span>
+                                <input type='password' class='input pe' formControlName="repassword" minlength="6"
+                                    autocomplete="off">
+                                <div class='help-block pe1'
+                                    *ngIf="(form1.get('password').value != form1.get('repassword').value) && form1.get('repassword').touched">
+                                    تکرار پسورد با پسورد یکسان نیست </div>
+                            </label>
+                        </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
+
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+                            <label>
+                                <span class="label pe1">
+                                    <mat-checkbox style="vertical-align:sub !important" formControlName="rule" required>
+                                    </mat-checkbox>
+                                    قوانین سایت را از
+                                    <span (click)="read_rule()" class="link cursor">اینجا</span>
+                                    خواندم و قبول دارم.
+                                </span>
+                            </label>
+                        </div>
+
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+                            <label style='text-align:center'>
+                                <button type="submit" class="default-btn-one home-button5 cursor"
+                                    [disabled]="!form1.valid  || (form1.get('password').value != form1.get('repassword').value)">
+                                    ثبت نام
+                                    <span class="spinner-border spinner-border-sm" [hidden]="!loading_sign"></span>
+                                </button>
+                                <span style='padding:10px;width:100%;text-align:center;font-size:14px;color:#f50808;'>{{
+                                    text_login }}</span>
+                            </label>
+                        </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
+                    </form>
+                    <div class="div1" [hidden]="!valid_email">
+                        ثبت نام شما با موفقیت انجام شد . لینک تایید ایمیل برای شما ارسال شده است.
+                    </div>
+                </div>
+            </div><!-- col-md-6 col-sm-6 col-xs-6 col-sm-12 -->
+
+
+
+        </div><!-- row -->
+    </div><!-- container-fluit -->
+</div>

@@ -1,0 +1,90 @@
+<div class="container-fluid" >
+<div class="row">
+<div class="container">
+<div class='col-md-12 col-xs-12 col-sm-12 shop-cate-all'>
+ <div class='shop-cate-right'>
+  <div class='col-md-12 col-xs-12 col-sm-12 col-lg-12 product-search-cate'>
+   <span class='product-search-span1'>دسته بندی نتایج</span>
+   <span class='product-search-span2'><i class="fas fa-caret-left"></i> محصولات ساختمانی  </span>
+   <span class='product-search-span3'><i class="fas fa-sort-down"></i>  {{ cate1_title }} </span>
+   <a class='product-search-span4 cursor' *ngFor="let x of list_cate1" (click)="go_to_products(x.product_cate1_id,x.product_cate2_id,x.product_cate2_title)" [ngClass]="{active:x.product_cate2_id==id}"> {{ x.product_cate2_title }} </a>
+  </div>
+  
+  <div class='col-md-12 col-xs-12 col-sm-12 col-lg-12 product-search-cate'>
+   <span class='product-search-span1'> جستجو نتایج </span>
+   <input class='product-search-input' placeholder='نام محصول مورد نظر را جستجو کنید'>
+  </div>
+  
+ </div>
+ <div class='shop-cate-left'>
+  <div class='col-md-12 col-xs-12 col-sm-12 col-lg-12 product-filter'>
+   <span class='product-filter-one'><i class="fas fa-filter"></i> مرتب سازی بر اساس :</span>
+   <span class='product-filter-two' [routerLink]="['/shop-cate']"> تمام دسته بندی   </span>
+   <span class='product-filter-two disable' [routerLink]="['/shop-product','0','0','محصولات']"> 
+    تمامی محصولات
+   </span>
+  </div>
+  <div class="fornt" *ngIf="num_product == 0" style="text-align:center;font-size:0.7rem">
+      فعلا محصولی برای این واریانت وجود ندارد
+  </div>   
+  <div class="product tooltip" *ngFor="let x of list_product">
+   <div class="fornt">
+    <span class="new" style='display:none'>جدید</span>
+    <div class="img-wrap">
+     <img (click)="open_product(x.product_goods_id)" src="{{ x.product_goods_site1 }}/{{ x.product_goods_img1 }}" alt="mac air"/>
+     <div class='product-build' (click)="open_supplier(x.user_id)">
+      <span class="tooltiptext">  فروشنده  </span>
+      :<h2 class="cursor" style='font-size: 12px;' (click)="open_supplier(x.user_id)">{{ x.user_moshaver }} </h2>
+     </div>
+    </div>
+    <div class="description clearfix">
+     <div class="content">
+      <h3 class='cursor' (click)="open_product(x.product_goods_id)"> {{ x.product_goods_title }} </h3>
+     </div>
+     <div class="price">
+      <span class="discount">{{ x.product_goods_discount }}%</span>
+      <span class="old-price"><span style='float:left;margin-right:3px;'>تومان</span>
+      <del>{{ x.product_goods_price  | number }}</del></span>
+     </div>
+     <div class="price">
+      <span class="new-price">
+        <span style='float:left;margin-right:3px;'>تومان</span>
+         {{ x.product_goods_price2  | number }}
+        </span>
+     </div>
+     <div class="detaile-pro" (click)="open_product(x.product_goods_id)">
+       جزئیات بیشتر
+     </div>
+     <div class="cate-pro">
+      {{ x.product_cate2_title }}
+     </div>
+     <div class='operation'>
+      <span class="product-rating">
+       <i class="fa fa-star grey"></i>
+       <i class="fa fa-star"></i>
+       <i class="fa fa-star"></i>
+       <i class="fa fa-star"></i>
+       <i class="fa fa-star"></i>
+      </span>
+      <div class="quick-detail" (click)="add_to_bascket(x.product_goods_id)" title='اضافه به سبد خرید'>
+       <i class="fas fa-shopping-cart" style='font-size:20px'></i>
+      </div>
+      <div class="quick-detail quick-detail-two displaynone" (click)="open_product(x.product_goods_id)" title='مشاهده محصول'>
+       <i class="fas fa-search" style='font-size:20px'></i>
+      </div>
+      <div class="quick-detail quick-detail-two displaynone" title='اضافه به سبد خرید'>
+       <i class="fa fa-heart icon-hear-pro"></i>
+      </div>
+     </div>
+    </div>
+   </div><!-- fornt -->
+  </div><!-- /product -->
+  
+
+ </div>
+</div>
+
+</div>
+</div>
+</div>
+

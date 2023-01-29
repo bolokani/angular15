@@ -1,0 +1,79 @@
+<div class="container-fluid detaile-fluid3">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-lg-12 col-xs-12 sidebar1 box appy-breadcrumb">
+            <ul>
+                <li>پنل کاربری </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <!-- ************************************************************************************************************* -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-lg-12 col-xs-12 content1">
+            <div class="div_loading" [hidden]="!loading">
+                <div class="my-container">
+                    <mat-progress-bar mode="indeterminate" class="detaile"></mat-progress-bar>
+                </div>
+            </div>
+            <div class="header">
+                <div class="title">ویرایش پروفایل</div>
+            </div>
+            <div class="content">
+                <form [formGroup]="form1">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-lg-3 col-xs-12 div_padding">
+                            <label for="name" class='wh-label'>
+                                <div class="wh-label-text"> نام و نام خانوادگی : </div>
+                                <input class='wh-input wh-input2' formControlName="name" autocomplete="off" required>
+                            </label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-lg-3 col-xs-12 div_padding">
+                            <label for="cellphone" class='wh-label'>
+                                <div class="wh-label-text"> شماره همراه - اجباری : </div>
+                                <input class='wh-input wh-input2' formControlName="cellphone" autocomplete="off"
+                                    length="11" maxLength="11" minLength="11" required
+                                    (keypress)="serverService.get_number($event)">
+                            </label>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-lg-3 col-xs-12 div_padding">
+                            <label for="code_meli" class='wh-label'>
+                                <div class="wh-label-text"> کد ملی: </div>
+                                <input class='wh-input wh-input2' formControlName="code_meli" autocomplete="off"
+                                    length="10" maxLength="10" minLength="10"
+                                    (keypress)="serverService.get_number($event)">
+                            </label>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-lg-3 col-xs-12 div_padding">
+                            <label for="watsup" class='wh-label'>
+                                <div class="wh-label-text"> واتس آپ : </div>
+                                <input class='wh-input wh-input2' formControlName="watsup" autocomplete="off"
+                                    style="direction:ltr" (keypress)="serverService.get_number($event)" length="11"
+                                    maxLength="11" minLength="11">
+                            </label>
+                        </div>
+
+
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-lg-3 col-xs-12 div_padding">
+                            <label for="email" class='wh-label'>
+                                <div class="wh-label-text"> پست الکترونیک: </div>
+                                <input class='wh-input wh-input2' formControlName="email" autocomplete="off">
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div style="text-align: center;padding:1rem">
+                        <button class="btn btn-success" style="width:10rem" (click)="update()"
+                            [disabled]="!form1.valid">
+                            ویرایش
+                            <span class="spinner-border spinner-border-sm" [hidden]="!loading_update"></span>
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+
+        </div><!-- col-xl-9 col-lg-9 col-md-9 col-lg-9 col-xs-12 content1 -->
+    </div>
+</div>

@@ -1,0 +1,86 @@
+<footer class="footer" style="margin-top:0.3rem">
+    <div class="container-fluid" style="padding:0px !important">
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-sm-6 col-xs-12 col-md-4 footer-col subscription">
+                <div class="footer-head6er">
+                    <div class="title title2" (click)="get_footer_contact()">ارتباط با ما</div>
+                </div>
+                <div class="content" [innerHTML]="footer_contact" style="display: none;">
+
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-sm-6 col-xs-12 col-md-4  footer-col footer-col2">
+                <div class="header">
+                    <div class="title title2">دسترسی سریع</div>
+                </div>
+                <div class="content1">
+                    <ul>
+                        <li>
+                            <a routerLinkActive="active">درباره ما</a>
+                        </li>
+                        <li>
+                            <a routerLinkActive="active">تماس با ما</a>
+                        </li>
+                        <li *ngFor="let x of list_footer_content">
+                            <a href="javascript:void(0)"> {{ x.site_content_title }} </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-sm-6 col-xs-12 col-md-4 col-md-2 footer-col footer-col3">
+                <div class="header">
+                    <div class="title title2">خدمات مشتریان</div>
+                </div>
+                <div class="content1">
+                    <ul>
+                        <li>
+                            <a>گالری عکس</a>
+                        </li>
+                        <li>
+                            <a>درخواست مشاوره</a>
+                        </li>
+                        <li>
+                            <a>درخواست سخنرانی</a>
+                        </li>
+                        <li>
+                            <a class="cursor">آموزش تخصصی پرسنل
+                                شما</a>
+                        </li>
+                        <li>
+                            <a>اسپانسیرینگ سخنرانی ها</a>
+                        </li>
+                        <li>
+                            <a>خرید پکیج های آموزشی</a>
+                        </li>
+                        <li>
+                            <a>استخدام بازاریاب</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-xl-2 col-lg-3 col-sm-6 col-xs-12 col-md-4  right width-15 social-col instagram">
+                <i class="fa fa-instagram"></i>
+                <div class="title title3">اینستاگرام تعمیرکاران ایران</div>
+                <a href="https://www.instagram.com/bndlg" target="_blank">
+                    <div class="button">
+                        <span>@</span> bndlg
+                    </div>
+                </a>
+            </div>
+        </div><!-- row -->
+    </div>
+
+</footer>
+
+<footer>
+    <div class="row" style="background-color: #000;padding:0 1rem;color: #ccc;">
+        <div class="col-xl-12 col-lg-12 col-sm-12 col-xs-12 col-md-8 footer2">
+            <div class="footer4">
+                © کليه حقوق محصولات و محتوای اين وب سایت متعلق به تعمیرکاران ایران می باشد.
+            </div>
+        </div>
+    </div>
+</footer>

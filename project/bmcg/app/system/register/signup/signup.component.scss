@@ -1,0 +1,72 @@
+.form-check{
+    text-align: right;
+}
+.signup-login{text-align:right}
+.signup-form {
+	background: #fff;
+	-webkit-box-shadow: 0 2px 48px 0 rgba(0, 0, 0, .08);
+	box-shadow: 0 2px 48px 0 rgba(0, 0, 0, .08);
+	padding: 40px;
+	border-radius: 5px;
+	max-width: 600px;
+	margin: auto
+}
+.signup-form h3 {
+	font-size: 25px;
+	font-weight: 700;
+	margin-bottom: 30px;
+	text-align: center
+}
+.signup-form form .form-group {
+	margin-bottom: 15px
+}
+.signup-form form .form-control {
+	height: 50px;
+	border: 1px solid #eee;
+	border-radius: 3px;
+	color: #fff;
+	padding-left: 20px;
+	background: 0 0
+}
+.signup-form form .form-control:focus {
+	border-color: #f25144;
+	outline: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none
+}
+.signup-form form .form-control::-webkit-input-placeholder {
+	color: #777
+}
+.signup-form form .form-control:-ms-input-placeholder {
+	color: #777
+}
+.signup-form form .form-control::-ms-input-placeholder {
+	color: #777
+}
+.signup-form form .form-control::placeholder {
+	color: #777
+}
+.signup-form form .form-check {
+	margin-top: 18px
+}
+.signup-form form .form-check .form-check-label {
+	color: #777;
+	position: relative;
+}
+.signup-form form .send-btn {
+	margin-top: 20px;
+    text-align: right;
+}
+.signup-form form .send-btn .default-btn-one {
+	border: none;
+	margin-left:0.5rem;
+}
+.signup-form form span {
+	display: block;
+	color: #777
+}
+.signup-form form span a {
+	color: #f45a43
+}
+.signout-div1{text-align:right}
+

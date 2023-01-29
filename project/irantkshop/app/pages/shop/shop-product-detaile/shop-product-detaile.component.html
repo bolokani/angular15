@@ -1,0 +1,191 @@
+<div mat-dialog-title style='margin:0px !important;direction: rtl;'>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class='button-close'>بستن</button>
+    <span class='searchcode-title'>
+        <h1 style='font-size:1rem;display:inline'>{{ title }}</h1>
+    </span>
+</div>
+<div mat-dialog-content class="matDialogContent"
+    style='padding:0px !important;max-height: 86vh !important;min-height: 86vh !important;'>
+    <div class='view-detaile-pro col-12 col-md-12 col-sm-12 col-lg-12'>
+        <div class='image-detaile-pro'>
+            <span class="detaile-new">جدید</span>
+            <span class="detaile-heart"><i class="fa fa-heart"></i></span>
+            <!--<div class="price">-->
+            <!-- <span class="discount">30%</span>-->
+            <!-- <span class="old-price"><span style='float:left'>تومان</span><del> 4,100,000</del></span>-->
+            <!--</div>-->
+            <div class="block-image">
+                <img id="tabimgzoom" class="image-zoom" onmousemove="zoom(event)" ontouchmove="zoom(event)"
+                    src="{{ site1 }}/{{ img1 }}">
+            </div>
+            <div class="block-image-tab">
+                <img onclick="tabimgzoom(this);" src="{{ site1 }}/{{ img1 }}">
+            </div>
+            <div class="block-image-tab">
+                <img onclick="tabimgzoom(this);" src="{{ site2 }}/{{ img2 }}">
+            </div>
+            <div class="block-image-tab">
+                <img onclick="tabimgzoom(this);" src="{{ site3 }}/{{ img3 }}">
+            </div>
+            <div class="block-image-tab">
+                <img onclick="tabimgzoom(this);" src="{{ site4 }}/{{ img4 }}">
+            </div>
+            <div class="block-image-tab">
+                <img onclick="tabimgzoom(this);" src="{{ site5 }}/{{ img5 }}">
+            </div>
+        </div>
+
+
+        <div class='info-detaile-pro'>
+            <div class='name-detaile-pro col-12 col-md-12 col-sm-12 col-lg-12'>
+                <div class='col-12 col-md-8 col-sm-8 col-lg-8' style='float:right;padding:0px;margin-bottom:2px'>
+
+                    <span class='name-pro'>
+                        محصولات ساختمانی سایت خانه اول برای فروش گذاشته شده است
+                    </span>
+                </div>
+                <div class='col-12 col-md-4 col-sm-4 col-lg-4' style='float:right;padding:0px;margin-bottom:2px'>
+                    <span class='cate-pro'>
+                        <span class='cate-pro-one'>دسته بندی :</span>
+                        <span class='cate-pro-two'>{{ cate2_title }}</span>
+                    </span>
+                    <span class='brand-pro'>
+                        <span class='brand-pro-one'>برند :</span>
+                        <span class='brand-pro-two'>نوع برند</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class='Property-detaile-pro col-12 col-md-12 col-sm-12 col-lg-12'>
+                <ul class='ul-detaile-pro'>
+                    <li class='titr-ul-detaile-pro'>ویژگی های محصول</li>
+                    <li *ngFor="let x of list_specification">{{ x.product_specification_title }}</li>
+                    <!--<button type="button" class="btn btn-lg btn-info collapsed" data-toggle="collapse" data-target="#more-pro"></button>-->
+                </ul>
+                <div class='price-detaile-pro'>
+                    <div class='price-info-detaile-pro col-12 col-md-12 col-sm-12 col-lg-12'>
+                        <div class='sale-detaile-pro'>
+                            <!--<img class='img-sale-detaile' src='{{ user_site }}/{{ user_logo }}' *ngIf="user_logo != '' ">-->
+                            <i class="icon-info fas fa-store-alt" style='font-size:20px'></i>
+                            <span class='one-sale-detaile' style='margin:10px 5px 0px 5px;'> فروشنده :</span>
+                            <span class='two-sale-detaile'> {{ user_moshaver }} </span>
+                        </div>
+
+                        <div class='sale-detaile-pro'>
+                            <i class="icon-info fas fa-shield-alt"></i>
+                            <span class='one-sale-detaile'> گارانتی {{ goods_war }} </span>
+                        </div>
+
+                        <div class='sale-detaile-pro'>
+                            <i class="icon-info fas fa-truck" style='margin: 6px 3px;'></i>
+                            <span class='one-sale-detaile'> ارسال {{ goods_stime }} </span>
+                        </div>
+
+                        <div class='type-price-detaile'>
+                            <div class="type-price-old">
+                                <span class="old-price"><span style='float:left'>تومان</span>
+                                    <del>{{ goods_price | number }}</del>
+                                </span>
+                                <span class="discount">{{ goods_discount }}%</span>
+                            </div>
+                            <div class="type-price-new">
+                                <span class="new-price">
+                                    <span style='float:left'>تومان</span>
+                                    {{ goods_price2 | number }}
+                                </span>
+                            </div>
+                            <button class='button-price-shop' (click)="add_to_bascket()">
+                                <i class="fas fa-cart-plus"></i>
+                                افزودن به سبد خرید
+                            </button>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class='tik-detaile-pro col-12 col-md-12 col-sm-12 col-lg-12'>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <div class='col-md-12 col-12 col-sm-12 col-lg-12' style='padding:0px;margin-top:40px !important;float: right;'>
+        <div class='info-pro-spec'>
+            <button class='ab-btn tablink  active-ab' onclick="buttonclick(event,'one')" id='one'>
+                درباره محصول
+            </button>
+            <!--<button class='ab-btn tablink ' onclick="buttonclick(event,'two')" id='two'>-->
+            <!--    مشخصات-->
+            <!--</button>-->
+            <!--<button class='ab-btn tablink ' onclick="buttonclick(event,'four')" id='four'>-->
+            <!--    نظرات کاربران-->
+            <!--</button>-->
+            <!--<button class='ab-btn tablink ' onclick="buttonclick(event,'five')" id='five'>-->
+            <!--    پرسش و پاسخ-->
+            <!--</button>-->
+        </div>
+        <div class='info-pro-router' id='box-router'>
+            <div [innerHTML]="goods_comment">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--<ul class="nav nav-tabs md-tabs" id="myTabMD" role="tablist" style='width:100%;display:block;float:right'>-->
+<!--  <li class="nav-item" style='display:inline-block;width:fit-content'>-->
+<!--    <a style='padding-right:30px;padding-left;30px' class="nav-link active" id="home-tab-md" data-toggle="tab" href="#home-md" role="tab" aria-controls="home-md"-->
+<!--      aria-selected="true">Home</a>-->
+<!--  </li>-->
+<!--  <li class="nav-item" style='display:inline-block;width:fit-content'>-->
+<!--    <a style='padding-right:30px;padding-left;30px' class="nav-link" id="profile-tab-md" data-toggle="tab" href="#profile-md" role="tab" aria-controls="profile-md"-->
+<!--      aria-selected="false">Profile</a>-->
+<!--  </li>-->
+<!--  <li class="nav-item" style='display:inline-block;width:fit-content'>-->
+<!--    <a style='padding-right:30px;padding-left;30px' class="nav-link" id="contact-tab-md" data-toggle="tab" href="#contact-md" role="tab" aria-controls="contact-md"-->
+<!--      aria-selected="false">Contact</a>-->
+<!--  </li>-->
+<!--</ul>-->
+<!--<div class="tab-content card pt-5" id="myTabContentMD" style=''>-->
+<!--  <div class="tab-pane fade show active" id="home-md" role="tabpanel" aria-labelledby="home-tab-md" style='width:100%;display:block'>-->
+<!--    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua,-->
+<!--      retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.-->
+<!--      Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry-->
+<!--      richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american-->
+<!--      apparel, butcher voluptate nisi qui.</p>-->
+<!--  </div>-->
+<!--  <div class="tab-pane fade" id="profile-md" role="tabpanel" aria-labelledby="profile-tab-md" style='width:100%;display:none'>-->
+<!--    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.-->
+<!--      Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko-->
+<!--      farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip-->
+<!--      jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna-->
+<!--      delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan-->
+<!--      fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry-->
+<!--      richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus-->
+<!--      tattooed echo park.</p>-->
+<!--  </div>-->
+<!--  <div class="tab-pane fade" id="contact-md" role="tabpanel" aria-labelledby="contact-tab-md" style='width:100%;display:none'>-->
+<!--    <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo-->
+<!--      retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer,-->
+<!--      iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony.-->
+<!--      Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles-->
+<!--      pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of-->
+<!--      them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>-->
+<!--  </div>-->
+<!--</div>-->

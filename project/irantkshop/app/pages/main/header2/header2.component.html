@@ -1,0 +1,95 @@
+<!-- Toggler/collapsibe Button -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-xl-none d-lg-none phone" style="padding:0px">
+    <div class="right" style="padding:0.5rem 2.6rem">
+        <mat-icon class="menu_icon" data-toggle="collapse" data-target="#navbarSupportedContent">menu</mat-icon>
+    </div>
+
+    <div class="left">
+        <a class="navbar-brand" style="padding:0px 0px;float:left !important" [routerLink]="['/']">
+            <img src="../../assets/img/logo.png" style="max-width:6rem" title="سایت فروش بک لایت"
+                alt="سایت فروش بک لایت">
+        </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav navbar-nav1">
+            <span>
+
+                <li class="nav-item nav-item1" data-target="#navbarSupportedContent" data-toggle="collapse"
+                    [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    <a class="nav-link">صفحه نخست</a>
+                </li>
+                <li class="nav-item nav-item1" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    [routerLink]="['/all-goods/-']" routerLinkActive="active">
+                    <a class="nav-link">همه کالاها</a>
+                </li>
+
+
+                <!--
+                <li class="nav-item nav-item1" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    [routerLink]="['/about-us','درباره-ما']" routerLinkActive="active">
+                    <a class="nav-link">درباره ما</a>
+                </li>
+                <li class="nav-item nav-item1" data-target="#navbarSupportedContent" data-toggle="collapse"
+                    [routerLink]="['/all-courses','فیلمهای-کوتاه']" routerLinkActive="active">
+                    <a class="nav-link">فیلم های کوتاه</a>
+                </li>
+
+                <li class="nav-item nav-item1" data-target="#navbarSupportedContent" data-toggle="collapse">
+                    <a class="nav-link" [routerLink]="['/free',1,'آموزش-های-رایگان']" routerLinkActive="active">آموزش
+                        های رایگان</a>
+                </li>
+                <li class="nav-item nav-item1" data-target="#navbarSupportedContent" data-toggle="collapse">
+                    <a class="nav-link" [routerLink]="['/download',2,'دوره-های-دانلودی']" routerLinkActive="active">دوره
+                        های دانلودی</a>
+                </li>
+                <li class="nav-item nav-item1" data-target="#navbarSupportedContent" data-toggle="collapse"
+                    routerLinkActive="active" [routerLink]="['/gallery',2,'گالری-فیلم']">
+                    <a class="nav-link">گالری فیلم</a>
+                </li>
+                <li class="nav-item nav-item1" data-target="#navbarSupportedContent" data-toggle="collapse"
+                    routerLinkActive="active" [routerLink]="['/photo-gallery','گالری-عکس']">
+                    <a class="nav-link">گالری عکس</a>
+                </li>
+                <li class="nav-item nav-item1" data-target="#navbarSupportedContent" data-toggle="collapse"
+                    routerLinkActive="active" [routerLink]="['/article','مقالات']">
+                    <a class="nav-link">مقالات</a>
+                </li>
+                <li class="nav-item nav-item1" data-target="#navbarSupportedContent" data-toggle="collapse"
+                    [hidden]="true">
+                    <a class="nav-link">سوالات متداول</a>
+                </li>
+                <li class="nav-item nav-item1" data-target="#navbarSupportedContent" data-toggle="collapse"
+                    routerLinkActive="active" [routerLink]="['/contact-us','تماس-با-ما']">
+                    <a class="nav-link">تماس با ما</a>
+                </li>
+                
+                <li class="nav-item nav-item1 dropdown" data-target="#navbarSupportedContent" data-toggle="collapse">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        111111
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item dropdown-item1" href="#">
+                            2222
+                        </a>
+                    </div>
+                </li>
+                -->
+            </span>
+
+            <li class="nav-item nav-item1" (click)="open_login()" *ngIf="status != 1 " data-toggle="collapse"
+                data-toggle="collapse">
+                <a class="nav-link">ورود</a>
+            </li>
+
+            <li class="nav-item nav-item1" data-target="#navbarSupportedContent" data-toggle="collapse"
+                routerLinkActive="active" [routerLink]="['/personal/profile']" *ngIf="status == 1 ">
+                <a class="nav-link" (click)="go_to_photo_gallery('گالری عکس')">ناحیه کاربری</a>
+            </li>
+
+
+        </ul>
+
+    </div>
+</nav>

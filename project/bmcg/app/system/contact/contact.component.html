@@ -1,0 +1,95 @@
+<!-- Start Contact Area -->
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-title">
+            <h1>در تماس باشید</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <form class="contactForm" [formGroup]="form1" (ngSubmit)="save()">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label>نام و نام خانوادگی : </label>
+                                <input type="text" class="input form-control" name="name" formControlName="user_title"
+                                    autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label>پست الکترونیک : </label>
+                                <input type="email" class="input form-control ltr" name="mail" formControlName="email"
+                                    autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label>موضوع : </label>
+                                <input type="email" class="input form-control" name="subject" formControlName="subject"
+                                    autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label>پیام : </label>
+                                <textarea name="message" class="form-control input"
+                                    formControlName="comment"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <button class="default-btn-one home-button5 cursor" style="width:10rem"
+                                [disabled]="!form1.valid">ارسال درخواست</button>
+                            <span class="spinner-border spinner-border-sm" [hidden]="!loading"></span>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row" style="text-align: right">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div>برای اطلاعات بیشتر می توانید وارد شبکه های اجتماعی زیر شوید.</div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 social">
+                <a href={{watsup}} target="_blank" *ngIf="watsup">
+                    <div class="watsup">
+
+                    </div>
+                </a>
+
+                <a href="{{instagram}}" target="_blank" *ngIf="instagram">
+                    <div class="instagram">
+
+                    </div>
+                </a>
+
+                <a href="{{telegram}}" target="_blank" *ngIf="telegram">
+                    <div class="telegram">
+
+                    </div>
+                </a>
+
+                <a href="{{linkin}}" target="_blank" *ngIf="linkin">
+                    <div class="linkin">
+
+                    </div>
+                </a>
+
+                <a href="{{facebook}}" target="_blank" *ngIf="facebook">
+                    <div class="facebook">
+
+                    </div>
+                </a>
+
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End Contact Area -->

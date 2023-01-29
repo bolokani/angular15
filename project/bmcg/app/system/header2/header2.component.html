@@ -1,0 +1,26 @@
+<ul class="navbar-nav navbar-nav1">
+    <span>
+        <li class="nav-item" style="height: 4.5rem;" [routerLink]="['/']" data-target="#navbarSupportedContent"
+            data-toggle="collapse">
+            <a class="nav-link" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
+                صفحه اصلی
+            </a>
+        </li>
+        <li class="nav-item" style="height: 4.5rem;" [routerLink]="['/contact','تماس-با-ما']"
+            data-target="#navbarSupportedContent" data-toggle="collapse">
+            <a class="nav-link" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
+                تماس با ما
+            </a>
+        </li>
+    </span>
+    <li class="nav-item nav-item1" [routerLink]="['/login']" *ngIf="status != 1 " data-target="#navbarSupportedContent"
+        data-toggle="collapse">
+        <a class="nav-link">ورود</a>
+    </li>
+    <li class="nav-item dropdown" style="height: 4.5rem;" *ngIf="status == 1 ">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" *ngIf="status == 1">
+            {{ user_title }}
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,100 @@
+<div class="preloader" [hidden]="!loading">
+    <div class="spinner"></div>
+</div>
+
+
+<div class='container-fluit'>
+    <div class="row" style="background-color: #fff;">
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 col-sm-12"></div>
+
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 col-sm-12 login-div">
+            <div class="row" style="width:100%">
+                <div class='boxes'>
+                    <h2 class='contact-title header'>
+                        <img src="../../../assets/img/logo.png">
+                    </h2>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 center login-text1">
+                        ورود | ثبت نام
+                    </div>
+                    <form [formGroup]="form1" (submit)="check_cellphone()" class='form-login' autocomplete="off">
+                        <span [hidden]="!sent_code == false">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 center login-text2">
+                                سلام!
+                                <br><br>
+                                لطفا شماره موبایل خود را وارد کنید
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+                                <label>
+                                    <div>
+                                        <input type='text' class='input en1' formControlName="cellphone"
+                                            autocomplate="off" (keypress)="serverService.get_number($event)"
+                                            minlength="11" maxlength="11">
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="row" style="min-height: 0.8rem;">
+                                <div class='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 help-block pe1'
+                                    *ngIf="!form1.get('cellphone')!.touched">
+                                    لطفا این قسمت را خالی نگذارید
+                                </div>
+                                <div class='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 help-block pe1'
+                                    *ngIf="!form1.get('cellphone')!.valid && form1.get('cellphone')!.touched">
+                                    لطفا شماره موبایل را به درستی وارد نمائید.
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+                                <label style='text-align:center;width:auto'>
+                                    <button type="submit" class="btn cursor" [disabled]="!form1.valid">
+                                        <span [hidden]="loading">دریافت کد</span>
+                                        <div class="spinner-border spinner-border-sm" role="status" [hidden]="!loading">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </button>
+                                </label>
+                            </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
+                        </span>
+                    </form>
+
+                    <form [formGroup]="form2" (submit)="login()" class='form-login' autocomplete="off">
+                        <span [hidden]="!sent_code == true">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 pe1 login-text2">
+                                لطفا کد پیامک شده به شماره همراه را در باکس پایین وارد نمائید.
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 pe1 center">
+                                <label>
+                                    <div>
+                                        <input type='text' class='input en1' formControlName="code" autocomplate="off"
+                                            (keypress)="serverService.get_number($event)" minlength="5" maxlength="5">
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+                                <label style='text-align:center;width:auto'>
+                                    <button type="submit" class="btn cursor" [disabled]="!form2.valid">
+                                        <span [hidden]="loading">ورود به سامانه</span>
+                                        <div class="spinner-border spinner-border-sm" role="status" [hidden]="!loading">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </button>
+                                </label>
+                            </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
+                        </span>
+                    </form>
+
+                    <div class="rule">
+                        ورود شما به معنای پذیرش شرایط ایران تعمیرکار و قوانین حریم خصوصی می باشد.
+                    </div>
+                </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
+
+            </div>
+        </div><!-- col-md-6 col-sm-6 col-xs-6 col-sm-12 -->
+
+
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 col-sm-12"></div>
+
+    </div><!-- row -->
+</div><!-- container-fluit -->

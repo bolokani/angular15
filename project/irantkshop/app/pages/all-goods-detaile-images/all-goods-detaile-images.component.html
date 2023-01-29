@@ -1,0 +1,33 @@
+<div cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+    <div mat-dialog-title class="matDialogTitle" cdkDragHandle>
+        <div class="my-container" [hidden]="!loading">
+            <mat-progress-bar mode="indeterminate" class="detaile"></mat-progress-bar>
+        </div>
+        {{ title }}
+        <span class="close" (click)="close()" style="float: right;">
+            <mat-icon>close</mat-icon>
+        </span>
+    </div>
+</div>
+
+
+<div mat-dialog-content class="matDialogContent" style=" padding: 0px !important;overflow-y: hidden;">
+    <div id="goods_gallery" style="display: block;">
+        <div class="row">
+            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9 right">
+                <div class="gallery">
+                    <div class="zoom-image">
+                        <img id="zoomproduct" [src]="logo">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3 left">
+                <ul>
+                    <li *ngFor="let x of list_album;let i = index" [ngClass]="{active:i == ii}" (click)="get_image(i)">
+                        <img [src]="x.logo">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

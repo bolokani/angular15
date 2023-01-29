@@ -1,0 +1,160 @@
+.navbar .dropdown-menu div[class*="col"] {
+    margin-bottom: 1rem;
+}
+
+.mr-auto,
+.mx-auto {
+    margin-right: 0px !important
+}
+
+.navbar .dropdown-menu {
+    border: none;
+    background-color: #0060c8 !important;
+}
+
+/* breakpoint and up - mega dropdown styles */
+@media screen and (min-width: 992px) {
+    .phone {
+        display: none !important;
+    }
+
+    .navbar {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .navbar .nav-item {
+        padding: .5rem .5rem;
+    }
+
+    .navbar .dropdown {
+        position: static;
+    }
+
+    .navbar .dropdown-menu {
+        width: 100%;
+        left: 0;
+        right: 0;
+        top: 69px;
+    }
+
+    .navbar .dropdown:hover .dropdown-menu,
+    .navbar .dropdown .dropdown-menu:hover {
+        display: block !important;
+    }
+
+    .navbar .dropdown-menu {
+        border: 1px solid rgba(0, 0, 0, .15);
+        background-color: #fff;
+    }
+
+}
+
+
+
+@media screen and (max-width: 570px) {
+    .nav1 {
+        display: none;
+    }
+
+    .toggle1 {
+        vertical-align: bottom;
+    }
+
+    .header-div1 {
+        display: inline-block;
+        float: left;
+    }
+
+    .header-li1 {
+        float: left;
+        position: absolute !important;
+        left: 0px
+    }
+
+    .navbar {
+        margin-bottom: 0px !important
+    }
+
+    .navbar-brand {
+        padding: 4px 15px
+    }
+
+    .menu_icon {
+        color: #000;
+        font-size: 3rem;
+    }
+
+    .navbar-nav1 {
+        text-align: right;
+        padding-right: 0rem;
+
+    }
+
+    .is-sticky {
+        background-color: #f8f9fa !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999
+    }
+
+    .search-input {
+        width: auto;
+        display: inline-block !important;
+    }
+
+    .search-button {
+        background: #00509D;
+        color: #fff;
+        border: none;
+        padding: 6px 16px;
+        font-size: 12px;
+    }
+
+    .nav-item1 {
+        border-bottom: 1px solid #dbeefd
+    }
+
+    .navbar-nav .nav-link {
+        color: #000 !important;
+        padding: 1em 15%
+    }
+
+    .left {
+        padding-left: 1rem
+    }
+
+    .nav-link2 {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+
+    .dropdown-item1 {
+        text-align: right;
+        color: #000 !important;
+        padding: 1em 15%;
+    }
+
+    @media screen and (max-width:600px) {
+        .baner {
+            background-size: cover;
+        }
+    }
+
+    .navbar .dropdown-menu {
+        background-color: #fff !important;
+    }
+}
+
+@media screen and (max-width: 920px) {
+    .nav1 {
+        display: none;
+    }
+
+}
+
+.active {
+    background-color: aquamarine;
+}

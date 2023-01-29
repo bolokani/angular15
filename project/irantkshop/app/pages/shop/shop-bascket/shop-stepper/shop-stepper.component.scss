@@ -1,0 +1,30 @@
+@media only screen and (max-width: 650px) {
+    mat-horizontal-stepper {
+        padding: 0px 4px !important;
+    }
+
+    .mat-horizontal-stepper-header {
+        display: block !important;
+        padding: 0px !important;
+    }
+
+    .mat-horizontal-stepper-header-container {
+        align-items: end !important;
+        font-size: 11px !important;
+    }
+
+    ng-template {
+        font-size: 11px !important;
+    }
+
+    .mat-step-label {
+        font-size: 11px !important;
+    }
+}
+
+.stepper {
+    height: 70px;
+    box-shadow: 0px 0px 4px 0px #545454;
+    padding: 0px 50px;
+    background-color: #fff;
+}

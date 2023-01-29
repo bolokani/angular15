@@ -1,0 +1,73 @@
+<div class="my-container" [hidden]="!loading">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class='alert alert-danger malert-danger' *ngIf="err_validation">{{ err }}</div>
+<div class='alert alert-danger malert-danger' *ngIf="err_internet_validation">{{ err_internet_text }} <span
+    (click)="load_data(1)"><i class="fas fa-sync icon"></i></span></div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="container">
+      <div class="col-md-12 col-xs-12 col-sm-12 sale-special mobile-box">
+        <div class='tic'>
+          <span class="spantitr">
+            <h1>
+              محصولات ساختمانی خانه اول
+            </h1>
+          </span>
+
+          <h3>
+            شما میتوانید از دسته بندی مصالح ساختمانی وارد صفحه هر دسته بندی شده و محصول مورد نظر را بررسی کنید.
+          </h3>
+
+
+          <div class="col-md-12 col-xs-12 col-sm-12">
+            <button class="btn btn1" [routerLink]="['/shop-suppliers',0,'تامین-کنندگان']">
+              <i class="fas fa-arrow-left call_icon2"></i>
+              تامین کنندگان
+            </button>
+          </div>
+
+
+        </div>
+
+        <div class="card-columns">
+          <div class="card" *ngFor="let x of list_cate1">
+            <img class="card-img-top" src='{{ x.product_cate1_site }}/{{ x.product_cate1_img }}'>
+            <div class="card-body">
+              <h5 class="card-title"> {{ x.product_cate1_title }} </h5>
+              <ul class='ul-cate-shop'>
+                <span class='hoverli' *ngFor="let product of list_cate2">
+                  <li class="cursor" *ngIf="product.product_cate2_cate1 == x.product_cate1_id"
+                    (click)="go_to_products(x.product_cate1_id,product.product_cate2_id,product.product_cate2_title)">
+                    {{ product.product_cate2_title }} </li>
+                </span>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 all-card">
+  <div class="card-columns">
+    <div class="card" *ngFor="let x of list_cate1">
+      <img class="card-img-top" src='{{ x.product_cate1_site }}/{{ x.product_cate1_img }}'>
+      <div class="card-body">
+        <h5 class="card-title"> {{ x.product_cate1_title }} </h5>
+        <ul class='ul-cate-shop'>
+          <span *ngFor="let product of list_cate2">
+            <li class="cursor" *ngIf="product.product_cate2_cate1 == x.product_cate1_id"
+              (click)="go_to_products(x.product_cate1_id,product.product_cate2_id,product.product_cate2_title)">
+              {{ product.product_cate2_title }} </li>
+          </span>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

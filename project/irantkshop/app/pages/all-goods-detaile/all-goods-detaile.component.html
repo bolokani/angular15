@@ -1,0 +1,194 @@
+<div class="container-fluit main_product details" id="details">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 detail_right"
+            style="padding-right:1rem !important">
+            ایران تعمیرکار / {{ group_title }}
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-12 detail_right">
+            <div class="gallery">
+                <div class="zoom-image">
+                    <img id="zoomproduct" [src]="logo">
+                </div>
+                <ul class="all-goods-detaile-ul">
+                    <li *ngFor="let img of list_album" (click)="open_images()"><img [src]=img.logo></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-12 detail_left">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 detail_right">
+                    <div class="title">
+                        <h1 class="header_title">
+                            <span>
+                                {{ title }}
+                            </span>
+                            <div class="h1_title_en"><strong>{{ title2 }}</strong></div>
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                    <div class="right">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="goods_detaile_seller_title" style="margin-top: 1rem;">
+                                    <span class="green"> 90% </span>
+                                    <span class="goods_detaile_seller_title_text1">رضایت از کالا </span>
+                                    <span>|</span>
+                                    <span> عملکرد </span>
+                                    <span> عالی </span>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <h4>ویژگی ها</h4>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <ul class="all-goods-u1">
+                                    <li *ngFor="let x of list_property">
+                                        <p>
+                                            <span class="li_title">{{ x.wharehouse_group_property_title }} : </span>
+                                            <span class="li_detail">{{ x.answer_title }}</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--
+                <h4>انتخاب رنگ</h4>
+                <ul class="colors">
+                    <li>
+                        <span class="circle" style="background: black"></span>
+                        مشکی
+                    </li>
+                    <li>
+                        <span class="circle" style="background: white;
+                  border: 1px solid #cccccc;"></span>
+                        سفید
+                    </li>
+                    <li>
+                        <span class="circle" style="background: gold"></span>
+                        طلایی
+                    </li>
+                </ul>
+                
+                <h4>انتخاب گارانتی</h4>
+                <div class="selectlist">
+                    <span class="garantytitle yekan">18 ماه گارانتی هماهنگ</span>
+                    <ul>
+                        <li>گارانتی شماره 1</li>
+                        <li>گارانتی شماره 2</li>
+                    </ul>
+                </div>
+                 -->
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-12 all-goods-detaile-div3">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 all-goods-detaile-div1">
+                            <div class="goods-detaile_seller">فروشنده</div>
+                            <div class="goods_detaile_seller_title">
+                                <mat-icon>storefront</mat-icon>
+                                ایران تعمیرکار
+                            </div>
+                        </div>
+                        <hr style="width:20rem">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 all-goods-detaile-div2">
+                            <div class="goods_detaile_seller_title">
+                                <mat-icon>storefront</mat-icon>
+                                گارانتی 18 ماهه گلدیران
+                            </div>
+                        </div>
+                        <hr style="width:20rem">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 all-goods-detaile-div1">
+                            <div class="goods-detaile_seller">موجود در انبار</div>
+                            <div class="goods_detaile_seller_title">
+                                <mat-icon>storefront</mat-icon>
+                                ارسال ایران تعمیرکار از 1 روز کاری دیگر
+                            </div>
+                        </div>
+                        <hr style="width:20rem">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 all-goods-detaile-div1">
+                            <div id="price">
+                                <span class="lbl">قیمت:</span>
+                                <span class="num">90,000</span>
+                                <span class="currency">تومان</span>
+                                <span class="discount">
+                                    <span class="right">تخفیف</span>
+                                    <span class="left">50 تومان</span>
+                                </span>
+                            </div>
+                            <div id="priceforu">
+                                <span class="lbl">قیمت برای شما:</span>
+                                <span class="num">{{ price2 | number }}</span>
+                                <span class="currency">تومان</span>
+                            </div>
+                            <button id="addtocart" class="default_btn" (click)="add_to_bascket()" [disabled]="loading">
+                                <span [hidden]="loading">افزودن به سبد خرید</span>
+                                <div class="spinner-border spinner-border-sm" role="status" style="margin-top:0.8rem"
+                                    [hidden]="!loading">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 detail_left">
+                <div id="detail_service">
+                    <ul class="yekan">
+                        <li>
+                            <a>
+                                <i style="background-position: -210px -474px;"></i>
+                                ٧ روز ضمانت بازگشت
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <i style="background-position: -263px -474px;"></i>
+                                پرداخت در محل
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <i style="background-position: -157px -473px;"></i>
+                                ضمانت اصل بودن کالا
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <i style="background-position: -315px -473px;
+                        width: 40px;"></i>
+                                تحویل اکسپرس
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <i style="background-position: -104px -473px;"></i>
+                                تضمین بهترین قیمت
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="row comment">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+            <p class="header">معرفی اجمالی محصول</p>
+            <h4>گوشی موبایل سامسونگ مدل Galaxy J7 (2016) J710F/DS 4G دو سیم‌ کارت
+                ظرفیت 16 گیگابایت</h4>
+            <p class="comment-detail" [innerHTML]="comment">
+            </p>
+        </div>
+        <!--SliderScroll1-->
+
+    </div>
+</div>

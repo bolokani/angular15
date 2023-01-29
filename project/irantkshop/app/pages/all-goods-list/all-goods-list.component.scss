@@ -1,0 +1,112 @@
+@media only screen and (max-width: 576px) {
+    .product-list-div2 {
+        margin-top: -13rem;
+        padding: 0 0rem !important;
+    }
+
+}
+
+@media only screen and (min-width: 576px) {
+    .product-list-div2 {
+        margin-top: -9rem;
+        padding: 0 1rem !important;
+    }
+
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    height: 17rem !important
+}
+
+
+
+.product-list {
+    box-shadow: 0 4px 5px -2px #0003;
+    min-height: 29rem;
+    background-color: #fff;
+    padding: 1rem
+}
+
+
+.product-list:hover {
+    background-color: #fff;
+}
+
+.product-h3 {
+    font-size: 0.79rem;
+    text-align: right;
+    color: #000;
+    line-height: 1.4rem;
+    font-weight: 700;
+    min-height: 3rem;
+}
+
+.remain {
+    padding-top: 1rem;
+    text-align: right;
+    color: red;
+    font-size: 0.8rem;
+}
+
+.price {
+    text-align: left;
+    font-weight: 700;
+}
+
+.product-list-div {
+    padding: 1rem 0.5rem !important;
+    z-index: 9
+}
+
+.product-dscount {
+    background-color: #ef394e;
+    color: #fff;
+    padding: 0.2rem;
+    max-height: 2rem;
+}
+
+.radius-large {
+    border-radius: var(--large-radius);
+}
+
+.product-price-div {
+    width: 100%;
+    font-weight: 700;
+    color: #3F4064
+}
+
+.div_loading {
+    background: #fff;
+}
+
+.product-price {
+    font-size: 1.6rem;
+    margin-left: 0.2rem;
+}
+
+.all-goods-fluid2 {
+    padding: 0px !important
+}
+
+.carousel-item {
+    height: 25rem;
+}
+
+.product-discount-div {
+    color: #ccc
+}
+
+.all-goods-div1 {
+    border: solid 1px #ccc;
+    min-height: 20rem;
+    ;
+}
+
+.all-goods-row1 {
+    padding: 0 0.5rem;
+}
+
+.carousel-indicators {
+    display: none;
+}

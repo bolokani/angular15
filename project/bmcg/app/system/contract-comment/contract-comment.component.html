@@ -1,0 +1,61 @@
+<div mat-dialog-title class="matDialogTitle pe4" [ngClass]="{en4:lang==2}" cdkDragHandle cdkDrag
+  cdkDragRootElement=".cdk-overlay-pane">
+  <div class="my-container" [hidden]="!loading">
+    <mat-progress-bar mode="indeterminate" class="detaile"></mat-progress-bar>
+  </div>
+  <span *ngIf="lang == 1"> کامنت های شماره قرارداد {{ order_id }} </span>
+  <span *ngIf="lang == 2"> Comments PR {{ id }} </span>
+  <span class="close" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </span>
+</div>
+
+
+<div mat-dialog-content class="matDialogContent">
+  <div class="loading"><span class="spinner-border spinner-border-sm" [hidden]="!loading"></span></div>
+  <span class="cursor" (click)="scroll()" style="font-size: 2rem;" *ngIf="list_comment.length > 3"><i
+      class="far fa-arrow-alt-circle-down" style="width:1rem"></i></span>
+  <div class="row">
+    <div class='col-md-12 col-lg-12 col-xs-12 col-sm-12'>
+      <div class="message">
+        <ul *ngFor="let comment of list_comment" class="comment">
+          <li class="msg-left" *ngIf="user_id != comment.contract_comment_creator">
+            <div class="msg-left-sub">
+              <img [src]="comment.logo">
+              <div class="msg-desc pe1" [ngClass]="{en1:lang==2}">
+                <div [innerHTML]="comment.contract_comment_comment" class="comment pe1"
+                  [ngClass]="{en1:comment.comment == false}"></div>
+              </div>
+              <small class="text_pe" [ngClass]="{text_en:lang==2}">{{ comment.contract_comment_date }}
+                {{ comment.contract_comment_time }}</small>
+            </div>
+          </li>
+          <li class="msg-right" *ngIf="user_id == comment.contract_comment_creator">
+            <div class="msg-right-sub">
+              <img [src]="comment.logo">
+              <div class="msg-desc pe1" [ngClass]="{en1:lang==2}">
+                <div [innerHTML]="comment.contract_comment_comment" class="comment pe1"
+                  [ngClass]="{en1:comment.comment == false}"></div>
+              </div>
+              <small class="text_pe" [ngClass]="{text_en:lang==2}">{{ comment.contract_comment_date }}
+                {{ comment.contract_comment_time }}</small>
+            </div>
+          </li>
+        </ul>
+        <span id="bottom"></span>
+      </div>
+    </div>
+  </div><!-- row -->
+</div><!-- content -->
+
+
+<div class="textarea_div">
+  <form [formGroup]="form1">
+    <button class="temp" style="background-color: transparent;border:none"></button>
+    <textarea style="direction: unset !important" name="comment" formControlName="comment" class="pe1">
+      </textarea>
+    <button class="btn_pe send" (click)="send_comment(id)" [disabled]="!form1.valid || loading">
+      <span>ارسال</span>
+    </button>
+  </form>
+</div>

@@ -1,0 +1,144 @@
+.boxes {
+    width: 100%;
+    text-align: center;
+    border: solid 1px #ccc;
+    border-radius: 1rem;
+    max-width: 28rem;
+    margin: 0 auto !important;
+    height: 28rem
+}
+
+.login-div {
+    padding-top: 8rem;
+    text-align: center;
+}
+
+.login-text1 {
+    text-align: right;
+    padding-right: 2rem !important;
+    margin-top: 1rem;
+}
+
+.form-login {
+    min-width: 100%;
+}
+
+.rule {
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    color: #3f4064
+}
+
+.login-text2 {
+    text-align: right;
+    padding-right: 2rem !important;
+    margin-top: 1rem;
+    color: #3f4064;
+    font-size: 0.8rem;
+}
+
+.container-fluit {
+    height: 100vh;
+    background-color: #fff;
+}
+
+img {
+    max-width: 7rem;
+}
+
+label {
+    text-align: center;
+    padding: 1rem 1.4rem 0rem 1.4rem
+}
+
+@media screen and (max-width:576px) {
+
+    label {
+        width: 100% !important;
+        margin: 10px 0px
+    }
+
+}
+
+@media screen and (min-width:767px) {
+    .login-left {
+        border-right: solid #ccc;
+    }
+
+    label {
+        width: 100%
+    }
+}
+
+.help-block {
+    height: 0.8rem;
+}
+
+.btn {
+    padding-top: 0.6rem;
+    height: 2.5rem;
+}
+
+.btn-check:focus+.btn,
+.btn:focus {
+    box-shadow: none !important;
+}
+
+.btn:hover {
+    color: #fff
+}
+
+.spinner-border-sm {
+    width: 1.4rem !important;
+    height: 1.4rem !important
+}
+
+.header {
+    font-size: 15px;
+    line-height: 40px;
+    margin-top: 0px;
+}
+
+.input {
+    width: 100%;
+    min-height: 40px;
+    border-radius: 5px 5px 0px 0px;
+    border: solid 1px #ccc;
+    margin-top: 5px;
+    padding: 5px;
+    outline: none;
+    font-size: 1.3rem !important;
+    border: solid 1px #d32f2f;
+    height: 3rem;
+    text-align: center;
+}
+
+button {
+    width: 10rem
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.5rem !important;
+    padding-top: 2rem;
+}
+
+.div1 {
+    text-align: center;
+    padding-top: 4rem;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff
+}
+
+.forget {
+    text-align: right;
+    font-size: 0.8rem;
+    padding-right: 6rem
+}
+
+.link {
+    color: blue
+}

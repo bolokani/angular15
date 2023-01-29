@@ -1,0 +1,173 @@
+@media screen and (max-width:576px) {
+    footer .footer-col {
+        height: auto !important;
+    }
+
+    .footer2 {
+        text-align: center !important;
+    }
+}
+
+
+.enamad img,
+.neshan img {
+    height: 7rem
+}
+
+.content {
+    color: #fff
+}
+
+.desc {
+    font-size: 0.8rem;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+.enamad,
+.neshan {
+    text-align: center;
+}
+
+
+.item {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+}
+
+footer .subscription {
+    padding: 50px 0 50px 50px !important;
+}
+
+footer .footer-col {
+    padding: 1.1rem 1rem !important;
+    height: 270px;
+    text-align: right;
+    background: #000 !important;
+}
+
+footer .footer-header .title {
+    display: inline-block;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.content1 ul li a {
+    font-size: 0.78rem;
+}
+
+.title2 {
+    color: #0274bd;
+    margin-bottom: 0.3rem;
+    font-family: irsans !important;
+}
+
+.title3 {
+    margin-bottom: 1rem;
+}
+
+footer .footer-header .desc {
+    font-size: 12px;
+    margin-bottom: 35px;
+    color: #e0e0e0
+}
+
+ul {
+    color: #e0e0e0
+}
+
+
+
+.social-col {
+    padding: 30px 0;
+    height: 270px;
+    color: #fff;
+    text-align: center;
+}
+
+.instagram {
+    background: #c93d57;
+}
+
+.telegram {
+    background-color: #71B5F4;
+}
+
+.footer-col2 li a {
+    color: #e0e0e0;
+    font-size: 0.85rem;
+}
+
+.footer-col3 li a {
+    color: #e0e0e0;
+    font-size: 0.85rem;
+}
+
+.instagram i {
+    font-size: 70px;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    color: #c93d57;
+}
+
+.telegram i {
+    font-size: 70px;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    color: #71b5f4;
+}
+
+.instagram .button,
+.telegram .button {
+    margin: 0 27px;
+    background: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    direction: ltr;
+    border-radius: 7px;
+    -webkit-transition: all .3s ease .1s;
+    -moz-transition: all .3s ease .1s;
+    -o-transition: all .3s ease .1s;
+    transition: all .3s ease .1s;
+    box-shadow: 0 3px 20px -10px #000;
+}
+
+.instagram .button {
+    color: #c93d57;
+}
+
+.telegram .button {
+    color: #71b5f4;
+}
+
+.footer2 {
+    text-align: right;
+    font-size: 0.8rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.footer3 {
+    text-align: left;
+    font-size: 0.8rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.footer4 {
+    border-top: dashed 1px;
+    display: inline-block;
+    padding-top: 1rem;
+    padding-bottom: 0rem;
+}

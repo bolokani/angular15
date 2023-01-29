@@ -1,0 +1,45 @@
+<div class="top-bar mat-menu-panel-bascket">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-top:3px">مبلغ
+                کل خرید:
+                {{ sum_all | number}}
+                تومان</div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <mat-icon class="close">close</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="cart-content" (click)="$event.stopPropagation()">
+    <div class="container-fluid">
+        <div class="row">
+            <table class="table table-bordered table-hover table-responsive table-striped">
+                <tbody>
+                    <tr appyid="60389" *ngFor="let x of list_bascket;let i = index">
+                        <td width="50" class="center price">
+                            {{ i + 1 }}
+                        </td>
+                        <td width="50" class="center price delete">
+                            <span class="cursor" (click)="delete(i,x.site_bascket2_id)">
+                                <i class="fa fa-close"></i>
+                            </span>
+                        </td>
+                        <td width="500" class="name" style="text-align: right;">
+                            <p>
+                                <span (click)="open(x.wharehouse_material_id,x.wharehouse_material_title)"
+                                    class="cursor">
+                                    {{ x.wharehouse_material_title | substr:0:40 }}
+                                </span>
+                            </p>
+                        </td>
+                        <td class="center price delete" style="min-width: 7rem;text-align: left">
+                            {{ x.price_with_discount | number }} <span> تومان </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="default_btn" [routerLink]="['/shopping/bascket']">رفتن به سبد خرید</button>
+        </div>
+    </div>
+</div>

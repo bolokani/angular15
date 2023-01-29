@@ -1,0 +1,160 @@
+@media only screen and (max-width: 576px) {
+    .content3 {
+        padding: 1rem 1rem !important;
+    }
+
+}
+
+@media only screen and (min-width: 600px) {
+    .content3 {
+        padding: 1rem 3rem !important;
+    }
+}
+
+
+.div_padding {
+    padding: 0px 1rem !important
+}
+
+.appy-breadcrumb {
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(220, 221, 224, 0.5), 0 1px 0 0 rgba(208, 209, 213, 0.5);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.appy-breadcrumb {
+    margin-bottom: 15px;
+    padding: 15px 20px;
+}
+
+.appy-breadcrumb ul li {
+    float: right;
+    padding-left: 30px;
+    position: relative;
+    font-size: 12px;
+}
+
+.appy-breadcrumb ul li {
+    padding-left: 0.5rem;
+    font-size: 1rem;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+.wh-input2 {
+    text-align: center;
+    height: 41px;
+}
+
+.sidebar1 .header {
+    text-align: center;
+    padding: 20px 20px;
+    background: #ff0000;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+}
+
+.sidebar1 .header img {
+    width: 125px;
+    height: 125px;
+    overflow: hidden;
+    border-radius: 125px;
+    margin-bottom: 10px;
+    border: 2px solid #FFFFFF;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+.sidebar1 .header .name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.menue ul li.active,
+.menue ul li:hover {
+    background: #e4e8f2;
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.menue ul li.active a,
+.menue ul li:hover a {
+    border-right: 3px solid #ff0000;
+}
+
+.menue ul li a {
+    display: block;
+    padding: 15px 10px;
+    text-align: right;
+}
+
+.menue ul li a i {
+    font-size: 20px;
+    vertical-align: middle;
+    margin-left: 10px;
+    width: 30px;
+    text-align: center;
+    color: #636363;
+}
+
+.sidebar1 {
+    background: #f7f7f7;
+    -webkit-box-shadow: -5px 0 49px -22px #000;
+    -moz-box-shadow: -5px 0 49px -22px #000;
+    box-shadow: -5px 0 49px -22px #000;
+    padding-right: 1rem !important;
+
+}
+
+ul {
+    padding: 0px
+}
+
+.nav-label {
+    color: #636363;
+    font-size: 0.85rem;
+}
+
+.detaile-fluid3 {
+    padding-top: 0.1rem !important;
+    min-height: 42rem;
+    background-color: #F4F4F2;
+}
+
+
+.wh-label-text {
+    color: #636363;
+    font-size: 0.88rem;
+    text-align: right;
+
+}
+
+.content1 {
+    padding: 0rem !important;
+    background-color: #fff;
+}
+
+.content1 .header {
+    border-bottom: 1px solid #c0c0c0;
+    padding-bottom: 15px;
+    text-align: right;
+    padding: 1rem
+}
+
+.content1 .title {
+    font-size: 17px;
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.content {
+    padding-top: 30px;
+}

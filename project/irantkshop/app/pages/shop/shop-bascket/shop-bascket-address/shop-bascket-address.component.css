@@ -1,0 +1,143 @@
+.shop-address-row {
+    border: solid 1px #e0e0e6;
+    border-radius: 0.6rem;
+}
+
+.shop-address-div {
+    border-bottom: solid 1px #ccc;
+    text-align: right;
+    padding: 1rem !important;
+    color: #767790;
+    font-size: 0.85rem;
+}
+
+.answer {
+    color: #000
+}
+
+.shop-address-div-items {
+    display: inline-block;
+    margin-left: 2rem;
+    ;
+}
+
+.shop-address-div-items2 {
+    display: block;
+    margin-top: 2rem
+}
+
+.shop-address-div-items3 {
+    background-color: aquamarine;
+    padding: 1rem;
+}
+
+
+
+
+
+
+
+
+
+.one-sale-detaile {
+    font-size: 12px;
+    margin: 10px 0px 0px 5px;
+    float: right;
+    color: #777;
+}
+
+@media only screen and (max-width: 650px) {
+    .price-info-detaile-pro {
+        margin-bottom: 60px !important;
+    }
+
+    .list-info-detaile-pro {
+        width: 100% !important;
+    }
+}
+
+.price-info-detaile-pro {
+    margin: 30px .75% 10px 1.5%;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px 0px #ccc;
+    border-radius: 4px;
+    min-height: 100px;
+    padding: 0px 10px;
+    float: right
+}
+
+.sale-detaile-pro {
+    border-bottom: solid 1px #ccc;
+    min-height: 20px;
+    padding: 5px 4px;
+    float: right;
+    width: 100%;
+}
+
+.type-price-detaile {
+    min-height: 40px;
+    padding: 5px 4px;
+    float: right;
+    width: 100%;
+}
+
+.type-price-old {
+    float: right;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #da1212;
+}
+
+
+.type-price-new {
+    float: right;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+.new-price {
+    font-size: 17px;
+    font-weight: 300;
+    color: #48AF6A;
+    display: block;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+.button-price-shop {
+    background: #3fa1b3;
+    width: 100%;
+    /* padding: 10px; */
+    color: #fff;
+    border: none;
+    margin: 15px 0px;
+    box-shadow: 0px 0px 10px 0px #ddd;
+    position: relative;
+    height: 45px;
+    cursor: pointer;
+    font-size: 14px;
+    padding-right: 20px;
+}
+
+.button-price-shop i {
+    padding: 11.5px 10px;
+    /* width: 40px; */
+    /* height: 40px; */
+    background: #4b808a;
+    float: right;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border-radius: 10px 0px 0px 10px;
+    font-size: 22px;
+}
+
+.p-price-shop {
+    text-align: justify;
+    direction: rtl;
+    font-size: 11px;
+    color: #777;
+}

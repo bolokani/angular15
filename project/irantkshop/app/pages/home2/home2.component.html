@@ -1,0 +1,437 @@
+<div class="container-fluid fluid1 root">
+    <div class="row home-div1" [hidden]="true">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 content" *ngFor="let x of list_content">
+            {{ x.site_content_text | substr:0:420 }}
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <img *ngIf="baner1" [src]="baner1" style="width:100%">
+        </div>
+    </div>
+
+    <div class="container-fluid fluid3">
+        <div class="row">
+            <!-- ****************************************************************************************************************************** -->
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 home-div3">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box1 home-box5"
+                        style="padding:0px !important">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box1 home-box7">
+                            <img [src]="header_baner1" style="height: 24rem;" *ngIf="header_baner1">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box1 home-box6 home-box4">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box2 home-box3">
+                            <span *ngIf="header_baner2">
+                                <a class="cursor" *ngIf="header_link_baner2" [href]="header_link_baner2">
+                                    <img [src]="header_baner2">
+                                </a>
+                                <span *ngIf="!header_link_baner2">
+                                    <img [src]="header_baner2">
+                                </span>
+                            </span>
+
+
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box8">
+                            <img [src]="header_baner3" *ngIf="header_baner3" style="width: 100%;height:8.2rem">
+                        </div>
+                    </div>
+                </div>
+                <!-- ****************************************************************************************************************************** -->
+            </div>
+            <!-- ****************************************************************************************************************************** -->
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 home-box9">
+                <div id="demo" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ul class="carousel-indicators">
+                        <li data-target="#demo" data-slide-to="0" *ngFor="let x of list_album;let i = index"
+                            [ngClass]="{active:i == 0}"></li>
+                    </ul>
+
+                    <!-- The slideshow -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item" *ngFor="let x of list_album;let i = index"
+                            [ngClass]="{active:i == 0}">
+                            <img [src]="x.logo" alt="Los Angeles" width="1100" height="500" *ngIf="x.logo">
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#demo" data-slide="prev" [hidden]="list_album.length <= 1">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#demo" data-slide="next" [hidden]="list_album.length <= 1">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid fluid3">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 home-movie1" *ngIf="movie1">
+                <video controlsList="nofullscreen" controls style="width:100%" autoplay="true" loop preload="auto"
+                    #videoRef>
+                    <source [src]="movie1" type="video/mp4">
+                </video>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 home-box10">
+                <!-- <img [src]="baner5" style="width:100%" *ngIf="baner5"> -->
+                <img [src]="baner5" style="width:100%" *ngIf="baner5">
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid fluid3" style="display: none;">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 adver2-div2" *ngFor="let x of list_content3"
+                (click)="go_to_content(x.site_content_id,x.site_content_title)">
+                <div class="row home-row2 cursor" id="home-row2{{ x.site_content_id }}"
+                    [ngStyle]="{backgroundColor:x.site_content_hover_color2}"
+                    (mouseenter)="get_content_hover(x.site_content_id,x.site_content_hover_color)"
+                    (mouseleave)="get_content_leave(x.site_content_id,x.site_content_hover_color2)">
+                    <div class="col-lg-9 col-xl-9 col-md-9 col-sm-6 col-8 cursor div_content_title1">
+                        <div class="kt-post-card__body">
+                            <h2 class="title">{{ x.site_content_title }}</h2>
+                        </div>
+                        <div class="kt-post-card__body">
+                            <div class="text">{{ x.site_content_slug | substr:0:115 }}
+                            </div>
+
+                        </div>
+                    </div><!-- col-lg-6 col-xl-6 col-md-6 col-sm-6 col-xs-12 -->
+                    <div class="col-lg-3 col-xl-3 col-md-3 col-sm-6 col-4 home-div2">
+                        <div class="kt-post-card-thumbnail">
+                            <div style="padding:0.3rem">
+                                <img class="kt-image-block__image kt-image-block__image--lazy-loaded"
+                                    src="{{ x.site_content_site_logo }}/{{ x.site_content_logo }}"
+                                    alt="x.site_content_title" [title]="x.site_content_title">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div><!-- fluid  -->
+<div class="container-fluid fluid2 fluid3 fluid-margin" style="display: none;">
+
+    <div class="row home-row1">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 course-box" *ngFor="let x of list_short_movie">
+            <div class="box cursor"
+                (click)="go_to_short_movie_detaile(x.site_short_course_id,x.site_short_course_title)">
+                <a>
+                    <div class="img">
+                        <img [src]="x.logo">
+                        <div class="hover">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <mat-icon class="course-box_icon_play">play_circle_outline
+                                </mat-icon>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 course-box_icon_view">
+                                مشاهده فیلم</div>
+                        </div>
+                    </div>
+
+                    <div class="desc">
+                        <h2 class="title">{{ x.site_short_course_title }}</h2>
+                        <div class="master">{{ x.teacher_title }}</div>
+                        <div class="state">
+                            <div class="time">
+                                <i class="fa fa-clock-o"></i>{{ x.site_short_course_duration }}
+                            </div>
+                            <div class="view">
+                                <i class="fa fa-eye"></i>
+                                {{ x.visitor | number}} بازدید
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row home-row1" *ngIf="list_short_movie.length == 8">
+        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12 div-button-continue">
+            <button class="button-continue" (click)="go_to_short_movie('فیلم های کوتاه')">
+                ادامه
+            </button>
+        </div>
+    </div>
+</div>
+<div class="line"></div>
+<div class="container-fluid fluid-margin fluid3" style="display: none;">
+    <ng-container *ngFor="let x of list_special_content;let i = index">
+        <span *ngIf="i % 2 == 0">
+            <div class="row home-row1" style="margin-top:3rem">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 course-box">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <img width="510" height="370" [src]="x.logo" class="attachment-large size-large"
+                            alt="{{ x.site_content_title }}" title="{{ x.site_content_title }}"
+                            sizes="(max-width: 510px) 100vw, 510px;" style="width: 100%">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 course-box ">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 video-short1">
+                        <img src="../../../assets/img/2.png" style="width:17rem" alt="{{ x.site_content_title }}"
+                            title="{{ x.site_content_title }}">
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div_h3">
+                        <h3>{{ x.site_content_title }}</h3>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 video-short2">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                            [innerHTML]="x.site_content_text">
+
+                        </div>
+                        <div class="row home-row1 home-content1" style="text-align: left">
+                            <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12 div-button-continue">
+                                <button class="button-continue"
+                                    (click)="go_to_content(x.site_content_id,x.site_content_title)">
+                                    ادامه
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </span>
+        <!-- ******************************************************************************************* -->
+        <span *ngIf="i % 2 == 1">
+            <div class="row home-row1" style="margin-top:2rem;margin-bottom:2rem">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 course-box ">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 video-short1">
+                        <img src="../../../assets/img/1.png" alt="{{ x.site_content_title }}"
+                            title="{{ x.site_content_title }}" style="width:17rem">
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div_h3">
+                        <h3>{{ x.site_content_title }}</h3>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 video-short2">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <span [innerHTML]="x.site_content_text"></span>
+
+                        </div>
+                        <div class="row home-row1 home-content1">
+                            <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12 div-button-continue"
+                                style="text-align:left">
+                                <button class="button-continue"
+                                    (click)="go_to_content(x.site_content_id,x.site_content_title)">
+                                    ادامه
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 course-box video-short3">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <img width="510" height="370" [src]="x.logo" class="attachment-large size-large"
+                            alt="{{ x.site_content_title }}" title="{{ x.site_content_title }}"
+                            sizes="(max-width: 510px) 100vw, 510px" style="width:100%">
+                    </div>
+                </div>
+
+            </div>
+        </span>
+    </ng-container>
+</div><!-- fluid -->
+
+<div class="row" style="display: none;">
+    <img [src]="baner_main_middle">
+</div>
+<!-- ******************************************************************************************* -->
+<div class="line" style="display: none;"></div>
+<div class="container-fluid fluid-margin fluid3" style="display: none;">
+    <div class="row home-div1" [hidden]="true">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 content" *ngFor="let x of list_content">
+            {{ x.site_content_text | substr:0:420 }}
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <img *ngIf="baner1" [src]="baner1" style="width:100%">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12 header1">
+            <div><img src="../../../assets/img/header2.png" alt="جدیدترین دوره های رایگان"
+                    title="جدیدترین دوره های رایگان"></div>
+        </div>
+    </div>
+    <div class="row home-row1">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 course-box" *ngFor="let x of list_course1">
+            <div class="box cursor" (click)="go_to_course(x.site_course_id,x.site_course_title)"
+                style="margin:0px !important">
+                <a>
+                    <div class="img">
+                        <img [src]="x.logo">
+                        <div class="hover">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <mat-icon class="course-box_icon_play">play_circle_outline
+                                </mat-icon>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 course-box_icon_view">
+                                مشاهده دوره</div>
+                        </div>
+                    </div>
+
+                    <div class="desc">
+                        <h2 class="title">{{ x.site_course_title }}</h2>
+                        <div class="master">{{ x.teacher_title }}</div>
+                        <div class="state">
+                            <div class="time">
+                                <i class="fa fa-clock-o"></i>{{ x.site_course_duration }}
+                            </div>
+                            <div class="view">
+                                <i class="fa fa-eye"></i>
+                                {{ x.visitor | number}} بازدید
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row 12 row home-row1" *ngIf="list_course1.length == 8">
+        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12">
+            <button class="button-continue" [routerLink]="['/free',1,'دوره-های-رایگان-']">
+                ادامه
+            </button>
+        </div>
+    </div>
+</div><!-- fluid -->
+
+<div class="container-fluid fluid2 fluid-margin" style="display: none;">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12 home-header">
+            <img [src]="baner2" style="height:25rem;width:100%" *ngIf="baner2">
+        </div>
+    </div>
+</div>
+<!-- -------------------------------------------------------------------------------------------------- -->
+<div style="display: none;" class="container-fluid fluid3 fluid-margin"
+    style="background-color: #556DBA;padding-top:1rem !important;margin-top:0px !important">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12 home-header header1">
+            <div>جدیدترین ها</div>
+        </div>
+    </div>
+    <div class="row home-row1">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 course-box" *ngFor="let x of list_course2">
+            <div class="box cursor" (click)="go_to_course(x.site_course_id,x.site_course_title)">
+                <a>
+                    <div class="img">
+                        <img [src]="x.logo">
+                        <div class="hover">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <mat-icon class="course-box_icon_play">play_circle_outline
+                                </mat-icon>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 course-box_icon_view">
+                                مشاهده دوره</div>
+                        </div>
+                    </div>
+                    <div class="desc">
+                        <h2 class="title">در این قسمت عنوان کالا قرار می گیرد</h2>
+                        <div class="master">---</div>
+                        <div class="state">
+                            <div class="time">
+                                <i class="fa fa-clock-o"></i>---
+                            </div>
+                            <div class="view">
+                                <i class="fa fa-eye"></i>
+                                {{ x.visitor | number}} بازدید
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row home-row1" *ngIf="list_course2.length == 16">
+        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12">
+            <button class="button-continue" [routerLink]="['/download',2,'دوره-های-دانلودی-']">
+                ادامه
+            </button>
+        </div>
+    </div>
+
+</div>
+<!-- -------------------------------------------------------------------------------------------------- -->
+<div class="container-fluid fluid3 fluid-margin gallery-div2" style="display: none;">
+    <div class="row home-row1">
+        <div class='col-xl-12 col-lg-12 col-md-12 col-xs-12 col-sm-12 padd-mobile marg-mobile padding-project'>
+            <div class="section-title">
+                <div class="borders">
+                    <div class="row">
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-3 gallery-div"
+                            *ngFor="let x of list_gallery;let i = index">
+                            <img src="{{ x.gallery_attach_site }}/{{ x.gallery_attach_name }}" class="shadow cursor"
+                                alt='{{ x.site_gallery_title }}' title='{{ x.site_gallery_title }}'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- -------------------------------------------------------------------------------------------------- -->
+<div class="container-fluid fluid3 fluid-margin">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12 home-header header1">
+            <div>پرفروش ترین ها</div>
+        </div>
+    </div>
+    <div class="row home-row1">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 course-box" *ngFor="let x of list_course3">
+            <div class="box cursor" (click)="go_to_course(x.site_course_id,x.site_course_title)">
+                <a>
+                    <div class="img">
+                        <img [src]="x.logo">
+                        <div class="hover">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <mat-icon class="course-box_icon_play">play_circle_outline
+                                </mat-icon>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 course-box_icon_view">
+                                مشاهده دوره</div>
+                        </div>
+                    </div>
+                    <div class="desc">
+                        <h2 class="title">در این قسمت عنوان کالا قرار می گیرد</h2>
+                        <div class="master">----</div>
+                        <div class="state">
+                            <div class="time">
+                                <i class="fa fa-clock-o"></i>---
+                            </div>
+                            <div class="view">
+                                <i class="fa fa-eye"></i>
+                                {{ x.visitor | number}} بازدید
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row home-row1" *ngIf="list_course3.length == 4">
+        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12">
+            <button class="button-continue">
+                ادامه
+            </button>
+        </div>
+    </div>
+</div>
+<!-- -------------------------------------------------------------------------------------------------- -->
+<div class="container-fluid fluid2">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12 home-header">
+            <img [src]="baner3" class="baner3" *ngIf="baner3">
+        </div>
+    </div>
+</div>
+<!-- -------------------------------------------------------------------------------------------------- -->
+<app-footer></app-footer>

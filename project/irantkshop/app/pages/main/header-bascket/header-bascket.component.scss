@@ -1,0 +1,23 @@
+.mat-menu-panel-bascket {
+    background-color: #4b79ab;
+    height: 40px;
+    padding: 0 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: #fff;
+    font-size: 13px;
+    direction: ltr;
+}
+
+.close {
+    float: right;
+}
+
+.default_btn {
+    height: 2rem;
+    width: 9rem;
+    line-height: 0.2rem;
+    font-size: 0.85rem;
+    padding: 0px !important;
+}
