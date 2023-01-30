@@ -1,5 +1,11 @@
 <div mat-dialog-title class="matDialogTitle" cdkDragHandle cdkDrag cdkDragRootElement=".cdk-overlay-pane">
-  <div class="mat-dialog-title-div1">مشخصات قرارداد</div>
+  <div class="div_loading">
+    <div class="my-container" [hidden]="!loading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  </div>
+
+  <div class="mat-dialog-title-div1">مشخصات شماره قرارداد {{ contract_number }}</div>
   <span class="close" (click)="close()">
     <mat-icon>close</mat-icon>
   </span>
@@ -15,7 +21,7 @@
         </tr>
         <tr>
           <td class="right">شماره شاسی:</td>
-          <td class="center">-</td>
+          <td class="center">{{ x.contract_list_vin }}</td>
         </tr>
         <tr>
           <td class="right">شماره موتور:</td>
@@ -30,7 +36,7 @@
           <td class="center">{{ x.contract_list_contract_date1 }}</td>
         </tr>
         <tr>
-          <td class="right">تاریخ قبض انبار تهران:</td>
+          <td class="right">تاریخ قبض انبار مقصد:</td>
           <td class="center">{{ x.contract_list_recept_date2 }}</td>
         </tr>
         <tr>
@@ -42,7 +48,7 @@
           <td class="center">{{ x.contract_list_discharge_date }}</td>
         </tr>
         <tr>
-          <td class="right">تاریخ پلاک</td>
+          <td class="right">تاریخ پلاک:</td>
           <td class="center">{{ x.contract_list_plate_date }}</td>
         </tr>
         <tr>
@@ -51,7 +57,7 @@
         </tr>
         <tr>
           <td class="right">تعداد روز شروع تا پلاک:</td>
-          <td class="center">--</td>
+          <td class="center">{{ missed_day_plate }} روز</td>
         </tr>
       </table>
     </div>

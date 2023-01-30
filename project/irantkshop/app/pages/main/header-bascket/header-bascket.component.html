@@ -1,9 +1,15 @@
+<div class="div_loading">
+    <div class="my-container" class="detaile" [hidden]="!loading">
+        <mat-progress-bar mode="indeterminate" class="detaile"></mat-progress-bar>
+    </div>
+</div>
 <div class="top-bar mat-menu-panel-bascket">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-top:3px">مبلغ
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12" (click)="$event.stopPropagation()"
+                style="padding-top:3px;padding-left:1rem !important">مبلغ
                 کل خرید:
-                {{ sum_all | number}}
+                {{ sum | number}}
                 تومان</div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <mat-icon class="close">close</mat-icon>
@@ -11,35 +17,64 @@
         </div>
     </div>
 </div>
-<div class="cart-content" (click)="$event.stopPropagation()">
+<div class="cart-content">
     <div class="container-fluid">
-        <div class="row">
-            <table class="table table-bordered table-hover table-responsive table-striped">
-                <tbody>
-                    <tr appyid="60389" *ngFor="let x of list_bascket;let i = index">
-                        <td width="50" class="center price">
-                            {{ i + 1 }}
-                        </td>
-                        <td width="50" class="center price delete">
-                            <span class="cursor" (click)="delete(i,x.site_bascket2_id)">
-                                <i class="fa fa-close"></i>
-                            </span>
-                        </td>
-                        <td width="500" class="name" style="text-align: right;">
-                            <p>
-                                <span (click)="open(x.wharehouse_material_id,x.wharehouse_material_title)"
-                                    class="cursor">
-                                    {{ x.wharehouse_material_title | substr:0:40 }}
-                                </span>
-                            </p>
-                        </td>
-                        <td class="center price delete" style="min-width: 7rem;text-align: left">
-                            {{ x.price_with_discount | number }} <span> تومان </span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <button class="default_btn" [routerLink]="['/shopping/bascket']">رفتن به سبد خرید</button>
+        <div class="row" *ngIf="list_bascket.length > 0" (click)="$event.stopPropagation()">
+            <div class='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 shop-cart'
+                *ngFor="let x of list_bascket;let i = index">
+
+                <div class='col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1 shop-cart-box'>
+                    <span (click)="delete(i,x.wharehouse_order_id)"><i class="fas fa-times-circle cursor"></i></span>
+                </div>
+                <div class='col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-11 shop-cart-box cursor'
+                    (click)="open(x.wharehouse_material_id,x.wharehouse_material_title)">
+                    <img [src]='x.logo' width='100%' height='200px' [title]="x.wharehouse_material_title"
+                        [alt]="x.wharehouse_material_title">
+                </div>
+                <div class='col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-12 shop-cart-box shop-cart-name'>
+                    <p class='cursor' (click)="open(x.wharehouse_material_id,x.wharehouse_material_title)">
+                        {{ x.wharehouse_material_title }}
+                        <span class='pro-det'> ( جزئیات محصول )</span>
+                    </p>
+                    <p>
+                        <span class='one-sale-detaile'> {{ x.product_goods_war }} </span>
+                    </p>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 shop-cart-num">
+                        <span class='shop-cart-span'>
+                            <input type='number' [value]='x.wharehouse_order_number' min="1"
+                                id='number{{ x.wharehouse_order_id }}'
+                                (change)="change_number(i,x.wharehouse_order_id)"></span>
+
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 shop-cart-price">
+                        <span class="discount" *ngIf="x.wharehouse_order_discount > 0">{{
+                            x.wharehouse_order_discount
+                            }}%</span>
+                        <span class="old-price" *ngIf="x.wharehouse_order_discount > 0"><span
+                                style='float:left'>تومان</span>
+                            <del>{{ x.price_without_discount | number }}</del></span>
+                        <br>
+                        <span>{{ x.price_with_discount | number }} تومان</span>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
+
+        <div class="row" (click)="$event.stopPropagation()">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 preview" *ngIf="list_bascket.length == 0">
+                <div>
+                    <img src="../../../../assets/img/preview.png">
+                </div>
+                <div class="preview2">{{ serverService.get_no_record_text(lang) }}</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <button class="default_btn" [routerLink]="['/shopping/bascket']">مشاهده سبد خرید</button>
+            <button class="default_btn" [routerLink]="['/all-goods/همه-کالاها']">فروشگاه</button>
+        </div>
+
     </div>
 </div>

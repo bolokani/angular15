@@ -111,18 +111,18 @@
                         </div>
                         <hr style="width:20rem">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 all-goods-detaile-div1">
-                            <div id="price">
+                            <div id="price" *ngIf="discount > 0">
                                 <span class="lbl">قیمت:</span>
-                                <span class="num">90,000</span>
+                                <span class="num">{{ price2 / 10 | number }}</span>
                                 <span class="currency">تومان</span>
                                 <span class="discount">
                                     <span class="right">تخفیف</span>
-                                    <span class="left">50 تومان</span>
+                                    <span class="left">%{{ discount }}</span>
                                 </span>
                             </div>
                             <div id="priceforu">
                                 <span class="lbl">قیمت برای شما:</span>
-                                <span class="num">{{ price2 | number }}</span>
+                                <span class="num">{{ sum / 10 | number }}</span>
                                 <span class="currency">تومان</span>
                             </div>
                             <button id="addtocart" class="default_btn" (click)="add_to_bascket()" [disabled]="loading">

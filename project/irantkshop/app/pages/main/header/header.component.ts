@@ -44,6 +44,11 @@ export class HeaderComponent implements OnInit {
     , public messageService: MessageService
     , public matSnackBar: MatSnackBar) {
 
+    this.serverService.get_count_order().subscribe(
+      (res) => {
+        this.get_count_orders();
+      }
+    )
 
   }
 

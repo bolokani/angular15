@@ -20,7 +20,7 @@ export class ContractCommentComponent implements OnInit, OnDestroy {
   public loading = false;
   public subscription: Subscription | any;
   public site: any;
-  public order_id: number | any;
+  public contract_number: number | any;
   public username: any;
   public user_id: any;
   public placeholder: string | any;
@@ -31,6 +31,7 @@ export class ContractCommentComponent implements OnInit, OnDestroy {
   public export_code: any;
   public form1: FormGroup | any;
   public disable1: boolean = true;
+
 
   constructor(
     public serverService: ServerService
@@ -43,7 +44,7 @@ export class ContractCommentComponent implements OnInit, OnDestroy {
   ) {
     if (dialog_data) {
       this.id = dialog_data.id;
-      this.order_id = dialog_data.order_id;
+      this.contract_number = dialog_data.contract_number;
     }
   }//end consructor
 

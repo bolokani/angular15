@@ -25,7 +25,7 @@ export class ContractProcessComponent implements OnInit, OnDestroy {
   public loading = false;
   public user_id: number;
   public subscription: Subscription;
-  public order_id: number;
+  public contract_number: string;
   public id: number;
   public isLinear = false;
   public list_process: any = [];
@@ -40,7 +40,7 @@ export class ContractProcessComponent implements OnInit, OnDestroy {
     , public messageService: MessageService) {
 
     if (dialog_data) {
-      this.order_id = dialog_data.order_id;
+      this.contract_number = dialog_data.contract_number;
       this.id = dialog_data.id;
     }
   }//end consructor
@@ -82,7 +82,7 @@ export class ContractProcessComponent implements OnInit, OnDestroy {
   message(validation: boolean, message: string, type: number, action: string) {
     if (type == 1) this.loading = false;
     if (validation == true) {
-      this.matSnackBar.open(message, action, { duration: 8000 });
+      this.matSnackBar.open(message, action, { duration: 5000 });
     }//end if
     else {
       //this.matSnackBar.dismiss();

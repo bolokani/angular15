@@ -58,7 +58,7 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
         this.list_bascket = [];
         if (res['status'] == 1) {
           for (var i = 0; i < res['num']; i++) {
-            res['result'][i].price_without_discount = res['result'][i].wharehouse_order_number * res['result'][i].wharehouse_order_cost;
+            res['result'][i].price_without_discount = res['result'][i].wharehouse_order_number * res['result'][i].wharehouse_material_price2;
             res['result'][i].price_with_discount = res['result'][i].price_without_discount - (res['result'][i].price_without_discount * res['result'][i].wharehouse_order_discount / 100);
             if (res['result'][i].wharehouse_material_logo) {
               res['result'][i].logo = res['result'][i].wharehouse_material_site_logo + "/" + res['result'][i].wharehouse_material_logo;
@@ -119,24 +119,19 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
     this.show = "list";
   }
 
-  delete(i: number, id: number): any {
+  delete(i: number, id: number) {
     if (this.serverService.check_internet() == false) {
       this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
     this.loading = true;
-    var price_temp = this.list_bascket[i].product_goods_price_with_discount;
-    this.subscription = this.serverService.post_address(this.server, 'product_delete_bascket', { id: id }).subscribe(
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 1997, id: id }).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
-          this.sum = Number(this.sum) - Number(price_temp);
-          this.list_bascket[i].type = 3;
-          this.list_bascket[i].i = i;
-          this.list_bascket[i].sum = this.sum;
-          //this.serverService.send_list_bascket(this.list_bascket[i]);
-          //this.serverService.send_count_bascket(-1);
           this.list_bascket.splice(i, 1);
+          this.serverService.send_count_order();
+          this.get_all_sum();
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
@@ -145,6 +140,7 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
       }
     )
   }
+
 
   open_product(id: number, title: string) {
     var title1 = "";

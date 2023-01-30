@@ -55,7 +55,7 @@ html {
 	font-family: irsans;
 }
 
-button:not(.mat-icon-button, .home-button5):hover {
+button:not(.mat-icon-button, .home-button5, .mdc-icon-button, .mat-calendar-body-cell):hover {
 	background: #000 !important;
 	color: #fff !important;
 }
@@ -102,6 +102,15 @@ button:focus {
 .en {
 	font-family: en !important;
 }
+
+
+.div_loading {
+	position: absolute;
+	top: 0;
+	z-index: 99999999999999;
+	width: 100%;
+}
+
 
 /*************************************************************************************** */
 .mat-vertical-stepper-content {
@@ -1479,8 +1488,8 @@ mat-form-field.mat-form-field {
 
 .datepicker1 {
 	position: absolute;
-	left: -10px;
-	top: 12px
+	left: 19px;
+	top: 19px
 }
 
 .datepicker11_input {

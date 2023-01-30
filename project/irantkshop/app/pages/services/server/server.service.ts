@@ -149,7 +149,7 @@ export class ServerService {
   }
   //********************************************************* */
   send_count_order(): void {
-    //this.sb_count_order.next(null);
+    this.sb_count_order.next(null);
   }//end send_username
 
   get_count_order(): Observable<any> {

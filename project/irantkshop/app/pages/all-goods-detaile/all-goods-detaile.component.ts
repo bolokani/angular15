@@ -32,6 +32,8 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
   public list_color: any = [];
   public group_title: string;
   public price2: number;
+  public discount: number = 0;
+  public sum: number = 0;
 
   constructor(
     @Inject(DOCUMENT) public document: Document,
@@ -89,7 +91,8 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
           this.title2 = res['result'][0].wharehouse_material_title2;
           this.group_title = res['result'][0].material_group_title;
           this.price2 = res['result'][0].wharehouse_material_price2;
-
+          this.discount = res['result'][0].wharehouse_material_discount;
+          this.sum = (1 * res['result'][0].wharehouse_material_price2) - (res['result'][0].wharehouse_material_price2 * 10 / 100);
           if (res['result'][0].wharehouse_material_logo) {
             this.logo = res['result'][0].wharehouse_material_site_logo + "/" + res['result'][0].wharehouse_material_logo + "?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90";
           }
@@ -170,7 +173,10 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
         this.list_property = [];
         if (res['status'] == 1) {
           for (var i = 0; i < res['num']; i++) {
-            this.list_property.push(res['result'][i]);
+            if (res['result'][i].answer_title) {
+              this.list_property.push(res['result'][i]);
+            }
+
           }
         }//end if
         else {

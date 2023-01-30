@@ -1,14 +1,15 @@
-<div mat-dialog-title class="matDialogTitle pe4" [ngClass]="{en4:lang==2}" cdkDragHandle cdkDrag
-  cdkDragRootElement=".cdk-overlay-pane">
-  <div class="my-container" [hidden]="!loading">
-    <mat-progress-bar mode="indeterminate" class="detaile"></mat-progress-bar>
+<div mat-dialog-title class="matDialogTitle" cdkDragHandle cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+  <div class="div_loading">
+    <div class="my-container" [hidden]="!loading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
   </div>
-  <span *ngIf="lang == 1"> کامنت های شماره قرارداد {{ order_id }} </span>
-  <span *ngIf="lang == 2"> Comments PR {{ id }} </span>
+  <div class="mat-dialog-title-div1">کامنت های شماره قرارداد {{ contract_number }}</div>
   <span class="close" (click)="close()">
     <mat-icon>close</mat-icon>
   </span>
 </div>
+
 
 
 <div mat-dialog-content class="matDialogContent">

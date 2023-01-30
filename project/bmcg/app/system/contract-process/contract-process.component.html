@@ -1,5 +1,10 @@
 <div mat-dialog-title class="matDialogTitle" cdkDragHandle cdkDrag cdkDragRootElement=".cdk-overlay-pane">
-    <div class="mat-dialog-title-div1">لیست مراحل شماره قرارداد {{ order_id }}</div>
+    <div class="div_loading">
+        <div class="my-container" [hidden]="!loading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+    </div>
+    <div class="mat-dialog-title-div1">لیست مراحل شماره قرارداد {{ contract_number }}</div>
     <span class="close" (click)="close()">
         <mat-icon>close</mat-icon>
     </span>

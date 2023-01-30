@@ -71,7 +71,7 @@ export class HeaderBascketComponent implements OnInit {
         this.list_bascket = [];
         if (res['status'] == 1) {
           for (var i = 0; i < res['num']; i++) {
-            res['result'][i].price_without_discount = res['result'][i].wharehouse_order_number * res['result'][i].wharehouse_order_cost;
+            res['result'][i].price_without_discount = res['result'][i].wharehouse_order_number * res['result'][i].wharehouse_material_price2;
             res['result'][i].price_with_discount = res['result'][i].price_without_discount - (res['result'][i].price_without_discount * res['result'][i].wharehouse_order_discount / 100);
             if (res['result'][i].wharehouse_material_logo) {
               res['result'][i].logo = res['result'][i].wharehouse_material_site_logo + "/" + res['result'][i].wharehouse_material_logo;
@@ -88,6 +88,42 @@ export class HeaderBascketComponent implements OnInit {
     )
   }//end get_bascket
 
+  change_number(i: number, id: number) {
+    var x = <any>document.getElementById('number' + id);
+    var value = x.value;
+    var price_temp = this.list_bascket[i].product_goods_price_with_discount;
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    this.loading = true;
+    var obj = { address: 1988, order_id: id, value: value }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.list_bascket[i].wharehouse_order_number = value;
+            this.list_bascket[i].price_without_discount = res['result'][0].wharehouse_order_number * res['result'][0].wharehouse_material_price2;
+            this.list_bascket[i].price_with_discount = this.list_bascket[i].price_without_discount - (this.list_bascket[i].price_without_discount * res['result'][0].wharehouse_order_discount / 100);
+            this.get_all_sum();
+          }
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }//change_number
+
+  get_all_sum() {
+    this.sum = 0;
+    for (var i = 0; i < this.list_bascket.length; i++) {
+      this.sum = this.sum + this.list_bascket[i].price_with_discount;
+    }
+  }
+
   open(id: number, title: string) {
     var title1 = "";
     var title_arr = title.split(" ");
@@ -98,13 +134,26 @@ export class HeaderBascketComponent implements OnInit {
     this.router.navigate(['/goods-detaile', id, title1])
   }
 
-
-
-  get_all_sum() {
-    this.sum = 0;
-    for (var i = 0; i < this.list_bascket.length; i++) {
-      this.sum = this.sum + this.list_bascket[i].price_with_discount;
-    }
+  delete(i: number, id: number) {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    this.loading = true;
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 1997, id: id }).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          this.list_bascket.splice(i, 1);
+          this.serverService.send_count_order();
+          this.get_all_sum();
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
   }
 
   go_to_content(id: number, title: string) {
@@ -141,26 +190,7 @@ export class HeaderBascketComponent implements OnInit {
     this.router.navigate(['/detaile', id, title1])
   }
 
-  delete(i: number, id: number) {
-    if (this.serverService.check_internet() == false) {
-      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
-      return;
-    }//end if
-    else { this.matSnackBar.dismiss(); }
-    this.loading = true;
-    this.subscription = this.serverService.post_address(this.server2, 'new_address', { address: 2041, id: id }).subscribe(
-      (res: any) => {
-        if (res['status'] == 1) {
-          this.list_bascket.splice(i, 1);
-          this.serverService.send_bascket();
-          this.message(false, "", 1, this.messageService.close(this.lang));
-        }//end if
-        else {
-          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
-        }
-      }
-    )
-  }
+
 
   pay() {
     var obj = {

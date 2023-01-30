@@ -34,7 +34,7 @@
             *ngFor="let x of list_bascket;let i = index">
 
             <div class='col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1 shop-cart-box'>
-                <span (click)="delete(i,x.product_bascket_id)"><i class="fas fa-times-circle cursor"></i></span>
+                <span (click)="delete(i,x.wharehouse_order_id)"><i class="fas fa-times-circle cursor"></i></span>
             </div>
             <div class='col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-11 shop-cart-box cursor'
                 (click)="open_product(x.wharehouse_material_id,x.wharehouse_material_title)">

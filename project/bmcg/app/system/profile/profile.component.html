@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-lg-12 col-xs-12 sidebar1 box appy-breadcrumb">
             <ul>
-                <li>پنل کاربری </li>
+                <li>پنل کاربری من</li>
             </ul>
         </div>
     </div>
@@ -13,9 +13,6 @@
                 <div class="my-container">
                     <mat-progress-bar mode="indeterminate" class="detaile"></mat-progress-bar>
                 </div>
-            </div>
-            <div class="header">
-                <div class="title">ویرایش پروفایل</div>
             </div>
             <div class="content">
                 <form [formGroup]="form1">
@@ -36,6 +33,23 @@
                         </div>
 
                         <div class="col-xl-3 col-lg-3 col-md-3 col-lg-3 col-xs-12 div_padding">
+                            <label for="watsup" class='wh-label'>
+                                <div class="wh-label-text"> واتس آپ : </div>
+                                <input class='wh-input wh-input2' formControlName="watsup" autocomplete="off"
+                                    style="direction:ltr" (keypress)="serverService.get_number($event)" length="11"
+                                    maxLength="11" minLength="11">
+                            </label>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-lg-3 col-xs-12 div_padding">
+                            <label for="phone" class='wh-label'>
+                                <div class="wh-label-text"> تلفن ثابت : </div>
+                                <input class='wh-input wh-input2' formControlName="phone" autocomplete="off"
+                                    (keypress)="serverService.get_number($event)">
+                            </label>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-lg-3 col-xs-12 div_padding">
                             <label for="code_meli" class='wh-label'>
                                 <div class="wh-label-text"> کد ملی: </div>
                                 <input class='wh-input wh-input2' formControlName="code_meli" autocomplete="off"
@@ -45,21 +59,42 @@
                         </div>
 
                         <div class="col-xl-3 col-lg-3 col-md-3 col-lg-3 col-xs-12 div_padding">
-                            <label for="watsup" class='wh-label'>
-                                <div class="wh-label-text"> واتس آپ : </div>
-                                <input class='wh-input wh-input2' formControlName="watsup" autocomplete="off"
-                                    style="direction:ltr" (keypress)="serverService.get_number($event)" length="11"
-                                    maxLength="11" minLength="11">
+                            <label for="id_number" class='wh-label'>
+                                <div class="wh-label-text"> شماره شناسنامه: </div>
+                                <input class='wh-input wh-input2' formControlName="id_number" autocomplete="off"
+                                    (keypress)="serverService.get_number($event)">
                             </label>
                         </div>
-
 
                         <div class="col-xl-3 col-lg-3 col-md-3 col-lg-3 col-xs-12 div_padding">
-                            <label for="email" class='wh-label'>
-                                <div class="wh-label-text"> پست الکترونیک: </div>
-                                <input class='wh-input wh-input2' formControlName="email" autocomplete="off">
+                            <label for="birth_date" class='wh-label'>
+                                <div class="wh-label-text"> تاریخ تولد: </div>
+                                <div style="width:100%">
+                                    <input class="wh-input" [matDatepicker]="picker" formControlName="birth_date"
+                                        autocomplete="off">
+                                    <mat-datepicker-toggle matSuffix [for]="picker" class="datepicker1">
+                                    </mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </div>
                             </label>
                         </div>
+
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-lg-3 col-xs-12 div_padding">
+                            <label for="code_posti" class='wh-label'>
+                                <div class="wh-label-text"> کد پستی: </div>
+                                <input class='wh-input wh-input2' formControlName="code_posti" autocomplete="off"
+                                    (keypress)="serverService.get_number($event)">
+                            </label>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-lg-6 col-xs-12 div_padding">
+                            <label for="address" class='wh-label'>
+                                <div class="wh-label-text"> آدرس: </div>
+                                <input class='wh-input wh-input2' style="text-align: right;" formControlName="address"
+                                    autocomplete="off">
+                            </label>
+                        </div>
+
                     </div>
 
 

@@ -66,7 +66,7 @@ export class ContractListComponent implements OnInit, OnDestroy {
     )
   }
 
-  open_comment(id: number, order_id: string) {
+  open_comment(id: number, contract_number: string) {
     var width = '23rem';
     if (window.innerWidth > 576) {
       width = '50rem';
@@ -74,11 +74,11 @@ export class ContractListComponent implements OnInit, OnDestroy {
     this.dialog.open(ContractCommentComponent, {
       width: width,
       height: 'auto',
-      data: { id: id, order_id: order_id }
+      data: { id: id, contract_number: contract_number }
     })
   }
 
-  open_process(id: number, order_id: number) {
+  open_process(id: number, contract_number: string) {
     var width = '22rem';
     if (window.innerWidth > 576) {
       width = '22rem';
@@ -86,16 +86,16 @@ export class ContractListComponent implements OnInit, OnDestroy {
     this.dialog.open(ContractProcessComponent, {
       width: width,
       height: 'auto',
-      data: { id: id, order_id: order_id }
+      data: { id: id, contract_number: contract_number }
     })
   }
 
-  open(id: number) {
+  open(id: number, contract_number: string) {
     this.contract_id = id;
     this.dialog.open(ContactDetaileComponent, {
-      width: '22rem',
+      width: '25rem',
       height: 'auto',
-      data: { id: id }
+      data: { id: id, contract_number: contract_number }
     })
   }
   //**************************************************

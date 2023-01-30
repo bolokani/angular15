@@ -64,9 +64,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
             this.form1.patchValue({
               'name': res['result'][0].user_title,
               'cellphone': res['result'][0].user_cellphone,
-              'email': res['result'][0].user_email,
+              'code_posti': res['result'][0].user_code_posti,
+              'address': res['result'][0].user_address,
               'watsup': res['result'][0].user_watsup,
+              'birth_date': res['result'][0].user_birth_date,
+              'phone': res['result'][0].user_phone,
               'code_meli': res['result'][0].user_code_meli,
+              'id_number': res['result'][0].user_id_number,
             })
           }
 
@@ -91,8 +95,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
       'name': this.form1.value.name,
       'cellphone': this.form1.value.cellphone,
       'watsup': this.form1.value.watsup,
-      'email': this.form1.value.email,
+      'birth_date': this.form1.value.birth_date,
+      'phone': this.form1.value.phone,
+      'code_posti': this.form1.value.code_posti,
+      'addres': this.form1.value.address,
       'code_meli': this.form1.value.code_meli,
+      'id_number': this.form1.value.id_number,
     }
     this.loading_update = true;
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
@@ -118,8 +126,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
       'name': new FormControl(null, [Validators.required]),
       'cellphone': new FormControl(null, [Validators.required, Validators.pattern('[0-9]{1,}'), Validators.minLength(11)]),
       'watsup': new FormControl(null, [Validators.pattern('[0-9]{1,}'), Validators.minLength(11)]),
+      'birth_date': new FormControl(null),
+      'phone': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
       'code_meli': new FormControl(null, [Validators.required, Validators.minLength(10)]),
-      'email': new FormControl(null, [Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
+      'id_number': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
+      'code_posti': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
+      'address': new FormControl(null),
     })
   }
   //**************************************************

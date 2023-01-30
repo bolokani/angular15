@@ -42,12 +42,18 @@ export class ContactDetaileComponent implements OnInit, OnDestroy {
   public year_title: any;
   public abortion: any;
   public cid_title: any;
+  public missed_day_plate: number = 0;
+  public contract_number: string;
 
-  constructor(public serverService: ServerService, public router: Router, public matSnackBar: MatSnackBar
-    , private matDialogRef: MatDialogRef<ContactDetaileComponent>
-    , @Inject(MAT_DIALOG_DATA) private dialog_data: any) {
+  constructor(
+    public serverService: ServerService
+    , public router: Router
+    , public matSnackBar: MatSnackBar
+    , public matDialogRef: MatDialogRef<ContactDetaileComponent>
+    , @Inject(MAT_DIALOG_DATA) public dialog_data: any) {
     if (dialog_data) {
       this.id = dialog_data.id;
+      this.contract_number = dialog_data.contract_number;
     }
   }//end consructor
 
@@ -78,18 +84,36 @@ export class ContactDetaileComponent implements OnInit, OnDestroy {
             this.bill_weight = res['result'][0].contract_list_bill_weight;
             this.weight_title = res['result'][0].site_weight_title;
             this.year_title = res['result'][0].site_year_title;
-
             this.position_title = res['result'][0].site_position_title;
             this.abortion = res['result'][0].contract_list_abortion;
             this.cid_title = res['result'][0].site_cid_title;
-
-
-
             this.process_title = res['result'][0].discharge_process_title;
             this.delivery_date = res['result'][0].contract_list_delivery_date;
             this.recept_date = res['result'][0].contract_list_recept_date;
+            this.get_missed_day_plate(res['result'][0].contract_list_contract_date_main, res['result'][0].contract_list_plate_date_main);
           }
           this.recieve_message(false, "", "", 1, "", "");
+        }//end if
+        else {
+          var pe_message = "خطا در دریافت";
+          var pe_action = "بستن";
+          this.recieve_message(true, 'Erorr in recieve', pe_message, 1, 'close', pe_action);
+        }
+      }
+    )
+  }
+
+
+  get_missed_day_plate(contract_date: string, plate_date: string) {
+    var obj = {
+      address: 6736, id: this.id
+      , contract_date: contract_date
+      , plate_date: plate_date
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          this.missed_day_plate = res['date'];
         }//end if
         else {
           var pe_message = "خطا در دریافت";
