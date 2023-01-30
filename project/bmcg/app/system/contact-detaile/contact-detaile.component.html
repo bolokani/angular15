@@ -10,48 +10,48 @@
     <div class="row" *ngFor="let x of list_record">
       <table class="table table-bordered">
         <tr>
-          <td>نام کالا</td>
-          <td>{{ x.site_brand_title }} {{ x.site_tip_title }} {{ x.site_year_title }}</td>
+          <td class="right">نام کالا:</td>
+          <td class="center en">{{ x.site_brand_title }} {{ x.site_tip_title }} {{ x.site_year_title }}</td>
         </tr>
         <tr>
-          <td>شماره شاسی</td>
-          <td>-</td>
+          <td class="right">شماره شاسی:</td>
+          <td class="center">-</td>
         </tr>
         <tr>
-          <td>شماره موتور</td>
-          <td>{{ x.contract_list_engin }}</td>
+          <td class="right">شماره موتور:</td>
+          <td class="center">{{ x.contract_list_engin }}</td>
         </tr>
         <tr>
-          <td>رنگ</td>
-          <td>{{ x.site_color_title }}</td>
+          <td class="right">رنگ:</td>
+          <td class="center">{{ x.site_color_title }}</td>
         </tr>
         <tr>
-          <td>تاریخ عقد قرارداد</td>
-          <td>{{ x.contract_list_contract_date1 }}</td>
+          <td class="right"> تاریخ عقد قرارداد: </td>
+          <td class="center">{{ x.contract_list_contract_date1 }}</td>
         </tr>
         <tr>
-          <td>تاریخ قبض انبار تهران</td>
-          <td>{{ x.contract_list_recept_date2 }}</td>
+          <td class="right">تاریخ قبض انبار تهران:</td>
+          <td class="center">{{ x.contract_list_recept_date2 }}</td>
         </tr>
         <tr>
-          <td>تاریخ شروع قرارداد</td>
-          <td>{{ x.contract_list_contract_date }}</td>
+          <td class="right">تاریخ شروع قرارداد:</td>
+          <td class="center">{{ x.contract_list_contract_date }}</td>
         </tr>
         <tr>
-          <td>تاریخ ترخیص</td>
-          <td>{{ x.contract_list_discharge_date }}</td>
+          <td class="right">تاریخ ترخیص:</td>
+          <td class="center">{{ x.contract_list_discharge_date }}</td>
         </tr>
         <tr>
-          <td>تاریخ پلاک</td>
-          <td>{{ x.contract_list_plate_date }}</td>
+          <td class="right">تاریخ پلاک</td>
+          <td class="center">{{ x.contract_list_plate_date }}</td>
         </tr>
         <tr>
-          <td>شماره پلاک</td>
-          <td>--</td>
+          <td class="right">شماره پلاک:</td>
+          <td class="center">--</td>
         </tr>
         <tr>
-          <td>تعداد روز شروع تا پلاک</td>
-          <td>-</td>
+          <td class="right">تعداد روز شروع تا پلاک:</td>
+          <td class="center">--</td>
         </tr>
       </table>
     </div>

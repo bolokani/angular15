@@ -32,7 +32,8 @@ html {
 }
 
 .row {
-	margin: 0px !important
+	margin: 0px !important;
+	background-color: #fff;
 }
 
 .ltr {
@@ -347,9 +348,10 @@ th.mat-sort-header-sorted {
 	background-color: #fff;
 }
 
+/*
 .mat-row:nth-child(odd) {
 	background-color: #f9f9f9;
-}
+}*/
 
 .mat_table_fa mat-header-cell:first-child {
 	position: sticky;
@@ -467,7 +469,7 @@ mat-footer-row {
 	position: absolute;
 	top: 0;
 	width: 100%;
-	padding-top: 0.6rem;
+	padding-top: 0rem;
 }
 
 .matDialogTitle {
@@ -478,8 +480,8 @@ mat-footer-row {
 	font-family: irsans !important;
 	box-shadow: 1px 0px 4px #777;
 	padding: 0px !important;
-	max-height: 3rem;
-	background-color: aliceblue;
+	max-height: 2rem;
+	background-color: #23FF9F;
 }
 
 .matDialogContent {
@@ -838,7 +840,7 @@ h1 {
 }
 
 .active {
-	background-color: #F5F5DC !important;
+	background-color: #fff !important;
 }
 
 .main-slides .owl-next:hover {

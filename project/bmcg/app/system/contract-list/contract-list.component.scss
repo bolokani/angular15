@@ -156,7 +156,7 @@ ul {
 }
 
 .box:hover {
-    background: #F5F5DC;
+    background: #fff;
 }
 
 .content1 {
@@ -313,6 +313,7 @@ ul {
 
 .detaile-fluid3 {
     min-height: 50rem;
+    background-color: #F4F4F2;
 }
 
 .header1 {
@@ -332,7 +333,8 @@ ul {
     overflow: hidden;
     text-align: right;
     margin: 0.5rem 0 !important;
-    border: 1px solid #ccc
+    border: 1px solid #ccc;
+    box-shadow: 0 3px 1px -2px #0003, 0 2px 2px 0 #00000024, 0 1px 5px 0 #0000001f;
 }
 
 .course-box {
@@ -366,7 +368,6 @@ ul {
 
 .content {
     padding-top: 0.1rem;
-    min-height: 33rem
 }
 
 .div-4 {
