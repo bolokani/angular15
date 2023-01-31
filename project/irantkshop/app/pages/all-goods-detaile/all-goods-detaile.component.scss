@@ -538,7 +538,7 @@ hr {
 }
 
 #price .discount .right {
-    width: 50px;
+    width: 4rem;
     height: 100%;
     float: right;
     display: block;
@@ -546,7 +546,7 @@ hr {
     background: #ff7272;
     font: 12px yekan;
     text-align: center;
-    line-height: 22px;
+    line-height: 1.6rem;
 }
 
 #price .discount .right::before {
@@ -560,15 +560,15 @@ hr {
 }
 
 #price .discount .left {
-    width: 85px;
+    width: 2rem;
     height: 100%;
     float: right;
     display: block;
     color: #ffffff;
     background: #ff5252;
-    font: 12px yekan;
+    font-size: 1rem;
     text-align: center;
-    line-height: 22px;
+    line-height: 27px;
 }
 
 #priceforu {

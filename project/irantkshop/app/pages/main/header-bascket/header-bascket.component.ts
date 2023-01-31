@@ -18,7 +18,7 @@ export class HeaderBascketComponent implements OnInit {
   public status: any = JSON.parse(<any>localStorage.getItem('status'));
   public user_info: any | undefined = JSON.parse(<any>localStorage.getItem('user_info'));
   public lang: any = JSON.parse(<any>localStorage.getItem('lang'));
-  public loading = false;
+  public loading_header_bascket = false;
   public subscription: Subscription;
   public sum: number = 0;
   public user_id: number = 0;
@@ -61,7 +61,7 @@ export class HeaderBascketComponent implements OnInit {
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
-    this.loading = true;
+    this.loading_header_bascket = true;
     var obj = {
       address: 1987,
       user_id: this.user_id
@@ -72,7 +72,7 @@ export class HeaderBascketComponent implements OnInit {
         if (res['status'] == 1) {
           for (var i = 0; i < res['num']; i++) {
             res['result'][i].price_without_discount = res['result'][i].wharehouse_order_number * res['result'][i].wharehouse_material_price2;
-            res['result'][i].price_with_discount = res['result'][i].price_without_discount - (res['result'][i].price_without_discount * res['result'][i].wharehouse_order_discount / 100);
+            res['result'][i].price_with_discount = res['result'][i].price_without_discount - (res['result'][i].price_without_discount * res['result'][i].wharehouse_material_discount / 100);
             if (res['result'][i].wharehouse_material_logo) {
               res['result'][i].logo = res['result'][i].wharehouse_material_site_logo + "/" + res['result'][i].wharehouse_material_logo;
             }
@@ -89,15 +89,14 @@ export class HeaderBascketComponent implements OnInit {
   }//end get_bascket
 
   change_number(i: number, id: number) {
-    var x = <any>document.getElementById('number' + id);
+    var x = <any>document.getElementById('number1' + id);
     var value = x.value;
-    var price_temp = this.list_bascket[i].product_goods_price_with_discount;
     if (this.serverService.check_internet() == false) {
       this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
-    this.loading = true;
+    this.loading_header_bascket = true;
     var obj = { address: 1988, order_id: id, value: value }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
@@ -105,8 +104,9 @@ export class HeaderBascketComponent implements OnInit {
           if (res['num'] == 1) {
             this.list_bascket[i].wharehouse_order_number = value;
             this.list_bascket[i].price_without_discount = res['result'][0].wharehouse_order_number * res['result'][0].wharehouse_material_price2;
-            this.list_bascket[i].price_with_discount = this.list_bascket[i].price_without_discount - (this.list_bascket[i].price_without_discount * res['result'][0].wharehouse_order_discount / 100);
+            this.list_bascket[i].price_with_discount = this.list_bascket[i].price_without_discount - (this.list_bascket[i].price_without_discount * res['result'][0].wharehouse_material_discount / 100);
             this.get_all_sum();
+            this.serverService.send_order2();// برای آپدیت صفحه سبد خرید
           }
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
@@ -140,12 +140,13 @@ export class HeaderBascketComponent implements OnInit {
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
-    this.loading = true;
+    this.loading_header_bascket = true;
     this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 1997, id: id }).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
           this.list_bascket.splice(i, 1);
           this.serverService.send_count_order();
+          this.serverService.send_order2();// برای آپدیت صفحه سبد خرید
           this.get_all_sum();
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
@@ -324,7 +325,7 @@ export class HeaderBascketComponent implements OnInit {
   }
   //************************************************************************************** */
   message(validation: boolean, message: string, type: number, action: string) {
-    if (type == 1) { this.loading = false; }
+    if (type == 1) { this.loading_header_bascket = false; }
     if (validation == true) {
       this.matSnackBar.open(message, action, { duration: 5000 });
     }//end if

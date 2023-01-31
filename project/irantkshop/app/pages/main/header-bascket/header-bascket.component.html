@@ -1,5 +1,5 @@
 <div class="div_loading">
-    <div class="my-container" class="detaile" [hidden]="!loading">
+    <div class="my-container" class="detaile" [hidden]="!loading_header_bascket">
         <mat-progress-bar mode="indeterminate" class="detaile"></mat-progress-bar>
     </div>
 </div>
@@ -9,7 +9,7 @@
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12" (click)="$event.stopPropagation()"
                 style="padding-top:3px;padding-left:1rem !important">مبلغ
                 کل خرید:
-                {{ sum | number}}
+                {{ sum / 10 | number}}
                 تومان</div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <mat-icon class="close">close</mat-icon>
@@ -42,19 +42,18 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 shop-cart-num">
                         <span class='shop-cart-span'>
                             <input type='number' [value]='x.wharehouse_order_number' min="1"
-                                id='number{{ x.wharehouse_order_id }}'
+                                id='number1{{ x.wharehouse_order_id }}'
                                 (change)="change_number(i,x.wharehouse_order_id)"></span>
-
                     </div>
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 shop-cart-price">
-                        <span class="discount" *ngIf="x.wharehouse_order_discount > 0">{{
-                            x.wharehouse_order_discount
+                        <span class="discount" *ngIf="x.wharehouse_material_discount > 0">{{
+                            x.wharehouse_material_discount
                             }}%</span>
-                        <span class="old-price" *ngIf="x.wharehouse_order_discount > 0"><span
+                        <span class="old-price" *ngIf="x.wharehouse_material_discount > 0"><span
                                 style='float:left'>تومان</span>
-                            <del>{{ x.price_without_discount | number }}</del></span>
+                            <del>{{ x.price_without_discount / 10 | number }}</del></span>
                         <br>
-                        <span>{{ x.price_with_discount | number }} تومان</span>
+                        <span>{{ x.price_with_discount / 10 | number }} تومان</span>
                     </div>
 
                 </div>

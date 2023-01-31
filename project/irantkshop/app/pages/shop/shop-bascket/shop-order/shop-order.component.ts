@@ -31,6 +31,11 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
     , public router: Router
     , public matSnackBar: MatSnackBar
     , public dialog: MatDialog) {
+    this.serverService.get_order2().subscribe(
+      (res) => {
+        this.get_bascket();
+      }
+    )
   }//end consructor
 
   ngOnInit() {
@@ -59,7 +64,7 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
         if (res['status'] == 1) {
           for (var i = 0; i < res['num']; i++) {
             res['result'][i].price_without_discount = res['result'][i].wharehouse_order_number * res['result'][i].wharehouse_material_price2;
-            res['result'][i].price_with_discount = res['result'][i].price_without_discount - (res['result'][i].price_without_discount * res['result'][i].wharehouse_order_discount / 100);
+            res['result'][i].price_with_discount = res['result'][i].price_without_discount - (res['result'][i].price_without_discount * res['result'][i].wharehouse_material_discount / 100);
             if (res['result'][i].wharehouse_material_logo) {
               res['result'][i].logo = res['result'][i].wharehouse_material_site_logo + "/" + res['result'][i].wharehouse_material_logo;
             }
@@ -78,7 +83,6 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
   change_number(i: number, id: number) {
     var x = <any>document.getElementById('number' + id);
     var value = x.value;
-    var price_temp = this.list_bascket[i].product_goods_price_with_discount;
     if (this.serverService.check_internet() == false) {
       this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
       return;
@@ -91,8 +95,8 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
         if (res['status'] == 1) {
           if (res['num'] == 1) {
             this.list_bascket[i].wharehouse_order_number = value;
-            this.list_bascket[i].price_without_discount = res['result'][0].wharehouse_order_number * res['result'][0].wharehouse_order_cost;
-            this.list_bascket[i].price_with_discount = this.list_bascket[i].price_without_discount - (this.list_bascket[i].price_without_discount * res['result'][0].wharehouse_order_discount / 100);
+            this.list_bascket[i].price_without_discount = res['result'][0].wharehouse_order_number * res['result'][0].wharehouse_material_price2;
+            this.list_bascket[i].price_with_discount = this.list_bascket[i].price_without_discount - (this.list_bascket[i].price_without_discount * res['result'][0].wharehouse_material_discount / 100);
             this.get_all_sum();
             //this.serverService.send_list_bascket(this.list_bascket[i]);
           }

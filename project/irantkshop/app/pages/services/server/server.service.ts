@@ -28,6 +28,7 @@ export class ServerService {
   public sb_mat_drawer = new Subject<any>();
   public sb_stepper_index = new Subject<any>();
   public sb_order = new Subject<any>();
+  public sb_order2 = new Subject<any>();// برای ارسال اطلاعات از پاپ آپ سبد خرید به صفحه سبد خرید
   public sb_count_order = new Subject<any>();
 
 
@@ -146,6 +147,14 @@ export class ServerService {
 
   get_order(): Observable<any> {
     return this.sb_order.asObservable();
+  }
+  //********************************************************  */
+  send_order2(): void {
+    this.sb_order2.next(null);
+  }//end send_username
+
+  get_order2(): Observable<any> {
+    return this.sb_order2.asObservable();
   }
   //********************************************************* */
   send_count_order(): void {

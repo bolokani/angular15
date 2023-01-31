@@ -92,7 +92,7 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
           this.group_title = res['result'][0].material_group_title;
           this.price2 = res['result'][0].wharehouse_material_price2;
           this.discount = res['result'][0].wharehouse_material_discount;
-          this.sum = (1 * res['result'][0].wharehouse_material_price2) - (res['result'][0].wharehouse_material_price2 * 10 / 100);
+          this.sum = (1 * res['result'][0].wharehouse_material_price2) - (res['result'][0].wharehouse_material_price2 * res['result'][0].wharehouse_material_discount / 100);
           if (res['result'][0].wharehouse_material_logo) {
             this.logo = res['result'][0].wharehouse_material_site_logo + "/" + res['result'][0].wharehouse_material_logo + "?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90";
           }

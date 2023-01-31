@@ -60,13 +60,14 @@
                                 (change)="change_number(i,x.wharehouse_order_id)"></span>
                     </div>
                     <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-12 shop-cart-price">
-                        <span class="discount" *ngIf="x.wharehouse_order_discount > 0">{{ x.wharehouse_order_discount
+                        <span class="discount" *ngIf="x.wharehouse_material_discount > 0">{{
+                            x.wharehouse_material_discount
                             }}%</span>
-                        <span class="old-price" *ngIf="x.wharehouse_order_discount > 0"><span
+                        <span class="old-price" *ngIf="x.wharehouse_material_discount > 0"><span
                                 style='float:left'>تومان</span>
-                            <del>{{ x.price_without_discount | number }}</del></span>
+                            <del>{{ x.price_without_discount / 10 | number }}</del></span>
                         <br>
-                        <span>{{ x.price_with_discount | number }} تومان</span>
+                        <span>{{ x.price_with_discount / 10 | number }} تومان</span>
                     </div>
                 </div>
             </div>
@@ -93,7 +94,7 @@
                 </div>
                 <div class="type-price-new">
                     <span class="new-price"><span>تومان</span>
-                        {{ sum | number }}
+                        {{ sum / 10 | number }}
                     </span>
                 </div>
                 <button class='button-price-shop' (click)="continue()">
