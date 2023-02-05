@@ -97,7 +97,7 @@ export class ServerService {
   }
 
   get_default_logo() {
-    return "../../../../assets/img/default_logo.png";
+    return "../../../../assets/images/default.png";
   }
 
 

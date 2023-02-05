@@ -17,6 +17,7 @@ import { MessageService } from '../services/message/message.service';
 export class LoginComponent implements OnInit {
   public server: any = this.serverService.get_server();
   public status: any = JSON.parse(<any>localStorage.getItem("status"));
+  public user_info: any = JSON.parse(<any>localStorage.getItem("user_info"));
   public form1: FormGroup;
   public form2: FormGroup;
   public lang: 1;
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   public subscription: Subscription;
   public user_id: any;
   public sent_code: boolean = false;
+  public need_to_validation: boolean = false;
 
   constructor(
     public serverService: ServerService
@@ -32,16 +34,42 @@ export class LoginComponent implements OnInit {
     , public activatedRoute: ActivatedRoute
     , public messageService: MessageService
     , public dialog: MatDialog) {
-
     this.create_form();
     this.create_form2();
   }//end consructor
 
   ngOnInit() {
-    if (this.status == 1) {
-      ///this.router.navigate(["/home"]);
-    };
+    if (this.user_info) {
+      this.get_user(this.user_info.user_id, this.user_info.user_token);
+    } else {
+      this.need_to_validation = true;
+      this.serverService.set_metas('فروشگاه اینترنتی ایران تعمیرکار', 'فروشگاه اینترنتی ایران تعمیرکار', '');
+    }
   }//end ngOnInit
+
+  get_user(user_id: number, user_token: string) {
+    var obj = {
+      address: 2006,
+      user_id: user_id,
+      user_token: user_token,
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.router.navigate(["/shopping/bascket"]);
+          } else {
+            this.need_to_validation = true;
+          }
+          this.message(false, "", 1, this.messageService.close(1));
+        }//end if
+        else {
+          var pe_message = "خطا در فرآیند ورود | ثبت نام";
+          this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
   //************************************
   create_form() {
     this.form1 = new FormGroup({
@@ -105,7 +133,6 @@ export class LoginComponent implements OnInit {
         }
       }
     )
-
   }//end create_code
 
   create_code(user_id: number): any {

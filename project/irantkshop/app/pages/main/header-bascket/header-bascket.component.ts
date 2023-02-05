@@ -75,7 +75,10 @@ export class HeaderBascketComponent implements OnInit {
             res['result'][i].price_with_discount = res['result'][i].price_without_discount - (res['result'][i].price_without_discount * res['result'][i].wharehouse_material_discount / 100);
             if (res['result'][i].wharehouse_material_logo) {
               res['result'][i].logo = res['result'][i].wharehouse_material_site_logo + "/" + res['result'][i].wharehouse_material_logo;
+            } else {
+              res['result'][i].logo = this.serverService.get_default_logo();
             }
+
             this.list_bascket.unshift(res['result'][i]);
           }//end for
           this.get_all_sum();
