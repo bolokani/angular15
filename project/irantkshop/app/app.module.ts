@@ -62,7 +62,6 @@ const routes: Routes = [
     path: "", component: HomeComponent, children: [
       { path: "", component: Home2Component },
       { path: 'all-goods/:title', component: AllGoodsListComponent },
-      { path: 'goods-detaile/:id/:title', component: AllGoodsDetaileComponent },
       {
         path: "shopping", component: ShopStepperComponent, children: [
           { path: "bascket", component: ShopOrderComponent },
@@ -70,6 +69,8 @@ const routes: Routes = [
           { path: "tracking", component: ShopBascketPegiriComponent },
         ]
       },
+      { path: ':productID/:title', component: AllGoodsDetaileComponent },
+
     ]
   },
   { path: '**', component: Page404Component },

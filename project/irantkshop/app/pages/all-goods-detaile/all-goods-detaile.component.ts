@@ -32,8 +32,8 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
   public list_color: any = [];
   public group_title: string;
   public price2: number;
+  public price3: number;
   public discount: number = 0;
-  public sum: number = 0;
 
   constructor(
     @Inject(DOCUMENT) public document: Document,
@@ -48,17 +48,13 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
     , public dialog: MatDialog) { }//end consructor
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(
-      (params: Params) => {
-        if (params['id']) {
-          this.id = params['id'];
-          this.get_data();
-
-        } else {
-          this.router.navigate(['/not-found'])
-        }
-      }
-    );
+    var x: any = this.document.location.pathname;
+    this.id = x.split('/')[1].split('-')[1];
+    if (this.id > 0) {
+      this.get_data();
+    } else {
+      this.router.navigate(['/not-found'])
+    }
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
     }
@@ -91,8 +87,8 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
           this.title2 = res['result'][0].wharehouse_material_title2;
           this.group_title = res['result'][0].material_group_title;
           this.price2 = res['result'][0].wharehouse_material_price2;
+          this.price3 = res['result'][0].wharehouse_material_price3;
           this.discount = res['result'][0].wharehouse_material_discount;
-          this.sum = (1 * res['result'][0].wharehouse_material_price2) - (res['result'][0].wharehouse_material_price2 * res['result'][0].wharehouse_material_discount / 100);
           if (res['result'][0].wharehouse_material_logo) {
             this.logo = res['result'][0].wharehouse_material_site_logo + "/" + res['result'][0].wharehouse_material_logo + "?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90";
           } else {

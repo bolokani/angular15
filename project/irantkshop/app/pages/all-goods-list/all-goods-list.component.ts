@@ -51,7 +51,7 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
       title1 += title_arr[i];
       title1 += "-";
     }
-    this.router.navigate(['/goods-detaile', id, title1])
+    this.router.navigate(['/product-' + id, title1]);
   }
 
 

@@ -64,7 +64,7 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
         if (res['status'] == 1) {
           for (var i = 0; i < res['num']; i++) {
             res['result'][i].price_without_discount = res['result'][i].wharehouse_order_number * res['result'][i].wharehouse_material_price2;
-            res['result'][i].price_with_discount = res['result'][i].price_without_discount - (res['result'][i].price_without_discount * res['result'][i].wharehouse_material_discount / 100);
+            res['result'][i].price_with_discount = res['result'][i].wharehouse_order_number * res['result'][i].wharehouse_material_price3;
             if (res['result'][i].wharehouse_material_logo) {
               res['result'][i].logo = res['result'][i].wharehouse_material_site_logo + "/" + res['result'][i].wharehouse_material_logo;
             } else {
@@ -98,7 +98,7 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
           if (res['num'] == 1) {
             this.list_bascket[i].wharehouse_order_number = value;
             this.list_bascket[i].price_without_discount = res['result'][0].wharehouse_order_number * res['result'][0].wharehouse_material_price2;
-            this.list_bascket[i].price_with_discount = this.list_bascket[i].price_without_discount - (this.list_bascket[i].price_without_discount * res['result'][0].wharehouse_material_discount / 100);
+            this.list_bascket[i].price_with_discount = res['result'][0].wharehouse_order_number * res['result'][0].wharehouse_material_price3;
             this.get_all_sum();
             //this.serverService.send_list_bascket(this.list_bascket[i]);
           }
@@ -155,7 +155,7 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
       title1 += title_arr[i];
       title1 += "-";
     }
-    this.router.navigate(['/goods-detaile', id, title1])
+    this.router.navigate(['/product-' + id, title1]);
   }//end open_product
 
   open_supplier(username: string, id: number) {

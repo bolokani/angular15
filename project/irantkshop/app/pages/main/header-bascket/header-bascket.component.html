@@ -46,9 +46,9 @@
                                 (change)="change_number(i,x.wharehouse_order_id)"></span>
                     </div>
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 shop-cart-price">
-                        <span class="discount" *ngIf="x.wharehouse_material_discount > 0">{{
+                        <span class="discount" *ngIf="x.wharehouse_material_discount > 0">%{{
                             x.wharehouse_material_discount
-                            }}%</span>
+                            }}</span>
                         <span class="old-price" *ngIf="x.wharehouse_material_discount > 0"><span
                                 style='float:left'>تومان</span>
                             <del>{{ x.price_without_discount / 10 | number }}</del></span>
