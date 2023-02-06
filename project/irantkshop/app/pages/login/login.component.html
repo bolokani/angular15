@@ -64,7 +64,8 @@
                                 <label>
                                     <div>
                                         <input type='text' class='input en1' formControlName="code" autocomplate="off"
-                                            (keypress)="serverService.get_number($event)" minlength="5" maxlength="5">
+                                            (keypress)="serverService.get_number($event)" (keyup)="get_code()"
+                                            minlength="5" maxlength="5">
                                     </div>
                                 </label>
                             </div>

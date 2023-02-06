@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class='col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9 shopcart' id='box-tab2' style="padding:1rem !important"
+    <div class='col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9 shopcart' id='box-tab2' style="padding:1rem !important;"
         *ngIf="show == 'list'">
         <div class='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 shop-cart'
             *ngFor="let x of list_bascket;let i = index">
@@ -72,6 +72,15 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <div class='col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9' *ngIf="count == 0" style="text-align: center">
+        <div class="row" style="display: inline-flex;">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" class="preview1">
+                <img src="../../../assets/img/preview.png" title="همه کالاها" alt="همه کالاها">
+                <div class="preview2">{{ serverService.get_no_record_text(lang) }}</div>
+            </div>
         </div>
     </div>
 

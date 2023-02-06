@@ -16,10 +16,11 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
   public lang = JSON.parse(<any>localStorage.getItem('lang'));
   public user_info = JSON.parse(<any>localStorage.getItem('user_info'));
   public server: any = this.serverService.get_server();
-  public status: any = JSON.parse(<any>localStorage.getItem('status'));
+  public token_order: any = JSON.parse(<any>localStorage.getItem('token_order'));
   public loading = false;
   public subscription: Subscription;
   public list_bascket: any = [];
+  public count: number;
   public number: number;
   public sum: number = 0;
   public user_id: any;
@@ -53,10 +54,14 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
+    var user_id = this.user_id;
+    if (!this.user_id) {
+      user_id = this.token_order;
+    }
     this.loading = true;
     var obj = {
       address: 1987,
-      user_id: this.user_id
+      user_id: user_id
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
@@ -112,6 +117,7 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
   }
 
   get_all_sum() {
+    this.count = this.list_bascket.length;
     this.sum = 0;
     for (var i = 0; i < this.list_bascket.length; i++) {
       this.sum = this.sum + this.list_bascket[i].price_with_discount;
@@ -169,7 +175,38 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
   }
 
   continue(): any {
-    this.router.navigate(['/shopping', 'address']);
+    if (this.list_bascket.length == 0) {
+      var pe_message = "سبد خرید شما خالی می باشد.لطفا از منوی محصولات ، محصول خود را انتخاب نمائید";
+      this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
+      return false;
+    }//end 
+
+    if (!this.user_id) {
+      this.router.navigate(['/login']);
+    } else {
+      if (this.serverService.check_internet() == false) {
+        this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
+        return;
+      }//end if
+      else { this.matSnackBar.dismiss(); }
+      this.loading = true;
+      var obj = {
+        address: 2006
+        , user_id: this.user_id
+      }
+      this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+        (res: any) => {
+          if (res['status'] == 1 && res['num'] == 1) {
+            this.router.navigate(['/shopping', 'address']);
+            this.message(false, "", 1, this.messageService.close(this.lang));
+          }//end if
+          else {
+            this.serverService.signout();
+          }
+        }
+      )
+    }
+
     /*
     if (this.status == 1) {
       if (this.list_bascket.length == 0) {
@@ -179,10 +216,8 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
       }//end 
       this.router.navigate(['/shopping', 'address']);
     } else {
-      //this.router.navigate(['/login', 3]);
-      this.router.navigate(['/shopping', 'address']);
-    }
-    */
+      this.router.navigate(['/login']);
+    }*/
   }
 
 

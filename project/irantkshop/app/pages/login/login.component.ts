@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   public server: any = this.serverService.get_server();
   public status: any = JSON.parse(<any>localStorage.getItem("status"));
   public user_info: any = JSON.parse(<any>localStorage.getItem("user_info"));
+  public token_order: any = JSON.parse(<any>localStorage.getItem("token_order"));
   public form1: FormGroup;
   public form2: FormGroup;
   public lang: 1;
@@ -175,6 +176,12 @@ export class LoginComponent implements OnInit {
     )
   }
 
+  get_code() {
+    if (String(this.form2.value.code).length == 5) {
+      this.login();
+    }
+  }
+
   login() {
     var obj = {
       address: 1992,
@@ -185,12 +192,37 @@ export class LoginComponent implements OnInit {
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1 && res['num'] == 1) {
-          this.set_status(res);
+          if (this.token_order) {
+            this.update_order(res['result'][0].user_id, res);
+          } else {
+            this.set_status(res);
+          }
           this.message(false, "", 1, this.messageService.close(1));
         }//end if
         else {
           var pe_message = "شماره کد وارد شده صحیح نمی باشد.";
           this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  update_order(user_id: number, result: any) {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    this.loading = true;
+    var obj = { address: 2007, user_id: user_id, token_order: this.token_order }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          this.set_status(result);
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
         }
       }
     )
@@ -204,6 +236,7 @@ export class LoginComponent implements OnInit {
     };
     localStorage.setItem("lang", JSON.stringify(1));
     localStorage.setItem('user_info', JSON.stringify(obj));
+
     this.router.navigate(['/']);
   }
   //**************************************************

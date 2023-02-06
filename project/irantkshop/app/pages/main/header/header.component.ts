@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   public status: any = JSON.parse(<any>localStorage.getItem('status'));
   public user_info: any = JSON.parse(<any>localStorage.getItem('user_info'));
   public lang: any = JSON.parse(<any>localStorage.getItem('lang'));
+  public token_order: any = JSON.parse(<any>localStorage.getItem('token_order'));
   public loading = false;
   public subscription: Subscription;
   public username: any;
@@ -73,10 +74,14 @@ export class HeaderComponent implements OnInit {
   }
 
   get_count_orders() {
+    var user_id = this.user_id;
+    if (!this.user_id) {
+      user_id = this.token_order;
+    }
     this.loading = true;
     var obj = {
       address: 1996
-      , user_id: this.user_id
+      , user_id: user_id
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {

@@ -63,6 +63,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     , public sanitizer: DomSanitizer,) { }//end consructor
 
   ngOnInit() {
+    if (!JSON.parse(<any>localStorage.getItem("token_order"))) {
+      localStorage.setItem("token_order", JSON.stringify(new Date().getTime()));
+    }
     this.get_album();
     this.header_baner1 = this.serverService.get_site() + "/object/images/2.jpg";
     this.header_baner2 = this.serverService.get_site() + "/object/images/9.jpg";

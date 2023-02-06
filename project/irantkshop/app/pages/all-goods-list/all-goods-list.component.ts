@@ -91,6 +91,7 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
         this.list_goods = [];
         if (res['status'] == 1) {
           for (var i = 0; i < res['num']; i++) {
+
             if (res['result'][i].wharehouse_material_logo) {
               res['result'][i].logo = res['result'][i].wharehouse_material_site_logo + "/" + res['result'][i].wharehouse_material_logo;
             } else {

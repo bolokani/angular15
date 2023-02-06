@@ -19,6 +19,8 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
   public server: string = this.serverService.get_server();
   public lang: any = JSON.parse(<any>localStorage.getItem('lang'));
   public user_info: any = JSON.parse(<any>localStorage.getItem('user_info'));
+  public token: any = JSON.parse(<any>localStorage.getItem('token'));
+  public token_order: any = JSON.parse(<any>localStorage.getItem('token_order'));
   public loading = false;
   public user_id: number | undefined;
   public subscription: Subscription;
@@ -115,8 +117,9 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
 
 
   add_to_bascket() {
+    var user_id = this.user_id;
     if (!this.user_id) {
-      this.router.navigate(['/login']);
+      user_id = this.token_order;
     }
     if (this.serverService.check_internet() == false) {
       this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
@@ -126,7 +129,7 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
     this.loading = true;
     var obj = {
       address: 1995
-      , user_id: this.user_id
+      , user_id: user_id
       , material_id: this.id
       , number: 1
     }

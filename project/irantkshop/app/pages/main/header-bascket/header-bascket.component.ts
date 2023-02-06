@@ -18,6 +18,7 @@ export class HeaderBascketComponent implements OnInit {
   public status: any = JSON.parse(<any>localStorage.getItem('status'));
   public user_info: any | undefined = JSON.parse(<any>localStorage.getItem('user_info'));
   public lang: any = JSON.parse(<any>localStorage.getItem('lang'));
+  public token_order: any = JSON.parse(<any>localStorage.getItem('token_order'));
   public loading_header_bascket = false;
   public subscription: Subscription;
   public sum: number = 0;
@@ -61,10 +62,14 @@ export class HeaderBascketComponent implements OnInit {
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
+    var user_id = this.user_id;
+    if (!this.user_id) {
+      user_id = this.token_order;
+    }
     this.loading_header_bascket = true;
     var obj = {
       address: 1987,
-      user_id: this.user_id
+      user_id: user_id
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {

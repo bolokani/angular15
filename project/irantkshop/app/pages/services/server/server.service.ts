@@ -44,15 +44,23 @@ export class ServerService {
     , public title: Title) { }
 
   post_address(server: any, address: string, obj: any) {
+    var token = ""
+    var user_info = JSON.parse(<any>localStorage.getItem('user_info'));
+    if (user_info) {
+      token = user_info.user_token;
+    }
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'CsLnBuDBG1CpZqsLUMHVc17hK5VjLLj1asdasdadasd',
-
+        'Authorization': token,
       })
     };
     return this.http.post(server + "/" + address, obj, httpOptions);
-  }//end manager_get_data
+  }//end post_address
+
+  post_address_login(server: any, address: string, obj: any) {
+    return this.http.post(server + "/" + address, obj);
+  }//end post_address_login
 
   post_address_file(server: string, address: string, obj: any) {
     return this.http.post(server + "/" + address, obj, {
