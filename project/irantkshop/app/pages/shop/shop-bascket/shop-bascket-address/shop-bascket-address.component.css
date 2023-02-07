@@ -11,6 +11,25 @@
     font-size: 0.85rem;
 }
 
+.invoice_date {
+    display: inline-block;
+    direction: ltr;
+}
+
+.button-price-shop {
+    background: #3fa1b3;
+    width: 10rem;
+    color: #fff;
+    border: none;
+    margin: 15px 0px;
+    box-shadow: 0px 0px 10px 0px #ddd;
+    position: relative;
+    height: 45px;
+    cursor: pointer;
+    font-size: 14px;
+    padding-right: 3rem;
+}
+
 .answer {
     color: #000
 }

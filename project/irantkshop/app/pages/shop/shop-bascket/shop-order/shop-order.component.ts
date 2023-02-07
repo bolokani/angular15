@@ -206,18 +206,6 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
         }
       )
     }
-
-    /*
-    if (this.status == 1) {
-      if (this.list_bascket.length == 0) {
-        var pe_message = "سبد خرید شما خالی می باشد.لطفا از منوی محصولات ، محصول خود را انتخاب نمائید";
-        this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
-        return false;
-      }//end 
-      this.router.navigate(['/shopping', 'address']);
-    } else {
-      this.router.navigate(['/login']);
-    }*/
   }
 
 

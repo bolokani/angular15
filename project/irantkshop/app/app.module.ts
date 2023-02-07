@@ -86,7 +86,7 @@ const routes: Routes = [
     FooterComponent,
     LoginComponent,
     Header2Component,
-    Page404Component, ShopBascketPegiriComponent,
+    Page404Component, ShopBascketPegiriComponent, ShopBascketAddressComponent,
     HeaderBascketComponent, AllGoodsListComponent, AllGoodsDetaileComponent, AllGoodsDetaileImagesComponent
     , ShopProductComponent, ShopProductDetaileComponent, ShopOrderComponent, ShopStepperComponent, Home2Component, ProfileMenuComponent
   ],

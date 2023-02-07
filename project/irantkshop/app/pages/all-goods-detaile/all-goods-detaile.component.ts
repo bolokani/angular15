@@ -131,6 +131,7 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
       address: 1995
       , user_id: user_id
       , material_id: this.id
+      , token_order: this.token_order
       , number: 1
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
