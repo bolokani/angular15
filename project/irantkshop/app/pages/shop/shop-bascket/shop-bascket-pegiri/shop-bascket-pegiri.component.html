@@ -9,34 +9,14 @@
          </div>
          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
             <span>کد رهگیری : </span>
-            <span>XXXXXXXXXXXXXXX</span>
+            <span>{{ tracking_code }}</span>
          </div>
          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
             از منوی پروفایل و بخش خریدهای من می توانید خریدها را پیگیری نمائید
          </div>
          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
-            <button mat-button class="btn" [routerLink]="['/phome','pbasckets']">پروفایل من</button>
+            <button mat-button class="btn">پروفایل من</button>
          </div>
       </div><!-- code -->
-
-      <div *ngIf="code == 0" style='width:100%'>
-         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
-            <i class="material-icons icon2">error</i>
-         </div>
-         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
-            خطا در ثبت
-         </div>
-         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
-            در صورت وجود خطا در خرید لطفا با شماره زیر تماس حاصل فرمائید
-         </div>
-         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
-            09100187726
-         </div>
-         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
-            <button mat-button class="btn" [routerLink]="['/shop-shopping','shop-cart']">سبد خرید</button>
-         </div>
-      </div><!-- code -->
-
-
    </div>
 </div>

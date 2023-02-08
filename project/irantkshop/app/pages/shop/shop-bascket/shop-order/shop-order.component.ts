@@ -44,8 +44,36 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
     }
-    this.get_bascket();
+    this.get_user();
   }
+
+  get_user(): any {
+    if (!this.user_id) {
+      this.router.navigate(['/login']);
+    } else {
+      if (this.serverService.check_internet() == false) {
+        this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
+        return;
+      }//end if
+      else { this.matSnackBar.dismiss(); }
+      this.loading = true;
+      var obj = {
+        address: 2006
+        , user_id: this.user_id
+      }
+      this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+        (res: any) => {
+          if (res['status'] == 1 && res['num'] == 1) {
+            this.get_bascket();
+          }//end if
+          else {
+            this.serverService.signout();
+          }
+        }
+      )
+    }
+  }
+
 
 
   get_bascket() {

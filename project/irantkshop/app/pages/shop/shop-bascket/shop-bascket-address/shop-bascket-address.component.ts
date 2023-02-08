@@ -52,7 +52,7 @@ export class ShopBascketAddressComponent implements OnInit, OnDestroy {
       this.user_id = this.user_info.user_id;
     }
     this.get_user();
-  }//end get_course
+  }//end ngOnInit
 
   get_user(): any {
     if (!this.user_id) {
@@ -80,7 +80,7 @@ export class ShopBascketAddressComponent implements OnInit, OnDestroy {
         }
       )
     }
-  }
+  }//end get_user
 
   check_invoice(): any {
     var obj = {
@@ -90,11 +90,16 @@ export class ShopBascketAddressComponent implements OnInit, OnDestroy {
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
-        if (res['status'] == 1 && res['num'] == 1) {
-          this.get_invoice(res['result'][0].wharehouse_invoice_id);
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.add_orders_to_invoice(res['result'][0].wharehouse_invoice_id);
+          } else {
+            this.create_invoice();
+          }
         }//end if
         else {
-          this.create_invoice();
+          var pe_message = "خطا در بررسی وجود فاکتور";
+          this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
         }
       }
     )
@@ -132,11 +137,12 @@ export class ShopBascketAddressComponent implements OnInit, OnDestroy {
           this.add_orders_to_invoice(res['result'][0].wharehouse_invoice_id);
         }//end if
         else {
-          this.message(true, this.messageService.erorr_in_save(this.lang), 1, this.messageService.close(this.lang));
+          var pe_message = "خطا در ایجاد فاکتور جدید";
+          this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
         }
       }
     )
-  }
+  }//end create_invoice
 
   add_orders_to_invoice(invoice_id: number): any {
     var obj = {
@@ -151,7 +157,8 @@ export class ShopBascketAddressComponent implements OnInit, OnDestroy {
           this.get_invoice(invoice_id)
         }//end if
         else {
-          this.message(true, this.messageService.erorr_in_save(this.lang), 1, this.messageService.close(this.lang));
+          var pe_message = "خطا در اضافه کردن رکورد به فاکتورها";
+          this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
         }
       }
     )

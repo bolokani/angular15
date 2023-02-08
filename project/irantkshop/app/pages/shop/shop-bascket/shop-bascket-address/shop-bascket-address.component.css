@@ -139,6 +139,7 @@
     cursor: pointer;
     font-size: 14px;
     padding-right: 20px;
+    z-index: 99999;
 }
 
 .button-price-shop i {
