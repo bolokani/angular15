@@ -1,3 +1,9 @@
+<div class="div_loading">
+    <div class="my-container" [hidden]="!loading" class="detaile">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+</div>
+
 <div class="container-fluit main_product details" id="details">
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 detail_right"
@@ -104,7 +110,12 @@
                         </div>
                         <hr style="width:20rem">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 all-goods-detaile-div1">
-                            <div class="goods-detaile_seller">موجود در انبار</div>
+                            <div class="goods-detaile_seller">
+                                <mat-icon class="circle">check_circle</mat-icon>
+                                تنها
+                                <span>{{ remain }}</span>
+                                عدد باقی مانده است.
+                            </div>
                             <div class="goods_detaile_seller_title">
                                 <mat-icon>storefront</mat-icon>
                                 ارسال ایران تعمیرکار از 1 روز کاری دیگر
@@ -127,7 +138,8 @@
                                 <span class="currency">تومان</span>
                             </div>
                             <button id="addtocart" class="default_btn" (click)="add_to_bascket()" [disabled]="loading">
-                                <span [hidden]="loading">افزودن به سبد خرید</span>
+                                <span [hidden]="loading" *ngIf="remain > 0">افزودن به سبد خرید</span>
+                                <span [hidden]="loading" *ngIf="remain == 0">ناموجود</span>
                                 <div class="spinner-border spinner-border-sm" role="status" style="margin-top:0.8rem"
                                     [hidden]="!loading">
                                     <span class="sr-only">Loading...</span>

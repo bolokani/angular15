@@ -126,13 +126,12 @@ export class ShopBascketPegiriComponent implements OnInit, OnDestroy {
   }//update_invoice_3_to_2
 
   update_orders_4_to_1(invoice_id: number) {
-    this.loading = true;
     this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2015, invoice_id: invoice_id }).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
           this.serverService.send_count_order();
           localStorage.setItem("token_order", JSON.stringify(new Date().getTime()));
-          this.message(false, "", 1, this.messageService.close(this.lang));
+          this.get_bascket(invoice_id);
         }//end if
         else {
           var pe_message = "خطا در تبدیل رکوردهای فاکتور ";
@@ -141,6 +140,36 @@ export class ShopBascketPegiriComponent implements OnInit, OnDestroy {
       }
     )
   }//update_orders_4_to_1
+
+  get_bascket(invoice_id: number) {
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2017, invoice_id: invoice_id }).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          for (var i = 0; i < res['num']; i++) {
+            this.update_remain(res['result'][i].wharehouse_order_material);
+          }
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          var pe_message = "خطا در گرفتن رکوردهای فاکتور ";
+          this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  update_remain(material_id: number) {
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2016, material_id: material_id }).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+        }//end if
+        else {
+          var pe_message = "خطا در ست باقیمانده رکوردهای فاکتور ";
+          this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }//update_remain
 
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {

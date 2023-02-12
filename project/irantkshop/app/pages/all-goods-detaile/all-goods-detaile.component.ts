@@ -36,6 +36,7 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
   public price2: number;
   public price3: number;
   public discount: number = 0;
+  public remain: number = 0;
 
   constructor(
     @Inject(DOCUMENT) public document: Document,
@@ -50,18 +51,20 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
     , public dialog: MatDialog) { }//end consructor
 
   ngOnInit() {
-    var x: any = this.document.location.pathname;
-    this.id = x.split('/')[1].split('-')[1];
-    if (this.id > 0) {
-      this.get_data();
-    } else {
-      this.router.navigate(['/not-found'])
-    }
+    this.activatedRoute.params.subscribe(
+      (res) => {
+        var x: any = this.document.location.pathname;
+        this.id = x.split('/')[1].split('-')[1];
+        if (this.id > 0) {
+          this.get_data();
+        } else {
+          this.router.navigate(['/not-found'])
+        }
+      }
+    )
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
     }
-
-
     //************************************************ */
 
   }
@@ -91,6 +94,7 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
           this.price2 = res['result'][0].wharehouse_material_price2;
           this.price3 = res['result'][0].wharehouse_material_price3;
           this.discount = res['result'][0].wharehouse_material_discount;
+          this.remain = res['result'][0].wharehouse_material_remain;
           if (res['result'][0].wharehouse_material_logo) {
             this.logo = res['result'][0].wharehouse_material_site_logo + "/" + res['result'][0].wharehouse_material_logo + "?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90";
           } else {
@@ -116,7 +120,10 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
   }
 
 
-  add_to_bascket() {
+  add_to_bascket(): any {
+    if (this.remain == 0) {
+      return false;
+    }
     var user_id = this.user_id;
     if (!this.user_id) {
       user_id = this.token_order;
@@ -141,6 +148,10 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
           this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
           this.serverService.send_count_order();
         }//end if
+        else if (res['status'] == 5) {
+          var pe_message = "خطا در ذخیره.این کالا فعلا از لیست فروش سایت خارج شده است.";
+          this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
+        }
         else if (res['status'] == 4) {
           var pe_message = "این مورد هم اکنون در سبد خرید شما قرار دارد";
           this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));

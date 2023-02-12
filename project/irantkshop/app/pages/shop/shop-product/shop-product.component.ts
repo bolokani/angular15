@@ -14,8 +14,6 @@ import { MessageService } from '../../services/message/message.service';
 })
 export class ShopProductComponent implements OnInit, OnDestroy {
   public lang = JSON.parse(<any>localStorage.getItem('lang'));
-
-  public isOnline: any;
   public loading = false;
   public subscription: Subscription;
   public err: string; public err_validation: boolean = false;

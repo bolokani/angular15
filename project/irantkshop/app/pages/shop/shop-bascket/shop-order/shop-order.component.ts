@@ -44,36 +44,8 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
     }
-    this.get_user();
+    this.get_bascket();
   }
-
-  get_user(): any {
-    if (!this.user_id) {
-      this.router.navigate(['/login']);
-    } else {
-      if (this.serverService.check_internet() == false) {
-        this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
-        return;
-      }//end if
-      else { this.matSnackBar.dismiss(); }
-      this.loading = true;
-      var obj = {
-        address: 2006
-        , user_id: this.user_id
-      }
-      this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
-        (res: any) => {
-          if (res['status'] == 1 && res['num'] == 1) {
-            this.get_bascket();
-          }//end if
-          else {
-            this.serverService.signout();
-          }
-        }
-      )
-    }
-  }
-
 
 
   get_bascket() {
@@ -115,7 +87,7 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
     )
   }//end get_bascket
 
-  change_number(i: number, id: number) {
+  change_number(i: number, id: number, material_id: number) {
     var x = <any>document.getElementById('number' + id);
     var value = x.value;
     if (this.serverService.check_internet() == false) {
@@ -124,7 +96,7 @@ export class ShopOrderComponent implements OnInit, OnDestroy {
     }//end if
     else { this.matSnackBar.dismiss(); }
     this.loading = true;
-    var obj = { address: 1988, order_id: id, value: value }
+    var obj = { address: 1988, order_id: id, value: value, material_id: material_id }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
