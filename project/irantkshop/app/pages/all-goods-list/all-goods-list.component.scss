@@ -8,7 +8,6 @@
 
 @media only screen and (min-width: 576px) {
     .product-list-div2 {
-        margin-top: -9rem;
         padding: 0 1rem !important;
     }
 
@@ -17,6 +16,10 @@
 .carousel-control-next,
 .carousel-control-prev {
     height: 17rem !important
+}
+
+.active {
+    background-color: #CED7E7;
 }
 
 .num {
@@ -31,6 +34,11 @@
     color: #777777;
     float: right;
 }
+
+.preview1 {
+    width: 100%
+}
+
 
 
 .lbl {

@@ -65,6 +65,7 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
     }
+    window.scroll(0, 0);
     //************************************************ */
 
   }

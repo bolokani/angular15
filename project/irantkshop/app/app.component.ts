@@ -91,8 +91,14 @@ export class AppComponent implements OnInit {
     )
   }
 
-  go(group: number) {
-    this.router.navigate(['/all-goods/همه-کالاها'], { queryParams: { group: group } })
+  go(id: number, title: string) {
+    var title1 = "";
+    var title_arr = title.split(" ");
+    for (var i = 0; i < title_arr.length; i++) {
+      title1 += title_arr[i];
+      title1 += "-";
+    }
+    this.router.navigate(['/category', id, title1], { queryParams: { group: 1 } });
   }
 
   get_cate() {

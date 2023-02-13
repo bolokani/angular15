@@ -11,7 +11,7 @@
         </div>
         <div class="row">
             <mat-selection-list #shoes [multiple]="false">
-                <mat-list-option *ngFor="let x of list_group" (click)="go(x.material_group_id)">
+                <mat-list-option *ngFor="let x of list_group" (click)="go(x.material_group_id,x.material_group_title)">
                     <h2 class="drawer-h2">{{ x.material_group_title }}</h2>
                 </mat-list-option>
             </mat-selection-list>

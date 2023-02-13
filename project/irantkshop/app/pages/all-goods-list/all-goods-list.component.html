@@ -34,46 +34,76 @@
 
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 product-list-div2"
             style="min-height: 30rem;text-align: center;">
-            <div class="row" *ngIf="list_goods.length>0">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12 product-list-div" *ngFor="let x of list_goods"
-                    (click)="open(x.wharehouse_material_id,x.wharehouse_material_title)">
-                    <div class="product-list cursor">
-                        <div>
-                            <article>
-                                <div>
-                                    <h2 class="product-h3">
-                                        {{ x.wharehouse_material_title }}
-                                    </h2>
-                                </div>
-                                <div>
-                                    <img [alt]="x.wharehouse_material_title" [title]="x.wharehouse_material_title"
-                                        style="object-fit: cover;min-height: 21rem;" [src]="x.logo">
-                                </div>
-                                <div class="remain">
-                                    تنها
-                                    {{ x.wharehouse_material_remain }}
-                                    عدد باقیمانده است
-                                    <div class="remain2">
-                                        <span class="num">{{ x.wharehouse_material_price2 / 10 | number }}
-                                            تومان
-                                        </span>
+            <div class="row">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12" style="margin-top:1rem">
+                    <div class="div_loading" [hidden]="!loading_cate">
+                        <div class="my-container" class="detaile">
+                            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                        </div>
+                    </div>
+                    <mat-accordion>
+                        <mat-expansion-panel *ngFor="let x of list_group" (opened)="get_cate(x.material_group_id)">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    {{ x.material_group_title }}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <mat-selection-list role="list">
+                                <ul style="padding:0px;">
+                                    <mat-list-item role="listitem" *ngFor="let cate of list_cate"
+                                        [ngClass]="{active:cate.wharehouse_material_cate_id == id && !group}"
+                                        (click)="open_cate(cate.wharehouse_material_cate_id,cate.wharehouse_material_cate_title)">
+                                        <li>{{ cate.wharehouse_material_cate_title }}</li>
+                                    </mat-list-item>
+                                </ul>
+                            </mat-selection-list>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-6 col-xs-12" *ngIf="list_goods.length>0">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12 product-list-div"
+                        *ngFor="let x of list_goods"
+                        (click)="open(x.wharehouse_material_id,x.wharehouse_material_title)">
+                        <div class="product-list cursor">
+                            <div>
+                                <article>
+                                    <div>
+                                        <h2 class="product-h3">
+                                            {{ x.wharehouse_material_title }}
+                                        </h2>
                                     </div>
-                                </div>
-                                <div class="price">
-                                    {{ x.wharehouse_material_price3 / 10 | number }}
-                                    تومان
-                                </div>
-                            </article>
+                                    <div>
+                                        <img [alt]="x.wharehouse_material_title" [title]="x.wharehouse_material_title"
+                                            style="object-fit: cover;min-height: 21rem;" [src]="x.logo">
+                                    </div>
+                                    <div class="remain">
+                                        تنها
+                                        {{ x.wharehouse_material_remain }}
+                                        عدد باقیمانده است
+                                        <div class="remain2">
+                                            <span class="num">{{ x.wharehouse_material_price2 / 10 | number }}
+                                                تومان
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="price">
+                                        {{ x.wharehouse_material_price3 / 10 | number }}
+                                        تومان
+                                    </div>
+                                </article>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row" style="display: inline-flex;">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" class="preview1"
-                    [hidden]="list_goods.length > 0">
-                    <img src="../../../assets/img/preview.png" title="همه کالاها" alt="همه کالاها">
-                    <div class="preview2">{{ serverService.get_no_record_text(lang) }}</div>
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-6 col-xs-12" style="display: inline-flex;">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" class="preview1"
+                        [hidden]="list_goods.length > 0">
+                        <img src="../../../assets/img/preview.png" title="همه کالاها" alt="همه کالاها">
+                        <div class="preview2">{{ serverService.get_no_record_text(lang) }}</div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>

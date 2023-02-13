@@ -61,7 +61,8 @@ const routes: Routes = [
   {
     path: "", component: HomeComponent, children: [
       { path: "", component: Home2Component },
-      { path: 'all-goods/:title', component: AllGoodsListComponent },
+      { path: 'category/:title', component: AllGoodsListComponent },
+      { path: 'category/:id/:title', component: AllGoodsListComponent },
       {
         path: "shopping", component: ShopStepperComponent, children: [
           { path: "bascket", component: ShopOrderComponent },
@@ -92,7 +93,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })
-    , RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }), HttpClientModule, MatSnackBarModule, MatTableModule
+    , RouterModule.forRoot(routes), HttpClientModule, MatSnackBarModule, MatTableModule
     , FormsModule, ReactiveFormsModule, MatDialogModule, BrowserAnimationsModule
     , MatIconModule, MatRadioModule, DragDropModule, MatProgressBarModule
     , MatCheckboxModule, MatStepperModule
