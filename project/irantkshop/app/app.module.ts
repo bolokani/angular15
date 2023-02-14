@@ -18,7 +18,6 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { RouterModule, Routes, RouteReuseStrategy } from '@angular/router';
 import { BaseRouteReuseStrategy, DefaultRouteReuseStrategy } from './base-route-reuse-strategy.service';
 import { CustomeRouteReuseStrategy } from './custome-route-reuse-strategy.service';
-
 import * as $ from 'jquery';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -63,7 +62,6 @@ const routes: Routes = [
   {
     path: "", component: HomeComponent, children: [
       { path: "", component: Home2Component },
-      { path: 'category/:title', component: AllGoodsListComponent },
       { path: 'category/:id/:title', component: AllGoodsListComponent },
       {
         path: "shopping", component: ShopStepperComponent, children: [

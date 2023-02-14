@@ -21,7 +21,9 @@
   font-display: block;
 }
 
-
+html {
+  scroll-behavior: auto !important;
+}
 
 
 *:not(i) {

@@ -4,6 +4,19 @@
         padding: 0 0rem !important;
     }
 
+    .hidden-xs {
+        display: none;
+    }
+
+    .carousel-item {
+        display: none;
+    }
+
+    .product-list-div3 {
+        padding-top: 13rem;
+    }
+
+
 }
 
 @media only screen and (min-width: 576px) {
@@ -90,7 +103,8 @@
 
 .product-list-div {
     padding: 1rem 0.5rem !important;
-    z-index: 9
+    z-index: 9;
+    float: right;
 }
 
 .product-dscount {
@@ -108,6 +122,12 @@
     width: 100%;
     font-weight: 700;
     color: #3F4064
+}
+
+h1 {
+    padding: 1rem 1rem 0 0 !important;
+    text-align: right;
+    font-size: 1.1rem;
 }
 
 .div_loading {

@@ -6,36 +6,11 @@
     </div>
 
     <div class="row home-row1">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div id="demo" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ul class="carousel-indicators">
-                    <li data-target="#demo" data-slide-to="0" *ngFor="let x of list_album;let i = index"
-                        [ngClass]="{active:i == 0}"></li>
-                </ul>
-
-                <!-- The slideshow -->
-                <div class="carousel-inner">
-                    <div class="carousel-item" *ngFor="let x of list_album;let i = index" [ngClass]="{active:i == 0}">
-                        <img [src]="x.logo" alt="Los Angeles" *ngIf="x.logo" [title]="x.wharehouse_material_title"
-                            [alt]="x.wharehouse_material_title">
-                    </div>
-                </div>
-
-                <!-- Left and right controls -->
-                <a class="carousel-control-prev" href="#demo" data-slide="prev" [hidden]="list_album.length <= 1">
-                    <span class="carousel-control-prev-icon"></span>
-                </a>
-                <a class="carousel-control-next" href="#demo" data-slide="next" [hidden]="list_album.length <= 1">
-                    <span class="carousel-control-next-icon"></span>
-                </a>
-            </div>
-        </div>
-
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 product-list-div2"
             style="min-height: 30rem;text-align: center;">
             <div class="row">
-                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12" style="margin-top:1rem">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12 hidden-xs"
+                    style="margin-top:1rem;float: left;">
                     <div class="div_loading" [hidden]="!loading_cate">
                         <div class="my-container" class="detaile">
                             <mat-progress-bar mode="indeterminate"></mat-progress-bar>
@@ -61,7 +36,11 @@
                     </mat-accordion>
                 </div>
 
-                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-6 col-xs-12" *ngIf="list_goods.length>0">
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-6 col-xs-12 product-list-div3"
+                    (scrolled)="start('more')" infiniteScroll [infiniteScrollDistance]="3" *ngIf="list_goods.length>0">
+                    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-6 col-xs-12" [hidden]="true">
+                        <h1>{{ title }}</h1>
+                    </div>
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12 product-list-div"
                         *ngFor="let x of list_goods"
                         (click)="open(x.wharehouse_material_id,x.wharehouse_material_title)">
@@ -82,7 +61,8 @@
                                         {{ x.wharehouse_material_remain }}
                                         عدد باقیمانده است
                                         <div class="remain2">
-                                            <span class="num">{{ x.wharehouse_material_price2 / 10 | number }}
+                                            <span class="num" *ngIf="x.wharehouse_material_price2 > 0">{{
+                                                x.wharehouse_material_price2 / 10 | number }}
                                                 تومان
                                             </span>
                                         </div>
@@ -96,6 +76,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="col-xl-10 col-lg-10 col-md-10 col-sm-6 col-xs-12" style="display: inline-flex;">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" class="preview1"
                         [hidden]="list_goods.length > 0">

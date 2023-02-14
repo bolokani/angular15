@@ -61,6 +61,8 @@
         vertical-align: bottom;
     }
 
+
+
     .header-div1 {
         display: inline-block;
         float: left;
@@ -73,7 +75,8 @@
     }
 
     .navbar {
-        margin-bottom: 0px !important
+        margin-bottom: 0px !important;
+        min-height: 6rem;
     }
 
     .navbar-brand {
