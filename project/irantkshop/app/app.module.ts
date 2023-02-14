@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
@@ -16,6 +15,9 @@ import { MatCoreModule } from "./pages/services/mat-core/mat-core.module";
 import { SubstrPipe } from './pages/services/pipe/substr.pipe';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatBadgeModule } from '@angular/material/badge';
+import { RouterModule, Routes, RouteReuseStrategy } from '@angular/router';
+import { BaseRouteReuseStrategy, DefaultRouteReuseStrategy } from './base-route-reuse-strategy.service';
+import { CustomeRouteReuseStrategy } from './custome-route-reuse-strategy.service';
 
 import * as $ from 'jquery';
 
@@ -93,7 +95,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })
-    , RouterModule.forRoot(routes), HttpClientModule, MatSnackBarModule, MatTableModule
+    , RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }), HttpClientModule, MatSnackBarModule, MatTableModule
     , FormsModule, ReactiveFormsModule, MatDialogModule, BrowserAnimationsModule
     , MatIconModule, MatRadioModule, DragDropModule, MatProgressBarModule
     , MatCheckboxModule, MatStepperModule
@@ -102,7 +104,9 @@ const routes: Routes = [
 
   ],
   entryComponents: [],
-  providers: [ServerService, MessageService],
+  providers: [ServerService, MessageService,
+    { provide: RouteReuseStrategy, useClass: CustomeRouteReuseStrategy }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
