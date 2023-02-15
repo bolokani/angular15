@@ -29,7 +29,7 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
   public title2: any;
   public id: number;
   public logo: string;
-  public list_album: any = [];
+  public list_attachment: any = [];
   public list_property: any = [];
   public list_color: any = [];
   public group_title: string;
@@ -207,8 +207,8 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
       (res: any) => {
         if (res['status'] == 1) {
           for (var i = 0; i < res['num']; i++) {
-            res['result'][i].logo = res['result'][i].site_attach_site + "/" + res['result'][i].site_attach_name;
-            this.list_album.push(res['result'][i]);
+            res['result'][i].src = res['result'][i].site_attach_site + "/" + res['result'][i].site_attach_name;
+            this.list_attachment.push(res['result'][i]);
           }
         }//end if
         else {
