@@ -1397,6 +1397,126 @@ h1 {
 	}
 }
 
+//*************************************************************************************
+
+/* ------------------------------------------ */
+.dropzone2 .dz-image {
+	width: 100% !important;
+}
+
+.dropzone2 .dz-preview.dz-image-preview {
+	width: 100% !important;
+}
+
+.dropzone2 .dz-preview .dz-image {
+	width: 100% !important;
+}
+
+.dropzone2 .dz-image img {
+	width: 100% !important;
+}
+
+.dropzone2 .dz-preview {
+	margin: 0px 0px !important;
+}
+
+.dropzone2 .dz-preview.dz-image-preview .dz-details {
+	display: none !important;
+}
+
+.dropzone2 .dz-preview .dz-image {
+	height: 198px !important;
+}
+
+.dropzone2 .dz-image img {
+	height: 198px !important;
+}
+
+.dz-complete7 .dz-image-preview {
+	position: absolute;
+}
+
+.dropzone-single .dz-image-preview {
+	position: absolute;
+}
+
+.dropzone .dz-preview.dz-image-preview {
+	background: transparent !important;
+	max-width: 99% !important;
+}
+
+.dropzone-da-ban {
+	text-align: center;
+}
+
+
+.dropzone .dz-preview .dz-image {
+	height: 175px;
+	width: 175px;
+	border-radius: 0px !important;
+	text-align: center;
+}
+
+.dz-image img {
+	height: 175px;
+	width: 175px;
+	border-radius: 0px !important;
+}
+
+.dz-filename {
+	text-align: center !important;
+}
+
+.preview1 {
+	text-align: center;
+	width: 100%;
+	min-height: 16rem;
+	padding-top: 1rem;
+}
+
+
+.dropzone .dz-preview .dz-details {
+	position: relative !important;
+	opacity: 1;
+	padding: 5px 2px;
+}
+
+.dz-size {
+	display: none !important;
+}
+
+.dz-preview {
+	margin: 4px 5px !important;
+}
+
+.dropzone {
+	background: transparent !important;
+	border: dashed 1px !important;
+	width: 100%;
+}
+
+.dz-drag-hover {
+	border: dashed 3px !important;
+}
+
+.dropzone .dz-preview:hover {
+	z-index: 1 !important;
+}
+
+
+.dropzone .dz-preview .dz-image {
+	height: 175px;
+	width: 175px;
+	border-radius: 0px !important;
+	text-align: center;
+}
+
+.dz-image img {
+	height: 175px;
+	width: 175px;
+	border-radius: 0px !important;
+}
+
 /* ********************************************************************************** */
 
 .form-control:focus {

@@ -1,0 +1,86 @@
+<div mat-dialog-title class="matDialogTitle" cdkDragHandle cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+    <div class="div_loading">
+        <div class="my-container" [hidden]="!loading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+    </div>
+
+    <div class="mat-dialog-title-div1">ضمیمه های شماره قرارداد {{ contract_number }}</div>
+    <span class="close" (click)="close()">
+        <mat-icon>close</mat-icon>
+    </span>
+</div>
+
+
+<div mat-dialog-content class="matDialogContent dialog-color" style="padding:7px !important;font-size: 0.79rem;">
+    <div class="row">
+        <ng-container *ngIf="list_attachment.length > 0">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 col-12"
+                *ngFor="let file of list_attachment;let i = index">
+                <div class="dz-preview dz-processing dz-image-preview dz-success dz-complete box box-right deopzone"
+                    id="fileInput" [title]="file.site_attach_title">
+                    <div class="dz-image" style="border:solid 1px #ccc">
+
+                        <a href='{{ file.site_attach_site }}/{{ file.site_attach_name }}' target="_blank">
+                            <span
+                                *ngIf="file.site_attach_type == 'image/jpeg' || file.site_attach_type == 'image/gif' ||  file.site_attach_type == 'image/png' ">
+                                <img data-dz-thumbnail="" alt="{{ file.site_attach_title }}"
+                                    src="{{ file.site_attach_site }}/{{ file.site_attach_name }}">
+                            </span>
+                            <span
+                                *ngIf="file.site_attach_type == 'application/msword' || file.site_attach_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ">
+                                <i class="far fa-file-word icone"></i>
+                            </span>
+                            <span
+                                *ngIf="file.site_attach_type == 'application/vnd.ms-excel' || file.site_attach_type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ">
+                                <i class="fas fa-file-excel icone" style='color:green'></i>
+                            </span>
+                            <span *ngIf="file.site_attach_type == 'application/pdf' ">
+                                <i class="far fa-file-pdf icone" style='color:red'></i>
+                            </span>
+                            <span *ngIf="file.site_attach_type == 'application/zip' ">
+                                <i class="fas fa-file-archive icone"></i>
+                            </span>
+                            <span
+                                *ngIf="file.site_attach_type == 'video/mp4' || file.site_attach_type == 'video/x-matroska';else other ">
+                                <i class="fas fa-file-video icone" style='color:black'></i>
+                            </span>
+                            <ng-template #other>
+                                <i class="fas fa-file-alt icone" style='color:black'></i>
+                            </ng-template>
+                        </a>
+                    </div><!-- dz-image -->
+                    <div class="dz-details">
+                        <div class="dz-size">
+                            <span data-dz-size=""><strong>{{ file.site_attach_size }}</strong>
+                                KB</span>
+                        </div><!-- dz-size-->
+                        <div class="dz-filename">
+                            <span data-dz-name="" class="pe1">{{ file.site_attach_title |
+                                substr:0:20
+                                }}</span>
+                        </div><!-- dz-filename-->
+                    </div> <!-- dz-detaile-->
+                    <div class="dz-progress">
+                        <span class="dz-upload" data-dz-uploadprogress="" style="width: 100%;"></span>
+                    </div><!-- dz-progress -->
+                    <div class="dz-error-message">
+                        <span data-dz-errormessage=""></span>
+                    </div><!-- dz-error-message -->
+                </div><!-- dz-preview dz-processing dz-image-preview dz-success dz-complete -->
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="count_attachment == 0">
+            <div class="row" class="preview1">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div>
+                        <img src="../../../assets/img/preview2.png">
+                    </div>
+                    <div class="preview2">هیچ فایلی برای نمایش وجود ندارد</div>
+                </div>
+            </div>
+        </ng-container>
+
+    </div>
+</div>

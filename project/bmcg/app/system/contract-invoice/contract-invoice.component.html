@@ -20,18 +20,38 @@
                         (click)="get_cost2()">فاکتور</button>
                     <button class="search_button" [ngClass]="{active:tab == 'finance'}"
                         (click)="get_financial2()">واریزی ها</button>
+                    <button class="search_button" [ngClass]="{active:tab == 'sum'}"
+                        (click)="get_sum()">صورتحساب</button>
                 </div>
             </div>
         </div>
 
-        <div class="row" *ngIf="tab == 'invoice'" style="margin-top:0.5rem !important">
-            <table class="table table-bordered">
-                <tr *ngFor="let x of list_record">
-                    <td class="right">{{ x.contract_cost2_title }}</td>
-                    <td class="center" style="width:34%">{{ x.contract_cost2_price | number }}</td>
-                </tr>
-            </table>
-        </div>
+
+        <ng-container *ngIf="tab == 'invoice'">
+            <div class="row box" *ngFor="let x of list_record">
+                <ng-container>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        سر فصل هزینه ها: {{ x.contract_cost2_title }}
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        مبلغ: {{ x.contract_cost2_price | number }}
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        نوع: {{ x.contract_cost_status_title }}
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        توضیحات: {{ x.contract_cost2_comment }}
+                    </div>
+                    <div>
+                        <span (click)="get_attachment(x.contract_cost2_id,'contract-cost')">
+                            <mat-icon>attach_file</mat-icon>
+                        </span>
+                    </div>
+                </ng-container>
+            </div>
+        </ng-container>
+
+
         <ng-container *ngIf="tab == 'finance'">
             <div class="row box" *ngFor="let x of list_record">
                 <ng-container>
@@ -45,7 +65,25 @@
                         مبلغ : {{ x.finance_financial2_amount | number }}
                     </div>
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        شماره پیگیری : {{ x.finance_financial2_tracking_code }}
+                        صاحب حساب مبدا : {{ x.user1_title }}
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        بانک مبدا : {{ x.bank1_title }}
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        حساب مبدا : {{ x.account1_title }}
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        صاحب حساب مقصد: {{ x.user2_title }}
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        بانک مقصد: {{ x.bank2_title }}
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        حساب مقصد: {{ x.account2_title }}
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        شماره پیگیری: {{ x.finance_financial2_tracking_code }}
                     </div>
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         بابت : {{ x.payment_for_title }}
@@ -53,7 +91,35 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         نوع تراکنش : {{ x.finance_payment_type_title }}
                     </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        توضیحات : {{ x.finance_document_title }}
+                    </div>
+                    <div>
+                        <span (click)="get_attachment(x.finance_financial2_id,'contract-finance')">
+                            <mat-icon>attach_file</mat-icon>
+                        </span>
+                    </div>
                 </ng-container>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="tab == 'sum'">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div_sum"> میزان هزینه های این قرارداد :
+                <div class="price">
+                    <span class="yellow">1,000,000</span>
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div_sum">
+                میزان واریزی های این قرارداد :
+                <div class="price">
+                    <span class="yellow">-2,000,000</span>
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div_sum">
+                جمع کل بدهکاری / بستانکاری این قرارداد :
+                <div class="price">
+                    <span class="yellow">3,000,000</span>
+                </div>
             </div>
         </ng-container>
 

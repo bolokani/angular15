@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../services/server/server.service';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MessageService } from '../services/message/message.service';
+import { ContractInvoiceAttachmentComponent } from '../contract-invoice-attachment/contract-invoice-attachment.component';
 
 @Component({
   selector: 'app-contract-invoice',
@@ -27,6 +28,7 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
   constructor(
     public serverService: ServerService
     , public router: Router
+    , public dialog: MatDialog
     , public messageService: MessageService
     , public matSnackBar: MatSnackBar
     , public matDialogRef: MatDialogRef<ContractInvoiceComponent>
@@ -78,6 +80,23 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
       }
     )
   }
+
+  get_sum() {
+    this.tab = 'sum';
+  }
+
+  get_attachment(id: number, path: string) {
+    var width = '23rem';
+    if (window.innerWidth > 576) {
+      width = '50rem';
+    }
+    this.dialog.open(ContractInvoiceAttachmentComponent, {
+      'width': width,
+      'height': 'auto',
+      data: { id: id, contract_number: this.contract_number, path: path }
+    })
+  }
+
 
   close() {
     this.matDialogRef.close();
