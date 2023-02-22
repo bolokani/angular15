@@ -18,6 +18,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { RouterModule, Routes, RouteReuseStrategy } from '@angular/router';
 import { BaseRouteReuseStrategy, DefaultRouteReuseStrategy } from './base-route-reuse-strategy.service';
 import { CustomeRouteReuseStrategy } from './custome-route-reuse-strategy.service';
+
 import * as $ from 'jquery';
 
 import { AppRoutingModule } from './app-routing.module';

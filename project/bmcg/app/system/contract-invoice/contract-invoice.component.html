@@ -1,0 +1,61 @@
+<div mat-dialog-title class="matDialogTitle" cdkDragHandle cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+    <div class="div_loading">
+        <div class="my-container" [hidden]="!loading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+    </div>
+
+    <div class="mat-dialog-title-div1">مشخصات شماره قرارداد {{ contract_number }}</div>
+    <span class="close" (click)="close()">
+        <mat-icon>close</mat-icon>
+    </span>
+</div>
+
+<div mat-dialog-content class="matDialogContent dialog-color" style="padding:7px !important;font-size: 0.79rem;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-xl-12 col-lg-12 col-md-12 col-xs-12 col1">
+                <div style="display: inline-block; vertical-align: top;">
+                    <button class="search_button" [ngClass]="{active:tab == 'invoice'}"
+                        (click)="get_cost2()">فاکتور</button>
+                    <button class="search_button" [ngClass]="{active:tab == 'finance'}"
+                        (click)="get_financial2()">واریزی ها</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="tab == 'invoice'" style="margin-top:0.5rem !important">
+            <table class="table table-bordered">
+                <tr *ngFor="let x of list_record">
+                    <td class="right">{{ x.contract_cost2_title }}</td>
+                    <td class="center" style="width:34%">{{ x.contract_cost2_price | number }}</td>
+                </tr>
+            </table>
+        </div>
+        <ng-container *ngIf="tab == 'finance'">
+            <div class="row box" *ngFor="let x of list_record">
+                <ng-container>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        نوع سند : {{ x.finance_document_title }}
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        تاریخ : {{ x.finance_financial2_date3 }}
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        مبلغ : {{ x.finance_financial2_amount | number }}
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        شماره پیگیری : {{ x.finance_financial2_tracking_code }}
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        بابت : {{ x.payment_for_title }}
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        نوع تراکنش : {{ x.finance_payment_type_title }}
+                    </div>
+                </ng-container>
+            </div>
+        </ng-container>
+
+    </div>
+</div>

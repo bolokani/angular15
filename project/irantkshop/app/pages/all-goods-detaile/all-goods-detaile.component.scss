@@ -1,13 +1,93 @@
+@media only screen and (max-width: 1400px) {
+    .container1 {
+        max-width: 71rem !important;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .col1 {
+        padding: 0 0rem !important
+    }
+
+    .carousel-inner {
+        margin-top: 2rem;
+    }
+
+    .container1 {
+        max-width: 71rem !important;
+        padding: 2rem 0rem 8rem 0rem;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .col1 {
+        padding: 0 2rem !important
+    }
+}
+
+
+.comment {
+    line-height: 2.3rem;
+    color: rgba(0, 0, 0, 0.69)
+}
+
+.carousel-item {
+    height: 30rem;
+    border-radius: 1.2rem;
+    border: solid 1px #ccc
+}
+
+.rowboxes {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    background: #fff;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 2px 23px 0 rgb(0 0 0 / 23%) !important;
+    box-shadow: 0px 2px 23px 0 rgb(0 0 0 / 23%) !important;
+    padding-bottom: 10px;
+}
+
+.price {
+    color: #FD461D !important;
+    text-align: center;
+}
+
+.rowboxes h2 {
+    font-size: 0.8rem;
+    color: #636262;
+    text-align: center;
+    line-height: 1.6rem;
+}
+
+.rowboxesheader {
+    padding-right: 1rem !important;
+    padding-bottom: 2rem;
+}
+
+.rowboxesheader h3 {
+    display: inline-block;
+    border-bottom: solid 1px red;
+    font-size: 1rem;
+    padding-bottom: 1rem;
+}
+
+
+
+.container1 {
+    max-width: 71rem !important;
+}
+
+
 h1 {
     color: rgba(0, 0, 0, .87);
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 500;
-    line-height: 1.5;
+    line-height: 2;
     margin: 0;
 }
 
 .container1 {
-    padding: 2rem 1rem 8rem 1rem;
+    padding: 2rem 1rem 3rem 1rem;
     min-height: 40rem;
 }
 
@@ -35,7 +115,9 @@ h1 {
     font-weight: 400;
     line-height: 2;
     margin: 8px 0 16px;
-    padding: 0
+    padding: 0;
+    text-align: left;
+    direction: ltr;
 }
 
 .p1 {
@@ -46,13 +128,11 @@ h1 {
     background-color: #000;
 }
 
-.col1 {
-    padding: 0 1rem !important
-}
 
 .carousel-control-next-icon {
     background-color: #000;
 }
+
 
 .button1 {
     background-color: #a62626 !important;

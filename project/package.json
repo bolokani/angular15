@@ -11,7 +11,6 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.1.0",
-    "@angular/cdk": "^15.1.2",
     "@angular/common": "^15.1.0",
     "@angular/compiler": "^15.1.0",
     "@angular/core": "^15.1.0",
@@ -23,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
     "@types/jquery": "^3.5.16",
+    "animate.css": "^4.1.1",
     "highcharts-angular": "^3.1.2",
     "jalali-moment": "^3.3.11",
     "jquery": "^3.6.3",
@@ -30,6 +30,7 @@
     "ngx-currency": "^3.0.0",
     "ngx-dropzone-wrapper": "^13.0.0",
     "ngx-infinite-scroll": "^15.0.0",
+    "ngx-owl-carousel-o": "^15.0.0",
     "ngx-smart-modal": "^7.4.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

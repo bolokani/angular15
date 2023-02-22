@@ -8,6 +8,7 @@ import { MessageService } from '../../system/services/message/message.service';
 import { ContactDetaileComponent } from '../contact-detaile/contact-detaile.component';
 import { ContractCommentComponent } from '../contract-comment/contract-comment.component';
 import { ContractProcessComponent } from '../contract-process/contract-process.component';
+import { ContractInvoiceComponent } from '../contract-invoice/contract-invoice.component';
 
 @Component({
   selector: 'app-contract-list',
@@ -84,6 +85,18 @@ export class ContractListComponent implements OnInit, OnDestroy {
       width = '22rem';
     }
     this.dialog.open(ContractProcessComponent, {
+      width: width,
+      height: 'auto',
+      data: { id: id, contract_number: contract_number }
+    })
+  }
+
+  open_invoice(id: number, contract_number: string) {
+    var width = '22rem';
+    if (window.innerWidth > 576) {
+      width = '22rem';
+    }
+    this.dialog.open(ContractInvoiceComponent, {
       width: width,
       height: 'auto',
       data: { id: id, contract_number: contract_number }

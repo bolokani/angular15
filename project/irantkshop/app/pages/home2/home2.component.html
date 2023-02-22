@@ -244,184 +244,87 @@
     <img [src]="baner_main_middle">
 </div>
 <!-- ******************************************************************************************* -->
-<div class="line" style="display: none;"></div>
-<div class="container-fluid fluid-margin fluid3" style="display: none;">
-    <div class="row home-div1" [hidden]="true">
-        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 content" *ngFor="let x of list_content">
-            {{ x.site_content_text | substr:0:420 }}
-        </div>
-        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <img *ngIf="baner1" [src]="baner1" style="width:100%">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12 header1">
-            <div><img src="../../../assets/img/header2.png" alt="جدیدترین دوره های رایگان"
-                    title="جدیدترین دوره های رایگان"></div>
-        </div>
-    </div>
+<div class="container-fluid fluid-margin">
     <div class="row home-row1">
-        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 course-box" *ngFor="let x of list_course1">
-            <div class="box cursor" (click)="go_to_course(x.site_course_id,x.site_course_title)"
-                style="margin:0px !important">
-                <a>
-                    <div class="img">
-                        <img [src]="x.logo">
-                        <div class="hover">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <mat-icon class="course-box_icon_play">play_circle_outline
-                                </mat-icon>
-                            </div>
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 course-box_icon_view">
-                                مشاهده دوره</div>
-                        </div>
-                    </div>
-
-                    <div class="desc">
-                        <h2 class="title">{{ x.site_course_title }}</h2>
-                        <div class="master">{{ x.teacher_title }}</div>
-                        <div class="state">
-                            <div class="time">
-                                <i class="fa fa-clock-o"></i>{{ x.site_course_duration }}
-                            </div>
-                            <div class="view">
-                                <i class="fa fa-eye"></i>
-                                {{ x.visitor | number}} بازدید
-                            </div>
-                        </div>
-                    </div>
-                </a>
+        <div class="row rowboxes">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 rowboxesheader">
+                <h4>فروش ویژه</h4>
             </div>
+            <ul class="owl-carousel owl-theme">
+                <li *ngFor="let x of list_special_goods">
+                    <div class="item" (click)="open(x.wharehouse_material_id,x.wharehouse_material_title)"
+                        class="cursor">
+                        <img [src]="x.logo" [title]="x.wharehouse_material_title" [alt]="x.wharehouse_material_title"
+                            loading="lazy">
+                        <h5>{{ x.wharehouse_material_title | substr:0:45 }}</h5>
+                        <h6 class="price">{{ x.wharehouse_material_price3 / 10 | number }} تومان</h6>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
-    <div class="row 12 row home-row1" *ngIf="list_course1.length == 8">
-        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12">
-            <button class="button-continue" [routerLink]="['/free',1,'دوره-های-رایگان-']">
-                ادامه
-            </button>
-        </div>
-    </div>
-</div><!-- fluid -->
+</div>
 
-<div class="container-fluid fluid2 fluid-margin" style="display: none;">
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12 home-header">
-            <img [src]="baner2" style="height:25rem;width:100%" *ngIf="baner2">
+<!-- ******************************************************************************************* -->
+<div class="container-fluid fluid-margin">
+    <div class="row home-row1">
+        <div class="row rowboxes">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 rowboxesheader">
+                <h4>جدیدترین</h4>
+            </div>
+            <ul class="owl-carousel owl-theme">
+                <li *ngFor="let x of list_other_goods">
+                    <div class="item" (click)="open(x.wharehouse_material_id,x.wharehouse_material_title)"
+                        class="cursor">
+                        <img [src]="x.logo" [title]="x.wharehouse_material_title" [alt]="x.wharehouse_material_title"
+                            loading="lazy">
+                        <h5>{{ x.wharehouse_material_title | substr:0:45 }}</h5>
+                        <h6 class="price">{{ x.wharehouse_material_price3 / 10 | number }} تومان</h6>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
 <!-- -------------------------------------------------------------------------------------------------- -->
-<div style="display: none;" class="container-fluid fluid3 fluid-margin"
-    style="background-color: #556DBA;padding-top:1rem !important;margin-top:0px !important">
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12 home-header header1">
-            <div>جدیدترین ها</div>
-        </div>
-    </div>
+<div class="container-fluid fluid-margin">
     <div class="row home-row1">
-        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 course-box" *ngFor="let x of list_course2">
-            <div class="box cursor" (click)="go_to_course(x.site_course_id,x.site_course_title)">
-                <a>
-                    <div class="img">
-                        <img [src]="x.logo">
-                        <div class="hover">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <mat-icon class="course-box_icon_play">play_circle_outline
-                                </mat-icon>
-                            </div>
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 course-box_icon_view">
-                                مشاهده دوره</div>
-                        </div>
-                    </div>
-                    <div class="desc">
-                        <h2 class="title">در این قسمت عنوان کالا قرار می گیرد</h2>
-                        <div class="master">---</div>
-                        <div class="state">
-                            <div class="time">
-                                <i class="fa fa-clock-o"></i>---
-                            </div>
-                            <div class="view">
-                                <i class="fa fa-eye"></i>
-                                {{ x.visitor | number}} بازدید
-                            </div>
-                        </div>
-                    </div>
-                </a>
+        <div class="row rowboxes">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 rowboxesheader">
+                <h4>پرفروش ترین</h4>
             </div>
-        </div>
-    </div>
-    <div class="row home-row1" *ngIf="list_course2.length == 16">
-        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12">
-            <button class="button-continue" [routerLink]="['/download',2,'دوره-های-دانلودی-']">
-                ادامه
-            </button>
-        </div>
-    </div>
-
-</div>
-<!-- -------------------------------------------------------------------------------------------------- -->
-<div class="container-fluid fluid3 fluid-margin gallery-div2" style="display: none;">
-    <div class="row home-row1">
-        <div class='col-xl-12 col-lg-12 col-md-12 col-xs-12 col-sm-12 padd-mobile marg-mobile padding-project'>
-            <div class="section-title">
-                <div class="borders">
-                    <div class="row">
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-3 gallery-div"
-                            *ngFor="let x of list_gallery;let i = index">
-                            <img src="{{ x.gallery_attach_site }}/{{ x.gallery_attach_name }}" class="shadow cursor"
-                                alt='{{ x.site_gallery_title }}' title='{{ x.site_gallery_title }}'>
-                        </div>
+            <ul class="owl-carousel owl-theme">
+                <li *ngFor="let x of list_other_goods">
+                    <div class="item" (click)="open(x.wharehouse_material_id,x.wharehouse_material_title)"
+                        class="cursor">
+                        <img [src]="x.logo" [title]="x.wharehouse_material_title" [alt]="x.wharehouse_material_title"
+                            loading="lazy">
+                        <h5>{{ x.wharehouse_material_title | substr:0:45 }}</h5>
+                        <h6 class="price">{{ x.wharehouse_material_price3 / 10 | number }} تومان</h6>
                     </div>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
 <!-- -------------------------------------------------------------------------------------------------- -->
-<div class="container-fluid fluid3 fluid-margin">
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12 home-header header1">
-            <div>پرفروش ترین ها</div>
-        </div>
-    </div>
+<div class="container-fluid fluid-margin">
     <div class="row home-row1">
-        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 course-box" *ngFor="let x of list_course3">
-            <div class="box cursor" (click)="go_to_course(x.site_course_id,x.site_course_title)">
-                <a>
-                    <div class="img">
-                        <img [src]="x.logo">
-                        <div class="hover">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <mat-icon class="course-box_icon_play">play_circle_outline
-                                </mat-icon>
-                            </div>
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 course-box_icon_view">
-                                مشاهده دوره</div>
-                        </div>
-                    </div>
-                    <div class="desc">
-                        <h2 class="title">در این قسمت عنوان کالا قرار می گیرد</h2>
-                        <div class="master">----</div>
-                        <div class="state">
-                            <div class="time">
-                                <i class="fa fa-clock-o"></i>---
-                            </div>
-                            <div class="view">
-                                <i class="fa fa-eye"></i>
-                                {{ x.visitor | number}} بازدید
-                            </div>
-                        </div>
-                    </div>
-                </a>
+        <div class="row rowboxes">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 rowboxesheader">
+                <h4>قطعات ماکروفر</h4>
             </div>
-        </div>
-    </div>
-    <div class="row home-row1" *ngIf="list_course3.length == 4">
-        <div class="col-xl-12 col-lg-12 col-xl-12 col-md-12 col-xs-12">
-            <button class="button-continue">
-                ادامه
-            </button>
+            <ul class="owl-carousel owl-carousel2 owl-theme">
+                <li *ngFor="let x of list_microwave">
+                    <div class="item" (click)="open(x.wharehouse_material_id,x.wharehouse_material_title)"
+                        class="cursor">
+                        <img [src]="x.logo" [title]="x.wharehouse_material_title" [alt]="x.wharehouse_material_title"
+                            loading="lazy">
+                        <h5>{{ x.wharehouse_material_title | substr:0:45 }}</h5>
+                        <h6 class="price">{{ x.wharehouse_material_price3 / 10 | number }} تومان</h6>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

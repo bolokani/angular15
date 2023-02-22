@@ -25,59 +25,74 @@
                     </div>
                 </div>
 
-                <div class="row" style="padding-top:1rem">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
+                <div class="row" style="padding-top:2rem">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 right">
                         <p class="p1">دسته بندی</p>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
-                        <p>{{ group_title }} | بک لایت سونی</p>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 left">
+                        <p> {{ cate_title }} </p>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 right">
+                        <p class="p1">کد کالا</p>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 left">
+                        <p>{{ coding }}</p>
                     </div>
                 </div>
                 <hr>
 
 
                 <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 right">
                         <p class="p1">وضعیت موجودی</p>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 left">
                         <p *ngIf="remain > 0">{{ remain }} عدد باقی مانده است</p>
                         <p *ngIf="remain == 0">ناموجود</p>
                     </div>
                 </div>
                 <hr>
 
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
-                        <p class="p1">قیمت</p>
+                <span *ngIf="price2 > 0">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 right">
+                            <p class="p1">قیمت</p>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 left">
+                            <p>
+                                <span>{{ price2 / 10 | number }} تومان</span>
+                            </p>
+                        </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
-                        <p>
-                            <span>{{ price2 / 10 | number }} تومان</span>
-                        </p>
+                    <hr>
+                </span>
+
+                <span *ngIf="discount > 0">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 right">
+                            <p class="p1">درصد تخفیف</p>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 left">
+                            <p>
+                                <span>{{ discount }} %</span>
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <hr>
+                    <hr>
+                </span>
+
 
                 <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
-                        <p class="p1">درصد تخفیف</p>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
-                        <p>
-                            <span>{{ discount }} %</span>
-                        </p>
-                    </div>
-                </div>
-                <hr>
-
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 right">
                         <p class="p1">قیمت
-                            <span>با تخفیف</span>
+                            <span *ngIf="discount > 0">با تخفیف</span>
                         </p>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 left">
                         <p>
                             <span>{{ price3 / 10 | number }} تومان</span>
                         </p>
@@ -87,10 +102,10 @@
 
                 <span *ngFor="let x of list_property">
                     <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 right">
                             <p class="p1">{{ x.wharehouse_group_property_title }}</p>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 left">
                             <p>
                                 <span>{{ x.answer_title }}</span>
                             </p>
@@ -99,6 +114,15 @@
                     <hr>
                 </span>
 
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12  right" style="margin-bottom:1rem">
+                        <p class="p1">توضیحات</p>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12  right">
+                        <p class="comment" [innerHTML]="comment">
+                        </p>
+                    </div>
+                </div>
 
             </div><!-- col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 -->
 
@@ -111,9 +135,9 @@
                     </ul>
                     <!-- The slideshow -->
                     <div class="carousel-inner">
-                        <div class="carousel-item" style="height:25rem" *ngFor="let x of list_attachment;let i = index"
+                        <picture class="carousel-item" *ngFor="let x of list_attachment;let i = index"
                             [ngClass]="{active: i == 0}" [ngStyle]="{'background-image':'url( ' + x.src + ')'}">
-                        </div>
+                        </picture>
                     </div>
                     <!-- Left and right controls -->
                     <a class="carousel-control-prev" href="#demo" data-slide="prev">
@@ -123,24 +147,54 @@
                         <span class="carousel-control-next-icon"></span>
                     </a>
                 </div>
-
-                <div class="row">
-
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 detail_left">
+                    <p style="margin-top:3rem">نحوهٔ خرید از فروشگاه</p>
                 </div>
+                <div class="row" style="margin-top:1rem">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 right">
+                        <p class="p1">
+                            <mat-icon>
+                                local_shipping
+                            </mat-icon>
+                            امکان ارسال به سراسر ایران
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row" style="margin-top:1rem">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 right">
+                        <p class="p1">
+                            <mat-icon>
+                                storefront
+                            </mat-icon>
+                            امکان پرداخت در محل
+                        </p>
+                    </div>
+                </div>
+                <hr>
             </div>
         </div>
-
-        <div class="row" style="padding:1rem">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12  right" style="margin-bottom:1rem">
-                <p class="p1">توضیحات</p>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12  right">
-                <p style="white-space:pre-wrap" [innerHTML]="comment">
-                </p>
-            </div>
-        </div>
-
-
-
     </div>
+
+    <div class="container-fluid">
+        <div class="row rowboxes">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 rowboxesheader">
+                <h4>سایر کالاها {{ cate_title }}</h4>
+            </div>
+            <div class="owl-carousel owl-theme">
+                <ul *ngFor="let x of list_other_goods">
+                    <li class="item" (click)="open(x.wharehouse_material_id,x.wharehouse_material_title)"
+                        class="cursor">
+                        <img [src]="x.logo" [title]="x.wharehouse_material_title" [alt]="x.wharehouse_material_title"
+                            loading="lazy">
+                        <h5>{{ x.wharehouse_material_title | substr:0:45 }}</h5>
+                        <h6 class="price">{{ x.wharehouse_material_price3 | number }} تومان</h6>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+
 </div>

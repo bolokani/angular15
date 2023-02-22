@@ -9,6 +9,7 @@
 @import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
 @import '../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css';
 
+
 @font-face {
   font-family: irsans;
   src: url(./assets/fonts/irsans.ttf);
@@ -94,11 +95,11 @@ body {
 }
 
 .default_btn {
-  width: 20rem;
+  width: 12rem;
   height: 3rem;
   border-radius: 4px;
   margin-right: 0;
-  background-color: #EF4056;
+  background-color: #BE3737;
   font: 16px yekan;
   color: #ffffff;
   display: inline-block;
@@ -341,7 +342,7 @@ button[disabled] {
 }
 
 .left {
-  float: left;
+  text-align: left;
 }
 
 /* -------------------------------------------------------------------------------------------- */
@@ -866,6 +867,51 @@ img {
 .pointer {
   cursor: pointer
 }
+
+
+.rowboxes {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 2px 23px 0 rgb(0 0 0 / 23%) !important;
+  box-shadow: 0px 2px 23px 0 rgb(0 0 0 / 23%) !important;
+  padding-bottom: 10px;
+}
+
+.price {
+  color: #FD461D !important;
+  text-align: center;
+}
+
+.rowboxes h5 {
+  font-size: 0.8rem !important;
+  color: #636262;
+  text-align: center;
+  line-height: 1.6rem;
+  min-height: 3rem;
+}
+
+.rowboxes ul {
+  padding: 0px !important
+}
+
+.rowboxes ul li {
+  list-style: none;
+}
+
+.rowboxesheader {
+  padding-right: 1rem !important;
+  padding-bottom: 2rem;
+}
+
+.rowboxesheader h4 {
+  display: inline-block;
+  border-bottom: solid 1px red;
+  font-size: 1rem;
+  padding-bottom: 1rem;
+}
+
 
 @media only screen and (max-width: 576px) {
   .course-box .box .img {

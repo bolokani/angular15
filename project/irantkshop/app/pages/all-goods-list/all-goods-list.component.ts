@@ -15,7 +15,7 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
   public server: any = this.serverService.get_server();
   public loading = false;
   public loading_cate: boolean = false;
-  public subscription: Subscription;
+  public subscription: Subscription | undefined;
   public lang = 1;
   public list_goods: any = [];
   public list_baner3: any = [];
@@ -23,7 +23,7 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
   public header_baner2: string | undefined;
   public movie1: string | undefined;
   public id: number | undefined;
-  public group: number;
+  public group: number = 0;
   public title: string | undefined;
   public list_group: any = [];
   public list_cate: any = [];

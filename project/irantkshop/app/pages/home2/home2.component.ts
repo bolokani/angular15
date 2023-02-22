@@ -18,9 +18,12 @@ export class Home2Component implements OnInit, OnDestroy {
   public server2: any = this.serverService.get_server2();
   public lang: any = 1;
   public user_id: number | undefined;
-  public subscription: Subscription;
+  public subscription: Subscription | any;
   public loading = false;
   public list_album: any = [];//for
+  public list_other_goods: any = [];
+  public list_special_goods: any = [];
+  public list_microwave: any = [];
 
 
   list_specification: any = [];
@@ -80,6 +83,8 @@ export class Home2Component implements OnInit, OnDestroy {
     this.get_special_content();
     this.get_gallery();
     this.get_home_movie();
+    this.get_special_goods();
+
     this.serverService.set_metas('فروشگاه بک لایت تلویزیون و قطعات ماکروفر', 'فروشگاه بک لایت تلویزیون و قطعات ماکروفر', '');
   }
 
@@ -169,6 +174,107 @@ export class Home2Component implements OnInit, OnDestroy {
       }
     )
   }
+
+  get_special_goods() {
+    var obj = { address: 2023 }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          this.list_special_goods = [];
+          for (var i = 0; i < res['num']; i++) {
+            if (res['result'][i].wharehouse_material_logo) {
+              res['result'][i].logo = res['result'][i].wharehouse_material_site_logo + "/" + res['result'][i].wharehouse_material_logo;
+            } else {
+              res['result'][i].logo = this.serverService.get_default_logo()
+            }
+            this.list_special_goods.push(res['result'][i]);
+          }
+          this.get_other_goods(124, 555);
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_other_goods(cate: number, id: number) {
+    var obj = { address: 2021, cate: cate }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          this.list_other_goods = [];
+          for (var i = 0; i < res['num']; i++) {
+            if (res['result'][i].wharehouse_material_logo) {
+              res['result'][i].logo = res['result'][i].wharehouse_material_site_logo + "/" + res['result'][i].wharehouse_material_logo;
+            } else {
+              res['result'][i].logo = this.serverService.get_default_logo()
+            }
+            this.list_other_goods.push(res['result'][i]);
+          }
+          this.get_microwave_goods(118);
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_microwave_goods(cate: number) {
+    var obj = { address: 2022, cate: cate }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          this.list_microwave = [];
+          for (var i = 0; i < res['num']; i++) {
+            if (res['result'][i].wharehouse_material_logo) {
+              res['result'][i].logo = res['result'][i].wharehouse_material_site_logo + "/" + res['result'][i].wharehouse_material_logo;
+            } else {
+              res['result'][i].logo = this.serverService.get_default_logo()
+            }
+            this.list_microwave.push(res['result'][i]);
+          }
+
+          $(document).ready(function () {
+            ($(".owl-carousel") as any).owlCarousel({
+              rtl: true,
+              loop: true,
+              margin: 10,
+              autoplay: false,
+              nav: true,
+              responsive: {
+                0: {
+                  items: 1
+                },
+                600: {
+                  items: 3
+                },
+                1000: {
+                  items: 7
+                }
+              }
+            })
+          });
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  open(id: number, title: string) {
+    var title1 = "";
+    var title_arr = title.split(" ");
+    for (var i = 0; i < title_arr.length; i++) {
+      title1 += title_arr[i];
+      title1 += "-";
+    }
+    this.router.navigate(['/product-' + id, title1]);
+    this.subscription.unsubscribe();
+  }
+
 
   ge_to_baner() {
     //this.router.navigate(['photo-gallery', "photo"], { queryParams: { id: 126 } })

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2, Inject } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../services/server/server.service';
@@ -8,7 +8,7 @@ import { DOCUMENT } from '@angular/common';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog'
 import { AllGoodsDetaileImagesComponent } from '../all-goods-detaile-images/all-goods-detaile-images.component';
-declare var $: any
+
 
 @Component({
   selector: 'app-all-goods-detaile',
@@ -23,20 +23,24 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
   public token_order: any = JSON.parse(<any>localStorage.getItem('token_order'));
   public loading = false;
   public user_id: number | undefined;
-  public subscription: Subscription;
+  public subscription: Subscription | any;
   public comment: any;
   public title: any;
   public title2: any;
-  public id: number;
-  public logo: string;
+  public id: number = 0;
+  public logo: string | undefined;
   public list_attachment: any = [];
   public list_property: any = [];
   public list_color: any = [];
-  public group_title: string;
-  public price2: number;
-  public price3: number;
+  public list_other_goods: any = [];
+  public group_title: string | undefined;
+  public cate_title: string | undefined;
+  public price2: number = 0;
+  public price3: number = 0;
   public discount: number = 0;
   public remain: number = 0;
+  public coding: any = 0;
+  public cate: any = 0;
 
   constructor(
     @Inject(DOCUMENT) public document: Document,
@@ -58,24 +62,15 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
         if (this.id > 0) {
           this.get_data();
         } else {
-          this.router.navigate(['/not-found'])
+          this.router.navigate(['/not-found']);
         }
       }
     )
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
     }
-    //window.scroll(0, 0);
-    //************************************************ */
-
   }
 
-  loadNextScript() {
-    const s = this.renderer2.createElement('script')
-    s.src = '../../../assets/js/product.js'
-    s.text = ``
-    this.renderer2.appendChild(this.document.body, s)
-  }
 
   get_data() {
     if (this.serverService.check_internet() == false) {
@@ -92,24 +87,22 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
           this.title = res['result'][0].wharehouse_material_title;
           this.title2 = res['result'][0].wharehouse_material_title2;
           this.group_title = res['result'][0].material_group_title;
+          this.cate_title = res['result'][0].wharehouse_material_cate_title;
           this.price2 = res['result'][0].wharehouse_material_price2;
           this.price3 = res['result'][0].wharehouse_material_price3;
           this.discount = res['result'][0].wharehouse_material_discount;
           this.remain = res['result'][0].wharehouse_material_remain;
+          this.coding = res['result'][0].wharehouse_material_coding;
+          this.cate = res['result'][0].wharehouse_material_cate;
           if (res['result'][0].wharehouse_material_logo) {
             this.logo = res['result'][0].wharehouse_material_site_logo + "/" + res['result'][0].wharehouse_material_logo + "?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90";
           } else {
             this.logo = this.serverService.get_default_logo();
           }
-          const s = this.renderer2.createElement('script')
-          s.onload = this.loadNextScript.bind(this)
-          s.type = 'text/javascript'
-          s.src = '../../../assets/js/template.js'
-          s.text = ``
-          this.renderer2.appendChild(this.document.body, s);
+          this.serverService.set_metas(this.title, res['result'][0].wharehouse_material_keyboard, res['result'][0].wharehouse_material_title2);
           this.get_attachment();
           this.get_property();
-          //this.get_color();
+          this.get_other_goods(res['result'][0].wharehouse_material_cate, res['result'][0].wharehouse_material_id);
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
@@ -118,6 +111,65 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
         }
       }
     )
+  }
+
+  get_other_goods(cate: number, id: number) {
+    var obj = { address: 2020, cate: cate }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          this.list_other_goods = [];
+          for (var i = 0; i < res['num']; i++) {
+            if (res['result'][i].wharehouse_material_logo) {
+              res['result'][i].logo = res['result'][i].wharehouse_material_site_logo + "/" + res['result'][i].wharehouse_material_logo;
+            } else {
+              res['result'][i].logo = this.serverService.get_default_logo()
+            }
+            this.list_other_goods.push(res['result'][i]);
+          }
+
+          $(document).ready(function () {
+            ($(".owl-carousel") as any).owlCarousel({
+              rtl: true,
+              loop: true,
+              margin: 10,
+              autoplay: true,
+              lazyLoad: true,
+              nav: true,
+              responsive: {
+                0: {
+                  items: 1
+                },
+                600: {
+                  items: 3
+                },
+                1000: {
+                  items: 7
+                }
+              }
+            })
+          });
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  ngAfterViewInit() {
+
+  }
+
+  open(id: number, title: string) {
+    var title1 = "";
+    var title_arr = title.split(" ");
+    for (var i = 0; i < title_arr.length; i++) {
+      title1 += title_arr[i];
+      title1 += "-";
+    }
+    window.open('/product-' + id + "/" + title1, "_self");
+    this.subscription.unsubscribe();
   }
 
 
@@ -164,21 +216,6 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
     )
   }
 
-  get_color() {
-    var obj = { address: 1986, id: this.id }
-    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
-      (res: any) => {
-        if (res['status'] == 1) {
-          for (var i = 0; i < res['num']; i++) {
-            this.list_color.push(res['result'][i]);
-          }
-        }//end if
-        else {
-          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
-        }
-      }
-    )
-  }
 
   get_property() {
     var obj = { address: 1985, id: this.id }
@@ -230,7 +267,7 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
   message(validation: boolean, message: string, type: number, action: string) {
     if (type == 1) this.loading = false;
     if (validation == true) {
-      this.matSnackBar.open(message, action, { duration: 8000 });
+      this.matSnackBar.open(message, action, { duration: 5000 });
     }//end if
     else {
       //this.matSnackBar.dismiss();
@@ -239,6 +276,7 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
   //*******************************************************************************
   ngOnDestroy(): void {
     if (this.subscription) {
+      console.log(1);
       this.subscription.unsubscribe();
     }//end if
   }//end OnDestroy
