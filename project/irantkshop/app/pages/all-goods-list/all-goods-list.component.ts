@@ -22,8 +22,12 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
   public header_baner1: string | undefined;
   public header_baner2: string | undefined;
   public movie1: string | undefined;
-  public id: number | undefined;
-  public group: number = 0;
+  public id: any | undefined;
+  public group_params: number = 0;
+  public group_title: string = '';
+  public group_id: number = 0;
+  public cate_title: string | undefined;
+  public cate_id: number = 0;
   public title: string | undefined;
   public list_group: any = [];
   public list_cate: any = [];
@@ -40,29 +44,28 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
 
     this.activatedRoute.queryParams.subscribe(
       (params: Params) => {
-        this.group = params['group'];
-        if (this.group) this.start('first');
+        this.group_params = params['group'];
+        if (this.group_params) this.start('first');
       }
     );
 
     this.activatedRoute.params.subscribe(
       (params: Params) => {
         this.id = params['id'];
-        if (!this.group) this.start('first');
+        if (!this.group_params) this.start('first');
       }
     )
-
 
   }//end consructor
 
   ngOnInit() {
-    this.title = 'همه کالاها';
+    this.group_title = 'همه کالاها';
     this.get_group();
   }
 
   start(step_load: string) {
-    if (this.group == 1) {
-      this.get_goods_with_group(step_load);
+    if (this.group_params > 0) {
+      this.get_goods_with_group(step_load, this.group_params);
     } else {
       this.get_goods_with_cate(step_load);
     }
@@ -90,8 +93,7 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
             }
             this.list_goods.push(res['result'][i]);
           }//end for
-          this.title = res['title'];
-          this.serverService.set_metas(res['title'], res['title'], '');
+          this.get_group_title();
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
@@ -99,21 +101,59 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
         }
       }
     )
-  }
+  }//get_goods_with_cate
 
-  get_goods_with_group(step_load: string) {
+
+  get_group_title() {
     if (this.serverService.check_internet() == false) {
       this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
     this.loading = true;
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 1954, group: this.id }).subscribe(
+    var obj = { address: 2026, id: this.id }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.group_id = res['result'][0].material_group_id;
+            this.group_title = res['result'][0].material_group_title;
+            this.cate_title = res['result'][0].wharehouse_material_cate_title;
+            this.cate_id = res['result'][0].wharehouse_material_cate_id;
+          }
+          this.serverService.set_metas(this.cate_title, this.cate_title, '');
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }//end get_group_title
+
+  get_goods_with_group2(id: number, title: string) {
+    var title1 = "";
+    var title_arr = title.split(" ");
+    for (var i = 0; i < title_arr.length; i++) {
+      title1 += title_arr[i];
+      title1 += "-";
+    }
+    this.router.navigate(['/category', id, title1], { queryParams: { group: id } });
+  }
+
+  get_goods_with_group(step_load: string, group_id: number) {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    this.loading = true;
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 1954, group: group_id }).subscribe(
       (res: any) => {
         this.list_goods = [];
         if (res['status'] == 1) {
+          this.cate_id = 0;
           for (var i = 0; i < res['num']; i++) {
-
             if (res['result'][i].wharehouse_material_logo) {
               res['result'][i].logo = res['result'][i].wharehouse_material_site_logo + "/" + res['result'][i].wharehouse_material_logo;
             } else {
@@ -121,8 +161,9 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
             }
             this.list_goods.push(res['result'][i]);
           }//end for
-          this.title = res['title'];
-          this.serverService.set_metas(this.title, this.title, '');
+          this.get_group_title();
+          this.cate_title = res['title'];
+          this.serverService.set_metas(this.cate_title, this.cate_title, '');
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
@@ -141,6 +182,7 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
     }
     this.router.navigate(['/product-' + id, title1]);
   }
+
 
   get_group() {
     if (this.serverService.check_internet() == false) {
@@ -179,6 +221,7 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
       (res: any) => {
         this.list_cate = [];
         if (res['status'] == 1) {
+          this.cate_id = this.id;
           for (var i = 0; i < res['num']; i++) {
             this.list_cate.push(res['result'][i]);
           }//end for
@@ -199,7 +242,7 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
       title1 += title_arr[i];
       title1 += "-";
     }
-    this.router.navigate(['/category', id, title1])
+    this.router.navigate(['/category', id, title1]);
   }
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {

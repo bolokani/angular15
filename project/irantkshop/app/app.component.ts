@@ -98,7 +98,7 @@ export class AppComponent implements OnInit {
       title1 += title_arr[i];
       title1 += "-";
     }
-    this.router.navigate(['/category', id, title1], { queryParams: { group: 1 } });
+    this.router.navigate(['/category', id, title1], { queryParams: { group: id } });
   }
 
   get_cate() {

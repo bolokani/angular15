@@ -123,6 +123,38 @@
     color: #3F4064
 }
 
+.address_bar ul li {
+    display: inline-block;
+    list-style: none;
+    color: #767790;
+}
+
+.address_bar1 {
+    padding: 0 1rem !important;
+    margin-top: 1rem
+}
+
+.address_bar {
+    padding-top: 1rem;
+    padding: 0.5rem 0;
+    background-color: #fff;
+}
+
+.address_bar .slash {
+    margin-right: 0.6rem;
+    margin-left: 0.6rem
+}
+
+ul {
+    padding-right: 1.2rem;
+}
+
+.address_bar dl,
+ol,
+ul {
+    margin: 0px !important
+}
+
 h1 {
     padding: 1rem 1rem 0 0 !important;
     text-align: right;

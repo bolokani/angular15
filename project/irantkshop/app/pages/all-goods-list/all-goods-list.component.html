@@ -6,6 +6,22 @@
     </div>
 
     <div class="row home-row1">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 address_bar1">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 address_bar">
+                <ul>
+                    <li> صفحه نخست </li>
+                    <li class="slash" *ngIf="id == 0">/</li>
+                    <li *ngIf="id == 0"> همه کالاها </li>
+                    <li class="slash" *ngIf="id > 0">/</li>
+                    <li *ngIf="id > 0" (click)="get_goods_with_group2(group_id,group_title)" class="cursor"> {{
+                        group_title
+                        }} </li>
+                    <li class="slash" *ngIf="id > 0">/</li>
+                    <li *ngIf="id > 0" class="cursor"> {{ cate_title }} </li>
+                </ul>
+            </div>
+        </div>
+
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 product-list-div2"
             style="min-height: 30rem;text-align: center;">
             <div class="row">
@@ -17,7 +33,8 @@
                         </div>
                     </div>
                     <mat-accordion>
-                        <mat-expansion-panel *ngFor="let x of list_group" (opened)="get_cate(x.material_group_id)">
+                        <mat-expansion-panel *ngFor="let x of list_group" (opened)="get_cate(x.material_group_id)"
+                            [expanded]="group_id === x.material_group_id || group_params == x.material_group_id">
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
                                     {{ x.material_group_title }}
@@ -26,7 +43,7 @@
                             <mat-selection-list role="list">
                                 <ul style="padding:0px;">
                                     <mat-list-item role="listitem" *ngFor="let cate of list_cate"
-                                        [ngClass]="{active:cate.wharehouse_material_cate_id == id && !group}"
+                                        [ngClass]="{active:cate.wharehouse_material_cate_id == cate_id}"
                                         (click)="open_cate(cate.wharehouse_material_cate_id,cate.wharehouse_material_cate_title)">
                                         <li>{{ cate.wharehouse_material_cate_title }}</li>
                                     </mat-list-item>
