@@ -244,23 +244,28 @@ img.hover-shadow {
         padding: 0 .8rem !important;
     }
 
-    /*
-    .gallery-div2 {
-        display: none;
+    .div_backup {
+        min-height: 5rem;
     }
-    */
 }
+
+@media only screen and (min-width: 567px) {
+    .div_backup {
+        min-height: 5rem;
+    }
+
+
+}
+
 
 @media only screen and (max-width: 576px) {
     .input-search {
         width: 100%;
     }
 
-    /*
-    .gallery-div2 {
-        display: none;
+    .home-header {
+        margin-bottom: 3rem;
     }
-    */
 
     .main-slides .main-banner-content h1 {
         font-size: 1.1rem;
@@ -493,6 +498,14 @@ video::-webkit-media-controls-fullscreen-button {
 h1 {
     font-size: 1.2rem;
 }
+
+.root {
+    background-color: #fff !important;
+}
+
+
+
+
 
 
 

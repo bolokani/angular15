@@ -22,6 +22,7 @@ export class Home2Component implements OnInit, OnDestroy {
   public loading = false;
   public list_album: any = [];//for
   public list_other_goods: any = [];
+  public list_new_goods: any = [];
   public list_special_goods: any = [];
   public list_microwave: any = [];
 
@@ -189,6 +190,29 @@ export class Home2Component implements OnInit, OnDestroy {
             }
             this.list_special_goods.push(res['result'][i]);
           }
+          this.get_new_goods(124, 555);
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_new_goods(cate: number, id: number) {
+    var obj = { address: 2025, cate: cate }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          this.list_new_goods = [];
+          for (var i = 0; i < res['num']; i++) {
+            if (res['result'][i].wharehouse_material_logo) {
+              res['result'][i].logo = res['result'][i].wharehouse_material_site_logo + "/" + res['result'][i].wharehouse_material_logo;
+            } else {
+              res['result'][i].logo = this.serverService.get_default_logo()
+            }
+            this.list_new_goods.push(res['result'][i]);
+          }
           this.get_other_goods(124, 555);
         }//end if
         else {
@@ -241,7 +265,7 @@ export class Home2Component implements OnInit, OnDestroy {
               rtl: true,
               loop: true,
               margin: 10,
-              autoplay: false,
+              autoplay: true,
               nav: true,
               responsive: {
                 0: {

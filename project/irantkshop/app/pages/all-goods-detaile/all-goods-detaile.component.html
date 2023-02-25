@@ -22,6 +22,11 @@
                                 <span class="sr-only">Loading...</span>
                             </div>
                         </button>
+                        <div class="discount_div" *ngIf="discount > 0">
+                            <img src="../../../assets/img/discount.png" class="discount_image" title="یک لایت"
+                                altr="یک لایت">
+                            <span class="discount_number">{{ discount }}%</span>
+                        </div>
                     </div>
                 </div>
 
@@ -127,7 +132,7 @@
             </div><!-- col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 -->
 
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col1">
-                <div id="demo" class="carousel slide" data-ride="carousel">
+                <div id="demo" class="carousel slide" data-ride="carousel" *ngIf="list_attachment.length > 0">
                     <!-- Indicators -->
                     <ul class="carousel-indicators">
                         <li data-target="#demo" *ngFor="let x of list_attachment;let i = index"
@@ -140,10 +145,10 @@
                         </picture>
                     </div>
                     <!-- Left and right controls -->
-                    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <a class="carousel-control-prev" data-slide="prev" *ngIf="list_attachment.length > 1">
                         <span class="carousel-control-prev-icon"></span>
                     </a>
-                    <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <a class="carousel-control-next" data-slide="next" *ngIf="list_attachment.length > 1">
                         <span class="carousel-control-next-icon"></span>
                     </a>
                 </div>
@@ -182,9 +187,14 @@
                 <h4>سایر کالاها {{ cate_title }}</h4>
             </div>
             <div class="owl-carousel owl-theme">
-                <ul *ngFor="let x of list_other_goods">
-                    <li class="item" (click)="open(x.wharehouse_material_id,x.wharehouse_material_title)"
-                        class="cursor">
+                <ul *ngFor="let x of list_other_goods"
+                    (click)="open(x.wharehouse_material_id,x.wharehouse_material_title)">
+                    <div class="discount_div" *ngIf="x.wharehouse_material_discount > 0">
+                        <img src="../../../assets/img/discount.png" class="discount_image" title="بک لایت"
+                            altr="بک لایت">
+                        <span class="discount_number">{{ x.wharehouse_material_discount }}%</span>
+                    </div>
+                    <li class="item" class="cursor">
                         <img [src]="x.logo" [title]="x.wharehouse_material_title" [alt]="x.wharehouse_material_title"
                             loading="lazy">
                         <h5>{{ x.wharehouse_material_title | substr:0:45 }}</h5>

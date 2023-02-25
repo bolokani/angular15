@@ -37,15 +37,6 @@
     border: solid 1px #ccc
 }
 
-.rowboxes {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    background: #fff;
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 2px 23px 0 rgb(0 0 0 / 23%) !important;
-    box-shadow: 0px 2px 23px 0 rgb(0 0 0 / 23%) !important;
-    padding-bottom: 10px;
-}
 
 .price {
     color: #FD461D !important;
@@ -77,6 +68,25 @@
     max-width: 71rem !important;
 }
 
+.discount_image {
+    width: 3rem;
+}
+
+.discount_number {
+    position: absolute;
+    top: 0.15rem;
+    left: 0.8rem;
+    color: #fff;
+    font-size: 0.75rem;
+}
+
+.discount_div {
+    width: 3rem !important;
+    position: absolute;
+    display: inline;
+}
+
+
 
 h1 {
     color: rgba(0, 0, 0, .87);
@@ -84,6 +94,7 @@ h1 {
     font-weight: 500;
     line-height: 2;
     margin: 0;
+    display: inline;
 }
 
 .container1 {

@@ -6,7 +6,61 @@
     .footer2 {
         text-align: center !important;
     }
+
+    .apk_title {
+        margin-right: 1rem;
+        font-size: 1rem;
+    }
+
+    .footer1 {
+        padding: 1rem 0rem !important;
+    }
+
+    .div_footer_app_text {
+        padding-right: 1rem !important;
+    }
+
+    .div_footer_app_text2 {
+        margin-top: 1rem !important;
+    }
 }
+
+@media screen and (min-width:576px) {
+    footer .footer-col {
+        height: auto !important;
+    }
+
+    .footer2 {
+        text-align: center !important;
+    }
+
+    .footer1 {
+        height: 5rem;
+    }
+
+    .div_footer_app_text {
+        padding: 1rem 4rem !important;
+    }
+
+    .div_footer_app_text2 {
+        padding-top: 1rem !important;
+    }
+
+    .apk_title {
+        font-size: 1.5rem;
+        margin-right: 1rem
+    }
+
+}
+
+.apk_title {
+    color: #fff;
+}
+
+.footer1 {
+    background-color: #3C4B6D;
+}
+
 
 
 .enamad img,

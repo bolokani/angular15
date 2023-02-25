@@ -94,11 +94,7 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
           this.remain = res['result'][0].wharehouse_material_remain;
           this.coding = res['result'][0].wharehouse_material_coding;
           this.cate = res['result'][0].wharehouse_material_cate;
-          if (res['result'][0].wharehouse_material_logo) {
-            this.logo = res['result'][0].wharehouse_material_site_logo + "/" + res['result'][0].wharehouse_material_logo + "?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90";
-          } else {
-            this.logo = this.serverService.get_default_logo();
-          }
+
           this.serverService.set_metas(this.title, res['result'][0].wharehouse_material_keyboard, res['result'][0].wharehouse_material_title2);
           this.get_attachment();
           this.get_property();
@@ -244,12 +240,13 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
       (res: any) => {
         if (res['status'] == 1) {
           for (var i = 0; i < res['num']; i++) {
-            res['result'][i].src = res['result'][i].site_attach_site + "/" + res['result'][i].site_attach_name;
-            this.list_attachment.push(res['result'][i]);
+            if (res['result'][i].site_attach_name) {
+              res['result'][i].src = res['result'][i].site_attach_site + "/" + res['result'][i].site_attach_name;
+              this.list_attachment.push(res['result'][i]);
+            }
           }
         }//end if
         else {
-          this.router.navigate(['/not-found']);
           this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
         }
       }
