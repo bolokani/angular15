@@ -50,6 +50,7 @@ import { ShopBascketAddressComponent } from './pages/shop/shop-bascket/shop-basc
 import { ShopBascketPegiriComponent } from './pages/shop/shop-bascket/shop-bascket-pegiri/shop-bascket-pegiri.component';
 import { Home2Component } from './pages/home2/home2.component';
 import { ProfileMenuComponent } from './pages/profile/profile-menu/profile-menu.component';
+import { AllGoodsGroupComponent } from './pages/all-goods-group/all-goods-group.component';
 
 /*
 import { ShopCartComponent } from './pages/shop/shop-bascket/shop-cart/shop-cart.component';
@@ -64,6 +65,8 @@ const routes: Routes = [
     path: "", component: HomeComponent, children: [
       { path: "", component: Home2Component },
       { path: 'category/:id/:title', component: AllGoodsListComponent },
+      { path: 'group/:title', component: AllGoodsGroupComponent },
+
       {
         path: "shopping", component: ShopStepperComponent, children: [
           { path: "bascket", component: ShopOrderComponent },
@@ -90,7 +93,7 @@ const routes: Routes = [
     Header2Component,
     Page404Component, ShopBascketPegiriComponent, ShopBascketAddressComponent,
     HeaderBascketComponent, AllGoodsListComponent, AllGoodsDetaileComponent, AllGoodsDetaileImagesComponent
-    , ShopProductComponent, ShopProductDetaileComponent, ShopOrderComponent, ShopStepperComponent, Home2Component, ProfileMenuComponent
+    , ShopProductComponent, ShopProductDetaileComponent, ShopOrderComponent, ShopStepperComponent, Home2Component, ProfileMenuComponent, AllGoodsGroupComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })

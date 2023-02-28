@@ -14,7 +14,7 @@ import { MessageService } from '../../pages/services/message/message.service';
 export class AllGoodsListComponent implements OnInit, OnDestroy {
   public server: any = this.serverService.get_server();
   public loading = false;
-  public loading_cate: boolean = false;
+  public loading_cate = false;
   public subscription: Subscription | undefined;
   public lang = 1;
   public list_goods: any = [];
@@ -161,9 +161,7 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
             }
             this.list_goods.push(res['result'][i]);
           }//end for
-          this.get_group_title();
-          this.cate_title = res['title'];
-          this.serverService.set_metas(this.cate_title, this.cate_title, '');
+          this.get_group_title2(group_id);
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
@@ -172,6 +170,33 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
       }
     )
   }
+
+  get_group_title2(group_id: number) {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    this.loading = true;
+    var obj = { address: 2027, id: group_id }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.group_id = res['result'][0].material_group_id;
+            this.group_title = res['result'][0].material_group_title;
+            this.cate_title = '';
+            this.cate_id = 0;
+          }
+          this.serverService.set_metas(this.group_title, this.group_title, '');
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }//end get_group_title
 
   open(id: number, title: string) {
     var title1 = "";
@@ -215,7 +240,7 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
-    this.loading_cate = true;
+    //this.loading_cate = true;
     var obj = { address: 2018, id: id }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
@@ -225,7 +250,7 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
           for (var i = 0; i < res['num']; i++) {
             this.list_cate.push(res['result'][i]);
           }//end for
-          this.loading_cate = false;
+          //this.loading_cate = false;
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {

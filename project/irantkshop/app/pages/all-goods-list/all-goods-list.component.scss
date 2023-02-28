@@ -24,6 +24,10 @@
 
 }
 
+ul li {
+    list-style: none;
+    color: #636262;
+}
 
 .carousel-control-next,
 .carousel-control-prev {
@@ -69,7 +73,7 @@
 
 .product-list {
     box-shadow: 0 4px 5px -2px #0003;
-    min-height: 29rem;
+    min-height: 20rem;
     background-color: #fff;
     padding: 1rem
 }
@@ -82,10 +86,10 @@
 .product-h3 {
     font-size: 0.79rem;
     text-align: right;
-    color: #000;
-    line-height: 1.4rem;
+    color: #636262;
+    line-height: 1.7rem;
     font-weight: 700;
-    min-height: 3rem;
+    min-height: 4rem;
 }
 
 .remain {
@@ -104,6 +108,7 @@
     padding: 1rem 0.5rem !important;
     z-index: 9;
     float: right;
+    min-height: 23rem;
 }
 
 .product-dscount {
@@ -127,6 +132,7 @@
     display: inline-block;
     list-style: none;
     color: #767790;
+    font-size: 0.89rem;
 }
 
 .address_bar1 {
