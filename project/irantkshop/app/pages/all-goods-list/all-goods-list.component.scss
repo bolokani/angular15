@@ -69,11 +69,24 @@ ul li {
     text-align: left;
 }
 
+.discount_div {
+    width: 3rem !important;
+    position: absolute;
+}
+
+.discount_number {
+    position: absolute;
+    top: 0.15rem;
+    left: 0.8rem;
+    color: #fff;
+    font-size: 0.75rem;
+}
+
 
 
 .product-list {
     box-shadow: 0 4px 5px -2px #0003;
-    min-height: 20rem;
+    min-height: 21.5rem;
     background-color: #fff;
     padding: 1rem
 }

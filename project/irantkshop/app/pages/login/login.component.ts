@@ -21,11 +21,14 @@ export class LoginComponent implements OnInit {
   public token_order: any = JSON.parse(<any>localStorage.getItem("token_order"));
   public form1: FormGroup;
   public form2: FormGroup;
+  public form3: FormGroup;
   public lang: 1;
   public loading = false;
   public subscription: Subscription;
   public user_id: any;
+  public id: any;
   public sent_code: boolean = false;
+  public show_input_name: boolean = false;
   public need_to_validation: boolean = false;
 
   constructor(
@@ -37,6 +40,7 @@ export class LoginComponent implements OnInit {
     , public dialog: MatDialog) {
     this.create_form();
     this.create_form2();
+    this.create_form3();
   }//end consructor
 
   ngOnInit() {
@@ -82,7 +86,14 @@ export class LoginComponent implements OnInit {
     this.form2 = new FormGroup({
       'code': new FormControl(null, [Validators.required, Validators.pattern('[0-9]{1,}')]),
     })
-  }//end create_form
+  }//end create_form2
+
+
+  create_form3() {
+    this.form3 = new FormGroup({
+      'name': new FormControl(null, [Validators.required]),
+    })
+  }//end create_form2
 
   check_cellphone(): any {
     if (!this.form1.valid) {
@@ -186,7 +197,40 @@ export class LoginComponent implements OnInit {
     var obj = {
       address: 1992,
       code: this.form2.value.code,
-      cellphone: this.form1.value.cellphone
+      cellphone: '09039812978'
+    }
+    this.loading = true;
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1 && res['num'] == 1) {
+          if (res['result'][0].user_title) {
+            if (this.token_order) {
+              this.update_order(res['result'][0].user_id, res);
+            } else {
+              this.set_status(res);
+            }
+          } else {
+            this.id = res['result'][0].user_id;
+            this.show_input_name = true;
+          }
+
+          this.message(false, "", 1, this.messageService.close(1));
+        }//end if
+        else {
+          var pe_message = "شماره کد وارد شده صحیح نمی باشد.";
+          this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  login_form3() {
+    var obj = {
+      address: 2028,
+      code: this.form2.value.code,
+      cellphone: '09039812978',
+      name: this.form3.value.name
+      , id: this.id
     }
     this.loading = true;
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(

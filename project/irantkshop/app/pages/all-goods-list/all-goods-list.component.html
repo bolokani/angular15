@@ -10,8 +10,14 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 address_bar">
                 <ul>
                     <li class="cursor" [routerLink]="['/']"> صفحه نخست </li>
+
+                    <li class="slash">/</li>
+                    <li class="cursor" [routerLink]="['/group/دسته-کالاها']"> دسته کالاها </li>
+
                     <li class="slash" *ngIf="id == 0">/</li>
                     <li *ngIf="id == 0"> همه کالاها </li>
+
+
                     <li class="slash" *ngIf="id > 0">/</li>
                     <li *ngIf="id > 0" (click)="get_goods_with_group2(group_id,group_title)" class="cursor"> {{
                         group_title
@@ -45,7 +51,7 @@
                                 <mat-selection-list role="list">
                                     <ul style="padding:0px;">
                                         <mat-list-item role="listitem" *ngFor="let cate of list_cate"
-                                            [ngClass]="{active:cate.wharehousye_material_cate_id == cate_id}"
+                                            [ngClass]="{active:cate.wharehouse_material_cate_id == cate_id || cate.wharehouse_material_cate_id == group_params}"
                                             (click)="open_cate(cate.wharehouse_material_cate_id,cate.wharehouse_material_cate_title)">
                                             <li>{{ cate.wharehouse_material_cate_title }}</li>
                                         </mat-list-item>
@@ -63,11 +69,16 @@
                         <div class="col-xl-10 col-lg-10 col-md-10 col-sm-6 col-xs-12" [hidden]="true">
                             <h1>{{ title }}</h1>
                         </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12 product-list-div"
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12 product-list-div "
                             *ngFor="let x of list_goods"
                             (click)="open(x.wharehouse_material_id,x.wharehouse_material_title)">
-                            <div class="product-list cursor">
-                                <div>
+                            <div style="direction:ltr">
+                                <div class="discount_div" *ngIf="x.wharehouse_material_discount > 0">
+                                    <img src="../../../assets/img/discount.png" class="discount_image" title="بک لایت"
+                                        altr="بک لایت">
+                                    <span class="discount_number">{{ x.wharehouse_material_discount }}%</span>
+                                </div>
+                                <div class="product-list cursor">
                                     <article>
                                         <div>
                                             <img [alt]="x.wharehouse_material_title"

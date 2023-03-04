@@ -145,6 +145,20 @@ export class ServerService {
     }
   }
 
+  get_persian(event: any) {
+    var PersianOrASCII = /[آ-ی]/;
+    console.log(PersianOrASCII);
+    var m;
+    if ((m = event.target.value.match(PersianOrASCII)) !== null) {
+      if (m[1]) {
+        event.preventDefault();
+        return false;
+      }
+      else { return true; }
+    }
+    else { event.preventDefault(); return false; }
+  }
+
   get_no_record_text(lang: number) {
     return 'هیچ رکوردی برای نمایش وجود ندارد';
   }

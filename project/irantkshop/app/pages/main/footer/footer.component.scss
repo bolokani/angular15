@@ -23,6 +23,10 @@
     .div_footer_app_text2 {
         margin-top: 1rem !important;
     }
+
+    .footer2_div2 {
+        padding: 0 1rem;
+    }
 }
 
 @media screen and (min-width:576px) {
@@ -51,6 +55,10 @@
         margin-right: 1rem
     }
 
+    .footer2_div2 {
+        padding: 0 2rem;
+    }
+
 }
 
 .apk_title {
@@ -61,16 +69,30 @@
     background-color: #3C4B6D;
 }
 
+.footer2_div {
+    color: #767790;
+    font-size: 1rem;
+    padding: 2rem;
+}
 
+.footer2_div2 {
+    font-size: 0.8rem;
+    line-height: 2rem;
+    color: #767790;
+    text-align: justify;
+}
+
+.footer2_row {
+    border-bottom: solid 1px #ccc;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
 
 .enamad img,
 .neshan img {
     height: 7rem
 }
 
-.content {
-    color: #fff
-}
 
 .desc {
     font-size: 0.8rem;
@@ -97,7 +119,7 @@ footer .footer-col {
     padding: 1.1rem 1rem !important;
     height: 270px;
     text-align: right;
-    background: #000 !important;
+    background: #131C23 !important;
 }
 
 footer .footer-header .title {
@@ -110,10 +132,19 @@ footer .footer-header .title {
     font-size: 0.78rem;
 }
 
-.title2 {
-    color: #0274bd;
+.footer3 .content {
+    color: #c5dde8;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+}
+
+.footer3 .header {
+    color: #fff;
     margin-bottom: 0.3rem;
     font-family: irsans !important;
+    border-bottom: solid 1px #41a7c9;
+    padding-bottom: 1rem;
+    text-align: center;
 }
 
 .title3 {
@@ -133,8 +164,8 @@ ul {
 
 
 .social-col {
-    padding: 30px 0;
-    height: 270px;
+    padding: 4rem 0;
+    height: 21rem;
     color: #fff;
     text-align: center;
 }
@@ -148,7 +179,7 @@ ul {
 }
 
 .footer-col2 li a {
-    color: #e0e0e0;
+    color: #000;
     font-size: 0.85rem;
 }
 
@@ -212,16 +243,9 @@ ul {
     text-align: center;
 }
 
-.footer3 {
-    text-align: left;
-    font-size: 0.8rem;
-    padding: 1rem;
-    text-align: center;
-}
 
 .footer4 {
-    border-top: dashed 1px;
-    display: inline-block;
-    padding-top: 1rem;
-    padding-bottom: 0rem;
+    height: 5rem;
+    background-color: #343B41;
+    color: #ccc
 }

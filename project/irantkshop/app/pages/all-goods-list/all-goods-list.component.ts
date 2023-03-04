@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Inject } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../services/server/server.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageService } from '../../pages/services/message/message.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-all-goods-list',
@@ -32,6 +33,7 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
   public list_group: any = [];
   public list_cate: any = [];
   public page: number = 1;
+  public params: boolean = false;
   @ViewChild("videoRef", { static: true }) videoRef: ElementRef<HTMLVideoElement> | any;
 
   constructor(
@@ -40,38 +42,52 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
     , public matSnackBar: MatSnackBar
     , public messageService: MessageService
     , public dialog: MatDialog
-    , private activatedRoute: ActivatedRoute) {
-
-    this.activatedRoute.queryParams.subscribe(
-      (params: Params) => {
-        this.group_params = params['group'];
-        if (this.group_params) this.start('first');
-      }
-    );
+    , public activatedRoute: ActivatedRoute
+    , @Inject(DOCUMENT) public document: Document) {
 
     this.activatedRoute.params.subscribe(
       (params: Params) => {
         this.id = params['id'];
-        if (!this.group_params) this.start('first');
       }
     )
+
+    this.activatedRoute.queryParams.subscribe(
+      (params: Params) => {
+        if (params['group']) {
+          this.group_params = params['group'];
+          this.get_goods_with_group('first', this.group_params);
+        }
+        else {
+          var cate_id = this.document.location.pathname.split("/")[2];
+          this.get_goods_with_cate("first", cate_id)
+        }
+        var group_params: any;
+        group_params = this.document.location.href.split("?")[1];
+        if (group_params) group_params = group_params.split("=")[1];
+        this.group_params = group_params;
+        this.get_group(this.group_params);
+      }
+    );
+
+
 
   }//end consructor
 
   ngOnInit() {
     this.group_title = 'همه کالاها';
-    this.get_group();
+
   }
 
   start(step_load: string) {
     if (this.group_params > 0) {
       this.get_goods_with_group(step_load, this.group_params);
     } else {
-      this.get_goods_with_cate(step_load);
+      this.get_goods_with_cate(step_load, this.cate_id)
     }
   }
 
-  get_goods_with_cate(step_load: string) {
+
+  get_goods_with_cate(step_load: string, cate_id: any) {
     if (this.serverService.check_internet() == false) {
       this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
       return;
@@ -81,7 +97,7 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
     else this.page++;
 
     this.loading = true;
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2019, cate: this.id, page: this.page }).subscribe(
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2019, cate: cate_id, page: this.page }).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
           if (step_load == 'first') this.list_goods = [];
@@ -209,14 +225,14 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
   }
 
 
-  get_group() {
+  get_group(group_params: number) {
     if (this.serverService.check_internet() == false) {
       this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
     this.loading = true;
-    var obj = { address: 1952 }
+    var obj = { address: 1952, group_params: group_params }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         this.list_group = [];
@@ -260,14 +276,15 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
     )
   }
 
-  open_cate(id: number, title: string) {
+  open_cate(cate_id: number, title: string) {
+    this.get_goods_with_cate('first', cate_id);
     var title1 = "";
     var title_arr = title.split(" ");
     for (var i = 0; i < title_arr.length; i++) {
       title1 += title_arr[i];
       title1 += "-";
     }
-    this.router.navigate(['/category', id, title1]);
+    this.router.navigate(['/category', cate_id, title1]);
   }
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {
