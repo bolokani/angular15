@@ -284,13 +284,19 @@ th.mat-sort-header-sorted {
 	vertical-align: middle;
 }
 
-.mat-table {
+mat-table {
 	width: min-content !important;
 	border-left: solid 1px #ccc;
 	padding: 0px;
 	min-width: 100%;
 	font-family: irsans;
 }
+
+.mat-mdc-table {
+	min-width: max-content !important;
+}
+
+
 
 .mat-cell,
 .mat-header-cell {
@@ -430,9 +436,12 @@ th.mat-sort-header-sorted {
 }
 
 .mat_table_fa_without_scroll_bg mat-cell:last-child {
-	position: sticky;
 	left: -5px;
 	background: transparent !important;
+}
+
+.mat-mdc-table .mdc-data-table__row {
+	white-space: nowrap;
 }
 
 mat-footer-row {

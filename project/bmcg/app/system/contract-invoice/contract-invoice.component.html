@@ -28,26 +28,75 @@
 
 
         <ng-container *ngIf="tab == 'invoice'">
-            <div class="row box" *ngFor="let x of list_record">
-                <ng-container>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        سر فصل هزینه ها: {{ x.contract_cost2_title }}
-                    </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        مبلغ: {{ x.contract_cost2_price | number }}
-                    </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        نوع: {{ x.contract_cost_status_title }}
-                    </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        توضیحات: {{ x.contract_cost2_comment }}
-                    </div>
-                    <div>
-                        <span (click)="get_attachment(x.contract_cost2_id,'contract-cost')">
-                            <mat-icon>attach_file</mat-icon>
-                        </span>
-                    </div>
-                </ng-container>
+            <div class="row pe1">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 pe" style="margin-top:0;padding:0">
+                    <mat-table [dataSource]="dataSource" style='min-width:100%'
+                        class='table-scroll mat_table_fa_without_scroll_bg pe1'>
+
+                        <ng-container matColumnDef="row">
+                            <mat-header-cell *matHeaderCellDef style='max-width:40px'>
+                                <span>ردیف</span>
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let x;let i = index" style='max-width:40px'>{{ i + 1
+                                }}</mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="title">
+                            <mat-header-cell *matHeaderCellDef style="min-width:11rem;">
+                                <span>سرفصل هزینه</span>
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let x;let i = index" class="cell1" style="min-width:11rem;">
+                                {{ x.contract_cost2_title }}
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="price">
+                            <mat-header-cell *matHeaderCellDef style="max-width:120px">
+                                <span>مبلغ</span>
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let x;let i = index" style="max-width:120px" class="cell1">
+                                {{ x.contract_cost2_price }}
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="status">
+                            <mat-header-cell *matHeaderCellDef style="max-width:100px">
+                                <span>نوع</span>
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let x;let i = index" style="max-width:100px" class="cell1">
+                                {{ x.contract_cost_status_title }}
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="comment">
+                            <mat-header-cell *matHeaderCellDef>
+                                <span>توضیحات</span>
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let x;let i = index" class="cell1">
+                                {{ x.contract_cost2_comment }}
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="attachment">
+                            <mat-header-cell *matHeaderCellDef style="max-width:70px">
+                                <span>ضمیمه</span>
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let x;let i = index" style="max-width:70px"
+                                (click)="get_attachment(x.contract_cost2_id,'')">
+                                <mat-icon>attach_file</mat-icon>
+                            </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row class="mat-header-row-dialog" *matHeaderRowDef="displayedColumns"
+                            color="primary">
+                        </mat-header-row>
+                        <mat-row class="mat-header-row-dialog cursor"
+                            *matRowDef="let row;columns:displayedColumns;let i = index"
+                            (click)="mat_table_selectedRow = row" (mouseenter)="mat_table_hoverRow = row"
+                            [ngClass]="{'mat_table_selected': row === mat_table_selectedRow,mat_table_selected2:row.checked == true,'mat_table_hover': row === mat_table_hoverRow}"
+                            class="cursor"></mat-row>
+                    </mat-table>
+                </div>
             </div>
         </ng-container>
 
