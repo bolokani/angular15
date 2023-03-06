@@ -25,11 +25,12 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
   public creator: string | undefined;
   public contract_number: string;
   public tab: string = 'invoice';
+  public width: any;
   public mat_table_selectedRow: any;
   public mat_table_hoverRow: any;
   public dataSource: any | undefined;
   public displayedColumns = ['row', 'title', 'price', 'status', 'comment', 'attachment'];
-  public displayedColumns2 = ['row', 'document', 'date3', 'price', 'user1', 'bank1', 'origin_account', 'user2', 'bank2', 'destinition_account', 'tracking_code', 'type', 'payment_type', 'comment', 'attachment', 'operation'];
+  public displayedColumns2 = ['row', 'document', 'date3', 'price', 'user1', 'bank1', 'origin_account', 'user2', 'bank2', 'destinition_account', 'tracking_code', 'type', 'payment_type', 'comment', 'attachment'];
 
 
   constructor(
@@ -47,6 +48,7 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
   }//end consructor
 
   ngOnInit() {
+    this.width = innerWidth + 'px';
     this.get_cost2();
   }
 
@@ -61,6 +63,7 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
             this.list_record.push(res['result'][i]);
           }
           this.dataSource = new MatTableDataSource(this.list_record);
+
           this.message(false, "", 1, this.messageService.close(1));
         }//end if
         else {
@@ -81,6 +84,7 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
           for (var i = 0; i < res['num']; i++) {
             this.list_record.push(res['result'][i]);
           }
+          this.dataSource = new MatTableDataSource(this.list_record);
           this.message(false, "", 1, this.messageService.close(1));
         }//end if
         else {

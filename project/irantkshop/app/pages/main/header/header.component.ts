@@ -96,6 +96,16 @@ export class HeaderComponent implements OnInit {
     )
   }
 
+  go_to_content(id: number, title: string) {
+    var title1 = "";
+    var title_arr = title.split(" ");
+    for (var i = 0; i < title_arr.length; i++) {
+      title1 += title_arr[i];
+      title1 += "-";
+    }
+    this.router.navigate(['/content', id, title1]);
+  }
+
 
   get_user() {
     this.loading = true;

@@ -1,54 +1,57 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Params, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../services/server/server.service';
-import { MessageService } from '../../pages/services/message/message.service';
+import { MessageService } from '../services/message/message.service';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-all-goods-group',
-  templateUrl: './all-goods-group.component.html',
-  styleUrls: ['./all-goods-group.component.scss']
+  selector: 'app-content-detaile',
+  templateUrl: './content-detaile.component.html',
+  styleUrls: ['./content-detaile.component.scss']
 })
-export class AllGoodsGroupComponent implements OnInit, OnDestroy {
+export class ContentDetaileComponent implements OnInit, OnDestroy {
   public user_info: any = JSON.parse(<any>localStorage.getItem('user_info'));
   public lang = JSON.parse(<any>localStorage.getItem('lang'));
   public server: any = this.serverService.get_server();
   public loading = false;
   public user_id: number | undefined;
   public subscription: Subscription;
-  public list_cate1: any = [];
-  public list_cate2: any = [];
+  public comment: any | undefined;
+  public title: string;
+  public id: number;
+
   constructor(
     public serverService: ServerService
     , public router: Router
+    , public sanitizer: DomSanitizer
+    , public activatedRoute: ActivatedRoute
     , public messageService: MessageService
     , public matSnackBar: MatSnackBar) { }//end consructor
 
   ngOnInit() {
-    this.serverService.set_metas('دسته ی کالا', '', '');
-    this.get_group();
+    this.activatedRoute.params.subscribe(
+      (params: Params) => {
+        this.id = params['id'];
+        this.get_content();
+      }
+    )
   }
 
-  get_group() {
+  get_content() {
     if (this.serverService.check_internet() == false) {
       this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
     this.loading = true;
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 1952 }).subscribe(
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2042, id: this.id }).subscribe(
       (res: any) => {
-        this.list_cate1 = [];
-        if (res['status'] == 1) {
-          for (var i = 0; i < res['num']; i++) {
-            if (res['result'][i].material_group_logo) {
-              res['result'][i].logo = res['result'][i].material_group_site_logo + "/" + res['result'][i].material_group_logo;
-            } else {
-              res['result'][i].logo = this.serverService.get_default_image();
-            }
-            this.list_cate1.push(res['result'][i]);
-          }//end for
+        if (res['status'] == 1 && res['num'] == 1) {
+          this.title = res['result'][0].site_content_title;
+          this.comment = this.sanitizer.bypassSecurityTrustHtml(res['result'][0].site_content_comment);
+          this.serverService.set_metas(this.title, this.title, '')
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
@@ -56,18 +59,7 @@ export class AllGoodsGroupComponent implements OnInit, OnDestroy {
         }
       }
     )
-  }
-
-
-  go(id: number, title: string) {
-    var title1 = "";
-    var title_arr = title.split(" ");
-    for (var i = 0; i < title_arr.length; i++) {
-      title1 += title_arr[i];
-      title1 += "-";
-    }
-    this.router.navigate(['/category', id, title1], { queryParams: { group: id } });
-  }
+  }//end get_content
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {
     if (type == 1) this.loading = false;

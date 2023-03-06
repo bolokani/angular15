@@ -74,7 +74,6 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
   }//end consructor
 
   ngOnInit() {
-    this.group_title = 'همه کالاها';
 
   }
 
@@ -137,7 +136,8 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
             this.cate_title = res['result'][0].wharehouse_material_cate_title;
             this.cate_id = res['result'][0].wharehouse_material_cate_id;
           }
-          this.serverService.set_metas(this.cate_title, this.cate_title, '');
+          if (this.id > 0) this.serverService.set_metas(this.cate_title, this.cate_title, '');
+          else this.serverService.set_metas('همه کالا', '', '');
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {

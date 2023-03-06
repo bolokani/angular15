@@ -1,0 +1,16 @@
+<div class="div_loading" [hidden]="!loading">
+    <div class="my-container" class="detaile">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+</div>
+
+<section class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h1>{{ title }}</h1>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 comment">
+            <p [innerHTML]="comment"></p>
+        </div>
+    </div>
+</section>
