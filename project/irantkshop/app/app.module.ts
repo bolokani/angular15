@@ -18,6 +18,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { RouterModule, Routes, RouteReuseStrategy } from '@angular/router';
 import { BaseRouteReuseStrategy, DefaultRouteReuseStrategy } from './base-route-reuse-strategy.service';
 import { CustomeRouteReuseStrategy } from './custome-route-reuse-strategy.service';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 
 import * as $ from 'jquery';
 
@@ -52,6 +53,7 @@ import { Home2Component } from './pages/home2/home2.component';
 import { ProfileMenuComponent } from './pages/profile/profile-menu/profile-menu.component';
 import { AllGoodsGroupComponent } from './pages/all-goods-group/all-goods-group.component';
 import { ContentDetaileComponent } from './pages/content-detaile/content-detaile.component';
+import { QuestionComponent } from './pages/question/question.component';
 
 /*
 import { ShopCartComponent } from './pages/shop/shop-bascket/shop-cart/shop-cart.component';
@@ -68,6 +70,7 @@ const routes: Routes = [
       { path: 'category/:id/:title', component: AllGoodsListComponent },
       { path: 'group/:title', component: AllGoodsGroupComponent },
       { path: 'content/:id/:title', component: ContentDetaileComponent },
+      { path: 'questions/:title', component: QuestionComponent },
       {
         path: "shopping", component: ShopStepperComponent, children: [
           { path: "bascket", component: ShopOrderComponent },
@@ -94,7 +97,7 @@ const routes: Routes = [
     Header2Component,
     Page404Component, ShopBascketPegiriComponent, ShopBascketAddressComponent,
     HeaderBascketComponent, AllGoodsListComponent, AllGoodsDetaileComponent, AllGoodsDetaileImagesComponent
-    , ShopProductComponent, ShopProductDetaileComponent, ShopOrderComponent, ShopStepperComponent, Home2Component, ProfileMenuComponent, AllGoodsGroupComponent, ContentDetaileComponent
+    , ShopProductComponent, ShopProductDetaileComponent, ShopOrderComponent, ShopStepperComponent, Home2Component, ProfileMenuComponent, AllGoodsGroupComponent, ContentDetaileComponent, QuestionComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })
@@ -103,7 +106,7 @@ const routes: Routes = [
     , MatIconModule, MatRadioModule, DragDropModule, MatProgressBarModule
     , MatCheckboxModule, MatStepperModule
     , MatDatepickerModule, MatSidenavModule, MatTreeModule, MatBadgeModule
-    , MatCoreModule, MatSlideToggleModule, MatBottomSheetModule, InfiniteScrollModule
+    , MatCoreModule, MatSlideToggleModule, MatBottomSheetModule, InfiniteScrollModule, CdkAccordionModule
 
   ],
   entryComponents: [],
