@@ -77,7 +77,11 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
 
   }
 
-  start(step_load: string) {
+  start(step_load: string): any {
+    if (this.document.location.pathname.split("/")[1] != 'category') {
+      return false;
+    }
+
     if (this.group_params > 0) {
       this.get_goods_with_group(step_load, this.group_params);
     } else {
@@ -94,7 +98,6 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
     else { this.matSnackBar.dismiss(); }
     if (step_load == 'first') this.page = 1;
     else this.page++;
-
     this.loading = true;
     this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2019, cate: cate_id, page: this.page }).subscribe(
       (res: any) => {

@@ -43,6 +43,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
           for (var i = 0; i < res['num']; i++) {
             this.list_data.push(res['result'][i]);
           }//end for
+          this.serverService.set_metas('سوالات متداول', 'سوالات متداول', '')
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
