@@ -16,6 +16,11 @@ img.hover-shadow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.49) !important;
 }
 
+.search {
+    background-color: aliceblue;
+    width: 13rem;
+}
+
 .bg {
     background-image: url('../../../assets/images/all.webp');
     min-height: 26rem;
@@ -41,6 +46,7 @@ img.hover-shadow {
     width: 40rem;
     height: 3rem;
     text-align: center;
+    font-size: 1.5rem;
 }
 
 .input1:focus {

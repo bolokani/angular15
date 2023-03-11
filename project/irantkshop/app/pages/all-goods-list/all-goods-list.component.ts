@@ -34,6 +34,8 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
   public list_cate: any = [];
   public page: number = 1;
   public params: boolean = false;
+  public q: string;
+
   @ViewChild("videoRef", { static: true }) videoRef: ElementRef<HTMLVideoElement> | any;
 
   constructor(
@@ -53,6 +55,7 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
 
     this.activatedRoute.queryParams.subscribe(
       (params: Params) => {
+        this.q = params['q'];
         if (params['group']) {
           this.group_params = params['group'];
           this.get_goods_with_group('first', this.group_params);
@@ -62,10 +65,20 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
           this.get_goods_with_cate("first", cate_id)
         }
         var group_params: any;
+        var group_key: any;
         group_params = this.document.location.href.split("?")[1];
-        if (group_params) group_params = group_params.split("=")[1];
-        this.group_params = group_params;
-        this.get_group(this.group_params);
+        if (group_params) {
+          if (group_params.split("=")[0] == 'group') {
+            group_key = group_params.split("=")[0];
+            group_params = group_params.split("=")[1];
+          }
+        }
+
+
+        //this.group_params = group_params;
+        //alert(this.group_params)
+        this.get_group(group_params, group_key);
+
       }
     );
 
@@ -81,7 +94,6 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
     if (this.document.location.pathname.split("/")[1] != 'category') {
       return false;
     }
-
     if (this.group_params > 0) {
       this.get_goods_with_group(step_load, this.group_params);
     } else {
@@ -99,7 +111,8 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
     if (step_load == 'first') this.page = 1;
     else this.page++;
     this.loading = true;
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2019, cate: cate_id, page: this.page }).subscribe(
+    var obj = { address: 2019, cate: cate_id, page: this.page, q: this.q }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
           if (step_load == 'first') this.list_goods = [];
@@ -109,6 +122,7 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
             } else {
               res['result'][i].logo = this.serverService.get_default_logo();
             }
+            res['result'][i].wharehouse_material_title2 = res['result'][i].wharehouse_material_title.replace(this.q, `<mark>${this.q}</mark>`);
             this.list_goods.push(res['result'][i]);
           }//end for
           this.get_group_title();
@@ -166,10 +180,12 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
+    if (step_load == 'first') this.page = 1;
+    else this.page++;
     this.loading = true;
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 1954, group: group_id }).subscribe(
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 1954, group: group_id, page: this.page }).subscribe(
       (res: any) => {
-        this.list_goods = [];
+        if (step_load == 'first') this.list_goods = [];
         if (res['status'] == 1) {
           this.cate_id = 0;
           for (var i = 0; i < res['num']; i++) {
@@ -228,13 +244,16 @@ export class AllGoodsListComponent implements OnInit, OnDestroy {
   }
 
 
-  get_group(group_params: number) {
+  get_group(group_params: number, group_key: string) {
     if (this.serverService.check_internet() == false) {
       this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
     this.loading = true;
+    if (group_key != 'group') {
+      group_params = 0;
+    }
     var obj = { address: 1952, group_params: group_params }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {

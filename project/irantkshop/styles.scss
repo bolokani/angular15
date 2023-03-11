@@ -313,6 +313,11 @@ video {
   line-height: 2.1rem !important;
 }
 
+.mark,
+mark {
+  background-color: yellow;
+}
+
 .preview1 img {
   width: 5rem
 }
@@ -911,6 +916,7 @@ img {
   list-style: none;
   box-shadow: 0 0 10px 0 rgb(40 22 22 / 10%);
   padding-bottom: 1rem;
+  border: solid 1px #ccc;
 }
 
 .rowboxes ul li:hover {
