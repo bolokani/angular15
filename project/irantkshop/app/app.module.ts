@@ -54,6 +54,8 @@ import { ProfileMenuComponent } from './pages/profile/profile-menu/profile-menu.
 import { AllGoodsGroupComponent } from './pages/all-goods-group/all-goods-group.component';
 import { ContentDetaileComponent } from './pages/content-detaile/content-detaile.component';
 import { QuestionComponent } from './pages/question/question.component';
+import { ProfileComponent } from './pages/personal/profile/profile.component';
+import { PersonalHomeComponent } from './pages/personal/personal-home/personal-home.component';
 
 /*
 import { ShopCartComponent } from './pages/shop/shop-bascket/shop-cart/shop-cart.component';
@@ -71,6 +73,11 @@ const routes: Routes = [
       { path: 'group/:title', component: AllGoodsGroupComponent },
       { path: 'content/:id/:title', component: ContentDetaileComponent },
       { path: 'questions/:title', component: QuestionComponent },
+      {
+        path: 'profile', component: ProfileComponent, children: [
+          { path: 'home', component: PersonalHomeComponent },
+        ]
+      },
       {
         path: "shopping", component: ShopStepperComponent, children: [
           { path: "bascket", component: ShopOrderComponent },
@@ -97,7 +104,7 @@ const routes: Routes = [
     Header2Component,
     Page404Component, ShopBascketPegiriComponent, ShopBascketAddressComponent,
     HeaderBascketComponent, AllGoodsListComponent, AllGoodsDetaileComponent, AllGoodsDetaileImagesComponent
-    , ShopProductComponent, ShopProductDetaileComponent, ShopOrderComponent, ShopStepperComponent, Home2Component, ProfileMenuComponent, AllGoodsGroupComponent, ContentDetaileComponent, QuestionComponent
+    , ShopProductComponent, ShopProductDetaileComponent, ShopOrderComponent, ShopStepperComponent, Home2Component, ProfileMenuComponent, AllGoodsGroupComponent, ContentDetaileComponent, QuestionComponent, ProfileComponent, PersonalHomeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })

@@ -3,35 +3,32 @@
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container" style="padding: 1rem;">
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12 col-sm-12 sale-special">
-            <section>
-                <div class='tic'>
-                    <span class="spantitr">
-                        <h1>
-                            محصولات فروشگاه ایران تعمیرکار
-                        </h1>
-                    </span>
-                    <h3>
-                        شما میتوانید از دسته بندی زیر وارد صفحه هر دسته بندی شده و محصول مورد نظر را بررسی
-                        کنید.
-                    </h3>
-                </div>
-                <div class="card-columns">
-                    <div class="card cursor" *ngFor="let x of list_cate1"
-                        (click)="go(x.material_group_id,x.material_group_title)">
-                        <img class="card-img-top" [src]='x.logo' [title]="x.material_group_title"
-                            [alt]="x.material_group_title">
-                        <div class="card-body">
-                            <h2 class="card-title"> {{ x.material_group_title }} </h2>
-                            <ul class='ul-cate-shop'>
+            <div class='tic'>
+                <span class="spantitr">
+                    <h1>
+                        محصولات فروشگاه ایران تعمیرکار
+                    </h1>
+                </span>
+                <h3>
+                    شما میتوانید از دسته بندی زیر وارد صفحه هر دسته بندی شده و محصول مورد نظر را بررسی
+                    کنید.
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 card cursor" *ngFor="let x of list_cate1"
+            (click)="go(x.material_group_id,x.material_group_title)">
+            <img class="card-img-top" [src]='x.logo' [title]="x.material_group_title" [alt]="x.material_group_title">
+            <div class="card-body">
+                <h2 class="card-title"> {{ x.material_group_title }} </h2>
+                <ul class='ul-cate-shop'>
 
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div><!-- col-xl-12 col-lg-12 col-md-12 col-xs-12 col-sm-12 sale-special -->
+                </ul>
+            </div>
+        </div>
     </div><!-- row -->
 </div><!-- container-fluid -->

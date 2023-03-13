@@ -906,11 +906,18 @@ img {
   text-align: center;
   line-height: 1.6rem;
   min-height: 3rem;
+  margin-top: 1rem;
 }
 
 .rowboxes ul {
   padding: 0px !important
 }
+
+.rowboxes ul li:hover {
+  box-shadow: 0px 3px 7px 2px #dedede;
+  border: solid 2px #cccccc;
+}
+
 
 .rowboxes ul li {
   list-style: none;
@@ -919,9 +926,6 @@ img {
   border: solid 1px #ccc;
 }
 
-.rowboxes ul li:hover {
-  transform: translateY(-2px);
-}
 
 .rowboxes .discount_number {
   position: absolute;
