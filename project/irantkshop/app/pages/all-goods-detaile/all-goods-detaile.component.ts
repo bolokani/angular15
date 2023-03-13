@@ -41,6 +41,7 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
   public remain: number = 0;
   public coding: any = 0;
   public cate: any = 0;
+  public keyboard: string;
 
   constructor(
     @Inject(DOCUMENT) public document: Document,
@@ -94,6 +95,7 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
           this.remain = res['result'][0].wharehouse_material_remain;
           this.coding = res['result'][0].wharehouse_material_coding;
           this.cate = res['result'][0].wharehouse_material_cate;
+          this.keyboard = res['result'][0].wharehouse_material_keyboard;
 
           this.serverService.set_metas(this.title, res['result'][0].wharehouse_material_keyboard, res['result'][0].wharehouse_material_title2);
           this.get_attachment();

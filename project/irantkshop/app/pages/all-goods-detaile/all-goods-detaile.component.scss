@@ -62,7 +62,15 @@
     padding-bottom: 1rem;
 }
 
+h4 {
+    font-size: 1rem;
+    display: inline;
+    line-height: 2rem
+}
 
+.carousel {
+    margin-bottom: 2rem;
+}
 
 .container1 {
     max-width: 71rem !important;
@@ -90,7 +98,7 @@
 
 h1 {
     color: rgba(0, 0, 0, .87);
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 500;
     line-height: 2;
     margin: 0;
