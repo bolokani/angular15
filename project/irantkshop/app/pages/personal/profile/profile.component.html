@@ -6,7 +6,14 @@
 
                     <div class="menue">
                         <ul>
-                            <li routerLinkActive="active" class="cursor">
+                            <li routerLinkActive="active" class="cursor" [routerLink]="['/profile']"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                <a>
+                                    <i class="fa fa-user"></i>
+                                    <span class="nav-label">خلاصه ی فعالیت ها</span>
+                                </a>
+                            </li>
+                            <li routerLinkActive="active" class="cursor" [routerLink]="['/profile/info']">
                                 <a>
                                     <i class="fa fa-user"></i>
                                     <span class="nav-label">پنل کاربری من</span>

@@ -1,7 +1,7 @@
 .box {
     border: solid 1px #e0e0e6;
     min-height: 11rem;
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     padding: 1rem !important;
 }
 
@@ -9,9 +9,28 @@
     margin-top: 1rem;
 }
 
+.preview1 {
+    padding: 0px !important
+}
+
 h3 {
     font-size: 1rem;
     margin-bottom: 0px
+}
+
+.col1 {
+    margin-top: 1rem;
+    border-left: solid 1px #f1f2f4
+}
+
+.div1 {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 1rem;
+}
+
+.span1 {
+    font-size: 0.8rem;
 }
 
 .line {

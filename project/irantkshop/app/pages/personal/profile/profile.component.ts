@@ -46,8 +46,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
     }
-    this.get_count();
-    this.get_user();
+    //this.get_count();
+    //this.get_user();
 
   }
 
@@ -127,6 +127,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     )
   }
 
+  /*
   delete_logo3() {
     if (this.serverService.check_internet() == false) {
       var pe_message = "خطا در اینترنت";
@@ -156,7 +157,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       }
     )
   }
-
+  */
 
   get_count() {
     if (this.serverService.check_internet() == false) {

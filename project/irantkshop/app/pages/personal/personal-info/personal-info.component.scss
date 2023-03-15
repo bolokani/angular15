@@ -1,0 +1,44 @@
+.box {
+    border: solid 1px #f1f2f4;
+    min-height: 11rem;
+    border-radius: 1rem;
+}
+
+.info-box {
+    border-left: solid 1px #f1f2f4;
+    border-bottom: solid 1px #f1f2f4;
+    min-height: 5rem;
+    padding: 1rem !important;
+}
+
+.box2 {
+    margin-top: 1rem;
+}
+
+.title {
+    color: #767790;
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem !important;
+}
+
+.subtitle {
+    color: #3f4064;
+    font-size: 0.9rem;
+}
+
+.edit_box {
+    text-align: left;
+    padding-top: 0.7rem;
+    color: #767790;
+    padding-left: 1rem !important;
+}
+
+.alarm_box {
+    border: solid 1px #f1f2f4;
+    min-height: 2rem;
+    border-radius: 0.5rem;
+    color: #f57f17;
+    padding: 0.75rem 1rem !important;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+}
