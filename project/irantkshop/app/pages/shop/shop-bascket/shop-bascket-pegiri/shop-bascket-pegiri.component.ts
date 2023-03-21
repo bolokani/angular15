@@ -80,7 +80,7 @@ export class ShopBascketPegiriComponent implements OnInit, OnDestroy {
             this.get_invoice(res['result'][0].wharehouse_invoice_id);
             this.update_invoice_3_to_2(res['result'][0].wharehouse_invoice_id);
           } else {
-            this.router.navigate(['/shopping/bascket'])
+            this.router.navigate(['/shopping/bascket']);
           }
 
         }//end if
@@ -115,7 +115,7 @@ export class ShopBascketPegiriComponent implements OnInit, OnDestroy {
     this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2014, invoice_id: invoice_id }).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
-          this.update_orders_4_to_1(invoice_id);
+          this.update_orders_1_to_4(invoice_id);
         }//end if
         else {
           var pe_message = "خطا در تبدیل فاکتور ";
@@ -125,7 +125,8 @@ export class ShopBascketPegiriComponent implements OnInit, OnDestroy {
     )
   }//update_invoice_3_to_2
 
-  update_orders_4_to_1(invoice_id: number) {
+
+  update_orders_1_to_4(invoice_id: number) {
     this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2015, invoice_id: invoice_id }).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
@@ -170,6 +171,7 @@ export class ShopBascketPegiriComponent implements OnInit, OnDestroy {
       }
     )
   }//update_remain
+
 
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {

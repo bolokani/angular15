@@ -22,10 +22,19 @@ table tr td {
     text-align: right;
 }
 
+
+.sum1_letter {
+    padding: 0.2rem 2.7rem;
+    background-color: aquamarine;
+    color: #000;
+}
+
+
 .price {
     font-size: 1rem;
     background-color: yellow;
     display: inline-block;
+    direction: rtl;
 }
 
 .center {

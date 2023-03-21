@@ -57,6 +57,7 @@ import { QuestionComponent } from './pages/question/question.component';
 import { ProfileComponent } from './pages/personal/profile/profile.component';
 import { PersonalHomeComponent } from './pages/personal/personal-home/personal-home.component';
 import { PersonalInfoComponent } from './pages/personal/personal-info/personal-info.component';
+import { PersonalOrdersComponent } from './pages/personal/personal-orders/personal-orders.component';
 
 /*
 import { ShopCartComponent } from './pages/shop/shop-bascket/shop-cart/shop-cart.component';
@@ -78,6 +79,7 @@ const routes: Routes = [
         path: 'profile', component: ProfileComponent, children: [
           { path: '', component: PersonalHomeComponent },
           { path: 'info', component: PersonalInfoComponent },
+          { path: 'orders', component: PersonalOrdersComponent },
         ]
       },
       {
@@ -106,7 +108,7 @@ const routes: Routes = [
     Header2Component,
     Page404Component, ShopBascketPegiriComponent, ShopBascketAddressComponent,
     HeaderBascketComponent, AllGoodsListComponent, AllGoodsDetaileComponent, AllGoodsDetaileImagesComponent
-    , ShopProductComponent, ShopProductDetaileComponent, ShopOrderComponent, ShopStepperComponent, Home2Component, ProfileMenuComponent, AllGoodsGroupComponent, ContentDetaileComponent, QuestionComponent, ProfileComponent, PersonalHomeComponent, PersonalInfoComponent
+    , ShopProductComponent, ShopProductDetaileComponent, ShopOrderComponent, ShopStepperComponent, Home2Component, ProfileMenuComponent, AllGoodsGroupComponent, ContentDetaileComponent, QuestionComponent, ProfileComponent, PersonalHomeComponent, PersonalInfoComponent, PersonalOrdersComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })

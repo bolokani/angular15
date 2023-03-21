@@ -197,7 +197,7 @@ export class LoginComponent implements OnInit {
     var obj = {
       address: 1992,
       code: this.form2.value.code,
-      cellphone: '09039812978'
+      cellphone: this.form1.value.cellphone
     }
     this.loading = true;
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(

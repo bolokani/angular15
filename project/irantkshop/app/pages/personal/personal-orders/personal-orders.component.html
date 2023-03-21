@@ -1,0 +1,75 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 box">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 box1">
+                    <h3>تاریخچه سفارشات</h3>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="row row1">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <ul class="ul1">
+                        <ng-container *ngFor="let x of list_tab">
+                            <li [ngClass]="{'activeTab':tab_id == x.invoice_status_id }"
+                                (click)="get_invoice(x.invoice_status_id)" style="min-width:7.5rem">
+                                {{ x.invoice_status_title }}
+                            </li>
+                        </ng-container>
+                    </ul>
+                    <ul class="ul2 box2">
+                        <div class="row">
+                            <div class="row row_invoice" *ngFor="let x of list_invoice">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                                    <div class="breakpoint">
+                                        <span class="div1_span1">{{ x.date }}</span>
+                                    </div>
+                                    <div class="breakpoint">
+                                        <span class="div1_span1">کد سفارش
+                                        </span>
+                                        <span class="div1_span2">{{ x.tracking_code }}</span>
+                                    </div>
+
+                                    <div class="breakpoint">
+                                        <span class="div1_span1">مبلغ
+                                        </span>
+                                        <span class="div1_span2"> {{ x.amount | number }} تومان</span>
+                                    </div>
+
+                                    <div class="breakpoint">
+                                        <span class="div1_span1">تخفیف
+                                        </span>
+                                        <span class="div1_span2">0 تومان</span>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div_image ">
+                                    <div class="row">
+                                        <ng-container *ngFor="let y of list_orders">
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 div_image2"
+                                                *ngIf="x.invoice_id == y.wharehouse_order_invoice">
+                                                <img [src]="y.logo">
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div_invoice_button">
+                                    <mat-icon style="vertical-align: middle !important;">web_stories</mat-icon>
+                                    مشاهده فاکتور
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="list_invoice.length == 0">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" class="preview1">
+                                        <img src="../../../assets/img/preview.png" title="همه کالاها" alt="همه کالاها">
+                                        <div class="preview2">{{ serverService.get_no_record_text(lang) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

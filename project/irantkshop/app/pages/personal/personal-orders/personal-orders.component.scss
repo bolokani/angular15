@@ -1,0 +1,147 @@
+.box {
+    border: solid 1px #f1f2f4;
+    min-height: 30rem;
+    border-radius: 1rem;
+}
+
+.info-box {
+    border-left: solid 1px #f1f2f4;
+    border-bottom: solid 1px #f1f2f4;
+    min-height: 5rem;
+    padding: 1rem !important;
+}
+
+.div1_span1 {
+    color: #767790;
+    font-size: 0.85rem;
+}
+
+.div1_span2 {
+    color: #3f4064
+}
+
+.div1 {
+    margin-top: 1rem;
+    height: 3rem;
+    border-bottom: solid 1px #e0e0e6;
+}
+
+.row_invoice {
+    border: solid 1px #e0e0e6;
+    margin-top: 1rem;
+    border-radius: 1rem;
+}
+
+.div_invoice_button {
+    border-top: solid 1px #e0e0e6;
+    color: #19bfd3;
+    text-align: left;
+    padding: 1rem;
+    cursor: pointer
+}
+
+.div_image2 {
+    margin-left: 1rem;
+}
+
+.breakpoint {
+    display: inline-block;
+    margin: 0 0rem 0 1rem
+}
+
+.div_image {
+    padding: 1rem
+}
+
+.box2 {
+    margin: 1rem;
+    border: solid 1px #f1f2f4;
+    min-height: 19rem;
+    border-radius: 1rem;
+}
+
+.tab_header {
+    padding-right: 0.3rem;
+}
+
+.title {
+    color: #767790;
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem !important;
+}
+
+.subtitle {
+    color: #3f4064;
+    font-size: 0.9rem;
+}
+
+h3 {
+    font-size: 1rem;
+    margin-bottom: 0px
+}
+
+
+
+.ul1 li {
+    color: #767790;
+    list-style: none;
+    display: inline-block;
+    cursor: pointer;
+    height: 2.2rem;
+    width: 5.5rem;
+}
+
+.activeTab {
+    color: #ef394e !important
+}
+
+.row1 {
+    padding-top: 1rem
+}
+
+.preview1 {
+    padding-top: 3rem !important
+}
+
+.ul1 {
+    padding: 0 1rem;
+    border-bottom: solid #e0e0e6;
+    margin-bottom: 0px;
+}
+
+.ul2 {
+    padding-top: 1rem;
+    padding-right: 1rem;
+}
+
+.line {
+    background-color: #ef394e;
+}
+
+.line {
+    border: solid 1px #ef394e;
+    display: inline-block;
+    width: 7rem;
+    height: 0.17rem;
+}
+
+.box1 {
+    padding: 1rem 1rem 0 1rem !important
+}
+
+.edit_box {
+    text-align: left;
+    padding-top: 0.7rem;
+    color: #767790;
+    padding-left: 1rem !important;
+}
+
+.alarm_box {
+    border: solid 1px #f1f2f4;
+    min-height: 2rem;
+    border-radius: 0.5rem;
+    color: #f57f17;
+    padding: 0.75rem 1rem !important;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+}

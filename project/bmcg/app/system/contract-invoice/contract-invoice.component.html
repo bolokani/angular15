@@ -12,23 +12,23 @@
 </div>
 
 <div mat-dialog-content class="matDialogContent dialog-color"
-    style="padding:0 0 !important;font-size: 0.79rem;overflow-x: scroll" [ngStyle]="{'max-width' : width}">
+    style="padding:0.2rem 0 !important;font-size: 0.79rem;overflow-x: scroll" [ngStyle]="{'max-width' : width}">
     <div class="container">
         <div class="row">
             <div class="col-xl-12 col-xl-12 col-lg-12 col-md-12 col-xs-12 col1">
                 <div style="display: inline-block; vertical-align: top;">
-                    <button class="search_button" [ngClass]="{active:tab == 'invoice'}"
-                        (click)="get_cost2()">فاکتور</button>
-                    <button class="search_button" [ngClass]="{active:tab == 'finance'}"
-                        (click)="get_financial2()">واریزی ها</button>
-                    <button class="search_button" [ngClass]="{active:tab == 'sum'}"
-                        (click)="get_sum()">صورتحساب</button>
+                    <button class="search_button" [ngClass]="{active:tab == 1}"
+                        (click)="change(1);get_cost2()">فاکتور</button>
+                    <button class="search_button" [ngClass]="{active:tab == 2}"
+                        (click)="change(2);get_financial2()">واریزی ها</button>
+                    <button class="search_button" [ngClass]="{active:tab == 3}"
+                        (click)="change(3);get_financial2()">صورتحساب</button>
                 </div>
             </div>
         </div>
 
 
-        <ng-container *ngIf="tab == 'invoice'">
+        <ng-container *ngIf="tab == 1">
             <div class="row pe1">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 pe" style="margin-top:0;padding:0">
                     <mat-table [dataSource]="dataSource" style='min-width:100%'
@@ -53,7 +53,7 @@
 
                         <ng-container matColumnDef="price">
                             <mat-header-cell *matHeaderCellDef style="max-width:120px">
-                                <span>مبلغ</span>
+                                <span>مبلغ (ریال)</span>
                             </mat-header-cell>
                             <mat-cell *matCellDef="let x;let i = index" style="max-width:120px" class="cell1">
                                 {{ x.contract_cost2_price | number }}
@@ -99,10 +99,14 @@
                     </mat-table>
                 </div>
             </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 pe sum1_letter"
+                style="padding-right: 2.7rem;">
+                جمع کل فاکتورها : {{ sum1 | number }} ریال
+            </div>
         </ng-container>
 
         <!--**********************************************************************************************-->
-        <ng-container *ngIf="tab == 'finance'">
+        <ng-container *ngIf="tab == 2">
             <div class="row pe1">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 pe" style="margin-top:0;padding:0">
                     <mat-table [dataSource]="dataSource" style='min-width:100%'
@@ -117,11 +121,11 @@
                         </ng-container>
 
                         <ng-container matColumnDef="document">
-                            <mat-header-cell *matHeaderCellDef style="min-width:150px">
+                            <mat-header-cell *matHeaderCellDef style="max-width:5rem">
                                 <span>نوع سند</span>
                             </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" style="min-width:150px" class="cursor">
-                                <div class="right">{{ x.finance_document_title }}</div>
+                            <mat-cell *matCellDef="let x;let i = index" class="cursor" style="max-width:5rem">
+                                <div>{{ x.finance_document_title }}</div>
                             </mat-cell>
                         </ng-container>
 
@@ -136,7 +140,7 @@
 
                         <ng-container matColumnDef="price">
                             <mat-header-cell *matHeaderCellDef style="max-width:200px">
-                                <span>مبلغ</span>
+                                <span>مبلغ (ریال)</span>
                             </mat-header-cell>
                             <mat-cell *matCellDef="let x;let i = index" style="max-width:200px" class="cursor">
                                 {{ x.finance_financial2_amount | number }}
@@ -161,15 +165,6 @@
                             </mat-cell>
                         </ng-container>
 
-                        <ng-container matColumnDef="origin_account">
-                            <mat-header-cell *matHeaderCellDef style="max-width:200px">
-                                <span>حساب مبدا</span>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" style="max-width:200px" class="cursor">
-                                {{ x.account1_title }}
-                            </mat-cell>
-                        </ng-container>
-
                         <ng-container matColumnDef="user2">
                             <mat-header-cell *matHeaderCellDef style="max-width:200px">
                                 <span>صاحب حساب مقصد</span>
@@ -187,16 +182,6 @@
                                 {{ x.bank2_title }}
                             </mat-cell>
                         </ng-container>
-
-                        <ng-container matColumnDef="destinition_account">
-                            <mat-header-cell *matHeaderCellDef style="max-width:200px">
-                                <span>حساب مقصد</span>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" style="max-width:200px" class="cursor">
-                                {{ x.account2_title }}
-                            </mat-cell>
-                        </ng-container>
-
 
                         <ng-container matColumnDef="tracking_code">
                             <mat-header-cell *matHeaderCellDef style="max-width:200px">
@@ -256,24 +241,31 @@
                     </mat-table>
                 </div>
             </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 pe sum1_letter"
+                style="padding-right: 2.7rem;">
+                جمع کل واریزی ها : {{ sum2 | number }} ریال
+            </div>
         </ng-container>
         <!--**********************************************************************************************-->
-        <ng-container *ngIf="tab == 'sum'">
+        <ng-container *ngIf="tab == 3">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div_sum"> میزان هزینه های این قرارداد :
                 <div class="price">
-                    <span class="yellow">1,000,000</span>
+                    <span class="yellow">{{ sum1 | number }} ریال</span>
                 </div>
             </div>
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div_sum">
                 میزان واریزی های این قرارداد :
                 <div class="price">
-                    <span class="yellow">-2,000,000</span>
+                    <span class="yellow">{{ sum2 | number }} ریال</span>
                 </div>
             </div>
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div_sum">
-                جمع کل بدهکاری / بستانکاری این قرارداد :
-                <div class="price">
-                    <span class="yellow">3,000,000</span>
+                جمع کل
+                <span *ngIf="(sum1 - sum2) >= 0">بدهکاری</span>
+                <span *ngIf="(sum1 - sum2) < 0">واریزی مازاد</span>
+                :
+                <div class="price yellow">
+                    {{ sum1 - sum2 | number }} ریال
                 </div>
             </div>
         </ng-container>

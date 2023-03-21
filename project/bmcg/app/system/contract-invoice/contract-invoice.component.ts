@@ -24,13 +24,17 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
   public list_record: any = [];
   public creator: string | undefined;
   public contract_number: string;
-  public tab: string = 'invoice';
+  public tab: number = 1;
   public width: any;
+  public sum1: number = 0;
+  public sum1_letter: string;
   public mat_table_selectedRow: any;
   public mat_table_hoverRow: any;
+  public sum2: number;
   public dataSource: any | undefined;
   public displayedColumns = ['row', 'title', 'price', 'status', 'comment', 'attachment'];
-  public displayedColumns2 = ['row', 'document', 'date3', 'price', 'user1', 'bank1', 'origin_account', 'user2', 'bank2', 'destinition_account', 'tracking_code', 'type', 'payment_type', 'comment', 'attachment'];
+  public displayedColumns2 = ['row', 'document', 'date3', 'price', 'user1', 'bank1', 'user2', 'bank2', 'tracking_code', 'type', 'payment_type', 'comment', 'attachment'];
+  public type: number = 1;
 
 
   constructor(
@@ -53,7 +57,6 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
   }
 
   get_cost2() {
-    this.tab = 'invoice';
     this.loading = true;
     this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6776, code: this.id }).subscribe(
       (res: any) => {
@@ -62,6 +65,7 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
           for (var i = 0; i < res['num']; i++) {
             this.list_record.push(res['result'][i]);
           }
+          this.get_sum1();
           this.dataSource = new MatTableDataSource(this.list_record);
 
           this.message(false, "", 1, this.messageService.close(1));
@@ -73,9 +77,18 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
     )
   }
 
+  get_sum1() {
+    this.sum1 = 0;
+    for (var i = 0; i < this.list_record.length; i++) {
+      this.sum1 = this.sum1 + this.list_record[i].contract_cost2_price;
+    }
+  }
+
+  change(tab: number) {
+    this.tab = tab;
+  }
 
   get_financial2() {
-    this.tab = 'finance';
     this.loading = true;
     this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6777, contract_id: this.id }).subscribe(
       (res: any) => {
@@ -84,6 +97,7 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
           for (var i = 0; i < res['num']; i++) {
             this.list_record.push(res['result'][i]);
           }
+          this.get_sum2();
           this.dataSource = new MatTableDataSource(this.list_record);
           this.message(false, "", 1, this.messageService.close(1));
         }//end if
@@ -94,8 +108,19 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
     )
   }
 
+  get_sum2() {
+    this.sum2 = 0;
+    for (var i = 0; i < this.list_record.length; i++) {
+      if (this.list_record[i].finance_financial2_document == 6) {
+        this.sum2 = this.sum2 + this.list_record[i].finance_financial2_amount;
+      }
+      else if (this.list_record[i].finance_financial2_document == 7) {
+        this.sum2 = this.sum2 - this.list_record[i].finance_financial2_amount;
+      }
+    }
+  }
+
   get_sum() {
-    this.tab = 'sum';
   }
 
   get_attachment(id: number, path: string) {

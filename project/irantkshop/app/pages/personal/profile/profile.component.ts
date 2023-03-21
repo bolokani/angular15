@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../../services/server/server.service';
 import { HttpEventType } from '@angular/common/http';
+import { MessageService } from '../../services/message/message.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,51 +12,38 @@ import { HttpEventType } from '@angular/common/http';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  public loading = false;
-  user_info: any = JSON.parse(<any>localStorage.getItem('user_info'));
+  public user_info: any = JSON.parse(<any>localStorage.getItem('user_info'));
   public lang = JSON.parse(<any>localStorage.getItem('lang'));
-  user_id: number | undefined;
-  public subscription: Subscription | any;
-  public err: string | undefined; public err_validation: boolean = false;
-  public err_internet_text: string | undefined; public err_internet_validation: boolean | undefined;
   public server: any = this.serverService.get_server();
-  count_free: number = 0;
-  count_course: number = 0;
-  count_accounting: number = 0;
-  logo: string | undefined;
-  cellphone: number | undefined;
-  title: number | undefined;
-  logo_info: any | undefined;
+  public loading = false;
+  public user_id: number | undefined;
+  public subscription: Subscription | any;
+  public logo: string | undefined;
+  public cellphone: number | undefined;
+  public title: number | undefined;
+  public logo_info: any | undefined;
 
 
-  constructor(public serverService: ServerService, public router: Router, public matSnackBar: MatSnackBar) {
-    this.serverService.get_count_course().subscribe(
-      (res) => {
-        this.get_count();
-      }
-    )
-
-    this.serverService.get_user().subscribe(
-      (res) => {
-        this.get_user();
-      }
-    )
+  constructor(
+    public serverService: ServerService
+    , public router: Router
+    , public messageService: MessageService
+    , public matSnackBar: MatSnackBar) {
   }//end consructor
 
   ngOnInit() {
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
     }
-    //this.get_count();
-    //this.get_user();
+  }
 
+  go() {
+    this.router.navigate(['/profile/orders'], { queryParams: { activeTab: 1 } })
   }
 
   get_user() {
     if (this.serverService.check_internet() == false) {
-      var pe_message = "خطا در اینترنت";
-      var pe_action = "بستن";
-      this.recieve_message(true, 'Erorr in Internet', pe_message, 1, 'close', pe_action);
+      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
@@ -72,13 +60,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
           }
           this.title = res['result'][0].user_title;
           this.cellphone = res['result'][0].user_cellphone;
-
-          this.recieve_message(false, "", "", 1, "", "");
+          this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
-          var pe_message = "خطا در دریافت";
-          var pe_action = "بستن";
-          this.recieve_message(true, 'Erorr in recieve', pe_message, 1, 'close', pe_action);
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
         }
       }
     )
@@ -108,9 +93,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   save_logo() {
     if (this.serverService.check_internet() == false) {
-      var pe_message = "خطا در اینترنت";
-      var pe_action = "بستن";
-      this.recieve_message(true, 'Erorr in Internet', pe_message, 1, 'close', pe_action);
+      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
@@ -119,85 +102,21 @@ export class ProfileComponent implements OnInit, OnDestroy {
         if (res['status'] == 1) {
         }//end if
         else {
-          var pe_message = "خطا در ذخیره";
-          var pe_action = "بستن";
-          this.recieve_message(true, 'Erorr in recieve', pe_message, 1, 'close', pe_action);
+          this.message(true, this.messageService.erorr_in_save(this.lang), 1, this.messageService.close(this.lang));
         }
       }
     )
   }
-
-  /*
-  delete_logo3() {
-    if (this.serverService.check_internet() == false) {
-      var pe_message = "خطا در اینترنت";
-      var pe_action = "بستن";
-      this.recieve_message(true, 'Erorr in Internet', pe_message, 1, 'close', pe_action);
-      return;
-    }//end if
-    else { this.matSnackBar.dismiss(); }
-    this.loading = true;
-    var obj = {
-      address: 2038,
-      user_id: this.user_id,
-    }
-    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
-      (res: any) => {
-        if (res['status'] == 1) {
-          this.count_free = res['result'][0].count_free;
-          this.count_course = res['result'][0].count_course;
-          this.count_accounting = res['result'][0].count_accounting;
-          this.recieve_message(false, "", "", 1, "", "");
-        }//end if
-        else {
-          var pe_message = "خطا در دریافت";
-          var pe_action = "بستن";
-          this.recieve_message(true, 'Erorr in recieve', pe_message, 1, 'close', pe_action);
-        }
-      }
-    )
-  }
-  */
-
-  get_count() {
-    if (this.serverService.check_internet() == false) {
-      var pe_message = "خطا در اینترنت";
-      var pe_action = "بستن";
-      this.recieve_message(true, 'Erorr in Internet', pe_message, 1, 'close', pe_action);
-      return;
-    }//end if
-    else { this.matSnackBar.dismiss(); }
-    this.loading = true;
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2038, user_id: this.user_id }).subscribe(
-      (res: any) => {
-        if (res['status'] == 1) {
-          this.count_free = res['result'][0].count_free;
-          this.count_course = res['result'][0].count_course;
-          this.count_accounting = res['result'][0].count_accounting;
-          this.recieve_message(false, "", "", 1, "", "");
-        }//end if
-        else {
-          var pe_message = "خطا در دریافت";
-          var pe_action = "بستن";
-          this.recieve_message(true, 'Erorr in recieve', pe_message, 1, 'close', pe_action);
-        }
-      }
-    )
-  }
-
-
   //**************************************************
-  recieve_message(validation: boolean, en_message: string, pe_message: string, type: number, en_action: string, pe_action: string) {
-    this.err_internet_validation = false;
-    if (type == 1) this.loading = false;
+  message(validation: boolean, message: string, type: number, action: string) {
+    if (type == 1) { this.loading = false; }
     if (validation == true) {
-      if (this.lang == 1) this.matSnackBar.open(pe_message, pe_action, { duration: 5000 });
-      if (this.lang == 2) this.matSnackBar.open(en_message, en_action, { duration: 5000 });
+      this.matSnackBar.open(message, action, { duration: 5000 });
     }//end if
     else {
       //this.matSnackBar.dismiss();
     }
-  }
+  }//end 
   //*******************************************************************************
   ngOnDestroy(): void {
     if (this.subscription) {
