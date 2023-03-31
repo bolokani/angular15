@@ -4,16 +4,18 @@
             <mat-icon style="vertical-align: middle !important;">info</mat-icon>
             برای افزایش امنیت حساب کاربری خود و جلوگیری از سوءاستفاده، لطفا هویت خود را مشخص کنید
         </div>
+
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 edit_box">
+            <span (click)="open()" class="cursor">ویرایش</span>
+        </div>
+
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 box">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 info-box">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <p class="title">نام و نام خانوادگی</p>
-                            <p class="subtitle">محمد زمانی</p>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 edit_box">
-                            <mat-icon>border_color</mat-icon>
+                            <p class="subtitle">{{ user_title }}</p>
                         </div>
                     </div>
                 </div>
@@ -21,10 +23,7 @@
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <p class="title">کد ملی</p>
-                            <p class="subtitle">0077051165</p>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 edit_box">
-                            <mat-icon>border_color</mat-icon>
+                            <p class="subtitle">{{ user_code_meli }}</p>
                         </div>
                     </div>
                 </div>
@@ -32,10 +31,7 @@
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <p class="title"> شماره موبایل </p>
-                            <p class="subtitle"> 09039812978 </p>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 edit_box">
-                            <mat-icon>border_color</mat-icon>
+                            <p class="subtitle"> {{ user_cellphone }} </p>
                         </div>
                     </div>
                 </div>
@@ -43,29 +39,53 @@
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <p class="title"> ایمیل </p>
-                            <p class="subtitle"> bolokani@gmail.com </p>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 edit_box">
-                            <mat-icon>border_color</mat-icon>
+                            <p class="subtitle"> {{ user_email }} </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 info-box">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <p class="title"> تاریخ تولد </p>
-                            <p class="subtitle"> 1363/11/29 </p>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 edit_box">
-                            <mat-icon>border_color</mat-icon>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 info-box">
-                    66
-                </div>
-
             </div>
         </div>
     </div>
+
+
+    <div class="row" style="margin-top:1rem">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 box box2">
+            <div>
+                <h3>آدرس ها</h3>
+                <button class="button_address" (click)="open_address(0,1,0)">
+                    <mat-icon class="add_location">add_location</mat-icon>
+                    ثبت آدرس جدید
+                </button>
+            </div>
+            <div class="line"></div>
+            <div class="row" style="margin-top:1.5rem">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col1 cursor div_address"
+                    *ngFor="let x of list_address;let i = index">
+                    <span [matMenuTriggerFor]="menu2" class="more_vert">
+                        <mat-icon>more_vert</mat-icon>
+                    </span>
+                    <mat-menu #menu2="matMenu" xPosition="before" class="address-mat-menu-panel">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 address-action cursor"
+                                (click)="open_address(i,2,x.user_address_id)">
+                                <span class="address-action-icon update"><mat-icon>edit</mat-icon></span>
+                                ویرایش آدرس
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 address-action cursor"
+                                (click)="delete_address(i,x.user_address_id)">
+                                <span class="address-action-icon trash"><mat-icon>delete_forever</mat-icon></span>
+                                حذف آدرس
+                            </div>
+                        </div>
+                    </mat-menu>
+                    <p class="address">{{ x.user_address_address }}</p>
+                    <p class="other_address">شهر : {{ x.user_address_city }}</p>
+                    <p class="other_address">کد پستی : {{ x.user_address_code_posti }}</p>
+                    <p class="other_address">موبایل : {{ x.user_address_cellphone }}</p>
+                    <p class="other_address">تحویل گیرنده : {{ x.user_address_transferee }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

@@ -12,7 +12,7 @@
                     <ul class="ul1">
                         <ng-container *ngFor="let x of list_tab">
                             <li [ngClass]="{'activeTab':tab_id == x.invoice_status_id }"
-                                (click)="get_invoice(x.invoice_status_id)" style="min-width:7.5rem">
+                                (click)="select_tab(x.invoice_status_id)">
                                 {{ x.invoice_status_title }}
                             </li>
                         </ng-container>
@@ -33,20 +33,22 @@
                                     <div class="breakpoint">
                                         <span class="div1_span1">مبلغ
                                         </span>
-                                        <span class="div1_span2"> {{ x.amount | number }} تومان</span>
+                                        <span class="div1_span2"> {{ x.amount / 10 | number }} تومان</span>
                                     </div>
 
-                                    <div class="breakpoint">
+                                    <div class="breakpoint" *ngIf="x.discount > 0">
                                         <span class="div1_span1">تخفیف
                                         </span>
-                                        <span class="div1_span2">0 تومان</span>
+                                        <span class="div1_span2">{{ x.discount / 10 | number }}
+                                            تومان</span>
                                     </div>
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div_image ">
                                     <div class="row">
                                         <ng-container *ngFor="let y of list_orders">
-                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 div_image2"
-                                                *ngIf="x.invoice_id == y.wharehouse_order_invoice">
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 div_image2 cursor"
+                                                *ngIf="x.invoice_id == y.wharehouse_order_invoice"
+                                                (click)="open(y.wharehouse_material_id,y.wharehouse_material_title)">
                                                 <img [src]="y.logo">
                                             </div>
                                         </ng-container>

@@ -173,7 +173,7 @@ export class ShopBascketAddressComponent implements OnInit, OnDestroy {
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1 && res['num'] == 1) {
-          this.sum_all = res['result'][0].sum;
+          this.sum_all = res['result'][0].sum / 10;
           this.count = res['num'];
         }//end if
         else {

@@ -49,6 +49,7 @@ export class PersonalOrdersComponent implements OnInit, OnDestroy {
     )
   }
 
+
   get_tabs() {
     if (this.serverService.check_internet() == false) {
       this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
@@ -79,7 +80,7 @@ export class PersonalOrdersComponent implements OnInit, OnDestroy {
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
-    this.loading = true;
+    this.serverService.send_loading(true);
     var obj = {
       address: 2053
       , user_id: this.user_id
@@ -95,20 +96,37 @@ export class PersonalOrdersComponent implements OnInit, OnDestroy {
               tracking_code: res['result'][i].wharehouse_invoice_tracking_code,
               amount: res['result'][i].wharehouse_invoice_sum,
               invoice_id: res['result'][i].wharehouse_invoice_id,
-              discount: 0
+              discount: res['result'][i].discount
             })
           }
-          this.get_orders_current();
+          this.get_orders_current(status);
+          this.serverService.send_loading(false);
         }//end if
         else {
+          this.serverService.send_loading(false);
           this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
         }
       }
     )
   }
 
-  get_orders_current() {
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2056, user_id: this.user_id }).subscribe(
+  open(id: number, title: string) {
+    var title1 = "";
+    var title_arr = title.split(" ");
+    for (var i = 0; i < title_arr.length; i++) {
+      title1 += title_arr[i];
+      title1 += "-";
+    }
+    this.router.navigate(['/product-' + id, title1]);
+  }
+
+  get_orders_current(status: number) {
+    var obj = {
+      address: 2056
+      , user_id: this.user_id
+      , status: status
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         this.list_orders = [];
         if (res['status'] == 1) {
@@ -129,7 +147,7 @@ export class PersonalOrdersComponent implements OnInit, OnDestroy {
     )
   }
 
-  select_tab(tab: string) {
+  select_tab(tab: number) {
     this.router.navigate(['/profile/orders'], { queryParams: { activeTab: tab } })
   }
   //**************************************************

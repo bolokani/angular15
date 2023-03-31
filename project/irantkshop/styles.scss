@@ -11,6 +11,11 @@
 
 
 @font-face {
+  font-family: yekan;
+  src: url(./assets/fonts/Qs_Iranyekan.ttf);
+}
+
+@font-face {
   font-family: irsans;
   src: url(./assets/fonts/irsans.ttf);
   font-display: block;
@@ -26,15 +31,27 @@ html {
   scroll-behavior: auto !important;
 }
 
+.fright {
+  float: right;
+}
+
+.fleft {
+  float: left;
+}
 
 *:not(i) {
   font-family: irsans2 !important;
+  letter-spacing: normal !important;
 }
 
 .material-icons {
   font-family: 'Material Icons' !important;
   ;
   vertical-align: bottom !important
+}
+
+.ltr {
+  direction: ltr;
 }
 
 html {
@@ -938,11 +955,25 @@ img {
   padding-bottom: 1rem;
 }
 
+.address-mat-menu-panel {
+  height: 6rem;
+  padding-top: 0.5rem !important;
+  min-width: 15rem !important;
+}
+
 
 @media only screen and (max-width: 576px) {
   .product-list-div2 {
     margin-top: -13rem;
     padding: 0 0rem !important;
+  }
+
+  .mdc-dialog .mdc-dialog__content {
+    padding: 20px 10px 20px 10px !important
+  }
+
+  .container-fluid {
+    padding: 0px !important
   }
 
   .product-list-div3 {

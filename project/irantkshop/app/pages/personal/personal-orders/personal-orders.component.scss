@@ -1,12 +1,12 @@
 .box {
-    border: solid 1px #f1f2f4;
+    border: solid 1px #e0e0e6;
     min-height: 30rem;
     border-radius: 1rem;
 }
 
 .info-box {
-    border-left: solid 1px #f1f2f4;
-    border-bottom: solid 1px #f1f2f4;
+    border-left: solid 1px #e0e0e6;
+    border-bottom: solid 1px #e0e0e6;
     min-height: 5rem;
     padding: 1rem !important;
 }
@@ -42,6 +42,7 @@
 
 .div_image2 {
     margin-left: 1rem;
+    border: solid 1px #e0e0e6;
 }
 
 .breakpoint {
@@ -55,7 +56,7 @@
 
 .box2 {
     margin: 1rem;
-    border: solid 1px #f1f2f4;
+    border: solid 1px #e0e0e6;
     min-height: 19rem;
     border-radius: 1rem;
 }
@@ -88,7 +89,7 @@ h3 {
     display: inline-block;
     cursor: pointer;
     height: 2.2rem;
-    width: 5.5rem;
+    margin-left: 1.2rem
 }
 
 .activeTab {
@@ -137,7 +138,7 @@ h3 {
 }
 
 .alarm_box {
-    border: solid 1px #f1f2f4;
+    border: solid 1px #e0e0e6;
     min-height: 2rem;
     border-radius: 0.5rem;
     color: #f57f17;

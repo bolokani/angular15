@@ -16,6 +16,8 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
   public server: any = this.serverService.get_server();
   public loading = false;
   public current: number = 0;
+  public deliveried: number = 0;
+  public returned: number = 0;
   public user_id: number | undefined;
   public subscription: Subscription;
   public list_goods: any = [];
@@ -30,6 +32,8 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
       this.user_id = this.user_info.user_id;
       this.get_special_goods();
       this.get_count_current();
+      this.get_count_deliveried();
+      this.get_count_returned();
     } else {
       this.router.navigate(['/login']);
     }
@@ -71,6 +75,36 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
       }
     )
   }
+
+  get_count_deliveried() {
+    var obj = { address: 2067, user_id: this.user_id }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          this.deliveried = res['count'];
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_count_returned() {
+    var obj = { address: 2068, user_id: this.user_id }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          this.returned = res['count'];
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+
 
   go_to_tab(tab: number) {
     this.router.navigate(['/profile/orders'], { queryParams: { activeTab: tab } })

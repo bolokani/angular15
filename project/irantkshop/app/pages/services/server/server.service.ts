@@ -23,7 +23,7 @@ export class ServerService {
   public sb_bascket = new Subject<any>();
   public sb_format_date = new Subject<any>();
   public sb_logo = new Subject<any>();
-  public sb_count_course = new Subject<any>();
+  public sb_loading = new Subject<any>();
   public sb_user = new Subject<any>();
   public sb_mat_drawer = new Subject<any>();
   public sb_stepper_index = new Subject<any>();
@@ -227,12 +227,12 @@ export class ServerService {
     return this.sb_bascket.asObservable();
   }
   //********************************************************  */
-  send_count_course(): void {
-    this.sb_count_course.next(null);
+  send_loading(value: boolean): void {
+    this.sb_loading.next(value);
   }//end send_username
 
-  get_count_course(): Observable<any> {
-    return this.sb_count_course.asObservable();
+  get_loading(): Observable<any> {
+    return this.sb_loading.asObservable();
   }
   //********************************************************  */
   send_logo(value: any): void {

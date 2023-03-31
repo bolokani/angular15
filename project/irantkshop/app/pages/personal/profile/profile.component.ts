@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public user_info: any = JSON.parse(<any>localStorage.getItem('user_info'));
   public lang = JSON.parse(<any>localStorage.getItem('lang'));
   public server: any = this.serverService.get_server();
-  public loading = false;
+  public loading: boolean = false;
   public user_id: number | undefined;
   public subscription: Subscription | any;
   public logo: string | undefined;
@@ -29,6 +29,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
     , public router: Router
     , public messageService: MessageService
     , public matSnackBar: MatSnackBar) {
+
+    this.serverService.get_loading().subscribe(
+      (res) => {
+        this.loading = res;
+      }
+    )
   }//end consructor
 
   ngOnInit() {

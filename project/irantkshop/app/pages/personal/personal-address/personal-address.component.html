@@ -1,0 +1,76 @@
+<div class="div_loading">
+    <div class="my-container" [hidden]="!loading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+</div>
+
+<form [formGroup]="form1" (ngSubmit)="save()">
+    <div mat-dialog-content>
+        <div class="row" style="margin-bottom: 1rem;">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="title">
+                    <span *ngIf="type_task == 1">ثبت آدرس جدید</span>
+                    <span *ngIf="type_task == 2">ویرایش آدرس</span>
+                    <span class="fleft cursor" (click)="close()"><mat-icon>close</mat-icon></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 div1">
+                <label for="title">
+                    <span class="label">استان / شهرستان</span>
+                    <span><mat-icon class="star">star</mat-icon></span>
+                    <input class='input' formControlName='city' autocomplete="off" required>
+                </label>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 div1">
+                <label for="code_meli">
+                    <span class="label"> کد پستی </span>
+                    <input class='input' formControlName='code_posti' autocomplete="off" length="10" minlength="10"
+                        maxlength="10" (keypress)="serverService.get_number($event)">
+                </label>
+            </div>
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                <label for="email">
+                    <span class="label">آدرس کامل</span>
+                    <span><mat-icon class="star">star</mat-icon></span>
+                    <input class='input' formControlName='address' autocomplete="off" required>
+                </label>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 div1">
+                <label for="email">
+                    <span class="label"> عنوان (تحویل گیرنده)</span>
+                    <span><mat-icon class="star">star</mat-icon></span>
+                    <input class='input' formControlName='transferee' autocomplete="off" required>
+                </label>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 div1">
+                <label for="email">
+                    <span class="label"> موبایل (تحویل گیرنده)</span>
+                    <span><mat-icon class="star">star</mat-icon></span>
+                    <input class='input ltr' formControlName='cellphone' autocomplete="off"
+                        (keypress)="serverService.get_number($event)" length="11" minlength="11" maxlength="11"
+                        required>
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
+                <label style='text-align:center;width:auto'>
+                    <button type="submit" class="btn cursor" [disabled]="!form1.valid || loading">
+                        <span *ngIf="type_task == 2">ویرایش اطلاعات</span>
+                        <span *ngIf="type_task == 1">ذخیره اطلاعات</span>
+                        <div class="spinner-border spinner-border-sm" role="status" [hidden]="!loading">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </button>
+                </label>
+            </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
+        </div>
+    </div>
+</form>

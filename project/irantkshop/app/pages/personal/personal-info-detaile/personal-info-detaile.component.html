@@ -1,0 +1,69 @@
+<div class="div_loading">
+    <div class="my-container" [hidden]="!loading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+</div>
+
+<form [formGroup]="update_form1" (ngSubmit)="save()">
+    <div mat-dialog-content>
+        <div class="row" style="margin-bottom: 1rem;">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="title">
+                    <span>ثبت اطلاعات شناسایی</span>
+                    <span class="fleft cursor" (click)="close()"><mat-icon>close</mat-icon></span>
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                لطفا اطلاعات شناسایی خود را وارد کنید. نام و نام خانوادگی شما باید با اطلاعاتی که وارد می‌کنید همخوانی
+                داشته
+                باشند.
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 div1">
+                <label for="title">
+                    <span class="label">نام و نام خانوادگی</span>
+                    <span><mat-icon class="star">star</mat-icon></span>
+                    <input class='input' formControlName='name' autocomplete="off" required>
+                </label>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 div1">
+                <label for="code_meli">
+                    <span class="label"> کد ملی </span>
+                    <input class='input' formControlName='code_meli' autocomplete="off" length="10" minlength="10"
+                        maxlength="10" (keypress)="serverService.get_number($event)">
+                </label>
+            </div>
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-6 div1">
+                <label for="email">
+                    <span class="label"> ایمیل</span>
+                    <input class='input ltr' formControlName='email' autocomplete="off">
+                </label>
+            </div>
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-6 div1">
+                <label for="cellphone">
+                    <span class="label"> شماره موبایل
+                        (غیر قابل ویرایش)
+                    </span>
+                    <input class='input' formControlName='cellphone' autocomplete="off" readonly>
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
+                <label style='text-align:center;width:auto'>
+                    <button type="submit" class="btn cursor" [disabled]="!update_form1.valid || loading">
+                        <span>ویرایش اطلاعات</span>
+                        <div class="spinner-border spinner-border-sm" role="status" [hidden]="!loading">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </button>
+                </label>
+            </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
+        </div>
+    </div>
+</form>
