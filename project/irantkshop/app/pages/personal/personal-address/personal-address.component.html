@@ -52,7 +52,7 @@
                 <label for="email">
                     <span class="label"> موبایل (تحویل گیرنده)</span>
                     <span><mat-icon class="star">star</mat-icon></span>
-                    <input class='input ltr' formControlName='cellphone' autocomplete="off"
+                    <input class='input' formControlName='cellphone' autocomplete="off"
                         (keypress)="serverService.get_number($event)" length="11" minlength="11" maxlength="11"
                         required>
                 </label>

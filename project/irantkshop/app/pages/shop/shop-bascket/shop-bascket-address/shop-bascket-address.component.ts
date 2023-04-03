@@ -5,9 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ServerService } from '../../../services/server/server.service';
 import { MessageService } from '../../../services/message/message.service';
-//import { PersonalChangeProfileComponent } from '../../../personal/personal-change-profile/personal-change-profile.component';
-
-
+import { ShopBascketSelectAddressComponent } from '../shop-bascket-select-address/shop-bascket-select-address.component';
 
 @Component({
   selector: 'app-shop-bascket-address',
@@ -38,6 +36,11 @@ export class ShopBascketAddressComponent implements OnInit, OnDestroy {
   public invoice_date: string;
   public tracking_code: string;
   public count: number;
+  public transferee: string;
+  public address: string;
+  public address_id: string;
+  public city: string;
+  public code_posti: number;
 
   constructor(
     public serverService: ServerService
@@ -72,6 +75,7 @@ export class ShopBascketAddressComponent implements OnInit, OnDestroy {
         (res: any) => {
           if (res['status'] == 1 && res['num'] == 1) {
             this.check_invoice();
+            this.get_address();
             this.get_bascket();
           }//end if
           else {
@@ -81,6 +85,53 @@ export class ShopBascketAddressComponent implements OnInit, OnDestroy {
       )
     }
   }//end get_user
+
+  get_address() {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    this.loading = true;
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2077, user_id: this.user_id }).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.transferee = res['result'][0].user_address_transferee;
+            this.cellphone = res['result'][0].user_address_cellphone;
+            this.address = res['result'][0].user_address_address;
+            this.city = res['result'][0].user_address_city;
+            this.code_posti = res['result'][0].user_address_code_posti;
+            this.address_id = res['result'][0].user_address_id;
+          }
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  select_address() {
+    const dialogRef = this.dialog.open(ShopBascketSelectAddressComponent, {
+      width: '50rem',
+      height: 'auto',
+      data: { address_id: this.address_id }
+    });
+    dialogRef.afterClosed().subscribe(
+      (res) => {
+        if (res) {
+          this.transferee = res.user_address_transferee;
+          this.cellphone = res.user_address_cellphone;
+          this.address = res.user_address_address;
+          this.city = res.user_address_city;
+          this.code_posti = res.user_address_code_posti;
+          this.address_id = res.user_address_id;
+        }
+      }
+    )
+  }
 
   check_invoice(): any {
     var obj = {
@@ -187,6 +238,11 @@ export class ShopBascketAddressComponent implements OnInit, OnDestroy {
     if (!this.user_id) {
       this.router.navigate(['/login']);
     }
+    if (!this.address_id) {
+      var pe_message = "لطفا آدرس تحویل گیرنده را مشخص نمائید.";
+      this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
+      return false;
+    }
     var obj = {
       address: 2013,
       user_id: this.user_id,
@@ -201,7 +257,7 @@ export class ShopBascketAddressComponent implements OnInit, OnDestroy {
             return false;
           }
           else {
-            this.router.navigate(['/shopping', 'tracking']);
+            this.router.navigate(['/shopping', 'tracking'], { queryParams: { address: this.address_id } });
           }//end else
         }//end if
         else {

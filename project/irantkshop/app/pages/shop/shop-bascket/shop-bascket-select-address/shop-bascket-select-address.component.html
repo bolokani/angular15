@@ -1,0 +1,47 @@
+<div class="div_loading">
+    <div class="my-container" [hidden]="!loading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+</div>
+
+
+<div mat-dialog-content>
+    <div class="row" style="margin-top:1rem">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h3 class="title">انتخاب آدرس</h3>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 right title" style="padding-top:1rem">
+                    <span class="button_address cursor" (click)="open_address(0,1,0)">
+                        ثبت آدرس جدید
+                    </span>
+                    <mat-icon class="icon1">arrow_back_ios</mat-icon>
+                </div>
+            </div>
+
+
+
+            <div class="line"></div>
+            <div class="row" style="margin-top:1.5rem">
+                <mat-radio-group style="padding:0px !important" [(ngModel)]="address" (change)="select_address()">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col1 cursor div_address"
+                        *ngFor="let x of list_address;let i = index">
+                        <p class="address">
+                            <span><mat-radio-button [value]="x.user_address_id"></mat-radio-button></span>
+                            {{ x.user_address_address }}
+                        </p>
+                        <p class="other_address">شهر : {{ x.user_address_city }}</p>
+                        <p class="other_address">کد پستی : {{ x.user_address_code_posti }}</p>
+                        <p class="other_address">موبایل : {{ x.user_address_cellphone }}</p>
+                        <p class="other_address">تحویل گیرنده : {{ x.user_address_transferee }}</p>
+                        <p class="update">
+                            <span (click)="open_address(i,2,x.user_address_id)">ویرایش</span>
+                            <mat-icon class="icon2">arrow_back_ios</mat-icon>
+                        </p>
+                    </div>
+                </mat-radio-group>
+            </div>
+        </div>
+    </div>
+</div>

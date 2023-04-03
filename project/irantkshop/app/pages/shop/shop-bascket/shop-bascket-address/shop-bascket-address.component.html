@@ -5,7 +5,7 @@
             در صورت تمایل می‌توانید اینترنتی پرداخت کنید
          </div>
          <div class='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 shop-address-div'>
-            <div class="shop-address-div-items">
+            <div class="shop-address-div-items cellphone">
                کد پیگیری سفارش
                <span class="answer">{{ invoice_id }}</span>
             </div>
@@ -16,26 +16,38 @@
          </div>
 
          <div class='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 shop-address-div'>
-            <div class="shop-address-div-items">
-               تحویل گیرنده
-               <span class="answer">--</span>
+            <div class="row" style="margin-bottom:1rem">
+               <div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6'>
+                  آدرس تحویل سفارش
+               </div>
+               <div class='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 left select_address'>
+                  <span class="cursor" (click)="select_address()">انتخاب آدرس</span>
+               </div>
             </div>
-            <div class="shop-address-div-items">
+            <div class="shop-address-div-items cellphone">
+               تحویل گیرنده
+               <span class="answer">{{ transferee }}</span>
+            </div>
+            <div class="shop-address-div-items cellphone shop-address-div-items">
                شماره موبایل
-               <span class="answer">---</span>
+               <span class="answer">{{ cellphone }}</span>
+            </div>
+            <div class="shop-address-div-items cellphones shop-address-div-items">
+               کد پستی
+               <span class="answer">{{ code_posti }}</span>
             </div>
             <div class="shop-address-div-items shop-address-div-items2">
                آدرس
-               <span class="answer">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span>
+               <span class="answer">{{ city }} {{ address }}</span>
             </div>
          </div>
 
          <div class='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 shop-address-div'>
-            <div class="shop-address-div-items">
+            <div class="shop-address-div-items cellphone">
                مبلغ
                <span class="answer"> {{ sum_all | number }} تومان</span>
             </div>
-            <div class="shop-address-div-items">
+            <div class="shop-address-div-items cellphone">
                <span class="answer"> پرداخت در محل (با کارت بانکی)</span>
             </div>
             <div class="shop-address-div-items shop-address-div-items2">
@@ -45,17 +57,13 @@
          </div>
 
          <div class='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 shop-address-div'>
-            <div class="shop-address-div-items">
+            <div class="shop-address-div-items cellphone">
                ارسال
                <span class="answer">عادی</span>
             </div>
-            <div class="shop-address-div-items">
+            <div class="shop-address-div-items cellphone">
                زمان تحویل
                <span class="answer">چهار‌شنبه ۵ بهمن بازه ۹ - ۱۲</span>
-            </div>
-            <div class="shop-address-div-items shop-address-div-items2 shop-address-div-items3  ">
-               این کد را هنگام دریافت مرسوله، به مامور ارسال اعلام کنید
-               <span class="answer" style="float: left;">کد تحویل مرسوله: {{ tracking_code }}</span>
             </div>
          </div>
       </div><!-- row -->

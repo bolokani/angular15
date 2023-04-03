@@ -360,7 +360,9 @@ mark {
   color: #fff
 }
 
-
+.mat-mdc-radio-button .mdc-radio {
+  padding: 0px !important
+}
 
 /* -------------------------------------------------------------------------------------------- */
 button[disabled] {
@@ -369,6 +371,10 @@ button[disabled] {
 
 .left {
   text-align: left;
+}
+
+.right {
+  text-align: right;
 }
 
 /* -------------------------------------------------------------------------------------------- */
@@ -960,6 +966,9 @@ img {
   padding-top: 0.5rem !important;
   min-width: 15rem !important;
 }
+
+
+
 
 
 @media only screen and (max-width: 576px) {

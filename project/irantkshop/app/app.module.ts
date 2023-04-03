@@ -60,6 +60,7 @@ import { PersonalInfoComponent } from './pages/personal/personal-info/personal-i
 import { PersonalOrdersComponent } from './pages/personal/personal-orders/personal-orders.component';
 import { PersonalInfoDetaileComponent } from './pages/personal/personal-info-detaile/personal-info-detaile.component';
 import { PersonalAddressComponent } from './pages/personal/personal-address/personal-address.component';
+import { ShopBascketSelectAddressComponent } from './pages/shop/shop-bascket/shop-bascket-select-address/shop-bascket-select-address.component';
 
 /*
 import { ShopCartComponent } from './pages/shop/shop-bascket/shop-cart/shop-cart.component';
@@ -110,7 +111,7 @@ const routes: Routes = [
     Header2Component,
     Page404Component, ShopBascketPegiriComponent, ShopBascketAddressComponent,
     HeaderBascketComponent, AllGoodsListComponent, AllGoodsDetaileComponent, AllGoodsDetaileImagesComponent
-    , ShopProductComponent, ShopProductDetaileComponent, ShopOrderComponent, ShopStepperComponent, Home2Component, ProfileMenuComponent, AllGoodsGroupComponent, ContentDetaileComponent, QuestionComponent, ProfileComponent, PersonalHomeComponent, PersonalInfoComponent, PersonalOrdersComponent, PersonalInfoDetaileComponent, PersonalAddressComponent
+    , ShopProductComponent, ShopProductDetaileComponent, ShopOrderComponent, ShopStepperComponent, Home2Component, ProfileMenuComponent, AllGoodsGroupComponent, ContentDetaileComponent, QuestionComponent, ProfileComponent, PersonalHomeComponent, PersonalInfoComponent, PersonalOrdersComponent, PersonalInfoDetaileComponent, PersonalAddressComponent, ShopBascketSelectAddressComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })

@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../../../services/server/server.service';
 import { MessageService } from '../../../services/message/message.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shop-bascket-pegiri',
@@ -25,14 +25,21 @@ export class ShopBascketPegiriComponent implements OnInit, OnDestroy {
   public invoice_date: string;
   public tracking_code: string;
   public count: number;
+  public address_id: number;
 
   constructor(
     public serverService: ServerService
     , public router: Router
+    , public activatedRoute: ActivatedRoute
     , public matSnackBar: MatSnackBar
     , public messageService: MessageService) { }//end consructor
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(
+      (params: Params) => {
+        this.address_id = params['address'];
+      }
+    )
     this.serverService.send_stepper_index(2);
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
@@ -112,7 +119,7 @@ export class ShopBascketPegiriComponent implements OnInit, OnDestroy {
   }//end get_invoice
 
   update_invoice_3_to_2(invoice_id: number) {
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2014, invoice_id: invoice_id }).subscribe(
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2014, invoice_id: invoice_id, address_id: this.address_id }).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
           this.update_orders_1_to_4(invoice_id);
