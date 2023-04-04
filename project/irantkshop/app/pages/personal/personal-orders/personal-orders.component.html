@@ -55,8 +55,14 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div_invoice_button">
-                                    <mat-icon style="vertical-align: middle !important;">web_stories</mat-icon>
-                                    مشاهده فاکتور
+                                    <span (click)="detaile(x.invoice_id)">
+                                        جزئیات خرید
+                                    </span>
+
+                                    <span style="margin-right:1rem">
+                                        مشاهده فاکتور
+                                    </span>
+
                                 </div>
                             </div>
                             <div class="row" *ngIf="list_invoice.length == 0">

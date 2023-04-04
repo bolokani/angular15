@@ -73,6 +73,11 @@ export class PersonalOrdersComponent implements OnInit, OnDestroy {
     )
   }
 
+  detaile(id: number) {
+    this.router.navigate(['/profile/orders-detaile/', id], { queryParams: { activeTab: this.activeTab } });
+  }
+
+
   get_invoice(status: number) {
     this.tab_id = status;
     if (this.serverService.check_internet() == false) {
