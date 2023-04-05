@@ -59,10 +59,11 @@
                                         جزئیات خرید
                                     </span>
 
-                                    <span style="margin-right:1rem">
-                                        مشاهده فاکتور
-                                    </span>
-
+                                    <a href="/orders-invoice/{{ x.invoice_id }}" target="_blank">
+                                        <span style="margin-right:1rem">
+                                            مشاهده فاکتور
+                                        </span>
+                                    </a>
                                 </div>
                             </div>
                             <div class="row" *ngIf="list_invoice.length == 0">

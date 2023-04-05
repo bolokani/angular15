@@ -62,6 +62,7 @@ import { PersonalInfoDetaileComponent } from './pages/personal/personal-info-det
 import { PersonalAddressComponent } from './pages/personal/personal-address/personal-address.component';
 import { ShopBascketSelectAddressComponent } from './pages/shop/shop-bascket/shop-bascket-select-address/shop-bascket-select-address.component';
 import { PersonalOrdersDetaileComponent } from './pages/personal/personal-orders-detaile/personal-orders-detaile.component';
+import { PersonalOrdersInvoiceComponent } from './pages/personal/personal-orders-invoice/personal-orders-invoice.component';
 
 /*
 import { ShopCartComponent } from './pages/shop/shop-bascket/shop-cart/shop-cart.component';
@@ -72,6 +73,7 @@ import { ShopSuppliersComponent } from './pages/shop/shop-suppliers/shop-supplie
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'orders-invoice/:id', component: PersonalOrdersInvoiceComponent },
   {
     path: "", component: HomeComponent, children: [
       { path: "", component: Home2Component },
@@ -113,7 +115,7 @@ const routes: Routes = [
     Header2Component,
     Page404Component, ShopBascketPegiriComponent, ShopBascketAddressComponent,
     HeaderBascketComponent, AllGoodsListComponent, AllGoodsDetaileComponent, AllGoodsDetaileImagesComponent
-    , ShopProductComponent, ShopProductDetaileComponent, ShopOrderComponent, ShopStepperComponent, Home2Component, ProfileMenuComponent, AllGoodsGroupComponent, ContentDetaileComponent, QuestionComponent, ProfileComponent, PersonalHomeComponent, PersonalInfoComponent, PersonalOrdersComponent, PersonalInfoDetaileComponent, PersonalAddressComponent, ShopBascketSelectAddressComponent, PersonalOrdersDetaileComponent
+    , ShopProductComponent, ShopProductDetaileComponent, ShopOrderComponent, ShopStepperComponent, Home2Component, ProfileMenuComponent, AllGoodsGroupComponent, ContentDetaileComponent, QuestionComponent, ProfileComponent, PersonalHomeComponent, PersonalInfoComponent, PersonalOrdersComponent, PersonalInfoDetaileComponent, PersonalAddressComponent, ShopBascketSelectAddressComponent, PersonalOrdersDetaileComponent, PersonalOrdersInvoiceComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })

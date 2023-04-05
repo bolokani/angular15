@@ -26,6 +26,10 @@ export class PersonalOrdersDetaileComponent implements OnInit, OnDestroy {
   public user_email: String;
   public list_address: any = [];
   public activeTab: number;
+  public invoice_id: number = 0;
+  public list_invoice: any = [];
+  public list_invoice_list: any = [];
+  public count: number = 0;
 
   constructor(
     public serverService: ServerService
@@ -39,6 +43,11 @@ export class PersonalOrdersDetaileComponent implements OnInit, OnDestroy {
     this.activatedRoute.queryParams.subscribe(
       (params) => {
         this.activeTab = params['activeTab'];
+      }
+    )
+    this.activatedRoute.params.subscribe(
+      (params) => {
+        this.invoice_id = params['id'];
       }
     )
 
@@ -55,25 +64,74 @@ export class PersonalOrdersDetaileComponent implements OnInit, OnDestroy {
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
-    this.loading = true;
+    this.serverService.send_loading(true);
     this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2069, user_id: this.user_id }).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
           if (res['num'] == 1) {
-            this.user_title = res['result'][0].user_title;
-            this.user_code_meli = res['result'][0].user_code_meli;
-            this.user_cellphone = res['result'][0].user_cellphone;
-            this.user_email = res['result'][0].user_email;
+            this.get_invoice();
           } else {
             this.router.navigate(['/login']);
           }
-          this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
           this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
         }
       }
     )
+  }
+
+
+  get_invoice() {
+    var obj = { address: 2081, user_id: this.user_id, invoice_id: this.invoice_id }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.list_invoice.push(res['result'][0]);
+            this.get_material();
+          } else {
+            this.router.navigate(['/login']);
+          }
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_material() {
+    var obj = { address: 2082, user_id: this.user_id, invoice_id: this.invoice_id }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          this.count = res['num'];
+          for (var i = 0; i < res['num']; i++) {
+            if (res['result'][i].wharehouse_material_logo) {
+              res['result'][i].logo = res['result'][i].wharehouse_material_site_logo + "/" + res['result'][i].wharehouse_material_logo;
+            } else {
+              res['result'][i].logo = this.serverService.get_default_image();
+            }
+            this.list_invoice_list.push(res['result'][i]);
+          }
+          this.serverService.send_loading(false);
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  go_to_material(id: number, title: string) {
+    var title1 = "";
+    var title_arr = title.split(" ");
+    for (var i = 0; i < title_arr.length; i++) {
+      title1 += title_arr[i];
+      title1 += "-";
+    }
+    this.router.navigate(['/product-' + id, title1]);
   }
 
 
