@@ -3,7 +3,7 @@
 }
 
 .bg-primary {
-  background: #26396A !important;
+  background: #002060 !important;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -58,7 +58,13 @@
 
 }
 
-
+.vorod {
+  height: 4.5rem;
+  float: left;
+  position: absolute;
+  color: #fff;
+  left: 2rem;
+}
 
 @media screen and (max-width: 570px) {
   .nav1 {

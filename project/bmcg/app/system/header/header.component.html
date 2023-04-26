@@ -7,13 +7,13 @@
     <div class="povo-mobile-nav mean-container">
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary nav1" style="height: 4.5rem;">
-        <!--        
-        <div *ngIf="logo">
+
+        <div>
             <a [routerLink]="['/']">
-                <img src="{{ logo }}" style="max-width:10rem" title="پیک آنلاین" alt="پیک آنلاین">
+                <img src="../../../assets/img/logo1.png" style="max-width:18rem" title="" alt="">
             </a>
         </div>
-        -->
+
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,13 @@
 
                 <li class="nav-item" style="height: 4.5rem;" [routerLink]="['/']">
                     <a class="nav-link" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
-                        صفحه اصلی
+                        خانه
+                    </a>
+                </li>
+
+                <li class="nav-item" style="height: 4.5rem;" [routerLink]="['/contact','-']">
+                    <a class="nav-link" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
+                        درباره ما
                     </a>
                 </li>
 
@@ -34,13 +40,11 @@
                         تماس با ما
                     </a>
                 </li>
-
-                <li class="nav-item" style="height: 4.5rem;" [routerLink]="['/login']" *ngIf="status != 1 ">
-                    <a class="nav-link" role="button">
-                        ورود
-                    </a>
-                </li>
             </ul>
+            <div class="nav-item vorod" style="height: 4.5rem;padding-top:1rem" [routerLink]="['/login']"
+                *ngIf="status != 1 ">
+                ورود
+            </div>
         </div>
     </nav>
 

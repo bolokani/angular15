@@ -1,49 +1,41 @@
-<div class="container-fluid detaile-fluid3" style="padding:0.1rem 0 !important">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-xl-2 col-lg-2 col-md-2 col-lg-2 col-xs-12 sidebar1 detaile-box2">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-lg-12 col-xs-12 sidebar1">
-                <div class="header">
-                    <img class="pointer" [src]="logo" (click)="logos.click()">
-                    <input type="file" (change)="change_avater3($event)" accept="image/*" style="display: none;" #logos>
-                    <div class="clear"></div>
-                    <div class="name">{{ title }}</div>
-                    <div class="mobile">{{ cellphone }}</div>
-                </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-lg-12 col-xs-12 sidebar1">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 header">
+            واردات انواع کامیون های اروپایی ولوو،داف و رنو
+        </div>
+    </div>
+</div>
 
-                <div class="menue">
-                    <ul>
-                        <li routerLinkActive="active" class="cursor">
-                            <a [routerLink]="['/home/profile']">
-                                <i class="fa fa-user"></i>
-                                <span class="nav-label">پنل کاربری من</span>
-                            </a>
+<div class="container">
+    <div class="row" style="padding:3rem 12rem">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 div-img">
+            <img src="../../../assets/img/volvo.png" class="img1">
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 div-img div-img2">
+            <img src="../../../assets/img/daf.png" class="img2">
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs div-img">
+            <img src="../../../assets/img/renault.png" class="img3">
+        </div>
+    </div>
+</div>
 
-                        </li>
-                        <li routerLinkActive="active" class="cursor">
-                            <a [routerLink]="['/home/contract']">
-                                <i class="fa fa-graduation-cap"></i>
-                                <span class="nav-label">
-                                    قراردادهای من
-                                </span>
-                            </a>
-                        </li>
-                        <li (click)="serverService.signout()" class="cursor">
-                            <a>
-                                <i class="fa fa-bank"></i>
-                                <span class="nav-label">خروج</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div><!-- ----------------------------------------------------------------- -->
+<div class="container">
+    <div class="row" style="padding-bottom:3rem">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div-img"
+            style="border:solid 1px #ccc;min-height: 15rem;">
 
         </div>
-        <!-- ************************************************************************************************************* -->
-        <div class="col-xl-10 col-lg-10 col-md-10 col-lg-10 col-xs-12 content1">
-            <router-outlet>
-            </router-outlet>
-        </div><!-- col-xl-9 col-lg-9 col-md-9 col-lg-9 col-xs-12 content1 -->
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 tabs tab1">
+            حقوق گمرکی
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 tabs tab2">
+            برآورد هرینه
+        </div>
     </div>
 </div>
