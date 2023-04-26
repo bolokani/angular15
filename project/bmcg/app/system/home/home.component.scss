@@ -1,4 +1,14 @@
-@media only screen and (max-width: 576px) {}
+@media only screen and (max-width: 576px) {
+    .td {
+        width: 70% !important
+    }
+
+}
+
+
+.td {
+    width: 50%
+}
 
 .header {
     font-size: 2.2rem;
@@ -7,6 +17,29 @@
     font-weight: 550;
     text-align: center;
     word-spacing: -4px;
+}
+
+.search-label {
+    background-color: #c9ddc1;
+    height: 2.5rem;
+    text-align: center;
+    padding-top: 0.6rem;
+    font-weight: bold;
+}
+
+.search-box {
+    padding: 0px !important;
+    border: solid 1px #000
+}
+
+.div_search_button {
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.search_button1 {
+    color: #002060;
+    font-size: 2rem;
 }
 
 .img1 {

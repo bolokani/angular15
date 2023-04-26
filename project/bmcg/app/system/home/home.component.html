@@ -35,7 +35,83 @@
             حقوق گمرکی
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 tabs tab2">
-            برآورد هرینه
+            برآورد هزینه
         </div>
     </div>
 </div>
+
+<form [formGroup]="form1">
+    <div class="container">
+        <div class="row" style="direction: ltr !important;margin-top: 4rem !important;">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 search-box">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search-label">
+                    سال
+                </div>
+                <select style="width:100%" class="form-control" formControlName="year">
+                    <option></option>
+                    <option *ngFor="let x of list_year" [value]="x.site_year_id">
+                        {{ x.site_year_title }}
+                    </option>
+                </select>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 search-box">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search-label">
+                    تیپ
+                </div>
+                <select style="width:100%" class="form-control" formControlName="tip">
+                    <option></option>
+                    <option *ngFor="let x of list_tip" [value]="x.site_tip_id">
+                        {{ x.site_tip_title }}
+                    </option>
+                </select>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 search-box">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search-label">
+                    برند
+                </div>
+                <select style="width:100%" class="form-control" formControlName="brand" (change)="get_tip()">
+                    <option></option>
+                    <option *ngFor="let x of list_brand" [value]="x.site_brand_id">
+                        {{ x.site_brand_title }}
+                    </option>
+                </select>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div_search_button">
+                <span class="search_button1 cursor" (click)="get_customs()">تایید</span>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <table class="table table-bordered" style="direction: rtl;">
+                <tr>
+                    <td class="center td">شرح کالا</td>
+                    <td class="center">{{ brand_title }} {{ tip_title }} {{ year_title }}</td>
+                </tr>
+                <tr>
+                    <td class="center">نرخ یورو گمرکی (ریال)</td>
+                    <td class="center"></td>
+                </tr>
+                <tr>
+                    <td class="center">آخرین بروزرسانی</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="center">جمع حقوق گمرکی (ریال)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="center">2% مالیات علی الحساب (ریال) </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<br><br><br><br><br><br><br>

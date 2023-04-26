@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { from, Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../services/server/server.service';
-import { HttpEventType } from '@angular/common/http';
 import { MessageService } from '../services/message/message.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +23,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   public title: number | undefined;
   public logo_info: any | undefined;
   public token: number;
+  public list_brand: any = [];
+  public list_tip: any = [];
+  public list_year: any = [];
+  public form1: FormGroup;
+  public brand_title: string | undefined;
+  public tip_title: string | undefined;
+  public year_title: string | undefined;
 
   constructor(
     public serverService: ServerService
@@ -30,56 +37,88 @@ export class HomeComponent implements OnInit, OnDestroy {
     , public messageService: MessageService
     , public activatedRoute: ActivatedRoute
     , public matSnackBar: MatSnackBar) {
-
-    this.serverService.get_user().subscribe(
-      (res) => {
-        this.get_user(2);
-      }
-    )
-
   }//end consructor
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(
-      (params: Params) => {
-        this.token = params['token'];
-        if (this.token) {
-          localStorage.clear();
-          this.get_user(1);
-        } else {
-          if (this.user_info) {
-            this.user_id = this.user_info.user_id;
-          }
+    this.create_form();
+    this.get_brand();
+    this.get_tip();
+    this.get_year();
+  }
+
+  create_form() {
+    this.form1 = new FormGroup({
+      'brand': new FormControl(),
+      'tip': new FormControl(),
+      'year': new FormControl(),
+    })
+  }
+
+  get_brand() {
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6853 }).subscribe(
+      (res: any) => {
+        this.list_brand = [];
+        if (res['status'] == 1) {
+          for (var i = 0; i < res['num']; i++) {
+            this.list_brand.push(res['result'][i]);
+          }//end for
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
         }
       }
     )
-
-    if (!this.token) {
-      this.get_user(1);
-    }
-
   }
 
-  get_user(type: number) {
-    if (this.serverService.check_internet() == false) {
-      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
-      return;
-    }//end if
-    else { this.matSnackBar.dismiss(); }
-    if (type == 1) this.loading = true;
-    var obj = { address: 6541, user_id: this.user_id, token: this.token }
+  get_tip() {
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6854, brand: this.form1.value.brand }).subscribe(
+      (res: any) => {
+        this.list_tip = [];
+        if (res['status'] == 1) {
+          for (var i = 0; i < res['num']; i++) {
+            this.list_tip.push(res['result'][i]);
+          }//end for
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_year() {
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6855 }).subscribe(
+      (res: any) => {
+        this.list_year = [];
+        if (res['status'] == 1) {
+          for (var i = 0; i < res['num']; i++) {
+            this.list_year.push(res['result'][i]);
+          }//end for
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_customs() {
+    var obj = {
+      address: 6856,
+      brand: this.form1.value.brand,
+      tip: this.form1.value.tip,
+      year: this.form1.value.year,
+    }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
           if (res['num'] == 1) {
-            if (res['result'][0].user_logo) {
-              this.logo = res['result'][0].user_logo_site + "/" + res['result'][0].user_logo;
-            } else {
-              this.logo = this.serverService.get_default_user_logo();
-            }
-            this.title = res['result'][0].user_title;
-            this.cellphone = res['result'][0].user_cellphone;
-            this.set_status(res);
+            this.brand_title = res['result'][0].site_brand_title;
+            this.tip_title = res['result'][0].site_tip_title;
+            this.year_title = res['result'][0].site_tip_title;
           }
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
@@ -90,81 +129,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     )
   }
 
-
-  set_status(res: any) {
-    var obj = {
-      user_title: res['result'][0].user_title,
-      user_id: res['result'][0].user_id,
-      username: res['result'][0].user_username,
-      user_token: res['result'][0].user_token,
-    };
-    localStorage.setItem("lang", JSON.stringify(1));
-    localStorage.setItem('user_info', JSON.stringify(obj));
-    localStorage.setItem('status', '1');
-  }
-
-
-
-  change_avater3(event: any) {
-    var selectedFile = <File>event.target.files[0];
-    var fd = new FormData();
-    fd.append("image", selectedFile, selectedFile.name);
-    this.serverService.post_address_file(this.server, "uploadImage3", fd).subscribe(
-      (event) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          //this.uploadedAvaterProgess3 = (event.loaded / event.total) * 100;
-        }
-        else if (event.type === HttpEventType.Response) {
-          var a = <any>event.body;
-          this.logo = this.serverService.get_site() + "/" + this.serverService.get_path_upload_image() + a.result.filename;
-          this.logo_info = {
-            'site': this.serverService.get_site(),
-            'path': this.serverService.get_path_upload_image() + a.result.filename
-          }
-          this.save_logo();
-        }
-      }
-    )
-  }
-
-  save_logo() {
-    if (this.serverService.check_internet() == false) {
-      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
-      return;
-    }//end if
-    else { this.matSnackBar.dismiss(); }
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6552, user_id: this.user_id, logo_info: this.logo_info }).subscribe(
-      (res: any) => {
-        if (res['status'] == 1) {
-        }//end if
-        else {
-          this.message(true, this.messageService.erorr_in_save(this.lang), 1, this.messageService.close(this.lang));
-        }
-      }
-    )
-  }
-
-  delete_logo3() {
-    if (this.serverService.check_internet() == false) {
-      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
-      return;
-    }//end if
-    this.loading = true;
-    var obj = {
-      address: 2038,
-      user_id: this.user_id,
-    }
-    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
-      (res: any) => {
-        if (res['status'] == 1) {
-          this.message(false, "", 1, this.messageService.close(this.lang));
-        }//end if
-        else {
-          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
-        }
-      }
-    )
-  }
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {
     if (type == 1) { this.loading = false; }
