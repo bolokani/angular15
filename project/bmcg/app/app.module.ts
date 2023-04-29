@@ -47,6 +47,7 @@ import { ContractProcessComponent } from './system/contract-process/contract-pro
 import { ContractInvoiceComponent } from './system/contract-invoice/contract-invoice.component';
 import { ContractInvoiceAttachmentComponent } from './system/contract-invoice-attachment/contract-invoice-attachment.component';
 import { PhomeComponent } from './system/phome/phome.component';
+import { Home2Component } from './system/home2/home2.component';
 
 export const customCurrencyMaskConfig = {
   align: "auto",
@@ -62,16 +63,17 @@ export const customCurrencyMaskConfig = {
 
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
+  { path: "login", component: LoginComponent },
+
   {
-    path: "phome", component: PhomeComponent, children: [
+    path: "", component: HomeComponent, children: [
+      { path: "", component: Home2Component },
       { path: 'profile', component: ProfileComponent },
       { path: "contract", component: ContractListComponent },
+      { path: "about/:title", component: AboutComponent },
     ]
   },
-  { path: "about", component: AboutComponent },
   { path: "contact/:title", component: ContactComponent },
-  { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent },
   { path: "not-found", component: Pages404Component },
 ]
@@ -89,7 +91,7 @@ const routes: Routes = [
     SignupComponent,
     SubstrPipe,
     Pages404Component,
-    RuleComponent,
+    RuleComponent, Home2Component,
     Header2Component, ProfileComponent, ContractListComponent, ContractCommentComponent, ContractProcessComponent, ContractInvoiceComponent, ContractInvoiceAttachmentComponent, PhomeComponent
   ],
   imports: [

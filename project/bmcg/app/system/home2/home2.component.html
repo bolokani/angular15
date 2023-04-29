@@ -1,0 +1,180 @@
+<div class="background-sky hero"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 header">
+            واردات انواع کامیون های اروپایی ولوو،داف و رنو
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row" style="padding:3rem 12rem">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 div-img">
+            <img src="../../../assets/img/volvo.png" class="img1">
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 div-img div-img2">
+            <img src="../../../assets/img/daf.png" class="img2">
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs div-img">
+            <img src="../../../assets/img/renault.png" class="img3">
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row" style="padding-bottom:3rem">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div-img"
+            style="border:solid 1px #ccc;min-height: 15rem;">
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 tabs tab1">
+            <span [ngClass]="{active:type == 'invoice'}" class="cursor" (click)="get_type('invoice')">برآورد
+                هزینه</span>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 tabs tab2">
+            <span [ngClass]="{active:type == 'customs'}" class="cursor" (click)="get_type('customs')">حقوق گمرکی</span>
+        </div>
+    </div>
+</div>
+
+<div>
+    <form [formGroup]="form1" style="min-height:28rem">
+        <div class="container">
+            <div class="row" style="direction: ltr !important;margin-top: 2rem !important;">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 search-box">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search-label">
+                        سال
+                    </div>
+                    <select style="width:100%" class="form-control center" formControlName="year">
+                        <option></option>
+                        <option *ngFor="let x of list_year" [value]="x.site_year_id">
+                            {{ x.site_year_title }}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 search-box">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search-label center">
+                        تیپ
+                    </div>
+                    <select style="width:100%" class="form-control center" formControlName="tip">
+                        <option></option>
+                        <option *ngFor="let x of list_tip" [value]="x.site_tip_id">
+                            {{ x.site_tip_title }}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 search-box">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search-label">
+                        برند
+                    </div>
+                    <select style="width:100%" class="form-control center" formControlName="brand" (change)="get_tip()">
+                        <option></option>
+                        <option *ngFor="let x of list_brand" [value]="x.site_brand_id">
+                            {{ x.site_brand_title }}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div_search_button">
+                    <span class="search_button1">
+                        <span (click)="get_customs2()" class="cursor" *ngIf="!loading">تایید</span>
+                        <div class="no-record" *ngIf="count_record == 0 && search == true">
+                            چیزی برای نمایش
+                            وجود دارد</div>
+                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status" *ngIf="loading">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" *ngIf="type == 'customs'">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <table class="table table-striped table-bordered table-condensed" style="direction: rtl;">
+                        <tbody>
+                            <tr>
+                                <td class="center td">شرح کالا</td>
+                                <td class="center" [ngStyle]="{backgroundColor:brand_color}" style="color:#fff">{{
+                                    brand_title
+                                    }} {{
+                                    tip_title }} {{
+                                    year_title }}</td>
+                            </tr>
+                            <tr>
+                                <td class="center">نرخ یورو گمرکی (ریال)</td>
+                                <td class="center">{{ exchange_rate | number }}</td>
+                            </tr>
+                            <tr>
+                                <td class="center">آخرین بروزرسانی</td>
+                                <td class="center">{{ editor_date }}</td>
+                            </tr>
+                            <tr>
+                                <td class="center">جمع حقوق گمرکی (ریال)</td>
+                                <td class="center"> {{ sum | number }}</td>
+                            </tr>
+                            <tr>
+                                <td class="center">2% مالیات علی الحساب (ریال) </td>
+                                <td class="center">{{ tax | number }}</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container" *ngIf="type == 'invoice'">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <table class="table table-striped table-bordered table-condensed" style="direction: rtl;">
+                        <tbody>
+                            <tr>
+                                <td class="center td2">نرخ ارز گمرکی</td>
+                                <td class="center td2">
+                                    {{ exchange_rate | number}}
+                                </td>
+                                <td class="center td2">
+                                    کالا
+                                </td>
+                                <td class="center td2" [ngStyle]="{backgroundColor:brand_color}" style="color:#fff">{{
+                                    brand_title
+                                    }} {{
+                                    tip_title }} {{
+                                    year_title }}</td>
+                            </tr>
+                            <tr>
+                                <td class="center">آخرین بروزرسانی</td>
+                                <td class="center">{{ editor_date }}</td>
+                                <td class="center">VIN وارداتی</td>
+                                <td class="center">{{ vin11 }}</td>
+                            </tr>
+                            <tr>
+                                <td class="center">کارفرما</td>
+                                <td class="center">{{ user_title }}</td>
+                                <td class="center">نحوه شماره گذاری </td>
+                                <td class="center">---</td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+
+<br><br><br><br><br><br><br>

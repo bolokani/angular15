@@ -1284,6 +1284,10 @@ h1 {
 	cursor: pointer
 }
 
+button {
+	background: rgba(198, 28, 13, .5) !important;
+}
+
 .btn-success.disabled,
 .btn-success:disabled {
 	height: 2.5rem

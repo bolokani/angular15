@@ -1,13 +1,54 @@
 .boxes {
     width: 100%;
-    display: inline;
+    text-align: center;
+    border: solid 1px #ccc;
+    border-radius: 1rem;
+    max-width: 28rem;
+    margin: 0 auto !important;
+    height: 28rem
+}
+
+.login-div {
+    padding-top: 8rem;
     text-align: center;
 }
 
+.login-text1 {
+    text-align: right !important;
+    padding-right: 2rem !important;
+    margin-top: 1rem;
+}
+
+.form-login {
+    min-width: 100%;
+}
+
+.rule {
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    color: #3f4064
+}
+
+.login-text2 {
+    text-align: right !important;
+    padding-right: 2rem !important;
+    margin-top: 1rem;
+    color: #3f4064;
+    font-size: 0.8rem;
+}
+
+.container-fluit {
+    height: 100vh;
+    background-color: #fff;
+}
+
+img {
+    max-width: 16rem;
+}
+
 label {
-    text-align: right;
-    width: 55%;
-    margin: 10px
+    text-align: center;
+    padding: 1rem 1.4rem 0rem 1.4rem
 }
 
 @media screen and (max-width:576px) {
@@ -29,16 +70,40 @@ label {
     }
 }
 
-@media screen and (min-width:995px) {
-    label {
-        width: 70%
-    }
+.help-block {
+    height: 0.8rem;
+    text-align: right;
+    padding-top: 0.3rem;
+    padding-right: 1.5rem;
+}
+
+.return {
+    padding-top: 1rem
+}
+
+.btn {
+    padding-top: 0.6rem;
+    height: 2.5rem;
+}
+
+.btn-check:focus+.btn,
+.btn:focus {
+    box-shadow: none !important;
+}
+
+.btn:hover {
+    color: #fff
+}
+
+.spinner-border-sm {
+    width: 1.4rem !important;
+    height: 1.4rem !important
 }
 
 .header {
     font-size: 15px;
     line-height: 40px;
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 .input {
@@ -49,7 +114,10 @@ label {
     margin-top: 5px;
     padding: 5px;
     outline: none;
-    font-size: 0.8rem;
+    font-size: 1.3rem !important;
+    border: solid 1px #d32f2f;
+    height: 3rem;
+    text-align: center;
 }
 
 button {
@@ -67,8 +135,13 @@ h2 {
     padding-top: 4rem;
 }
 
+button {
+    background-color: #4caf50;
+    color: #fff
+}
+
 .forget {
-    text-align: right;
+    text-align: right !important;
     font-size: 0.8rem;
     padding-right: 6rem
 }

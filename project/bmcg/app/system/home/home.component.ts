@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
-import { from, Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../services/server/server.service';
 import { MessageService } from '../services/message/message.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -16,20 +15,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   public server: any = this.serverService.get_server();
   public lang = JSON.parse(<any>localStorage.getItem('lang'));
   public loading = false;
-  public user_id: number;
   public subscription: Subscription;
-  public logo: string | undefined;
-  public cellphone: number | undefined;
-  public title: number | undefined;
-  public logo_info: any | undefined;
-  public token: number;
-  public list_brand: any = [];
-  public list_tip: any = [];
-  public list_year: any = [];
-  public form1: FormGroup;
-  public brand_title: string | undefined;
-  public tip_title: string | undefined;
-  public year_title: string | undefined;
+
+
 
   constructor(
     public serverService: ServerService
@@ -40,95 +28,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }//end consructor
 
   ngOnInit() {
-    this.create_form();
-    this.get_brand();
-    this.get_tip();
-    this.get_year();
-  }
 
-  create_form() {
-    this.form1 = new FormGroup({
-      'brand': new FormControl(),
-      'tip': new FormControl(),
-      'year': new FormControl(),
-    })
   }
-
-  get_brand() {
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6853 }).subscribe(
-      (res: any) => {
-        this.list_brand = [];
-        if (res['status'] == 1) {
-          for (var i = 0; i < res['num']; i++) {
-            this.list_brand.push(res['result'][i]);
-          }//end for
-          this.message(false, "", 1, this.messageService.close(this.lang));
-        }//end if
-        else {
-          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
-        }
-      }
-    )
-  }
-
-  get_tip() {
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6854, brand: this.form1.value.brand }).subscribe(
-      (res: any) => {
-        this.list_tip = [];
-        if (res['status'] == 1) {
-          for (var i = 0; i < res['num']; i++) {
-            this.list_tip.push(res['result'][i]);
-          }//end for
-          this.message(false, "", 1, this.messageService.close(this.lang));
-        }//end if
-        else {
-          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
-        }
-      }
-    )
-  }
-
-  get_year() {
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6855 }).subscribe(
-      (res: any) => {
-        this.list_year = [];
-        if (res['status'] == 1) {
-          for (var i = 0; i < res['num']; i++) {
-            this.list_year.push(res['result'][i]);
-          }//end for
-          this.message(false, "", 1, this.messageService.close(this.lang));
-        }//end if
-        else {
-          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
-        }
-      }
-    )
-  }
-
-  get_customs() {
-    var obj = {
-      address: 6856,
-      brand: this.form1.value.brand,
-      tip: this.form1.value.tip,
-      year: this.form1.value.year,
-    }
-    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
-      (res: any) => {
-        if (res['status'] == 1) {
-          if (res['num'] == 1) {
-            this.brand_title = res['result'][0].site_brand_title;
-            this.tip_title = res['result'][0].site_tip_title;
-            this.year_title = res['result'][0].site_tip_title;
-          }
-          this.message(false, "", 1, this.messageService.close(this.lang));
-        }//end if
-        else {
-          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
-        }
-      }
-    )
-  }
-
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {
     if (type == 1) { this.loading = false; }

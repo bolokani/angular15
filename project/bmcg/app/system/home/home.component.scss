@@ -1,82 +1,14 @@
 @media only screen and (max-width: 576px) {
-    .td {
-        width: 70% !important
+    .header {
+        display: none;
     }
 
 }
 
 
-.td {
-    width: 50%
-}
+@media only screen and (min-width: 576px) {
+    .header2 {
+        display: none;
+    }
 
-.header {
-    font-size: 2.2rem;
-    color: #002060;
-    padding-top: 2rem;
-    font-weight: 550;
-    text-align: center;
-    word-spacing: -4px;
-}
-
-.search-label {
-    background-color: #c9ddc1;
-    height: 2.5rem;
-    text-align: center;
-    padding-top: 0.6rem;
-    font-weight: bold;
-}
-
-.search-box {
-    padding: 0px !important;
-    border: solid 1px #000
-}
-
-.div_search_button {
-    text-align: center;
-    padding-top: 2rem;
-}
-
-.search_button1 {
-    color: #002060;
-    font-size: 2rem;
-}
-
-.img1 {
-    width: 5rem
-}
-
-.img2 {
-    width: 7rem
-}
-
-.img3 {
-    width: 9rem;
-}
-
-.tabs {
-    text-align: center;
-    color: #002060;
-    font-size: 2rem;
-    word-spacing: -4px;
-}
-
-.tab1 {
-    text-align: right;
-}
-
-.tab2 {
-    text-align: left;
-}
-
-.div-img {
-    text-align: center;
-}
-
-.div-img2 {
-    padding-top: 1.4rem
-}
-
-.row {
-    direction: ltr;
 }
