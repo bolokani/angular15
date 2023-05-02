@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../services/server/server.service';
 import { BrowserModule, DomSanitizer, Meta } from '@angular/platform-browser';
+import { MessageService } from '../services/message/message.service';
 
 @Component({
   selector: 'app-about',
@@ -11,62 +12,113 @@ import { BrowserModule, DomSanitizer, Meta } from '@angular/platform-browser';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-  public isOnline: any | undefined;
-  public loading = false;
-  user_info: any = JSON.parse(<any>localStorage.getItem('user_info'));
-  public lang = JSON.parse(<any>localStorage.getItem('lang'));
-  user_id: number | undefined;
-  public subscription: Subscription | any;
-  public err: string | undefined; public err_validation: boolean = false;
-  public err_internet_text: string | undefined; public err_internet_validation: boolean | undefined;
   public server: any = this.serverService.get_server();
+  public user_info: any = JSON.parse(<any>localStorage.getItem('user_info'));
+  public lang = JSON.parse(<any>localStorage.getItem('lang'));
+  public loading = false;
+  public user_id: number | undefined;
+  public subscription: Subscription | any;
   public title: string | undefined;
   public text: any | undefined;
+  public title2: string | undefined;
+  public text2: any | undefined;
+  public title3: string | undefined;
+  public text3: any | undefined;
 
-  constructor(public serverService: ServerService, public router: Router, public matSnackBar: MatSnackBar
+  constructor(
+    public serverService: ServerService
+    , public router: Router
+    , public messageService: MessageService
+    , public matSnackBar: MatSnackBar
     , public sanitizer: DomSanitizer) { }//end consructor
 
   ngOnInit() {
-    this.get_content();
+    this.get_content(27);
+    this.get_content2(18);
+    this.get_content3(17);
   }
 
-  get_content() {
+  get_content(id: number) {
     if (this.serverService.check_internet() == false) {
-      var pe_message = "خطا در اینترنت";
-      var pe_action = "بستن";
-      this.recieve_message(true, 'Erorr in Internet', pe_message, 1, 'close', pe_action);
+      this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
     this.loading = true;
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2087, id: 53 }).subscribe(
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6866, id: id }).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
-          this.title = res['result'][0].site_content_title;
-          this.text = this.sanitizer.bypassSecurityTrustHtml(res['result'][0].site_content_text);
+          if (res['num'] == 1) {
+            this.title = res['result'][0].site_content_title;
+            this.text = this.sanitizer.bypassSecurityTrustHtml(res['result'][0].site_content_comment);
+          }
           this.serverService.set_metas(this.title, this.title, '', '');
-          this.recieve_message(false, "", "", 1, "", "");
+          this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
-          var pe_message = "خطا در دریافت";
-          var pe_action = "بستن";
-          this.recieve_message(true, 'Erorr in recieve', pe_message, 1, 'close', pe_action);
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_content2(id: number) {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    this.loading = true;
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6866, id: id }).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.title2 = res['result'][0].site_content_title;
+            this.text2 = this.sanitizer.bypassSecurityTrustHtml(res['result'][0].site_content_comment);
+          }
+          this.serverService.set_metas(this.title, this.title, '', '');
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_content3(id: number) {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    this.loading = true;
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6866, id: id }).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.title3 = res['result'][0].site_content_title;
+            this.text3 = this.sanitizer.bypassSecurityTrustHtml(res['result'][0].site_content_comment);
+          }
+          this.serverService.set_metas(this.title, this.title, '', '');
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
         }
       }
     )
   }
   //**************************************************
-  recieve_message(validation: boolean, en_message: string, pe_message: string, type: number, en_action: string, pe_action: string) {
-    this.err_internet_validation = false;
+  message(validation: boolean, message: string, type: number, action: string) {
     if (type == 1) this.loading = false;
     if (validation == true) {
-      if (this.lang == 1) this.matSnackBar.open(pe_message, pe_action, { duration: 5000 });
-      if (this.lang == 2) this.matSnackBar.open(en_message, en_action, { duration: 5000 });
+      this.matSnackBar.open(message, action, { duration: 5000 });
     }//end if
     else {
       //this.matSnackBar.dismiss();
     }
-  }
+  }//end 
   //*******************************************************************************
   ngOnDestroy(): void {
     if (this.subscription) {

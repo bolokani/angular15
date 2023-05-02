@@ -21,8 +21,41 @@
     font-weight: 550;
     text-align: center;
     word-spacing: -4px;
-    color: #fff;
+    color: #000;
     z-index: 9;
+}
+
+.bg {
+    background-image: url(../../../assets/img/bg.webp);
+    min-height: 26rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 4rem;
+    text-align: center;
+}
+
+.h1 {
+    font-size: 3.2rem;
+    color: #fff;
+    text-align: center;
+}
+
+.input1 {
+    width: 40rem;
+    height: 3rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.search {
+    background-color: #f0f8ff !important;
+    width: 13rem;
+}
+
+.box-input {
+    text-align: center;
+    margin-top: 3rem;
 }
 
 .form-control {
@@ -30,8 +63,20 @@
 }
 
 .background-sky {
-    background: linear-gradient(145deg, #002060, #42a5f5);
+    background: linear-gradient(145deg, #002060, #0551e9);
     color: #000000de;
+}
+
+.carousel {
+    padding: 0px !important
+}
+
+.carousel-item {
+    min-height: 28rem
+}
+
+.carousel-item img {
+    min-height: 28rem
 }
 
 .hero {

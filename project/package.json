@@ -32,6 +32,7 @@
     "ngx-infinite-scroll": "^15.0.0",
     "ngx-owl-carousel-o": "^15.0.0",
     "ngx-smart-modal": "^7.4.1",
+    "num2persian": "^3.2.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

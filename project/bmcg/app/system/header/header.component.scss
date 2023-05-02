@@ -3,11 +3,11 @@
 }
 
 .bg-primary {
-  background: linear-gradient(145deg, #0d47a1, #42a5f5) !important;
+  background: #fff !important;
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #fff !important
+  color: #000 !important
 }
 
 .mr-auto,
@@ -32,7 +32,7 @@
   }
 
   .navbar .nav-item {
-    padding: .5rem .5rem;
+    padding: .5rem .1rem;
   }
 
   .navbar .dropdown {

@@ -1,18 +1,28 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-icons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-lists/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css';
+
 @font-face {
 	font-family: irsans;
-	src: url('./assets/fonts/IRANSansWeb_Medium.ttf');
+	src: url('./assets/font/IRANSansWeb_Medium.ttf');
 }
 
 @font-face {
 	font-family: irsans1;
-	src: url('./assets/fonts/irsans.ttf');
+	src: url('./assets/font/irsans.ttf');
 }
 
 @font-face {
 	font-family: en;
-	src: url('./assets/fonts/en.ttf');
+	src: url('./assets/font/en.ttf');
 }
 
 * {
@@ -57,13 +67,91 @@ html {
 	text-align: right;
 }
 
+//*************************************************************
+
+
+.content *:not(mat-icon, i) {
+	font-family: irsans !important;
+}
+
+.content img {
+	max-width: 100%
+}
+
+.e-richtexteditor .e-rte-content .e-content,
+.e-richtexteditor .e-source-content .e-content {
+	font-size: 0.9rem;
+	text-align: justify;
+	height: 83vh;
+	line-height: 2rem;
+}
+
+.e-richtexteditor .e-rte-content .e-content p,
+.e-richtexteditor .e-source-content .e-content p {
+	margin-bottom: 0px !important;
+	direction: rtl
+}
+
+
+.e-richtexteditor h2 {
+	font-size: 1rem !important;
+}
+
+.e-richtexteditor .e-rte-toolbar.e-control[class*='e-toolbar'],
+.e-richtexteditor .e-rte-toolbar.e-toolbar.e-extended-toolbar.e-control[class*='e-toolbar'] {
+	direction: ltr !important;
+}
+
+
+.content_contact_us img {
+	max-width: max-content !important
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+	background: 0 0 !important;
+}
+
+
+.content p {
+	line-height: 3rem !important;
+	font-size: 0.9rem;
+}
+
+.content p span {
+	text-align: right !important;
+}
+
+
+.content li {
+	line-height: 2rem !important;
+	text-align: right !important;
+}
+
+.content h2 span {
+	font-size: 1.2rem !important;
+}
+
+table .e-rte-image.e-imginline {
+	max-width: 100%
+}
+
+img {
+	outline: none !important;
+}
+
+.e-rte-image.e-imginline {
+	vertical-align: middle;
+}
+
+//***************************************************************
 
 [dir=rtl] .mat-radio-label-content {
 	padding-right: 3px !important;
 	font-family: irsans;
 }
 
-button:not(.mat-icon-button, .home-button5, .mdc-icon-button, .mat-calendar-body-cell):hover {
+button:not(.mat-icon-button, .home-button5, .mdc-icon-button, .mat-calendar-body-cell, .carousel-control-prev, .carousel-control-next):hover {
 	background: #000 !important;
 	color: #fff !important;
 }

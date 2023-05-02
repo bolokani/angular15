@@ -5,6 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../services/server/server.service';
 import { MessageService } from '../services/message/message.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { InvoicePrintComponent } from '../invoice-print/invoice-print.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home2',
@@ -46,6 +48,7 @@ export class Home2Component implements OnInit, OnDestroy {
   constructor(
     public serverService: ServerService
     , public router: Router
+    , public dialog: MatDialog
     , public messageService: MessageService
     , public activatedRoute: ActivatedRoute
     , public matSnackBar: MatSnackBar) {
@@ -225,6 +228,12 @@ export class Home2Component implements OnInit, OnDestroy {
     )
   }
 
+  open_invoice() {
+    this.dialog.open(InvoicePrintComponent, {
+      width: '60rem',
+      height: 'auto',
+    })
+  }
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {
     if (type == 1) { this.loading = false; }
