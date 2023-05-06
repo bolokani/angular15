@@ -322,7 +322,7 @@
 }
 .sidebar .widget.widget-search form button {
 	left: 0;
-	right: auto !important;
+	right: auto
 }
 .sidebar .widget.widget-recent-entries ul li {
 	padding-right: 100px;

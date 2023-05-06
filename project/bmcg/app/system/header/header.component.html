@@ -1,70 +1,36 @@
-<!-- Start Navbar Area -->
-
-<div style="height:5.9rem" id="menu">
-
-</div>
-<div class="navbar-area  header-sticky is-sticky" style="height:5.9rem">
-    <div class="povo-mobile-nav mean-container">
-    </div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary nav1"
-        style="height: 5.9rem;border-bottom:solid 1px #000">
-
-        <div>
-            <a [routerLink]="['/']">
-                <img src="../../../assets/img/logo2.png" style="max-width:18rem" title="" alt="">
-            </a>
-        </div>
-
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="padding-top: 1rem;">
-            <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item" style="height: 4.5rem;" [routerLink]="['/']">
-                    <a class="nav-link" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
-                        خانه
-                    </a>
-                </li>
-
-                <li class="nav-item" style="height: 4.5rem;" [routerLink]="['/about','درباره-ما']">
-                    <a class="nav-link" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
-                        درباره ما
-                    </a>
-                </li>
-
-                <li class="nav-item" style="height: 4.5rem;" [routerLink]="['/contact','-']">
-                    <a class="nav-link" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
-                        تماس با ما
-                    </a>
-                </li>
-            </ul>
-            <div class="nav-item vorod cursor" style="height: 4.5rem;padding-top:1rem" [routerLink]="['/login']"
-                *ngIf="status != 1 ">
-                ورود
+<header class="site-header" id='fix_menu'>
+    <div class="main-nav">
+        <nav role="navigation" class="container1 menu-desktop">
+            <div class="site-logo__wrapper">
+                <a class="site-logo" [routerLink]="['/']" title="Home">
+                    <img [src]="logo">
+                </a>
             </div>
-        </div>
-    </nav>
 
+            <div style="width:100%;height:6rem">
+                <div class="header-top">
+                    <div class="cart-btn-wrapper">
+                        <nav class="cart-preview">
+                            <div class="div_loading">
+                                <div class="my-container" class="detaile" [hidden]="!loading">
+                                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light d-xl-none d-lg-none phone" style="padding:0px">
-        <!-- Toggler/collapsibe Button -->
-        <div class="right" style="padding:0.5rem 2.6rem">
-            <mat-icon class="menu_icon" data-toggle="collapse" data-target="#navbarSupportedContent">menu</mat-icon>
-        </div>
-        <!--
-        <div class="left">
-            <a class="navbar-brand" style="padding:10px 0px;float:left !important" [routerLink]="['/']">
-                <img src="{{ logo }}" style="max-width:10rem" *ngIf="logo" title=".پیک آنلاین" alt="پیک آنلاین">
-            </a>
-        </div>
-         -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <app-header2></app-header2>
-        </div>
-    </nav>
-</div>
-<!-- End Navbar Area -->
+                </div>
+                <ul class="main-nav__links main-nav__links--closed ul1">
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="main-nav__link" [routerLink]="['/']">صفحه نخست</a>
+                    </li>
+                    <li [routerLink]="['/about','درباره-ما']" routerLinkActive="active">
+                        <a class="main-nav__link cursor">درباره ما</a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+    </div>
+</header>
+<!-- ********************************************************************************************************************************* -->

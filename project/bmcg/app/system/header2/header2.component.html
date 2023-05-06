@@ -1,26 +1,27 @@
-<ul class="navbar-nav navbar-nav1">
-    <span>
-        <li class="nav-item" style="height: 4.5rem;" [routerLink]="['/']" data-target="#navbarSupportedContent"
-            data-toggle="collapse">
-            <a class="nav-link" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
-                صفحه اصلی
-            </a>
-        </li>
-        <li class="nav-item" style="height: 4.5rem;" [routerLink]="['/contact','تماس-با-ما']"
-            data-target="#navbarSupportedContent" data-toggle="collapse">
-            <a class="nav-link" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
-                تماس با ما
-            </a>
-        </li>
-    </span>
-    <li class="nav-item nav-item1" [routerLink]="['/login']" *ngIf="status != 1 " data-target="#navbarSupportedContent"
-        data-toggle="collapse">
-        <a class="nav-link">ورود</a>
-    </li>
-    <li class="nav-item dropdown" style="height: 4.5rem;" *ngIf="status == 1 ">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false" *ngIf="status == 1">
-            {{ user_title }}
+<!-- Toggler/collapsibe Button -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-xl-none d-lg-none phone" style="padding:0px">
+    <div class="right" style="padding:0.5rem 2.6rem">
+        <mat-icon class="menu_icon" data-toggle="collapse" data-target="#navbarSupportedContent">close</mat-icon>
+    </div>
+
+    <div class="left">
+        <a class="navbar-brand" style="padding:0px 0px;float:left !important" [routerLink]="['/']">
+            <img [src]="logo" style="max-width:10rem" title="گروه تجاری با ما" alt="گروه تجاری با ما">
         </a>
-    </li>
-</ul>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav navbar-nav1">
+            <span>
+                <li class="nav-item nav-item1" data-target="#navbarSupportedContent" data-toggle="collapse"
+                    [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    <a class="nav-link">صفحه نخست</a>
+                </li>
+                <li class="nav-item nav-item1" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    [routerLink]="['/about','درباره-ما']" routerLinkActive="active">
+                    <a class="nav-link">درباره ما</a>
+                </li>
+            </span>
+        </ul>
+    </div>
+</nav>

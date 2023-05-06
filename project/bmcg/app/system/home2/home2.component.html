@@ -1,100 +1,48 @@
-<!-- 
-    <div class="background-sky hero"></div>
--->
-
-<div class="container-fluid fluid1">
-    <div class="bg">
-        <h1 class="h1"> برآورد هزینه هوشمند تر از همیشه</h1>
-        <div class="box-input">
-            <div class="container">
-                <div class="row"
-                    style="direction: ltr !important;margin-top: 2rem !important;background:transparent;padding:0 14rem">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 search-box">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search-label">
-                            سال
-                        </div>
-                        <select style="width:100%" class="form-control center" formControlName="year">
-                            <option></option>
-                            <option *ngFor="let x of list_year" [value]="x.site_year_id">
-                                {{ x.site_year_title }}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 search-box">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search-label center">
-                            تیپ
-                        </div>
-                        <select style="width:100%" class="form-control center" formControlName="tip">
-                            <option></option>
-                            <option *ngFor="let x of list_tip" [value]="x.site_tip_id">
-                                {{ x.site_tip_title }}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 search-box">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search-label">
-                            برند
-                        </div>
-                        <select style="width:100%" class="form-control center" formControlName="brand"
-                            (change)="get_tip()">
-                            <option></option>
-                            <option *ngFor="let x of list_brand" [value]="x.site_brand_id">
-                                {{ x.site_brand_title }}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div style="margin-top: 3rem;">
-                    <button class="btn search" (click)="open_invoice()">جستجو کن</button>
-                </div>
-            </div>
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 header">
+            با ما؛ واردات انواع کامیون های اروپایی ولوو، داف و رنو
         </div>
     </div>
 
-    <div class="container-fluit">
-        <div class="row" style="padding-bottom:3rem">
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+    <div class="row row1">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 home-div3">
+            <div class="row">
+                <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box1 home-box5"
+                    style="padding:0px !important">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box1 home-box7">
+                        <img [src]="header_baner1" style="height: 24rem;" *ngIf="header_baner1">
+                    </div>
                 </div>
+                <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box1 home-box6 home-box4">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box2 home-box3">
+                        <span *ngIf="header_baner2">
+                            <span>
+                                <img [src]="header_baner2">
+                            </span>
+                        </span>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box8">
+                        <img [src]="header_baner3" *ngIf="header_baner3">
+                    </div>
+                </div>
+            </div>
+            <!-- ****************************************************************************************************************************** -->
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 home-box9">
+            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://renault-iran.com/fa/CountriesData/Iran_FA/images/index/newhome/1500x400_Duster_ARABIC_ig_w1500_h400.jpg"
-                            class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://renault-iran.com/fa/CountriesData/Iran_FA/images/index/newhome/1500x400_Stepway_ARABIC_ig_w1500_h400.jpg"
-                            class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>Some representative placeholder content for the second slide.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://renault-iran.com/fa/CountriesData/Iran_FA/images/index/newhome/1500x400_Captur_ARABIC_ig_w1500_h400.jpg"
-                            class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Third slide label</h5>
-                            <p>Some representative placeholder content for the third slide.</p>
-                        </div>
+                    <div class="carousel-item" data-bs-interval="3000" *ngFor="let x of list_baner3;let i = index"
+                        [ngClass]="{active:i == 0}">
+                        <img [src]="x.logo" class="d-block w-100" alt=" " title=" ">
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
                     data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
                     data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
@@ -103,178 +51,71 @@
         </div>
     </div>
 
+    <div class="row row2 ">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search">
+            <h1 class="h1">برآورد هزینه، هوشمندتر از همیشه</h1>
+            <div class="box-input">
+                <div class="container">
+                    <div class="row row3">
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 header">
-                واردات انواع کامیون های اروپایی ولوو،داف و رنو
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row" style="padding:3rem 12rem">
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 div-img">
-                <img src="../../../assets/img/volvo.png" class="img1">
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 div-img div-img2">
-                <img src="../../../assets/img/daf.png" class="img2">
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs div-img">
-                <img src="../../../assets/img/renault.png" class="img3">
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 tabs tab1">
-                <span [ngClass]="{active:type == 'invoice'}" class="cursor" (click)="get_type('invoice')">برآورد
-                    هزینه</span>
-            </div>
-
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 tabs tab2">
-                <span [ngClass]="{active:type == 'customs'}" class="cursor" (click)="get_type('customs')">حقوق
-                    گمرکی</span>
-            </div>
-        </div>
-    </div>
-
-    <div>
-        <form [formGroup]="form1" style="min-height:28rem">
-            <div class="container">
-                <div class="row" style="direction: ltr !important;margin-top: 2rem !important;">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 search-box">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search-label">
-                            سال
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 search-box">
+                            <mat-form-field appearance="fill">
+                                <mat-label>نوع درخواست</mat-label>
+                                <mat-select formControlName="type">
+                                    <mat-option [value]="2">حقوق گمرکی</mat-option>
+                                    <mat-option [value]="1">تخمین هزینه</mat-option>
+                                </mat-select>
+                            </mat-form-field>
                         </div>
-                        <select style="width:100%" class="form-control center" formControlName="year">
-                            <option></option>
-                            <option *ngFor="let x of list_year" [value]="x.site_year_id">
-                                {{ x.site_year_title }}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 search-box">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search-label center">
-                            تیپ
-                        </div>
-                        <select style="width:100%" class="form-control center" formControlName="tip">
-                            <option></option>
-                            <option *ngFor="let x of list_tip" [value]="x.site_tip_id">
-                                {{ x.site_tip_title }}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 search-box">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search-label">
-                            برند
-                        </div>
-                        <select style="width:100%" class="form-control center" formControlName="brand"
-                            (change)="get_tip()">
-                            <option></option>
-                            <option *ngFor="let x of list_brand" [value]="x.site_brand_id">
-                                {{ x.site_brand_title }}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div_search_button">
-                        <span class="search_button1">
-                            <span (click)="open_invoice()" class="cursor" *ngIf="!loading">تایید</span>
-                            <div class="no-record" *ngIf="count_record == 0 && search == true">
-                                چیزی برای نمایش
-                                وجود دارد</div>
-                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status"
-                                *ngIf="loading">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
 
-                        </span>
+
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 search-box">
+                            <mat-form-field appearance="fill">
+                                <mat-label>سال</mat-label>
+                                <mat-select formControlName="year">
+                                    <mat-option></mat-option>
+                                    <mat-option *ngFor="let x of list_year" [value]="x.site_year_id">
+                                        {{ x.site_year_title }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 search-box">
+                            <mat-form-field appearance="fill">
+                                <mat-label>تیپ</mat-label>
+                                <mat-select formControlName="tip">
+                                    <mat-option></mat-option>
+                                    <mat-option *ngFor="let x of list_tip" [value]="x.site_tip_id">
+                                        {{ x.site_tip_title }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 search-box">
+                            <mat-form-field appearance="fill">
+                                <mat-label>برند</mat-label>
+                                <mat-select formControlName="brand">
+                                    <mat-option></mat-option>
+                                    <mat-option *ngFor="let x of list_brand" [value]="x.site_brand_id">
+                                        {{ x.site_brand_title }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                    <div style="margin-top: 3rem;">
+                        <button class="btn search_button" (click)="open_invoice()">جستجو کن</button>
                     </div>
                 </div>
+
             </div>
-
-            <div class="container" *ngIf="type == 'customs'">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <table class="table table-striped table-bordered table-condensed" style="direction: rtl;">
-                            <tbody>
-                                <tr>
-                                    <td class="center td">شرح کالا</td>
-                                    <td class="center" [ngStyle]="{backgroundColor:brand_color}" style="color:#fff">{{
-                                        brand_title
-                                        }} {{
-                                        tip_title }} {{
-                                        year_title }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="center">نرخ یورو گمرکی (ریال)</td>
-                                    <td class="center">{{ exchange_rate | number }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="center">آخرین بروزرسانی</td>
-                                    <td class="center">{{ editor_date }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="center">جمع حقوق گمرکی (ریال)</td>
-                                    <td class="center"> {{ sum | number }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="center">2% مالیات علی الحساب (ریال) </td>
-                                    <td class="center">{{ tax | number }}</td>
-                                </tr>
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="container" *ngIf="type == 'invoice'">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <table class="table table-striped table-bordered table-condensed" style="direction: rtl;">
-                            <tbody>
-                                <tr>
-                                    <td class="center td2">نرخ ارز گمرکی</td>
-                                    <td class="center td2">
-                                        {{ exchange_rate | number}}
-                                    </td>
-                                    <td class="center td2">
-                                        کالا
-                                    </td>
-                                    <td class="center td2" [ngStyle]="{backgroundColor:brand_color}" style="color:#fff">
-                                        {{
-                                        brand_title
-                                        }} {{
-                                        tip_title }} {{
-                                        year_title }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="center">آخرین بروزرسانی</td>
-                                    <td class="center">{{ editor_date }}</td>
-                                    <td class="center">VIN وارداتی</td>
-                                    <td class="center">{{ vin11 }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="center">کارفرما</td>
-                                    <td class="center">{{ user_title }}</td>
-                                    <td class="center">نحوه شماره گذاری </td>
-                                    <td class="center">---</td>
-
-                                </tr>
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </form>
+        </div>
 
     </div>
+</div>
 
 
-
-    <br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>

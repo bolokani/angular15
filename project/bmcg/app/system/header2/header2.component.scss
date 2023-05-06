@@ -12,7 +12,34 @@
     background-color: #0060c8 !important;
 }
 
+.chat {
+    text-align: center;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
 
+.btns {
+    border: solid 1px #ccc;
+    width: 11rem;
+    margin: 0 0.2rem;
+    color: #fff;
+    font-size: 0.7rem;
+    border-radius: 2rem;
+    height: 3rem;
+}
+
+.btn1 {
+    background-color: #6EC0E5;
+}
+
+.btn2 {
+    background-color: #30B540;
+    text-align: right;
+}
+
+.btn2-div2 {
+    font-size: 0.6rem;
+}
 
 /* breakpoint and up - mega dropdown styles */
 @media screen and (min-width: 992px) {
@@ -54,9 +81,13 @@
 
 
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 576px) {
     .nav1 {
         display: none;
+    }
+
+    .navbar {
+        min-height: 4rem;
     }
 
     .toggle1 {
@@ -94,7 +125,7 @@
     }
 
     .is-sticky {
-        background-color: #0060c8 !important;
+        background-color: #f8f9fa !important;
         position: fixed;
         top: 0;
         left: 0;
@@ -116,11 +147,11 @@
     }
 
     .nav-item1 {
-        border-bottom: 1px solid #dbeefd
+        border-bottom: 1px solid #b3b9be
     }
 
     .navbar-nav .nav-link {
-        color: #fff !important;
+        color: #000 !important;
         padding: 1em 15%
     }
 
@@ -155,4 +186,8 @@
         display: none;
     }
 
+}
+
+.active {
+    background-color: aquamarine;
 }

@@ -20,10 +20,6 @@
 	src: url('./assets/font/irsans.ttf');
 }
 
-@font-face {
-	font-family: en;
-	src: url('./assets/font/en.ttf');
-}
 
 * {
 	font-family: irsans !important;
@@ -43,7 +39,6 @@ html {
 
 .row {
 	margin: 0px !important;
-	background-color: #fff;
 }
 
 .ltr {
@@ -280,10 +275,20 @@ a {
 	background-color: #d1b8a6;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 576px) {
 	.cdk-overlay-pane {
 		width: 100rem !important;
 		max-width: 100rem !important
+	}
+
+	.container,
+	.container-fluid,
+	.container-lg,
+	.container-md,
+	.container-sm,
+	.container-xl,
+	.container-xxl {
+		padding: 0px !important
 	}
 }
 
@@ -695,8 +700,7 @@ mat-footer-row {
 
 body {
 	font-family: irsans;
-	overflow-x: hidden;
-	;
+	background-color: #F4F4F2;
 }
 
 img {
@@ -1675,6 +1679,22 @@ button:disabled {
 	background: #bdbdbd !important;
 	color: #fff !important;
 	font-size: 0.7rem;
+}
+
+/*********************************************************************************************************************** */
+[dir=rtl] .mat-mdc-form-field {
+	width: 100%
+}
+
+[dir=rtl] .mat-mdc-text-field-wrapper {
+	padding: 0px !important
+}
+
+.mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+	direction: rtl;
+	padding-right: 0.4rem !important;
+	padding-left: 0.4rem !important;
+	border: solid 1px #ccc;
 }
 
 /*********************************************************************************************************************** */

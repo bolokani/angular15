@@ -45,6 +45,27 @@ export class Home2Component implements OnInit, OnDestroy {
   public count_record: number = 0;
   public search: boolean = false;
 
+  public list_baner3: any = [
+    {
+      logo: "https://bmcg.ir/object/uploads/gallery/3.png"
+    },
+    {
+      logo: "https://bmcg.ir/object/uploads/gallery/1.png"
+    },
+    {
+      logo: "https://bmcg.ir/object/uploads/gallery/2.png"
+    },
+    {
+      logo: "https://bmcg.ir/object/uploads/gallery/4.png"
+    },
+    {
+      logo: "https://bmcg.ir/object/uploads/gallery/5.png"
+    },
+  ]
+  public header_baner1 = "https://bmcg.ir/object/uploads/gallery/right.png";
+  public header_baner2 = "https://bmcg.ir/object/uploads/gallery/top.png";
+  public header_baner3 = "https://bmcg.ir/object/uploads/gallery/bottom3.png";
+
   constructor(
     public serverService: ServerService
     , public router: Router
@@ -66,6 +87,7 @@ export class Home2Component implements OnInit, OnDestroy {
       'brand': new FormControl(),
       'tip': new FormControl(),
       'year': new FormControl(),
+      'type': new FormControl(),
     })
   }
 
