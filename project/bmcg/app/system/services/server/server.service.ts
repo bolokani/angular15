@@ -16,6 +16,7 @@ export class ServerService {
   public status = new Subject<any>();
   public sb_logo = new Subject<any>();
   public sb_user = new Subject<any>();
+  public sb_invoice_print2 = new Subject<any>();
 
 
 
@@ -124,6 +125,14 @@ export class ServerService {
 
   get_status(): Observable<any> {
     return this.status.asObservable();
+  }
+  //********************************************************  */
+  send_invoice_print2(value: any): void {
+    this.sb_invoice_print2.next(value);
+  }//end send_username
+
+  get_invoice_print2(): Observable<any> {
+    return this.sb_invoice_print2.asObservable();
   }
   //********************************************************  */
   send_user(): void {

@@ -4,7 +4,7 @@ import { from, Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../services/server/server.service';
 import { MessageService } from '../services/message/message.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InvoicePrintComponent } from '../invoice-print/invoice-print.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -37,6 +37,7 @@ export class Home2Component implements OnInit, OnDestroy {
   public brand_color: string;
   public type: string = 'customs';
   public user_title: string;
+  public show_invoice: boolean = false;
 
   public exchange_rate: number | string;
   public sum: number | string;
@@ -44,6 +45,7 @@ export class Home2Component implements OnInit, OnDestroy {
   public vin11: number | string = 0;
   public count_record: number = 0;
   public search: boolean = false;
+  public obj: any;
 
   public list_baner3: any = [
     {
@@ -84,10 +86,10 @@ export class Home2Component implements OnInit, OnDestroy {
 
   create_form() {
     this.form1 = new FormGroup({
-      'brand': new FormControl(),
-      'tip': new FormControl(),
-      'year': new FormControl(),
-      'type': new FormControl(),
+      'brand': new FormControl(null, Validators.required),
+      'tip': new FormControl(null, Validators.required),
+      'year': new FormControl(null, Validators.required),
+      'type': new FormControl(null, Validators.required),
     })
   }
 
@@ -250,11 +252,28 @@ export class Home2Component implements OnInit, OnDestroy {
     )
   }
 
-  open_invoice() {
+  open_invoice(): any {
+    if (!this.form1.valid) {
+      var message = "لطفا تمامی آیتم ها را انتخاب نمائید.";
+      this.message(true, this.messageService.message(this.lang, message, ''), 1, this.messageService.close(this.lang));
+      return false;
+    } else {
+      this.obj = {
+        brand: this.form1.value.brand,
+        tip: this.form1.value.tip,
+        year: this.form1.value.year
+      }
+      if (this.show_invoice == true) {
+        this.serverService.send_invoice_print2({ obj: this.obj });
+      } else {
+        this.show_invoice = true;
+      }
+    }
+    /*
     this.dialog.open(InvoicePrintComponent, {
       width: '60rem',
       height: 'auto',
-    })
+    })*/
   }
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {

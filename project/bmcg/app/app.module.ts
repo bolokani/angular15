@@ -49,6 +49,7 @@ import { ContractInvoiceAttachmentComponent } from './system/contract-invoice-at
 import { PhomeComponent } from './system/phome/phome.component';
 import { Home2Component } from './system/home2/home2.component';
 import { InvoicePrintComponent } from './system/invoice-print/invoice-print.component';
+import { InvoicePrintCellphoneComponent } from './system/invoice-print-cellphone/invoice-print-cellphone.component';
 
 export const customCurrencyMaskConfig = {
   align: "auto",
@@ -93,7 +94,7 @@ const routes: Routes = [
     SubstrPipe,
     Pages404Component,
     RuleComponent, Home2Component,
-    Header2Component, ProfileComponent, ContractListComponent, ContractCommentComponent, ContractProcessComponent, ContractInvoiceComponent, ContractInvoiceAttachmentComponent, PhomeComponent, InvoicePrintComponent
+    Header2Component, ProfileComponent, ContractListComponent, ContractCommentComponent, ContractProcessComponent, ContractInvoiceComponent, ContractInvoiceAttachmentComponent, PhomeComponent, InvoicePrintComponent, InvoicePrintCellphoneComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })

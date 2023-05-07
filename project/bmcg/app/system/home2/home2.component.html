@@ -51,70 +51,75 @@
         </div>
     </div>
 
-    <div class="row row2 ">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search">
-            <h1 class="h1">برآورد هزینه، هوشمندتر از همیشه</h1>
-            <div class="box-input">
-                <div class="container">
-                    <div class="row row3">
+    <form [formGroup]="form1" (ngSubmit)="open_invoice()">
+        <div class="row row2 ">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search">
+                <h1 class="h1">برآورد هزینه، هوشمندتر از همیشه</h1>
+                <div class="box-input">
+                    <div class="container">
+                        <div class="row row3">
 
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 search-box">
-                            <mat-form-field appearance="fill">
-                                <mat-label>نوع درخواست</mat-label>
-                                <mat-select formControlName="type">
-                                    <mat-option [value]="2">حقوق گمرکی</mat-option>
-                                    <mat-option [value]="1">تخمین هزینه</mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 search-box">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>نوع درخواست</mat-label>
+                                    <mat-select name="type" formControlName="type">
+                                        <mat-option [value]="2">حقوق گمرکی</mat-option>
+                                        <mat-option [value]="1">تخمین هزینه</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 search-box">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>برند</mat-label>
+                                    <mat-select name="brand" formControlName="brand" (ngModelChange)="get_tip()">
+                                        <mat-option></mat-option>
+                                        <mat-option *ngFor="let x of list_brand" [value]="x.site_brand_id">
+                                            {{ x.site_brand_title }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 search-box">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>تیپ</mat-label>
+                                    <mat-select name="tip" formControlName="tip">
+                                        <mat-option></mat-option>
+                                        <mat-option *ngFor="let x of list_tip" [value]="x.site_tip_id">
+                                            {{ x.site_tip_title }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 search-box">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>سال</mat-label>
+                                    <mat-select name="year" formControlName="year">
+                                        <mat-option></mat-option>
+                                        <mat-option *ngFor="let x of list_year" [value]="x.site_year_id">
+                                            {{ x.site_year_title }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
                         </div>
-
-
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 search-box">
-                            <mat-form-field appearance="fill">
-                                <mat-label>سال</mat-label>
-                                <mat-select formControlName="year">
-                                    <mat-option></mat-option>
-                                    <mat-option *ngFor="let x of list_year" [value]="x.site_year_id">
-                                        {{ x.site_year_title }}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                        <div style="margin-top: 3rem;">
+                            <button type="submit" class="btn search_button">جستجو کن</button>
                         </div>
-
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 search-box">
-                            <mat-form-field appearance="fill">
-                                <mat-label>تیپ</mat-label>
-                                <mat-select formControlName="tip">
-                                    <mat-option></mat-option>
-                                    <mat-option *ngFor="let x of list_tip" [value]="x.site_tip_id">
-                                        {{ x.site_tip_title }}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 search-box">
-                            <mat-form-field appearance="fill">
-                                <mat-label>برند</mat-label>
-                                <mat-select formControlName="brand">
-                                    <mat-option></mat-option>
-                                    <mat-option *ngFor="let x of list_brand" [value]="x.site_brand_id">
-                                        {{ x.site_brand_title }}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-
-                    </div>
-                    <div style="margin-top: 3rem;">
-                        <button class="btn search_button" (click)="open_invoice()">جستجو کن</button>
                     </div>
                 </div>
-
             </div>
         </div>
+    </form>
 
+    <div *ngIf="show_invoice == true">
+        <app-invoice-print-cellphone [obj]="obj"></app-invoice-print-cellphone>
     </div>
+
 </div>
 
 
