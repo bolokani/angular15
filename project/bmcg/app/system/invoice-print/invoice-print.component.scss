@@ -677,3 +677,15 @@ p {
 html {
     overflow-y: auto !important;
 }
+
+@media only screen and (min-width: 600px) {
+    .fluid2 {
+        padding: 0rem 4rem !important
+    }
+}
+
+.none {
+    text-align: center;
+    padding-top: 4rem !important;
+    overflow-y: hidden
+}

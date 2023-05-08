@@ -1,4 +1,4 @@
-<div class="container-fluid fluid2" style="padding:0 !important;max-height: 78vh;">
+<div class="container-fluid fluid2" *ngIf="id > 0">
     <div class="invoice">
         <div class="row containerInier">
             <div class="div_loading" style="width:100%" [hidden]="!loading">
@@ -106,24 +106,7 @@
             </div>
             <!-- **********************************************for cellphone************************************************************** -->
             <div class="row row3" *ngIf="list_cost.length > 0">
-                <div class="invoice3"><span style="background: aquamarine;"> فاکتور : </span></div>
-                <div class="col-sm-12 invoice1" *ngFor="let x of list_cost">
-                    <div>نوع سند :
-                        <span> {{ x.contract_cost_status_title }} </span>
-                    </div>
-                    <div> سر فصل هزینه :
-                        <span> {{ x.invoice_cost2_title }} </span>
-                    </div>
-                    <div> مبلغ :
-                        <span> {{ x.invoice_cost2_price | number}} ریال</span>
-                    </div>
-                    <div> توضیحات:
-                        <span> {{ x.invoice_cost2_comment }} </span>
-                    </div>
-                </div>
-                <div class="col-sm-12 invoice2">
-                    جمع کل پیش فاکتور : {{ sum1 | number }} ریال
-                </div>
+                <app-invoice-print-cellphone [obj]="{ list_cost : list_cost}"></app-invoice-print-cellphone>
             </div>
             <!-- ************************************************************************************************************ -->
             <div class="row" style="margin:2rem 0 !important">
@@ -131,17 +114,20 @@
                 <footer class="container-fluid footer">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <!--                             <span class="noprint" style="float: left;">
+                            <span class="noprint" style="float: left;">
                                 <a href="javascript:window.print()" class="btn btn-default print-button"><i
                                         class="icon-printer"></i> پرینت</a>
                             </span>
-                            -->
-                            www.truckbama.ir
+                            www.truckbama.com
                         </div>
                     </div>
                 </footer>
             </div>
         </div>
-
     </div>
+</div>
+
+
+<div class="container-fluid fluid2 none" *ngIf="id == 0">
+    در حال حاضر هیچ تخمین هزینه برای این جستجو وجود ندارد.
 </div>

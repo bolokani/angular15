@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -22,7 +22,7 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
   public loading: boolean = false;
   public subscription: Subscription | undefined;
   public code: any | undefined;
-  public id: number | undefined;
+  public id: number;
   public user_id: number | undefined;
   public type_task: number | undefined;
   public creator: number | undefined;
@@ -49,8 +49,10 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
   public fax!: string;
   public cellphone!: string;
   public contract_date!: string;
+  @Input('obj') public root_obj: any;
   //******************************************************************************
   public list_cost: any = [];
+  public obj: any;
   //******************************************************************************
   public mat_table_selectedRow: any;
   public mat_table_hoverRow: any;
@@ -65,14 +67,52 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
     , public messageService: MessageService
     , public activatedRoute: ActivatedRoute
   ) {
+    this.serverService.get_invoice_print2().subscribe(
+      (res) => {
+        if (res) {
+          this.get_id({ brand: res.obj.brand, tip: res.obj.tip, year: res.obj.year });
+        }
+      }
+    )
   }
 
   ngOnInit() {
-    this.id = 36;
-    this.get_cost2();
-    this.get_invoice();
-    this.get_setting();
+    this.get_id({ brand: this.root_obj.brand, tip: this.root_obj.tip, year: this.root_obj.year });
   }//end ngOnInit 
+
+  get_id(obj: any) {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    this.loading = true;
+    var obj1 = {
+      address: 6867,
+      brand: obj.brand,
+      tip: obj.tip,
+      year: obj.year
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj1).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.id = res['result'][0].site_invoice_id;
+            this.get_cost2();
+            this.get_invoice();
+            this.get_setting();
+            this.message(false, "", 1, this.messageService.close(this.lang));
+          } else {
+            this.id = 0;
+            this.message(false, "", 1, this.messageService.close(this.lang));
+          }
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
 
   get_invoice() {
     var obj = { address: 6840, id: this.id }
