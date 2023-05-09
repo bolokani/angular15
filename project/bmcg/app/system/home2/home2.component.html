@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <form class="no-print" [formGroup]="form1" (ngSubmit)="open_invoice()">
+    <form class="no-print" [formGroup]="form1" (ngSubmit)="open_search()">
         <div class="row row2 ">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 search">
                 <h1 class="h1">برآورد هزینه، هوشمندتر از همیشه</h1>
@@ -63,7 +63,7 @@
                                 <mat-form-field appearance="fill">
                                     <mat-label>نوع درخواست</mat-label>
                                     <mat-select name="type" formControlName="type">
-                                        <mat-option [value]="2">حقوق گمرکی</mat-option>
+                                        <mat-option [value]="2" [hidden]="true">حقوق گمرکی</mat-option>
                                         <mat-option [value]="1">تخمین هزینه</mat-option>
                                     </mat-select>
                                 </mat-form-field>

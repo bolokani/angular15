@@ -1,11 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject, Input } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ServerService } from '../services/server/server.service';
-import { MessageService } from '../services/message/message.service';
-import { MatTableDataSource } from '@angular/material/table';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ServerService } from '../services/server/server.service';
+
 
 /**
  * @title Table with expandable rows
@@ -24,20 +20,36 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class InvoicePrintCellphoneComponent implements OnInit {
   @Input('obj') public root_obj: any;
+  public sum1: number = 0;
   dataSource: any;
-  columnsToDisplayWithExpand = ['type', 'cost_title', 'amount'];
+  columnsToDisplayWithExpand = ['cost_title', 'amount'];
   expandedElement: PeriodicElement | null;
 
-  ngOnInit(): void {
-    console.log(this.root_obj.list_cost)
-    this.dataSource = this.root_obj.list_cost;
+  constructor(public serverService: ServerService) {
+    this.serverService.get_invoice_print_cellphone().subscribe(
+      (res) => {
+        if (res) {
+          this.dataSource.data = res.list_cost;
+        }
+      }
+    )
   }
+
+  ngOnInit(): void {
+    this.dataSource = this.root_obj.list_cost;
+    this.get_sum1();
+  }
+
+  get_sum1() {
+    this.sum1 = 0;
+    for (var i = 0; i < this.root_obj.list_cost.length; i++) {
+      this.sum1 = this.sum1 + this.root_obj.list_cost[i].invoice_cost2_price;
+    }
+  }
+
 }
 
 export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-  description: string;
+  cost_title: string;
+  amount: number;
 }

@@ -144,8 +144,15 @@ export class Home2Component implements OnInit, OnDestroy {
     )
   }
 
+  open_search() {
+    if (this.form1.value.type == 1) {
+      this.open_invoice();
+    } else {
+
+    }
+  }
+
   open_invoice(): any {
-    this.width = window.innerWidth;
     if (!this.form1.valid) {
       var message = "لطفا تمامی آیتم ها را انتخاب نمائید.";
       this.message(true, this.messageService.message(this.lang, message, ''), 1, this.messageService.close(this.lang));

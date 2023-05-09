@@ -151,6 +151,7 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
           }//end for
           this.get_sum1();
           this.dataSource = new MatTableDataSource(this.list_cost);
+          this.serverService.send_invoice_print_cellphone({ list_cost: this.list_cost });
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {

@@ -13,7 +13,12 @@
 	.no-print {
 		display: none !important;
 	}
+
+	body {
+		-webkit-print-color-adjust: exact !important;
+	}
 }
+
 
 @font-face {
 	font-family: irsans;
@@ -413,6 +418,11 @@ mat-footer-row {
 	border: solid 1px #ddd;
 	max-height: 6px;
 	display: none !important
+}
+
+.main_bg_color {
+	background-color: #26396A !important;
+	color: #fff !important;
 }
 
 /* ******************************************************************************************************** */

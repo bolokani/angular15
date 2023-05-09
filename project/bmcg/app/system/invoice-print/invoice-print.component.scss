@@ -1,7 +1,4 @@
 @media print {
-    * {
-        color: #000 !important
-    }
 
 
     html {
@@ -365,7 +362,7 @@ video {
     }
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 576px) {
     .input-search {
         width: 30rem;
     }
@@ -392,6 +389,10 @@ video {
 
     .row3 {
         display: none
+    }
+
+    .cellphone {
+        display: none;
     }
 }
 
@@ -631,7 +632,8 @@ p {
 }
 
 .invoice table .headBg {
-    background-color: #ff0;
+    background-color: #26396A;
+    color: #fff
 }
 
 .invoice table .borderLeft {
