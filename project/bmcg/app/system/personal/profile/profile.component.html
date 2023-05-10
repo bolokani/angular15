@@ -1,0 +1,59 @@
+<div class="div_loading" [hidden]="!loading">
+    <div class="my-container" class="detaile">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+</div>
+<div class="container-fluid detaile-fluid3" style="padding-top:1rem;padding-bottom: 1rem;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-lg-3 col-xs-12 sidebar1 detaile-box2">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-lg-12 col-xs-12 sidebar1">
+
+                    <div class="menue">
+                        <ul>
+                            <li routerLinkActive="active" class="cursor" [routerLink]="['/profile']"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                <a>
+                                    <i class="fa fa-user"></i>
+                                    <span class="nav-label">خلاصه ی فعالیت ها</span>
+                                </a>
+                            </li>
+                            <li routerLinkActive="active" class="cursor" [routerLink]="['/profile/info']">
+                                <a>
+                                    <i class="fa fa-user"></i>
+                                    <span class="nav-label">اطلاعات حساب کاربری</span>
+                                </a>
+
+                            </li>
+                            <li routerLinkActive="active" class="cursor" (click)="go()"
+                                [routerLink]="['/profile/orders']">
+                                <a>
+                                    <i class="fa fa-bell"></i>
+                                    <span class="nav-label">سفارش ها</span>
+                                </a>
+                            </li>
+                            <li routerLinkActive="active" class="cursor">
+                                <a>
+                                    <i class="fa fa-bell"></i>
+                                    <span class="nav-label">لیست های من</span>
+                                </a>
+                            </li>
+                            <li (click)="serverService.signout()" class="cursor">
+                                <a>
+                                    <i class="fa fa-bank"></i>
+                                    <span class="nav-label">خروج</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- ----------------------------------------------------------------- -->
+
+            </div>
+            <!-- ************************************************************************************************************* -->
+            <div class="col-xl-9 col-lg-9 col-md-9 col-lg-9 col-xs-12 content1">
+                <router-outlet></router-outlet>
+            </div><!-- col-xl-9 col-lg-9 col-md-9 col-lg-9 col-xs-12 content1 -->
+        </div>
+    </div>
+
+</div>

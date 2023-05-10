@@ -22,8 +22,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import * as $ from 'jquery';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './system/header/header.component';
-import { FooterComponent } from './system/footer/footer.component';
+import { HeaderComponent } from './system/main/header/header.component';
+import { FooterComponent } from './system/main/footer/footer.component';
 import { HomeComponent } from './system/home/home.component';
 //import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AboutComponent } from './system/about/about.component';
@@ -35,12 +35,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ContactDetaileComponent } from './system/contact-detaile/contact-detaile.component';
 import { LoginComponent } from './system/register/login/login.component';
 import { SignupComponent } from './system/register/signup/signup.component';
-import { Pages404Component } from './system/pages404/pages404.component';
+import { Pages404Component } from './system/main/pages404/pages404.component';
 import { NgxCurrencyModule } from "ngx-currency";
 import { RuleComponent } from './system/register/rule/rule.component';
-import { Header2Component } from './system/header2/header2.component';
+import { Header2Component } from './system/main/header2/header2.component';
 import { MessageService } from './system/services/message/message.service';
-import { ProfileComponent } from './system/profile/profile.component';
+import { ProfileMenuComponent } from './system/profile/profile-menu/profile-menu.component';
 import { ContractListComponent } from './system/contract-list/contract-list.component';
 import { ContractCommentComponent } from './system/contract-comment/contract-comment.component';
 import { ContractProcessComponent } from './system/contract-process/contract-process.component';
@@ -50,6 +50,7 @@ import { PhomeComponent } from './system/phome/phome.component';
 import { Home2Component } from './system/home2/home2.component';
 import { InvoicePrintComponent } from './system/invoice-print/invoice-print.component';
 import { InvoicePrintCellphoneComponent } from './system/invoice-print-cellphone/invoice-print-cellphone.component';
+import { ProfileComponent } from './system/personal/profile/profile.component';
 
 export const customCurrencyMaskConfig = {
   align: "auto",
@@ -94,7 +95,9 @@ const routes: Routes = [
     SubstrPipe,
     Pages404Component,
     RuleComponent, Home2Component,
-    Header2Component, ProfileComponent, ContractListComponent, ContractCommentComponent, ContractProcessComponent, ContractInvoiceComponent, ContractInvoiceAttachmentComponent, PhomeComponent, InvoicePrintComponent, InvoicePrintCellphoneComponent
+    Header2Component, ProfileComponent, ContractListComponent, ContractCommentComponent
+    , ContractProcessComponent, ContractInvoiceComponent, ContractInvoiceAttachmentComponent
+    , PhomeComponent, InvoicePrintComponent, InvoicePrintCellphoneComponent, ProfileMenuComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })

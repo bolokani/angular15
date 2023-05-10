@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { ServerService } from '../services/server/server.service';
-import { MessageService } from '../services/message/message.service';
+import { ServerService } from '../../services/server/server.service';
+import { MessageService } from '../../services/message/message.service';
 
 @Component({
   selector: 'app-header2',

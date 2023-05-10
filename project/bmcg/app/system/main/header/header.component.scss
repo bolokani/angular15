@@ -1,6 +1,12 @@
 body {
   padding: 0px !important;
-  overflow-X: hidden;
+  overflow-x: hidden;
+}
+
+@media (max-width: 576px) {
+  .baner_main {
+    display: none;
+  }
 }
 
 /* ribbon */
@@ -422,7 +428,7 @@ body {
 
 
 .ul1 {
-  padding-right: 20px !important
+  padding-right: 0px !important
 }
 
 .shoar_text {
@@ -444,7 +450,6 @@ body {
 
 @media (min-width: 1024px) {
   .container1 {
-    max-width: 1394px;
     padding: 0 65px !important;
   }
 }
@@ -685,7 +690,7 @@ a {
 
 .site-header .main-nav .main-nav__links>li>a,
 .site-header .main-nav .main-nav__links>li>span {
-  font-size: 0.8rem !important;
+  font-size: 0.9rem !important;
 }
 
 /* *************************************************************** */
@@ -718,7 +723,6 @@ a {
 
 @media (min-width: 1024px) {
   .container1 {
-    max-width: 1394px;
     padding: 0 65px;
   }
 }
@@ -737,7 +741,7 @@ a {
   -webkit-box-pack: justify;
   justify-content: space-between;
   position: relative;
-  padding-top: 2.5rem;
+  padding-top: 0.8rem;
 }
 
 @media (min-width: 1200px) {
@@ -768,20 +772,13 @@ a {
 }
 
 .site-header .site-logo {
-  min-width: 18rem;
-  min-height: 6rem;
+  width: 21rem;
+  height: 70px;
   transition: all .3s ease;
   background-repeat: no-repeat;
   background-position: 30px;
-  background-size: 11rem;
+  background-size: 18rem;
 
-}
-
-.login {
-  display: flex;
-  float: left;
-  margin-top: 1.1rem;
-  font-size: 0.85rem;
 }
 
 .site-header .main-nav__links {
@@ -791,13 +788,26 @@ a {
   float: right;
   height: 100%;
   margin: 0 60px 0 0px;
-  padding-top: 1.5rem;
 }
 
 @media (min-width: 1024px) {
   .site-header .main-nav .main-nav__links>li {
     border-bottom-width: 0;
   }
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+.card {
+  padding: 0.5rem 1rem;
+  border-radius: 0px !important
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
 }
 
 .active {
@@ -809,6 +819,20 @@ a {
   transition: height .3s ease;
   outline-width: 0;
   height: 3.5rem
+}
+
+.mat-list-base {
+  width: 100%;
+}
+
+.drawer-h2 {
+  font-size: 0.85rem !important;
+  text-align: right;
+  padding: 0.5rem 1.5rem;
+}
+
+.drawer-header {
+  background-color: #232f3e;
 }
 
 @media (min-width: 1024px) {
@@ -1097,18 +1121,12 @@ a {
 }
 
 .header-top {
-  display: inline;
+  display: grid;
   justify-content: end;
   align-items: start;
-  padding: 0.3rem 0.2rem 0.2rem 0.2rem;
-  float: left;
+  width: 100%;
+  padding-top: 0.2rem;
 }
-
-.flags {
-  text-align: left;
-  padding-left: 2rem;
-}
-
 
 
 .cart-btn-wrapper .cart-preview-show {
@@ -1183,8 +1201,7 @@ a {
 }
 
 .flag-en {
-  height: 1rem;
-  width: 1.6rem;
+  height: 1.2rem;
   margin: 0.2rem
 }
 
@@ -1217,4 +1234,23 @@ a {
   opacity: 0;
   transform: translateY(10px);
   pointer-events: none;
+}
+
+.login {
+  display: inline-block;
+  border: solid 1px #ccc;
+  padding: 0.55rem 1.5rem;
+  border-radius: 0.5rem;
+  margin-left: 1rem;
+}
+
+.user_icon {
+  display: inline-block;
+  padding: 0.55rem 1.5rem;
+}
+
+.mat-icon {
+  height: 2rem;
+  width: 2rem;
+  font-size: 2.2rem;
 }

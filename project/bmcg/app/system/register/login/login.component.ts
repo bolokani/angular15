@@ -102,7 +102,7 @@ export class LoginComponent implements OnInit {
     }
     this.loading = true;
     var obj = {
-      'address': 1989
+      'address': 6868
       , 'cellphone': this.form1.value.cellphone
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
@@ -112,7 +112,9 @@ export class LoginComponent implements OnInit {
             this.create_code(res['result'][0].user_id);
           }
           else {
-            this.create_user();
+            var pe_message = "این شماره همراه در سیستم وجود ندارد";
+            this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
+            //this.create_user();
           }
 
         }//end if
@@ -148,14 +150,19 @@ export class LoginComponent implements OnInit {
 
   create_code(user_id: number): any {
     var obj = {
-      address: 1991,
+      address: 6869,
       user_id: user_id
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
           if (res['num'] == 1) {
-            this.send_sms(res['result'][0].user_code);
+            //this.send_sms(res['result'][0].user_code);
+            this.sent_code = true;
+            this.form2.patchValue({
+              'code': res['result'][0].user_code
+            })
+            this.message(false, "", 1, this.messageService.close(1));
           }
         }//end if
         else {
@@ -175,8 +182,8 @@ export class LoginComponent implements OnInit {
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
-          this.sent_code = true;
-          this.message(false, "", 1, this.messageService.close(1));
+          //this.sent_code = true;
+          //this.message(false, "", 1, this.messageService.close(1));
         }//end if
         else {
           var pe_message = "نام کاربری و یا رمز عبور معتبر نمیباشد";
@@ -194,7 +201,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     var obj = {
-      address: 1992,
+      address: 6870,
       code: this.form2.value.code,
       cellphone: this.form1.value.cellphone
     }
@@ -203,11 +210,7 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         if (res['status'] == 1 && res['num'] == 1) {
           if (res['result'][0].user_title) {
-            if (this.token_order) {
-              this.update_order(res['result'][0].user_id, res);
-            } else {
-              this.set_status(res);
-            }
+            this.set_status(res);
           } else {
             this.id = res['result'][0].user_id;
             this.show_input_name = true;
@@ -235,11 +238,7 @@ export class LoginComponent implements OnInit {
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1 && res['num'] == 1) {
-          if (this.token_order) {
-            this.update_order(res['result'][0].user_id, res);
-          } else {
-            this.set_status(res);
-          }
+          this.set_status(res);
           this.message(false, "", 1, this.messageService.close(1));
         }//end if
         else {
@@ -249,28 +248,6 @@ export class LoginComponent implements OnInit {
       }
     )
   }
-
-  update_order(user_id: number, result: any) {
-    if (this.serverService.check_internet() == false) {
-      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
-      return;
-    }//end if
-    else { this.matSnackBar.dismiss(); }
-    this.loading = true;
-    var obj = { address: 2007, user_id: user_id, token_order: this.token_order }
-    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
-      (res: any) => {
-        if (res['status'] == 1) {
-          this.set_status(result);
-          this.message(false, "", 1, this.messageService.close(this.lang));
-        }//end if
-        else {
-          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
-        }
-      }
-    )
-  }
-
 
   set_status(res: any) {
     var obj = {

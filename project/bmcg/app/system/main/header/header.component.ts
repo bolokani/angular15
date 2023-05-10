@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { ServerService } from '../services/server/server.service';
-import { MessageService } from '../services/message/message.service';
+import { ServerService } from '../../services/server/server.service';
+import { MessageService } from '../../services/message/message.service';
 
 @Component({
   selector: 'app-header',
@@ -22,6 +22,8 @@ export class HeaderComponent implements OnInit {
   public user_id: number = 0;
   public show_bascket: boolean = false;
   public logo: string;
+  public user_cellphone: string;
+  public user_token: number = 0;
 
   constructor(
     public router: Router
@@ -37,12 +39,33 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    localStorage.setItem('lang', JSON.stringify(1));
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
+      this.user_token = this.user_info.user_token;
+      this.get_user();
     }
     //this.get_logo();
     this.logo = "https://truckbama.com/assets/img/logo2.png";
+  }
+
+  get_user() {
+    this.loading = true;
+    var obj = {
+      address: 6871
+      , user_id: this.user_id
+      , user_token: this.user_token
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1 && res['num'] == 1) {
+          this.user_cellphone = res['result'][0].user_cellphone;
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
   }
 
   go_to_content(id: number, title: string) {

@@ -1,0 +1,35 @@
+<header class="site-header" id='fix_menu'>
+    <div class="main-nav">
+        <nav role="navigation" class="container1 menu-desktop">
+            <div class="site-logo__wrapper cursor" [routerLink]="['/']">
+                <a class="site-logo" title="Home" [ngStyle]="{'background-image':'url( ' + logo + ')'}"></a>
+            </div>
+            <div style="width:100%;height:6rem;padding-top:1.5rem">
+                <div style="float: left;">
+                    <div class="login cursor" [routerLink]="['/login']" *ngIf="!user_cellphone">
+                        <span>ورود</span>
+                        |
+                        <span>ثبت نام</span>
+                    </div>
+                    <div class="user_icon cursor" *ngIf="user_cellphone" [matMenuTriggerFor]="menu_profile">
+                        <mat-icon>account_circle</mat-icon>
+                    </div>
+
+                </div>
+                <mat-menu #menu_profile="matMenu" class="mat-menu-panel-profile">
+                    <app-profile-menu></app-profile-menu>
+                </mat-menu>
+
+                <ul class="main-nav__links main-nav__links--closed ul1">
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="main-nav__link" [routerLink]="['/']">صفحه نخست</a>
+                    </li>
+                    <li class="cursor" routerLinkActive="active" [routerLink]="['/about/درباره-ما']">
+                        <a class="main-nav__link">درباره ما</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- ********************************************************************************************************************************* -->

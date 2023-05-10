@@ -171,7 +171,6 @@ button:focus {
 
 .spinner-border-sm {
 	margin-right: 0.5rem;
-	float: left !important;
 }
 
 .mat-stepper-label-position-bottom .mat-horizontal-stepper-header,
@@ -1251,32 +1250,6 @@ button {
 	height: 2.5rem
 }
 
-.footer-bottom {
-	padding-top: 30px;
-	padding-bottom: 30px;
-	background-color: #002060 !important;
-	border-top: 1px solid #3b3a43
-}
-
-.footer-bottom-content {
-	text-align: center
-}
-
-.footer-bottom-content p {
-	font-size: 15px;
-	color: #fff;
-	font-weight: 500;
-	margin: 0
-}
-
-.footer-bottom-content p a {
-	color: #fff;
-	font-weight: 600
-}
-
-.footer-bottom-content p a:hover {
-	color: #f25144
-}
 
 .instagram-feed {
 	padding: 0;

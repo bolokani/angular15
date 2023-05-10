@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, pipe, Subscription } from 'rxjs';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ServerService } from '../services/server/server.service';
+import { ServerService } from '../../services/server/server.service';
 
 @Component({
   selector: 'app-pages404',
