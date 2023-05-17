@@ -1,4 +1,4 @@
-<header class="site-header" id='fix_menu'>
+<header class="site-header no-print" id='fix_menu'>
     <div class="main-nav">
         <nav role="navigation" class="container1 menu-desktop">
             <div class="site-logo__wrapper cursor" [routerLink]="['/']">
@@ -8,8 +8,7 @@
                 <div style="float: left;">
                     <div class="login cursor" [routerLink]="['/login']" *ngIf="!user_cellphone">
                         <span>ورود</span>
-                        |
-                        <span>ثبت نام</span>
+
                     </div>
                     <div class="user_icon cursor" *ngIf="user_cellphone" [matMenuTriggerFor]="menu_profile">
                         <mat-icon>account_circle</mat-icon>

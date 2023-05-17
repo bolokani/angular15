@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PhomeComponent } from './phome.component';
+import { CustomsPrintComponent } from './customs-print.component';
 
-describe('PhomeComponent', () => {
-  let component: PhomeComponent;
-  let fixture: ComponentFixture<PhomeComponent>;
+describe('CustomsPrintComponent', () => {
+  let component: CustomsPrintComponent;
+  let fixture: ComponentFixture<CustomsPrintComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PhomeComponent ]
+      declarations: [ CustomsPrintComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PhomeComponent);
+    fixture = TestBed.createComponent(CustomsPrintComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

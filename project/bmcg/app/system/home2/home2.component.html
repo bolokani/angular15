@@ -63,7 +63,7 @@
                                 <mat-form-field appearance="fill">
                                     <mat-label>نوع درخواست</mat-label>
                                     <mat-select name="type" formControlName="type">
-                                        <mat-option [value]="2" [hidden]="true">حقوق گمرکی</mat-option>
+                                        <mat-option [value]="2">حقوق گمرکی</mat-option>
                                         <mat-option [value]="1">تخمین هزینه</mat-option>
                                     </mat-select>
                                 </mat-form-field>
@@ -120,7 +120,8 @@
         <app-invoice-print [obj]="obj"></app-invoice-print>
     </div>
 
+    <div *ngIf="show_customs == true">
+        <app-customs-print [obj]="obj"></app-customs-print>
+    </div>
+
 </div>
-
-
-<br><br><br><br><br><br><br>

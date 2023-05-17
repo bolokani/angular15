@@ -37,6 +37,7 @@ export class Home2Component implements OnInit, OnDestroy {
   public type: string = 'customs';
   public user_title: string;
   public show_invoice: boolean = false;
+  public show_customs: boolean = false;
   public width: number;
 
   public exchange_rate: number | string;
@@ -148,7 +149,7 @@ export class Home2Component implements OnInit, OnDestroy {
     if (this.form1.value.type == 1) {
       this.open_invoice();
     } else {
-
+      this.open_customs();
     }
   }
 
@@ -167,14 +168,32 @@ export class Home2Component implements OnInit, OnDestroy {
         this.serverService.send_invoice_print2({ obj: this.obj });
       } else {
         this.show_invoice = true;
+        this.show_customs = false;
       }
     }
-    /*
-    this.dialog.open(InvoicePrintComponent, {
-      width: '60rem',
-      height: 'auto',
-    })*/
   }
+
+  open_customs(): any {
+    if (!this.form1.valid) {
+      var message = "لطفا تمامی آیتم ها را انتخاب نمائید.";
+      this.message(true, this.messageService.message(this.lang, message, ''), 1, this.messageService.close(this.lang));
+      return false;
+    } else {
+      this.obj = {
+        brand: this.form1.value.brand,
+        tip: this.form1.value.tip,
+        year: this.form1.value.year
+      }
+      if (this.show_customs == true) {
+        this.serverService.send_invoice_print2({ obj: this.obj });
+      } else {
+        this.show_customs = true;
+        this.show_invoice = false;
+      }
+    }
+  }
+
+
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {
     if (type == 1) { this.loading = false; }

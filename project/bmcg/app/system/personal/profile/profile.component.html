@@ -3,40 +3,27 @@
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
 </div>
+
 <div class="container-fluid detaile-fluid3" style="padding-top:1rem;padding-bottom: 1rem;">
     <div class="container">
         <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-3 col-lg-3 col-xs-12 sidebar1 detaile-box2">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-lg-12 col-xs-12 sidebar1">
-
                     <div class="menue">
                         <ul>
-                            <li routerLinkActive="active" class="cursor" [routerLink]="['/profile']"
+                            <li routerLinkActive="active" class="cursor" [routerLink]="['/profile/info']"
                                 [routerLinkActiveOptions]="{exact: true}">
                                 <a>
                                     <i class="fa fa-user"></i>
-                                    <span class="nav-label">خلاصه ی فعالیت ها</span>
+                                    <span class="nav-label">پنل کاربری من</span>
                                 </a>
                             </li>
-                            <li routerLinkActive="active" class="cursor" [routerLink]="['/profile/info']">
+                            <li routerLinkActive="active" class="cursor" [routerLink]="['/phome/contract']">
                                 <a>
                                     <i class="fa fa-user"></i>
-                                    <span class="nav-label">اطلاعات حساب کاربری</span>
+                                    <span class="nav-label">قراردادهای من</span>
                                 </a>
 
-                            </li>
-                            <li routerLinkActive="active" class="cursor" (click)="go()"
-                                [routerLink]="['/profile/orders']">
-                                <a>
-                                    <i class="fa fa-bell"></i>
-                                    <span class="nav-label">سفارش ها</span>
-                                </a>
-                            </li>
-                            <li routerLinkActive="active" class="cursor">
-                                <a>
-                                    <i class="fa fa-bell"></i>
-                                    <span class="nav-label">لیست های من</span>
-                                </a>
                             </li>
                             <li (click)="serverService.signout()" class="cursor">
                                 <a>

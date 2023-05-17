@@ -40,17 +40,20 @@ import { NgxCurrencyModule } from "ngx-currency";
 import { RuleComponent } from './system/register/rule/rule.component';
 import { Header2Component } from './system/main/header2/header2.component';
 import { MessageService } from './system/services/message/message.service';
-import { ProfileMenuComponent } from './system/profile/profile-menu/profile-menu.component';
+import { ProfileMenuComponent } from './system/personal/profile-menu/profile-menu.component';
 import { ContractListComponent } from './system/contract-list/contract-list.component';
 import { ContractCommentComponent } from './system/contract-comment/contract-comment.component';
 import { ContractProcessComponent } from './system/contract-process/contract-process.component';
 import { ContractInvoiceComponent } from './system/contract-invoice/contract-invoice.component';
 import { ContractInvoiceAttachmentComponent } from './system/contract-invoice-attachment/contract-invoice-attachment.component';
-import { PhomeComponent } from './system/phome/phome.component';
 import { Home2Component } from './system/home2/home2.component';
 import { InvoicePrintComponent } from './system/invoice-print/invoice-print.component';
 import { InvoicePrintCellphoneComponent } from './system/invoice-print-cellphone/invoice-print-cellphone.component';
 import { ProfileComponent } from './system/personal/profile/profile.component';
+import { CustomsPrintComponent } from './system/customs-print/customs-print.component';
+import { PersonalInfoComponent } from './system/personal/personal-info/personal-info.component';
+import { PersonalInfoDetaileComponent } from './system/personal/personal-info-detaile/personal-info-detaile.component';
+
 
 export const customCurrencyMaskConfig = {
   align: "auto",
@@ -71,7 +74,11 @@ const routes: Routes = [
   {
     path: "", component: HomeComponent, children: [
       { path: "", component: Home2Component },
-      { path: 'profile', component: ProfileComponent },
+      {
+        path: 'profile', component: ProfileComponent, children: [
+          { path: "info", component: PersonalInfoComponent },
+        ]
+      },
       { path: "contract", component: ContractListComponent },
       { path: "about/:title", component: AboutComponent },
     ]
@@ -97,7 +104,8 @@ const routes: Routes = [
     RuleComponent, Home2Component,
     Header2Component, ProfileComponent, ContractListComponent, ContractCommentComponent
     , ContractProcessComponent, ContractInvoiceComponent, ContractInvoiceAttachmentComponent
-    , PhomeComponent, InvoicePrintComponent, InvoicePrintCellphoneComponent, ProfileMenuComponent
+    , InvoicePrintComponent, InvoicePrintCellphoneComponent, ProfileMenuComponent, CustomsPrintComponent
+    , PersonalInfoComponent, PersonalInfoDetaileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })
