@@ -6,9 +6,33 @@
 
 <div class="container-fluid detaile-fluid3" style="padding-top:1rem;padding-bottom: 1rem;">
     <div class="container">
-        <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-lg-3 col-xs-12 sidebar1 detaile-box2">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-lg-12 col-xs-12 sidebar1">
+        <div class="row row1">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-lg-3 col-xs-12">
+                <div class="sidebar1 detaile-box2">
+                    <div class="container-fluid detaile-fluid1">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 detaile-div2">
+                                <div class="detaile-box appy-master">
+                                    <div class="detaile-avatar">
+                                        <div class="detaile-overflow">
+                                            <div class="avatar-bg backgroundImage"
+                                                [ngStyle]="{'background-image':'url( ' + user_logo + ')'}">
+                                            </div>
+
+                                        </div>
+                                        <div class="backgroundImage logo2"
+                                            [ngStyle]="{'background-image':'url( ' + user_logo + ')'}">
+
+                                        </div>
+                                    </div>
+                                    <h3 class="name">{{ user_title }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-lg-12 col-xs-12 sidebar1 detaile-box2">
                     <div class="menue">
                         <ul>
                             <li routerLinkActive="active" class="cursor" [routerLink]="['/profile/info']"
@@ -18,12 +42,11 @@
                                     <span class="nav-label">پنل کاربری من</span>
                                 </a>
                             </li>
-                            <li routerLinkActive="active" class="cursor" [routerLink]="['/phome/contract']">
+                            <li routerLinkActive="active" class="cursor" [routerLink]="['/profile/contract']">
                                 <a>
                                     <i class="fa fa-user"></i>
                                     <span class="nav-label">قراردادهای من</span>
                                 </a>
-
                             </li>
                             <li (click)="serverService.signout()" class="cursor">
                                 <a>

@@ -120,6 +120,10 @@ export class ServerService {
     this.title.setTitle(title);
   }
 
+  get_no_record_text(lang: number) {
+    return 'هیچ رکوردی برای نمایش وجود ندارد';
+  }
+
   //********************************************************  */
   send_status(value: any): void {
     this.status.next(value);

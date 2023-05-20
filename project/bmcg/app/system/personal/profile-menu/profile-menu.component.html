@@ -1,15 +1,15 @@
 <div class="row" style="padding:0.3rem 0.8rem">
     <mat-list role="list">
         <mat-list-item role="listitem" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 profile-menu cursor">
-            <span [routerLink]="['/profile/info']" class="cursor">{{ user_title }}</span>
+            <span [routerLink]="['/profile/info']" class="cursor title">{{ user_title }}</span>
         </mat-list-item>
         <mat-list-item role="listitem" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 profile-menu cursor"
             [routerLink]="['/shopping/bascket']">
-            <span>سفارش ها</span>
+            <span class="title">سفارش ها</span>
         </mat-list-item>
         <mat-list-item role="listitem" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 profile-menu cursor"
             (click)="signout()">
-            <span>خروج از حساب کاربری</span>
+            <span class="title">خروج از حساب کاربری</span>
         </mat-list-item>
     </mat-list>
 </div>

@@ -22,7 +22,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public cellphone: number | undefined;
   public title: number | undefined;
   public logo_info: any | undefined;
-
+  public user_logo: string = "https://lexonteam.com/object/images/upload//image_1683828138859.jpg";
+  public user_title: string = "محمد زمانی";
 
   constructor(
     public serverService: ServerService
@@ -41,6 +42,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
     }
+    this.get_user();
   }
 
   go() {
@@ -54,14 +56,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }//end if
     else { this.matSnackBar.dismiss(); }
     this.loading = true;
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2027, user_id: this.user_id }).subscribe(
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6874, user_id: this.user_id }).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
           if (res['num'] == 1) {
-            if (res['result'][0].user_logo3) {
-              this.logo = res['result'][0].user_logo_site + "/" + res['result'][0].user_logo3;
+            if (res['result'][0].user_logo) {
+              this.user_logo = res['result'][0].user_logo_site + "/" + res['result'][0].user_logo;
             } else {
-              this.logo = this.serverService.get_default_user_logo();
+              this.user_logo = this.serverService.get_default_user_logo();
             }
           }
           this.title = res['result'][0].user_title;
