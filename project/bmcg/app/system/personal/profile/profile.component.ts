@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public title: number | undefined;
   public logo_info: any | undefined;
   public user_logo: string = "https://lexonteam.com/object/images/upload//image_1683828138859.jpg";
-  public user_title: string = "محمد زمانی";
+  public user_title: string;
 
   constructor(
     public serverService: ServerService

@@ -7,6 +7,10 @@
         padding-right: 0px !important;
         padding-left: 0px !important;
     }
+
+    .logo2 {
+        left: 36%;
+    }
 }
 
 @media only screen and (min-width: 600px) {
@@ -261,7 +265,7 @@ ul {
     background-repeat: no-repeat;
     position: absolute;
     height: 110px;
-    left: 6rem;
+    left: 33%;
     bottom: -2rem;
     background-size: cover;
     border: solid 1px #ccc

@@ -461,8 +461,9 @@ mat-footer-row {
 .mat-dialog-title-div1 {
 	position: absolute;
 	top: 0;
-	width: 100%;
+	width: 93%;
 	padding-top: 0rem;
+	left: 0
 }
 
 .matDialogTitle {
@@ -474,7 +475,8 @@ mat-footer-row {
 	box-shadow: 1px 0px 4px #777;
 	padding: 0px !important;
 	max-height: 2rem;
-	background-color: #23FF9F;
+	background-color: #162B5F;
+	color: #fff !important;
 }
 
 .matDialogContent span {
@@ -501,10 +503,6 @@ mat-footer-row {
 	width: 100%
 }
 
-.close {
-	float: right;
-	cursor: pointer
-}
 
 .mat-dialog-actions .mat-button+.mat-button,
 .mat-dialog-actions .mat-button+.mat-raised-button,
@@ -1518,7 +1516,7 @@ button {
 }
 
 .cursor {
-	cursor: pointer
+	cursor: pointer;
 }
 
 button:disabled {

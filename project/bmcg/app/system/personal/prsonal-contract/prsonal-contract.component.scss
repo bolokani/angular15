@@ -1,7 +1,24 @@
+@media (min-width: 576px) {}
+
+@media (max-width: 576px) {
+    .row_invoice {
+        padding-bottom: 1rem !important;
+    }
+
+    .div4 {
+        padding: 0px !important
+    }
+}
+
+.div4 {
+    padding: 0px;
+}
+
 .box {
     border: solid 1px #e0e0e6;
     min-height: 30rem;
     border-radius: 1rem;
+    padding: 0px;
 }
 
 .info-box {
@@ -26,11 +43,30 @@
     border-bottom: solid 1px #e0e0e6;
 }
 
+.contract-title2 {
+    font-size: 0.8rem;
+    float: left;
+    color: #182C60
+}
+
+.link {
+    width: 4rem;
+    margin-bottom: 0.2rem;
+    margin-top: 0.48rem;
+    font-size: 0.85rem;
+
+}
+
+.div6 {
+    background-color: #f9f9f9;
+}
+
 .row_invoice {
     border: solid 1px #e0e0e6;
     margin-top: 1rem;
     border-radius: 1rem;
 }
+
 
 .div_invoice_button {
     border-top: solid 1px #e0e0e6;
@@ -45,6 +81,11 @@
     border: solid 1px #e0e0e6;
 }
 
+.detaile {
+    border-right: solid 1px #ccc;
+    color: #182C60;
+}
+
 .breakpoint {
     display: inline-block;
     margin: 0 0rem 0 1rem
@@ -55,7 +96,7 @@
 }
 
 .backgroundImage {
-    background-size: contain !important
+    background-size: cover
 }
 
 .div2 {
@@ -137,7 +178,7 @@ h3 {
 }
 
 .box1 {
-    padding: 1rem 1rem 0 1rem !important
+    padding: 2rem 1rem 0 1rem !important
 }
 
 .edit_box {
