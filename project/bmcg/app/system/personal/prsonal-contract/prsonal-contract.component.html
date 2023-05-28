@@ -61,22 +61,22 @@
                                                 </div>
                                             </div>
                                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 detaile">
-                                                <div (click)="open(x.contract_list_id,x.contract_list_contract_number)"
+                                                <div [routerLink]="['/profile/contract-detaile',x.contract_list_id]"
                                                     class="cursor link btn1">
                                                     جزئیات
                                                 </div>
 
-                                                <div (click)="open_comment(x.contract_list_id,x.contract_list_contract_number)"
+                                                <div [routerLink]="['/profile/contract-comment',x.contract_list_id]"
                                                     class="cursor link btn2">
                                                     پیامها
                                                 </div>
 
-                                                <div (click)="open_process(x.contract_list_id,x.contract_list_contract_number)"
+                                                <div [routerLink]="['/profile/contract-process',x.contract_list_id]"
                                                     class="cursor link btn3">
                                                     مراحل
                                                 </div>
 
-                                                <div (click)="open_invoice(x.contract_list_id,x.contract_list_contract_number)"
+                                                <div [routerLink]="['/profile/contract-invoice',x.contract_list_id]"
                                                     class="cursor link btn4">
                                                     هزینه ها
                                                 </div>

@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewChild, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ServerService } from '../services/server/server.service';
-import { MessageService } from '../services/message/message.service';
+import { ServerService } from '../../services/server/server.service';
+import { MessageService } from '../../services/message/message.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
@@ -23,6 +23,7 @@ export class ContractCommentComponent implements OnInit, OnDestroy {
   public contract_number: number | any;
   public username: any;
   public user_id: any;
+  public user_token: any;
   public placeholder: string | any;
   public show_excel: boolean = false;
   public list_comment: any = [];
@@ -36,21 +37,22 @@ export class ContractCommentComponent implements OnInit, OnDestroy {
   constructor(
     public serverService: ServerService
     , public router: Router
-    , @Inject(MAT_DIALOG_DATA) public dialog_data: any
+    , public activatedRoute: ActivatedRoute
     , public dialog: MatDialog
-    , public dialogRef: MatDialogRef<ContractCommentComponent>
     , public matSnackBar: MatSnackBar
     , public messageService: MessageService
   ) {
-    if (dialog_data) {
-      this.id = dialog_data.id;
-      this.contract_number = dialog_data.contract_number;
-    }
   }//end consructor
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(
+      (params: Params) => {
+        this.id = params['id'];
+      }
+    )
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
+      this.user_token = this.user_info.user_token;
     }
     this.create_form();
     this.get_comments();
@@ -84,7 +86,13 @@ export class ContractCommentComponent implements OnInit, OnDestroy {
     else { this.matSnackBar.dismiss(); }
     this.loading = true;
     this.show_excel = false;
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { 'address': 6561, 'id': this.id }).subscribe(
+    var obj = {
+      'address': 6561
+      , 'id': this.id
+      , 'user_token': this.user_token
+      , 'user_id': this.user_id
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
           this.list_comment = [];
@@ -138,10 +146,6 @@ export class ContractCommentComponent implements OnInit, OnDestroy {
     )//end
   }//end menufiledelete
 
-
-  close() {
-    this.dialogRef.close();
-  }//end dialogRef
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {
     if (type == 1) this.loading = false;

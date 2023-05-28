@@ -1,21 +1,11 @@
-<div mat-dialog-title class="matDialogTitle" cdkDragHandle cdkDrag cdkDragRootElement=".cdk-overlay-pane">
-  <div class="div_loading">
-    <div class="my-container" [hidden]="!loading">
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    </div>
+<div class="div_loading">
+  <div class="my-container" [hidden]="!loading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
-  <div class="mat-dialog-title-div1">کامنت های شماره قرارداد {{ contract_number }}</div>
-  <span class="close" (click)="close()">
-    <mat-icon>close</mat-icon>
-  </span>
 </div>
 
-
-
-<div mat-dialog-content class="matDialogContent">
+<div>
   <div class="loading"><span class="spinner-border spinner-border-sm" [hidden]="!loading"></span></div>
-  <span class="cursor" (click)="scroll()" style="font-size: 2rem;" *ngIf="list_comment.length > 3"><i
-      class="far fa-arrow-alt-circle-down" style="width:1rem"></i></span>
   <div class="row">
     <div class='col-md-12 col-lg-12 col-xs-12 col-sm-12'>
       <div class="message">
@@ -52,7 +42,6 @@
 
 <div class="textarea_div">
   <form [formGroup]="form1">
-    <button class="temp" style="background-color: transparent;border:none"></button>
     <textarea style="direction: unset !important" name="comment" formControlName="comment" class="pe1">
       </textarea>
     <button class="btn_pe send" (click)="send_comment(id)" [disabled]="!form1.valid || loading">

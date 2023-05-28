@@ -1,0 +1,19 @@
+<ng-container>
+    <span *ngIf="width > 576px">
+        <div class="user_icon cursor" *ngIf="user_cellphone" [matMenuTriggerFor]="menu_profile">
+            <img [src]="user_logo" class="user_logo">
+        </div>
+        <div class="login cursor" [routerLink]="['/login']" *ngIf="!user_cellphone">
+            <span>ورود</span>
+        </div>
+        <mat-menu #menu_profile="matMenu" class="mat-menu-panel-profile">
+            <app-profile-menu></app-profile-menu>
+        </mat-menu>
+    </span>
+
+    <span *ngIf="width <= 576px">
+        <div class="user_icon cursor" *ngIf="user_cellphone" [routerLink]="['/profile/info']">
+            <img [src]="user_logo" class="user_logo">
+        </div>
+    </span>
+</ng-container>

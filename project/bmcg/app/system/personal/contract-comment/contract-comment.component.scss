@@ -188,12 +188,16 @@ button{background:#f35854;color:#fff}
 	line-height: 25px
 }
 
+.send {
+	border: none;
+	width: 7rem;
+	height: 2.2rem;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
 @media screen and (max-width: 576px) {
-	.textarea_div {
-		position: fixed;
-		bottom: 0;
-		width: 100%;
-	}
+
 
 	.matDialogContent {
 		min-height: 100vh !important;
@@ -204,31 +208,15 @@ button{background:#f35854;color:#fff}
 	}
 
 	textarea {
-		width: 84%
+		width: 100%
 	}
 
-	.send {
-		border: none;
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		width: 16%;
-		height: 3.2rem;
-	}
+
 
 }
 
 @media screen and (min-width: 576px) {
-	.send {
-		border: none;
-		right: 0;
-		width: 16%;
-		height: 3.5rem;
-	}
 
-	textarea {
-		width: 84%
-	}
 
 	.cdk-overlay-pane {
 		width: 80rem !important

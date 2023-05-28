@@ -257,7 +257,7 @@ export class LoginComponent implements OnInit {
     localStorage.setItem("lang", JSON.stringify(1));
     localStorage.setItem('user_info', JSON.stringify(obj));
 
-    this.router.navigate(['/']);
+    this.router.navigate(['/profile/info']);
   }
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {

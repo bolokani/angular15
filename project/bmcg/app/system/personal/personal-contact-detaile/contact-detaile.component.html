@@ -1,20 +1,13 @@
-<div mat-dialog-title class="matDialogTitle" cdkDragHandle cdkDrag cdkDragRootElement=".cdk-overlay-pane">
-  <div class="div_loading">
-    <div class="my-container" [hidden]="!loading">
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    </div>
+<div class="div_loading">
+  <div class="my-container" [hidden]="!loading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
-
-  <div class="mat-dialog-title-div1">مشخصات شماره قرارداد {{ contract_number }}</div>
-  <span class="close" (click)="close()">
-    <mat-icon>close</mat-icon>
-  </span>
 </div>
 
-<div mat-dialog-content class="matDialogContent dialog-color" style="padding:7px !important;font-size: 0.79rem;">
-  <div class="container">
-    <div class="row" *ngFor="let x of list_record">
-      <table class="table table-bordered">
+<div class="container">
+  <div class="row" *ngFor="let x of list_record">
+    <table class="table table-bordered">
+      <tbody>
         <tr>
           <td class="right">نام کالا:</td>
           <td class="center">{{ x.site_brand_title }} {{ x.site_tip_title }} {{ x.site_year_title }}</td>
@@ -59,7 +52,7 @@
           <td class="right">تعداد روز شروع تا پلاک:</td>
           <td class="center">{{ missed_day_plate }} روز</td>
         </tr>
-      </table>
-    </div>
+      </tbody>
+    </table>
   </div>
 </div>

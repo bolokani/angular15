@@ -9,6 +9,13 @@ tr:nth-child(even) {
 	background-color: #f2f2f2;
 }*/
 
+@media only screen and (max-width: 576px) {
+	.container {
+		margin-top: 2rem !important;
+	}
+
+}
+
 table tr td {
 	text-align: right;
 }

@@ -31,7 +31,7 @@ import { ServerService } from './system/services/server/server.service';
 import { MatRadioModule } from '@angular/material/radio';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { ContactDetaileComponent } from './system/contact-detaile/contact-detaile.component';
+import { ContactDetaileComponent } from './system/personal/personal-contact-detaile/contact-detaile.component';
 import { LoginComponent } from './system/register/login/login.component';
 import { SignupComponent } from './system/register/signup/signup.component';
 import { Pages404Component } from './system/main/pages404/pages404.component';
@@ -40,9 +40,9 @@ import { RuleComponent } from './system/register/rule/rule.component';
 import { Header2Component } from './system/main/header2/header2.component';
 import { MessageService } from './system/services/message/message.service';
 import { ProfileMenuComponent } from './system/personal/profile-menu/profile-menu.component';
-import { ContractCommentComponent } from './system/contract-comment/contract-comment.component';
-import { ContractProcessComponent } from './system/contract-process/contract-process.component';
-import { ContractInvoiceComponent } from './system/contract-invoice/contract-invoice.component';
+import { ContractCommentComponent } from './system/personal/contract-comment/contract-comment.component';
+import { ContractProcessComponent } from './system/personal/contract-process/contract-process.component';
+import { ContractInvoiceComponent } from './system/personal/contract-invoice/contract-invoice.component';
 import { ContractInvoiceAttachmentComponent } from './system/contract-invoice-attachment/contract-invoice-attachment.component';
 import { Home2Component } from './system/home2/home2.component';
 import { InvoicePrintComponent } from './system/invoice-print/invoice-print.component';
@@ -53,6 +53,9 @@ import { PersonalInfoComponent } from './system/personal/personal-info/personal-
 import { PersonalInfoDetaileComponent } from './system/personal/personal-info-detaile/personal-info-detaile.component';
 import { ContactChatComponent } from './system/main/contact-chat/contact-chat.component';
 import { PrsonalContractComponent } from './system/personal/prsonal-contract/prsonal-contract.component';
+import { MenuComponent } from './system/main/menu/menu.component';
+import { PersonalInvoice2Component } from './system/personal/personal-invoice2/personal-invoice2.component';
+import { PersonalInvoice2CellphoneComponent } from './system/personal/personal-invoice2-cellphone/personal-invoice2-cellphone.component';
 
 export const customCurrencyMaskConfig = {
   align: "auto",
@@ -77,6 +80,10 @@ const routes: Routes = [
         path: 'profile', component: ProfileComponent, children: [
           { path: "info", component: PersonalInfoComponent },
           { path: "contract", component: PrsonalContractComponent },
+          { path: "contract-detaile/:id", component: ContactDetaileComponent },
+          { path: "contract-process/:id", component: ContractProcessComponent },
+          { path: "contract-comment/:id", component: ContractCommentComponent },
+          { path: "contract-invoice/:id", component: ContractInvoiceComponent },
         ]
       },
       { path: "about/:title", component: AboutComponent },
@@ -103,7 +110,7 @@ const routes: Routes = [
     Header2Component, ProfileComponent, ContractCommentComponent
     , ContractProcessComponent, ContractInvoiceComponent, ContractInvoiceAttachmentComponent
     , InvoicePrintComponent, InvoicePrintCellphoneComponent, ProfileMenuComponent, CustomsPrintComponent
-    , PersonalInfoComponent, PersonalInfoDetaileComponent, ContactChatComponent, PrsonalContractComponent
+    , PersonalInfoComponent, PersonalInfoDetaileComponent, ContactChatComponent, PrsonalContractComponent, MenuComponent, PersonalInvoice2Component, PersonalInvoice2CellphoneComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })

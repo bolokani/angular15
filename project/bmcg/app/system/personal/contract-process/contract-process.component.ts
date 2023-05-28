@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy, Inject, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ServerService } from '../services/server/server.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MessageService } from '../services/message/message.service';
+import { ServerService } from '../../services/server/server.service';
+import { MessageService } from '../../services/message/message.service';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
@@ -24,6 +23,7 @@ export class ContractProcessComponent implements OnInit, OnDestroy {
   public lang = JSON.parse(<any>localStorage.getItem('lang'));
   public loading = false;
   public user_id: number;
+  public user_token: number;
   public subscription: Subscription;
   public contract_number: string;
   public id: number;
@@ -35,17 +35,20 @@ export class ContractProcessComponent implements OnInit, OnDestroy {
     public serverService: ServerService
     , public router: Router
     , public matSnackBar: MatSnackBar
-    , @Inject(MAT_DIALOG_DATA) public dialog_data: any
-    , public matDialogRef: MatDialogRef<ContractProcessComponent>
+    , public activatedRoute: ActivatedRoute
     , public messageService: MessageService) {
-
-    if (dialog_data) {
-      this.contract_number = dialog_data.contract_number;
-      this.id = dialog_data.id;
-    }
   }//end consructor
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(
+      (params: Params) => {
+        this.id = params['id'];
+      }
+    )
+    if (this.user_info) {
+      this.user_id = this.user_info.user_id;
+      this.user_token = this.user_info.user_token;
+    }
     this.get_process();
   }
 
@@ -56,7 +59,13 @@ export class ContractProcessComponent implements OnInit, OnDestroy {
     }//end if
     else { this.matSnackBar.dismiss(); }
     this.loading = true;
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6575, code: this.id }).subscribe(
+    var obj = {
+      address: 6575
+      , code: this.id
+      , user_id: this.user_id
+      , user_token: this.user_token
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
           for (var i = 0; i < res['num']; i++) {
@@ -73,10 +82,6 @@ export class ContractProcessComponent implements OnInit, OnDestroy {
 
   ngAfterViewInit() {
     this.stepper.selectedIndex = 0;
-  }
-
-  close() {
-    this.matDialogRef.close();
   }
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {

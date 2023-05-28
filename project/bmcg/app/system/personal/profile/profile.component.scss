@@ -1,3 +1,11 @@
+@media print {
+    .content1 {
+        min-width: 100%;
+        padding: 0px !important;
+        margin: 0px !important
+    }
+}
+
 @media only screen and (max-width: 576px) {
     .content3 {
         padding: 1rem 1rem !important;
@@ -265,7 +273,7 @@ ul {
     background-repeat: no-repeat;
     position: absolute;
     height: 110px;
-    left: 33%;
+    left: 36%;
     bottom: -2rem;
     background-size: cover;
     border: solid 1px #ccc

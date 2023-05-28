@@ -5,10 +5,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../../services/server/server.service';
 import { MessageService } from '../../services/message/message.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ContactDetaileComponent } from '../../contact-detaile/contact-detaile.component';
-import { ContractCommentComponent } from '../../contract-comment/contract-comment.component';
-import { ContractProcessComponent } from '../../contract-process/contract-process.component';
-import { ContractInvoiceComponent } from '../../contract-invoice/contract-invoice.component';
 
 @Component({
   selector: 'app-prsonal-contract',
@@ -75,51 +71,6 @@ export class PrsonalContractComponent implements OnInit, OnDestroy {
         }
       }
     )
-  }
-
-  open(id: number, contract_number: string) {
-    this.contract_id = id;
-    this.dialog.open(ContactDetaileComponent, {
-      width: '25rem',
-      height: 'auto',
-      data: { id: id, contract_number: contract_number }
-    })
-  }
-
-  open_comment(id: number, contract_number: string) {
-    var width = '23rem';
-    if (window.innerWidth > 576) {
-      width = '50rem';
-    }
-    this.dialog.open(ContractCommentComponent, {
-      width: width,
-      height: 'auto',
-      data: { id: id, contract_number: contract_number }
-    })
-  }
-
-  open_process(id: number, contract_number: string) {
-    var width = '22rem';
-    if (window.innerWidth > 576) {
-      width = '22rem';
-    }
-    this.dialog.open(ContractProcessComponent, {
-      width: width,
-      height: 'auto',
-      data: { id: id, contract_number: contract_number }
-    })
-  }
-
-  open_invoice(id: number, contract_number: string) {
-    var width = '22rem';
-    if (window.innerWidth > 576) {
-      width = '22rem';
-    }
-    this.dialog.open(ContractInvoiceComponent, {
-      width: width,
-      height: 'auto',
-      data: { id: id, contract_number: contract_number }
-    })
   }
 
   //**************************************************

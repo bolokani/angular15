@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy, ViewChild, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ServerService } from '../services/server/server.service';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ServerService } from '../../services/server/server.service';
+import { MessageService } from '../../services/message/message.service';
 
 @Component({
   selector: 'app-contact-detaile',
@@ -11,15 +11,12 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dial
   styleUrls: ['./contact-detaile.component.scss']
 })
 export class ContactDetaileComponent implements OnInit, OnDestroy {
+  public server: any = this.serverService.get_server();
   public loading = false;
   public subscription: Subscription | any;
-  public err: string | undefined; public err_validation: boolean = false;
-  public err_internet_text: string | undefined; public err_internet_validation: boolean | undefined;
-  public server: any = this.serverService.get_server();
   private id: number | undefined;
   public list_record: any = [];
   public creator: string | undefined;
-
   public cottage: any;
   public proforma: any;
   public order_id: any;
@@ -48,17 +45,19 @@ export class ContactDetaileComponent implements OnInit, OnDestroy {
   constructor(
     public serverService: ServerService
     , public router: Router
-    , public matSnackBar: MatSnackBar
-    , public matDialogRef: MatDialogRef<ContactDetaileComponent>
-    , @Inject(MAT_DIALOG_DATA) public dialog_data: any) {
-    if (dialog_data) {
-      this.id = dialog_data.id;
-      this.contract_number = dialog_data.contract_number;
-    }
+    , public activatedRoute: ActivatedRoute
+    , public messageService: MessageService
+    , public matSnackBar: MatSnackBar) {
+
   }//end consructor
 
   ngOnInit() {
-    this.get_data();
+    this.activatedRoute.params.subscribe(
+      (params: Params) => {
+        this.id = params['id'];
+        this.get_data();
+      }
+    )
   }
 
   get_data() {
@@ -92,12 +91,10 @@ export class ContactDetaileComponent implements OnInit, OnDestroy {
             this.recept_date = res['result'][0].contract_list_recept_date;
             this.get_missed_day_plate(res['result'][0].contract_list_contract_date_main, res['result'][0].contract_list_plate_date_main);
           }
-          this.recieve_message(false, "", "", 1, "", "");
+          this.message(false, "", 1, this.messageService.close(1));
         }//end if
         else {
-          var pe_message = "خطا در دریافت";
-          var pe_action = "بستن";
-          this.recieve_message(true, 'Erorr in recieve', pe_message, 1, 'close', pe_action);
+          this.message(true, this.messageService.erorr_in_load(1), 1, this.messageService.close(1));
         }
       }
     )
@@ -116,9 +113,7 @@ export class ContactDetaileComponent implements OnInit, OnDestroy {
           this.missed_day_plate = res['date'];
         }//end if
         else {
-          var pe_message = "خطا در دریافت";
-          var pe_action = "بستن";
-          this.recieve_message(true, 'Erorr in recieve', pe_message, 1, 'close', pe_action);
+          this.message(true, this.messageService.erorr_in_load(1), 1, this.messageService.close(1));
         }
       }
     )
@@ -127,22 +122,16 @@ export class ContactDetaileComponent implements OnInit, OnDestroy {
   convert_to_int(value: any) {
     return parseInt(value);
   }
-
-
-  close() {
-    this.matDialogRef.close();
-  }
   //**************************************************
-  recieve_message(validation: boolean, en_message: string, pe_message: string, type: number, en_action: string, pe_action: string) {
-    this.err_internet_validation = false;
-    if (type == 1) this.loading = false;
+  message(validation: boolean, message: string, type: number, action: string) {
+    if (type == 1) { this.loading = false; }
     if (validation == true) {
-      this.matSnackBar.open(pe_message, pe_action, { duration: 8000 });
+      this.matSnackBar.open(message, action, { duration: 8000 });
     }//end if
     else {
       //this.matSnackBar.dismiss();
     }
-  }
+  }//end 
   //*******************************************************************************
   ngOnDestroy(): void {
     if (this.subscription) {

@@ -1,17 +1,10 @@
-<div mat-dialog-title class="matDialogTitle" cdkDragHandle cdkDrag cdkDragRootElement=".cdk-overlay-pane">
-    <div class="div_loading">
-        <div class="my-container" [hidden]="!loading">
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-        </div>
+<div class="div_loading">
+    <div class="my-container" [hidden]="!loading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
-    <div class="mat-dialog-title-div1">لیست مراحل شماره قرارداد {{ contract_number }}</div>
-    <span class="close" (click)="close()">
-        <mat-icon>close</mat-icon>
-    </span>
 </div>
 
-
-<div mat-dialog-content class="matDialogContent" style="padding-top:1rem !important">
+<div class="container">
     <mat-stepper orientation="vertical" [linear]="isLinear" class="stepper" #stepper>
         <ng-container *ngFor="let x of list_process;let i = index">
             <mat-step state="done" [completed]="false" [editable]="false" *ngIf="x.cprocess_status_done == 1">
@@ -33,8 +26,5 @@
                 </div>
             </mat-step>
         </ng-container>
-
-
     </mat-stepper>
-
 </div>

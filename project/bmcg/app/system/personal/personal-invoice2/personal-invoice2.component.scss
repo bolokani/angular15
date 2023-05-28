@@ -1,0 +1,700 @@
+@media print {
+
+
+    html {
+        overflow: hidden;
+    }
+
+    .fluid2 {
+        overflow-y: visible !important;
+    }
+
+
+
+    .divider1 {
+        display: none;
+    }
+
+    .row3 {
+        display: none
+    }
+
+    .row4 {
+        border-bottom: solid 1px #000;
+        padding-bottom: 1rem;
+    }
+
+    .home-div4 {
+        border-left: 1px solid #000;
+    }
+
+    .noprint {
+        display: none;
+    }
+
+    .comment {
+        padding-bottom: 1rem;
+    }
+
+    .sign {
+        max-height: 5rem;
+        height: 5rem
+    }
+
+    .row1 {
+        border: solid 1px #000;
+    }
+
+    .invoice .containerInier {
+        border: 1px solid #000 !important;
+    }
+
+    .invoice .divider {
+        background-color: #000 !important;
+    }
+
+    .invoice table {
+        border: 1px solid #000 !important;
+    }
+
+    .invoice table .borderLeft {
+        border-left: 1px solid #000 !important;
+    }
+
+    .table td,
+    .table th {
+        border-top: 1px solid #000 !important;
+    }
+
+    .home-div6 {
+        min-height: 9.35rem
+    }
+
+    .invoice1 {
+        border: solid 1px #000;
+    }
+
+    .invoice table .borderLeft {
+        font-size: 0.8rem !important;
+    }
+
+    .div1 {
+        min-height: 8rem !important;
+    }
+
+    .invoice .containerInier {
+        box-shadow: none !important;
+    }
+
+    .img2 {
+        max-width: 18rem !important;
+    }
+
+    .div-img2 {
+        padding-top: 2rem !important;
+    }
+
+    .table2 tr td {
+        border: solid 1px #000 !important;
+    }
+
+    .brand {
+        color: #000
+    }
+}
+
+
+.loading2 {
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.brand {
+    color: #fff
+}
+
+.table2 tr td {
+    border: solid 1px #ccc;
+}
+
+.contract-number {
+    font-size: 2rem !important;
+}
+
+.bg {
+    background-color: #D9EAD3;
+}
+
+.div1 {
+    min-height: 6rem;
+    display: inline-block;
+    border: solid 1px #000;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.div2 {
+    display: inline-block;
+    padding: 0px
+}
+
+.address {
+    font-size: 0.85rem;
+    padding-top: 0.5rem;
+    color: #586D80
+}
+
+.address1 {
+    text-align: right;
+    line-height: 1.7rem;
+}
+
+.fluid2 {
+    overflow-y: auto;
+}
+
+.device_status {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.comment {
+    text-align: right;
+    padding: 0.5rem 0.7rem !important
+}
+
+.home-div5 {
+    padding-top: 0.7rem;
+}
+
+.img {
+    width: 100%;
+    object-fit: cover;
+    height: 170px;
+}
+
+.logo1 {
+    max-width: 15rem;
+    float: right;
+    object-fit: contain;
+    max-height: 5rem
+}
+
+video {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+}
+
+.div_attachment1 {
+    float: right;
+    padding: 0 0.2rem;
+    height: 170px
+}
+
+.comment1 {
+    background-color: #f1dcdc;
+    height: 12.2rem
+}
+
+.logo {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 8rem
+}
+
+.img2 {
+    max-height: 4rem;
+}
+
+.col-lg-4 {
+    float: right;
+}
+
+.fluid2 {
+    margin: 0px;
+}
+
+.status_title {
+    background: #E8F5E9;
+    padding: 00.2rem 3rem;
+}
+
+.loading {
+    position: absolute !important;
+    top: 0 !important;
+}
+
+.invoice1 {
+    border: solid 1px #ccc;
+    padding: 0.6rem;
+    line-height: 2rem;
+
+}
+
+.my-invoice-div1 {
+    padding-top: 0.8rem !important;
+}
+
+.table-header tr td {
+    padding: 0.5rem 0rem !important;
+    font-weight: bold
+}
+
+.balance {
+    display: inline-block;
+}
+
+.balance2 {
+    font-weight: bold;
+}
+
+.cellphone {
+    display: inline-block;
+}
+
+
+
+.invoice2 {
+    padding-top: 1rem;
+    padding-right: 0.8rem;
+    line-height: 1.5rem;
+}
+
+.invoice3 {
+    padding-top: 1.5rem;
+    padding-right: 0.2rem;
+    padding-bottom: 0.2rem;
+}
+
+.comment2 {
+    padding-top: 0.5rem;
+    padding-right: 0.2rem;
+    padding-bottom: 0.2rem;
+}
+
+.row3 * {
+    font-family: irsans2 !important;
+    font-size: 0.78rem;
+    padding: 0px
+}
+
+.table tr td {
+    font-size: 0.78rem;
+    text-align: center;
+    direction: rtl;
+    padding: 0.5rem 1rem !important;
+}
+
+@media only screen and (max-width:576px) {
+    .desktop {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .div_attachment1 {
+        margin-top: 0.5rem
+    }
+
+    .input-search {
+        width: 100%;
+    }
+
+    .main-slides .main-banner-content h1 {
+        font-size: 1.1rem;
+    }
+
+    .main-slides .main-banner-content p {
+        font-size: 1rem;
+    }
+
+    .ptb-100 {
+        padding-top: 33px;
+    }
+
+    .home-div4 {
+        border-left: none;
+    }
+
+    .sign_div {
+        border: none;
+        padding-top: 2rem;
+    }
+
+    .row1 {
+        border: none
+    }
+
+    .row2 {
+        display: none
+    }
+
+    .comment {
+        line-height: 1.6rem
+    }
+
+    .comment2 {
+        margin-top: 1rem !important;
+    }
+
+
+    .checkbox1 {
+        margin: 0px;
+        text-align: right;
+        width: 50%;
+        float: right
+    }
+
+    .invoice .justify {
+        padding-top: 0.5rem;
+    }
+
+    .status-title {
+        margin-top: 1rem
+    }
+
+    .divider1 {
+        display: none;
+    }
+
+    .logo1 {
+        float: none;
+        margin: 0 auto
+    }
+
+    .invoice table .borderLeft {
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .input-search {
+        width: 30rem;
+    }
+
+    .home-div6 {
+        min-height: 9.35rem
+    }
+
+    .fluid2 {
+        padding: 0 9rem;
+    }
+
+    .home-div4 {
+        border-left: 1px solid #ddd;
+    }
+
+    .divider1 {
+        display: none;
+    }
+
+    .row1 {
+        border: solid 1px #ddd
+    }
+
+    .row3 {
+        display: none
+    }
+
+    .cellphone {
+        display: none;
+    }
+}
+
+
+.input-search {
+    height: 2.5rem;
+    border: solid 1px #ccc;
+    padding-right: 0.5rem
+}
+
+.table1 tr td {
+    text-align: right;
+    line-height: 2rem;
+    font-size: 0.85rem;
+}
+
+.print-button {
+    border: solid 1px #ccc;
+    background: bisque;
+    font-size: 0.8rem;
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+}
+
+.rule {
+    white-space: pre-line;
+    padding: 1rem 0;
+    line-height: 2rem;
+    font-size: 0.78rem;
+}
+
+.col-lg-12 {
+    padding: 0px
+}
+
+.row {
+    width: 100%;
+    margin: 0px !important;
+    padding: 0px
+}
+
+.div-home1 {
+    display: inline-block;
+}
+
+.sign_div {
+    text-align: center;
+    min-height: 10rem;
+    padding-top: 1rem;
+    border: solid 1px #ccc
+}
+
+.sign {
+    max-height: 7rem
+}
+
+.green {
+    color: #4CAF50
+}
+
+.home-div1 {
+    text-align: center;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.home-div2 {
+    padding-left: 0px;
+    padding-right: 0px
+}
+
+.input-search:focus-visible {
+    border: solid 1px #ccc;
+}
+
+.advanced-search {
+    padding-top: 1rem;
+}
+
+.home-button1 {
+    background-color: #e32551;
+    color: #fff;
+    border: none;
+    padding: 4px 15px;
+}
+
+.home-button2 {
+    background-color: blue;
+    color: #fff;
+    border: none;
+    padding: 4px 15px;
+}
+
+.home-button3 {
+    background-color: #77ee47;
+    color: #fff;
+    border: none;
+    padding: 4px 15px;
+}
+
+.home-button4 {
+    background-color: #e32551;
+    color: #fff;
+    border: none;
+    padding: 4px 15px;
+}
+
+.checkbox1 {
+    margin: 5px
+}
+
+
+.baner1 {
+    height: 75px;
+    width: 100%
+}
+
+.home-div1 {
+    text-align: justify;
+    padding: 2rem 1rem 1rem 1rem;
+}
+
+.home-div2 {
+    text-align: justify;
+    padding: 0.3rem 2rem;
+    font-size: 0.83rem;
+}
+
+.header {
+    background: #ccf4ca;
+    padding: 2px 5px;
+    width: 10rem;
+}
+
+.header2 {
+    border-top: solid 1px #ccc;
+    padding-top: 1rem;
+}
+
+.loading {
+    position: absolute;
+    width: 100%;
+    top: 5.1rem
+}
+
+.footer1 {
+    padding-top: 1rem;
+    line-height: 1rem;
+    color: #999;
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    font-size: .8rem;
+    opacity: .8;
+    position: relative;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+h3 {
+    font-size: 1rem;
+}
+
+.home-div3 {
+    padding: 0.2rem 0px;
+}
+
+p {
+    margin-bottom: 0px !important;
+}
+
+
+.invoice {
+    padding: 0px;
+    background-color: #FFF;
+    text-align: right;
+    font-family: IRANSansNum;
+}
+
+.invoice .containerInier {
+    background-color: #FFF;
+    margin: 30px 0px;
+    border: 1px solid #e0dfdf;
+    box-shadow: 0 0 26px rgba(179, 179, 179, .5);
+    border-radius: 5px;
+}
+
+.invoice .justify {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 1.5rem;
+}
+
+.invoice p {
+    font-size: 15px;
+    color: #666;
+}
+
+.invoice .divider {
+    height: 1px;
+    width: 100%;
+    background-color: #e0e0e0;
+    margin: 10px 0px;
+}
+
+.invoice .details {
+    text-align: center;
+    line-height: 26px;
+    color: #666;
+}
+
+.invoice .smallText {
+    font-size: 15px;
+    margin: 5px 0px;
+}
+
+.remain {
+    padding: 0 1.1rem;
+    background-color: yellow;
+    margin-top: 1rem
+}
+
+.invoice table {
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+.invoice table .headBg {
+    background-color: #26396A;
+    color: #fff
+}
+
+.invoice table .borderLeft {
+    border-left: 1px solid #ddd;
+    text-align: right;
+    font-size: 0.88rem;
+}
+
+.header_title {
+    text-align: center;
+    padding: 0.5rem;
+    font-size: large;
+}
+
+.row1 {
+    min-height: 5rem;
+    border-bottom: solid 1px #ccc;
+}
+
+.table>thead {
+    font-weight: bold !important
+}
+
+.table td,
+.table th {
+    padding: 0.4rem 0.8rem !important;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+}
+
+.invoice .btnContainer {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin: 10px 0px;
+}
+
+.sum_all {
+    padding: 0.5rem 0.2rem;
+    font-size: 0.88rem;
+}
+
+html {
+    overflow-y: auto !important;
+}
+
+@media only screen and (min-width: 600px) {
+    .fluid2 {
+        padding: 0rem 0rem !important
+    }
+}
+
+.none {
+    text-align: center;
+    padding-top: 4rem !important;
+    overflow-y: hidden
+}
