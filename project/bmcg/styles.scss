@@ -182,6 +182,20 @@ button:focus {
 	padding: 1rem 0rem !important
 }
 
+[dir=rtl] .contract-invoice3-table1 .mdc-data-table__cell,
+.mdc-data-table__cell[dir=rtl] {
+	text-align: center !important;
+}
+
+.mat-mdc-table .mdc-data-table__row {
+	max-height: 40px !important
+}
+
+.mat-mdc-dialog-content {
+	max-height: fit-content !important;
+}
+
+
 [dir=rtl] .mat-vertical-content-container {
 	margin-right: 1rem !important
 }

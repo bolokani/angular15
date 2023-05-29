@@ -9,7 +9,9 @@ tr.example-detail-row {
 .mdc-data-table__header-cell {
     color: #fff !important;
     background-color: #26396A !important;
+    text-align: center;
 }
+
 
 tr.example-element-row:not(.example-expanded-row):hover {
     background: whitesmoke;
@@ -34,24 +36,69 @@ tr.example-element-row:not(.example-expanded-row):active {
     padding: 8px;
     font-weight: lighter;
     margin: 8px 0;
-    height: 104px;
+    height: 115px;
     width: 100%;
     line-height: 2rem;
-    color: #586D80
+    color: #586D80;
+    text-align: right;
+    ;
+}
+
+.table-bordered {
+    border: solid 1px #ddd;
 }
 
 .footer {
-    background-color: #26396A;
-    color: #fff !important
-}
-
-.mat-mdc-table .mdc-data-table__header-row {
-    height: 40px
+    text-align: center;
+    padding: 1rem;
 }
 
 [dir=rtl] .mdc-data-table__cell,
 .mdc-data-table__cell[dir=rtl] {
+    text-align: center !important;
+}
+
+
+.footer-sum {
     text-align: right !important;
+    padding: 0.5rem 1rem;
+}
+
+.print-button {
+    border: solid 1px #ccc;
+    background: bisque;
+    font-size: 0.8rem;
+}
+
+.title {
+    color: #26396A
+}
+
+.mat-mdc-table .mdc-data-table__row {
+    height: auto
+}
+
+.mat-elevation-z8,
+.mat-mdc-elevation-specific.mat-elevation-z8 {
+    box-shadow: none !important;
+}
+
+.footer1 {
+    padding-top: 1rem;
+    line-height: 1rem;
+    color: #999;
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    font-size: .8rem;
+    opacity: .8;
+    position: relative;
+    text-align: center;
+}
+
+
+.mat-mdc-table .mdc-data-table__header-row {
+    height: 40px
 }
 
 .example-element-symbol {

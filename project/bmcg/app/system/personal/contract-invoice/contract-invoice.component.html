@@ -10,10 +10,8 @@
             <div class="col-xl-12 col-xl-12 col-lg-12 col-md-12 col-xs-12 col1">
                 <div style="display: inline-block; vertical-align: top;">
                     <button class="search_button" [ngClass]="{active:tab == 1}" (click)="change(1)">فاکتور</button>
-                    <button class="search_button" [ngClass]="{active:tab == 2}"
-                        (click)="change(2);get_financial2()">واریزی ها</button>
-                    <button class="search_button" [ngClass]="{active:tab == 3}"
-                        (click)="change(3);get_financial2()">صورتحساب</button>
+                    <button class="search_button" [ngClass]="{active:tab == 2}" (click)="change(2)">واریزی ها</button>
+                    <button class="search_button" [ngClass]="{active:tab == 3}" (click)="change(3)">صورتحساب</button>
                 </div>
             </div>
         </div>
@@ -23,144 +21,7 @@
         </ng-container>
         <!--**********************************************************************************************-->
         <ng-container *ngIf="tab == 2">
-            <div class="row pe1">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 pe" style="margin-top:0;padding:0">
-                    <mat-table [dataSource]="dataSource" style='min-width:100%'
-                        class='table-scroll mat_table_fa_without_scroll pe1'>
-
-                        <ng-container matColumnDef="row">
-                            <mat-header-cell *matHeaderCellDef style='max-width:40px'>
-                                <span>ردیف</span>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" style='max-width:40px'>{{ i + 1
-                                }}</mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="document">
-                            <mat-header-cell *matHeaderCellDef style="max-width:5rem">
-                                <span>نوع سند</span>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" class="cursor" style="max-width:5rem">
-                                <div>{{ x.finance_document_title }}</div>
-                            </mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="date3">
-                            <mat-header-cell *matHeaderCellDef style="max-width:200px">
-                                <span>تاریخ</span>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" style="max-width:200px" class="cursor">
-                                <div>{{ x.finance_financial2_date3 }}</div>
-                            </mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="price">
-                            <mat-header-cell *matHeaderCellDef style="max-width:200px">
-                                <span>مبلغ (ریال)</span>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" style="max-width:200px" class="cursor">
-                                {{ x.finance_financial2_amount | number }}
-                            </mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="user1">
-                            <mat-header-cell *matHeaderCellDef style="max-width:200px">
-                                <span>صاحب حساب مبدا</span>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" style="max-width:200px" class="cursor">
-                                {{ x.user1_title }}
-                            </mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="bank1">
-                            <mat-header-cell *matHeaderCellDef style="max-width:200px">
-                                <span>بانک مبدا</span>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" style="max-width:200px" class="cursor">
-                                {{ x.bank1_title }}
-                            </mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="user2">
-                            <mat-header-cell *matHeaderCellDef style="max-width:200px">
-                                <span>صاحب حساب مقصد</span>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" style="max-width:200px" class="cursor">
-                                {{ x.user2_title }}
-                            </mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="bank2">
-                            <mat-header-cell *matHeaderCellDef style="max-width:200px">
-                                <span>بانک مقصد</span>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" style="max-width:200px" class="cursor">
-                                {{ x.bank2_title }}
-                            </mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="tracking_code">
-                            <mat-header-cell *matHeaderCellDef style="max-width:200px">
-                                <span>شماره پیگیری</span>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" style="max-width:200px" class="cursor">
-                                {{ x.finance_financial2_tracking_code }}
-                            </mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="type">
-                            <mat-header-cell *matHeaderCellDef style="max-width:200px">
-                                <span>بابت</span>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" style="max-width:200px" class="cursor">
-                                {{ x.payment_for_title }}
-                            </mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="payment_type">
-                            <mat-header-cell *matHeaderCellDef style="max-width:200px">
-                                <span>نوع تراکنش</span>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" style="max-width:200px" class="cursor">
-                                {{ x.finance_payment_type_title }}
-                            </mat-cell>
-                        </ng-container>
-
-
-                        <ng-container matColumnDef="comment">
-                            <mat-header-cell *matHeaderCellDef style="min-width:13rem;">
-                                <span>توضیحات</span>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" class="cursor" style="min-width:13rem;">
-                                <div class="right">{{ x.finance_financial2_comment }}</div>
-                            </mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="attachment">
-                            <mat-header-cell *matHeaderCellDef style="max-width:70px">
-                                <span>ضمیمه</span>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let x;let i = index" style="max-width:70px"
-                                (click)="get_attachment(x.finance_financial2_id,'contract-finance')">
-                                <mat-icon>attach_file</mat-icon>
-                            </mat-cell>
-                        </ng-container>
-
-                        <mat-header-row class="mat-header-row-dialog" *matHeaderRowDef="displayedColumns2"
-                            color="primary">
-                        </mat-header-row>
-                        <mat-row class="mat-header-row-dialog cursor"
-                            *matRowDef="let row;columns:displayedColumns2;let i = index"
-                            (click)="mat_table_selectedRow = row" (mouseenter)="mat_table_hoverRow = row"
-                            [ngClass]="{'mat_table_selected': row === mat_table_selectedRow,mat_table_selected2:row.checked == true,'mat_table_hover': row === mat_table_hoverRow}"
-                            class="cursor"></mat-row>
-                    </mat-table>
-                </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 pe sum1_letter"
-                style="padding-right: 2.7rem;">
-                جمع کل واریزی ها : {{ sum2 | number }} ریال
-            </div>
+            <app-contract-invoice3 [obj]="{ id : id }"></app-contract-invoice3>
         </ng-container>
         <!--**********************************************************************************************-->
         <ng-container *ngIf="tab == 3">

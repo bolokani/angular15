@@ -61,37 +61,7 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
     this.tab = tab;
   }
 
-  get_financial2() {
-    this.loading = true;
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6777, contract_id: this.id }).subscribe(
-      (res: any) => {
-        if (res['status'] == 1) {
-          this.list_record = [];
-          for (var i = 0; i < res['num']; i++) {
-            this.list_record.push(res['result'][i]);
-          }
-          this.get_sum2();
-          this.dataSource = new MatTableDataSource(this.list_record);
-          this.message(false, "", 1, this.messageService.close(1));
-        }//end if
-        else {
-          this.message(true, this.messageService.erorr_in_load(1), 1, this.messageService.close(1));
-        }
-      }
-    )
-  }
 
-  get_sum2() {
-    this.sum2 = 0;
-    for (var i = 0; i < this.list_record.length; i++) {
-      if (this.list_record[i].finance_financial2_document == 6) {
-        this.sum2 = this.sum2 + this.list_record[i].finance_financial2_amount;
-      }
-      else if (this.list_record[i].finance_financial2_document == 7) {
-        this.sum2 = this.sum2 - this.list_record[i].finance_financial2_amount;
-      }
-    }
-  }
 
   get_sum() {
   }
