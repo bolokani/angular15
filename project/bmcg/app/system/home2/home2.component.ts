@@ -94,6 +94,14 @@ export class Home2Component implements OnInit, OnDestroy {
     })
   }
 
+  get_type() {
+    this.form1.patchValue({
+      'brand': null,
+      'tip': null,
+      'year': null,
+    })
+  }
+
   get_brand() {
     this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6853 }).subscribe(
       (res: any) => {
@@ -119,6 +127,10 @@ export class Home2Component implements OnInit, OnDestroy {
           for (var i = 0; i < res['num']; i++) {
             this.list_tip.push(res['result'][i]);
           }//end for
+          this.form1.patchValue({
+            'tip': null,
+            'year': null
+          })
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
@@ -126,6 +138,12 @@ export class Home2Component implements OnInit, OnDestroy {
         }
       }
     )
+  }
+
+  reset_year() {
+    this.form1.patchValue({
+      'year': null
+    })
   }
 
   get_year() {

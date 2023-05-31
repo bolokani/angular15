@@ -62,7 +62,7 @@
                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 search-box">
                                 <mat-form-field appearance="fill">
                                     <mat-label>نوع درخواست</mat-label>
-                                    <mat-select name="type" formControlName="type">
+                                    <mat-select name="type" formControlName="type" (ngModelChange)="get_type()">
                                         <mat-option [value]="2">حقوق گمرکی</mat-option>
                                         <mat-option [value]="1">تخمین هزینه</mat-option>
                                     </mat-select>
@@ -75,7 +75,8 @@
                                     <mat-label>برند</mat-label>
                                     <mat-select name="brand" formControlName="brand" (ngModelChange)="get_tip()">
                                         <mat-option></mat-option>
-                                        <mat-option *ngFor="let x of list_brand" [value]="x.site_brand_id">
+                                        <mat-option *ngFor="let x of list_brand" [value]="x.site_brand_id"
+                                            [disabled]="!form1.get('type')!.value">
                                             {{ x.site_brand_title }}
                                         </mat-option>
                                     </mat-select>
@@ -85,9 +86,10 @@
                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 search-box">
                                 <mat-form-field appearance="fill">
                                     <mat-label>تیپ</mat-label>
-                                    <mat-select name="tip" formControlName="tip">
+                                    <mat-select name="tip" formControlName="tip" (ngModelChange)="reset_year()">
                                         <mat-option></mat-option>
-                                        <mat-option *ngFor="let x of list_tip" [value]="x.site_tip_id">
+                                        <mat-option *ngFor="let x of list_tip" [value]="x.site_tip_id"
+                                            [disabled]="!form1.get('brand')!.value">
                                             {{ x.site_tip_title }}
                                         </mat-option>
                                     </mat-select>
@@ -99,7 +101,8 @@
                                     <mat-label>سال</mat-label>
                                     <mat-select name="year" formControlName="year">
                                         <mat-option></mat-option>
-                                        <mat-option *ngFor="let x of list_year" [value]="x.site_year_id">
+                                        <mat-option *ngFor="let x of list_year" [value]="x.site_year_id"
+                                            [disabled]="!form1.get('tip')!.value">
                                             {{ x.site_year_title }}
                                         </mat-option>
                                     </mat-select>

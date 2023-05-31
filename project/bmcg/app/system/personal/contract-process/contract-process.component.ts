@@ -49,16 +49,39 @@ export class ContractProcessComponent implements OnInit, OnDestroy {
       this.user_id = this.user_info.user_id;
       this.user_token = this.user_info.user_token;
     }
-    this.get_process();
+    this.get_user();
   }
 
-  get_process() {
+  get_user() {
     if (this.serverService.check_internet() == false) {
       this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
     this.loading = true;
+    var obj = {
+      address: 6876,
+      user_id: this.user_id,
+      user_token: this.user_token
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] != 1) {
+            this.serverService.signout();
+            this.message(false, "", 1, this.messageService.close(this.lang));
+          } else {
+            this.get_process();
+          }
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_process() {
     var obj = {
       address: 6575
       , code: this.id

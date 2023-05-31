@@ -55,7 +55,7 @@ export class ContractCommentComponent implements OnInit, OnDestroy {
       this.user_token = this.user_info.user_token;
     }
     this.create_form();
-    this.get_comments();
+    this.get_user();
   }
 
   create_form() {
@@ -78,13 +78,36 @@ export class ContractCommentComponent implements OnInit, OnDestroy {
     */
   }
 
-  get_comments() {
+  get_user() {
     if (this.serverService.check_internet() == false) {
       this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
     this.loading = true;
+    var obj = {
+      address: 6876,
+      user_id: this.user_id,
+      user_token: this.user_token
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] != 1) {
+            this.serverService.signout();
+            this.message(false, "", 1, this.messageService.close(this.lang));
+          } else {
+            this.get_comments();
+          }
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_comments() {
     this.show_excel = false;
     var obj = {
       'address': 6561

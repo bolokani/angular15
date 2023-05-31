@@ -32,6 +32,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   public user_birth_date: String;
   public user_address: String;
   public user_code_posti: number;
+  public user_token: number;
 
   constructor(
     public serverService: ServerService
@@ -58,7 +59,8 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     this.create_form();
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
-      if (!this.token) this.get_user();
+      this.user_token = this.user_info.user_token;
+      this.get_user();
     }
   }
 
@@ -68,7 +70,29 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
-    this.loading = true;
+    var obj = {
+      address: 6876,
+      user_id: this.user_id,
+      user_token: this.user_token
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] != 1) {
+            this.serverService.signout();
+            this.message(false, "", 1, this.messageService.close(this.lang));
+          } else {
+            this.get_user_info();
+          }
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_user_info() {
     var obj = { address: 6541, user_id: this.user_id, token: this.token }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {

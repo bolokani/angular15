@@ -17,6 +17,7 @@ export class PrsonalContractComponent implements OnInit, OnDestroy {
   public server: any = this.serverService.get_server();
   public loading = false;
   public user_id: number | undefined;
+  public user_token: number | undefined;
   public subscription: Subscription;
   public activeTab: number;
   public tab_id: number;
@@ -42,16 +43,44 @@ export class PrsonalContractComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.user_info) {
       this.user_id = this.user_info.user_id
+      this.user_token = this.user_info.user_token
     }
-    this.activatedRoute.params.subscribe(
-      (params: Params) => {
-        this.get_contract();
+    this.get_user();
+  }
+
+  get_user() {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    var obj = {
+      address: 6876,
+      user_id: this.user_id,
+      user_token: this.user_token
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] != 1) {
+            this.serverService.signout();
+            this.message(false, "", 1, this.messageService.close(this.lang));
+          } else {
+            this.activatedRoute.params.subscribe(
+              (params: Params) => {
+                this.get_contract();
+              }
+            )
+          }
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
       }
     )
   }
 
   get_contract() {
-    this.loading = true;
     this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6543, user_id: this.user_id }).subscribe(
       (res: any) => {
         this.list_contract = [];

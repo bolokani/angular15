@@ -12,6 +12,8 @@ import { MessageService } from '../../services/message/message.service';
 })
 export class ContactDetaileComponent implements OnInit, OnDestroy {
   public server: any = this.serverService.get_server();
+  public user_info: any = JSON.parse(<any>localStorage.getItem('user_info'));
+  public lang: any = JSON.parse(<any>localStorage.getItem('lang'));
   public loading = false;
   public subscription: Subscription | any;
   private id: number | undefined;
@@ -41,6 +43,8 @@ export class ContactDetaileComponent implements OnInit, OnDestroy {
   public cid_title: any;
   public missed_day_plate: number = 0;
   public contract_number: string;
+  public user_id: string;
+  public user_token: string;
 
   constructor(
     public serverService: ServerService
@@ -55,13 +59,44 @@ export class ContactDetaileComponent implements OnInit, OnDestroy {
     this.activatedRoute.params.subscribe(
       (params: Params) => {
         this.id = params['id'];
-        this.get_data();
+      }
+    )
+    if (this.user_info) {
+      this.user_id = this.user_info.user_id;
+      this.user_token = this.user_info.user_token;
+    }
+    this.get_user();
+  }
+
+  get_user() {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    var obj = {
+      address: 6876,
+      user_id: this.user_id,
+      user_token: this.user_token
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] != 1) {
+            this.serverService.signout();
+            this.message(false, "", 1, this.messageService.close(this.lang));
+          } else {
+            this.get_data();
+          }
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
       }
     )
   }
 
   get_data() {
-    this.loading = true;
     this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6551, id: this.id }).subscribe(
       (res: any) => {
         if (res['status'] == 1) {

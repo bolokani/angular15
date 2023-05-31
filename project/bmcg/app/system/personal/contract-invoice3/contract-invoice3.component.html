@@ -24,7 +24,8 @@
 
                     <ng-container matColumnDef="row">
                         <th mat-header-cell *matHeaderCellDef>ردیف</th>
-                        <td mat-cell *matCellDef="let x;let i = index" class="cursor" style="height:40px"> {{ i
+                        <td mat-cell *matCellDef="let x;let i = index" class="cursor" style="height:40px;"> {{
+                            i
                             }} </td>
                         <td mat-footer-cell *matFooterCellDef class="footer-sum main_bg_color" [hidden]="true">
                         </td>
@@ -34,7 +35,8 @@
                         <th mat-header-cell *matHeaderCellDef>نوع سند</th>
                         <td mat-cell *matCellDef="let x" class="cursor" style="height:40px"> {{ x.finance_document_title
                             }} </td>
-                        <td mat-footer-cell *matFooterCellDef class="footer-sum main_bg_color" colspan="6">
+                        <td mat-footer-cell *matFooterCellDef class="footer-sum main_bg_color" colspan="6"
+                            style="text-align: right !important;">
                             جمع کل واریزی ها:
                             {{ sum2 | number}}
                         </td>
@@ -55,7 +57,7 @@
 
 
                     <ng-container matColumnDef="for">
-                        <th mat-header-cell *matHeaderCellDef> یابت </th>
+                        <th mat-header-cell *matHeaderCellDef> بابت </th>
                         <td mat-cell *matCellDef="let x" class="cursor"> {{ x.payment_for_title }} </td>
                         <td mat-footer-cell *matFooterCellDef class="footer" [hidden]="true"></td>
                     </ng-container>
@@ -122,11 +124,12 @@
                 </table>
             </div>
             <!-- **********************************************for cellphone************************************************************** -->
-            <div class="row row3" *ngIf="list_cost2.length > 0">
-                <app-personal-invoice2-cellphone [obj]="{ list_cost : list_cost2}"></app-personal-invoice2-cellphone>
+            <div class="row row3" *ngIf="list_record.length > 0">
+                <app-contract-invoice3-cellphone [obj]="{ list_record : list_record}"
+                    style="padding:0px !important"></app-contract-invoice3-cellphone>
             </div>
             <!-- ************************************************************************************************************ -->
-            <div class="row" style="margin:0rem 0 !important;border: solid 1px #ddd;">
+            <div class="row" style="margin:0rem 0 !important;border: solid 1px #ddd;padding:1rem">
                 <!-- *************************************************************************************************************-->
                 <footer class="container-fluid footer">
                     <div class="row">

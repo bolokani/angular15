@@ -16,23 +16,34 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 div2"
                                 *ngFor="let x of list_contract">
                                 <div class="row row_invoice">
-                                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-12 div1">
-                                        <div class="breakpoint">
-                                            <span class="div1_span1"> شماره قرارداد
-                                            </span>
-                                            <span class="div1_span2">{{ x.contract_list_contract_number }}</span>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-4 mobile backgroundImage"
+                                        [ngStyle]="{'background-image':'url( ' + x.logo + ')'}">
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-8" style="padding:0">
+                                        <div class="row">
+                                            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-12 div1">
+                                                <div class="breakpoint">
+                                                    <span class="div1_span1"> شماره قرارداد
+                                                    </span>
+                                                    <span class="div1_span2">{{ x.contract_list_contract_number
+                                                        }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-12 div1">
+                                                <div class="breakpoint">
+                                                    <span class="div1_span1">نام کارفرما
+                                                    </span>
+                                                    <span class="div1_span2">{{ x.user_title }}</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-12 div1">
-                                        <div class="breakpoint">
-                                            <span class="div1_span1">تاریخ شروع قرارداد
-                                            </span>
-                                            <span class="div1_span2">{{ x.contract_list_contract_date }}</span>
-                                        </div>
-                                    </div>
+
+
+
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div_image ">
                                         <div class="row">
-                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-2 backgroundImage"
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 backgroundImage"
                                                 [ngStyle]="{'background-image':'url( ' + x.logo + ')'}">
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-2 div6">
@@ -43,6 +54,13 @@
                                                         {{ x.site_brand_title }} {{ x.site_tip_title }} {{
                                                         x.site_year_title
                                                         }}
+                                                    </span>
+                                                </div>
+                                                <div class="div3">
+                                                    <span class="div1_span1"> مدل
+                                                    </span>
+                                                    <span class="contract-title2">
+                                                        ----------
                                                     </span>
                                                 </div>
                                                 <div class="div3">
@@ -60,7 +78,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 detaile">
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 detaile">
                                                 <div [routerLink]="['/profile/contract-detaile',x.contract_list_id]"
                                                     class="cursor link btn1">
                                                     جزئیات

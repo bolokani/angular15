@@ -63,7 +63,6 @@ export class ContractInvoice3Component implements OnInit, OnDestroy {
   public list_record: any = [];
   @Input('obj') public root_obj: any;
   //******************************************************************************
-  public list_cost2: any = [];
   public obj: any;
   //******************************************************************************
   public dataSource: any | undefined;

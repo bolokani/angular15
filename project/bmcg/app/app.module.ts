@@ -57,6 +57,7 @@ import { MenuComponent } from './system/main/menu/menu.component';
 import { PersonalInvoice2Component } from './system/personal/personal-invoice2/personal-invoice2.component';
 import { PersonalInvoice2CellphoneComponent } from './system/personal/personal-invoice2-cellphone/personal-invoice2-cellphone.component';
 import { ContractInvoice3Component } from './system/personal/contract-invoice3/contract-invoice3.component';
+import { ContractInvoice3CellphoneComponent } from './system/personal/contract-invoice3-cellphone/contract-invoice3-cellphone.component';
 
 export const customCurrencyMaskConfig = {
   align: "auto",
@@ -111,7 +112,7 @@ const routes: Routes = [
     Header2Component, ProfileComponent, ContractCommentComponent
     , ContractProcessComponent, ContractInvoiceComponent, ContractInvoiceAttachmentComponent
     , InvoicePrintComponent, InvoicePrintCellphoneComponent, ProfileMenuComponent, CustomsPrintComponent
-    , PersonalInfoComponent, PersonalInfoDetaileComponent, ContactChatComponent, PrsonalContractComponent, MenuComponent, PersonalInvoice2Component, PersonalInvoice2CellphoneComponent, ContractInvoice3Component
+    , PersonalInfoComponent, PersonalInfoDetaileComponent, ContactChatComponent, PrsonalContractComponent, MenuComponent, PersonalInvoice2Component, PersonalInvoice2CellphoneComponent, ContractInvoice3Component, ContractInvoice3CellphoneComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })

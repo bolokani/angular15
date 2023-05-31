@@ -6,7 +6,7 @@
 
 <div mat-dialog-content class="matDialogContent dialog-color" style="padding:0.2rem 0 !important;font-size: 0.88rem;">
     <div class="container">
-        <div class="row no-print">
+        <div class="row no-print tabs">
             <div class="col-xl-12 col-xl-12 col-lg-12 col-md-12 col-xs-12 col1">
                 <div style="display: inline-block; vertical-align: top;">
                     <button class="search_button" [ngClass]="{active:tab == 1}" (click)="change(1)">فاکتور</button>
@@ -16,11 +16,11 @@
             </div>
         </div>
 
-        <ng-container *ngIf="tab == 1">
+        <ng-container *ngIf="tab == 1 && access == true">
             <app-personal-invoice2 [obj]="{ id : id }"></app-personal-invoice2>
         </ng-container>
         <!--**********************************************************************************************-->
-        <ng-container *ngIf="tab == 2">
+        <ng-container *ngIf="tab == 2 && access == true">
             <app-contract-invoice3 [obj]="{ id : id }"></app-contract-invoice3>
         </ng-container>
         <!--**********************************************************************************************-->

@@ -1,4 +1,8 @@
-@media (min-width: 576px) {}
+@media (min-width: 576px) {
+    .mobile {
+        display: none;
+    }
+}
 
 @media (max-width: 576px) {
     .row_invoice {
@@ -8,6 +12,8 @@
     .div4 {
         padding: 0px !important
     }
+
+
 }
 
 .div4 {
@@ -62,7 +68,7 @@
 }
 
 .row_invoice {
-    border: solid 1px #e0e0e6;
+    border: solid 2px #aca7a7;
     margin-top: 1rem;
     border-radius: 1rem;
 }

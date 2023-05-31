@@ -32,6 +32,7 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
   public mat_table_hoverRow: any;
   public sum2: number;
   public user_id: number;
+  public access: boolean = false;
   public user_token: number;
   public dataSource: any | undefined;
   public displayedColumns = ['row', 'title', 'price', 'status', 'comment', 'attachment'];
@@ -55,6 +56,40 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
       }
     )
     this.width = innerWidth + 'px';
+    if (this.user_info) {
+      this.user_id = this.user_info.user_id;
+      this.user_token = this.user_info.user_token;
+    }
+    this.get_user();
+  }
+
+  get_user() {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    var obj = {
+      address: 6876,
+      user_id: this.user_id,
+      user_token: this.user_token
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] != 1) {
+            this.serverService.signout();
+            this.access = false;
+          } else {
+            this.access = true;
+          }
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
   }
 
   change(tab: number) {
