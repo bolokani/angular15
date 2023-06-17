@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public cellphone: number | undefined;
   public title: number | undefined;
   public logo_info: any | undefined;
-  public user_logo: string = "https://lexonteam.com/object/images/upload//image_1683828138859.jpg";
+  public user_logo: string;
   public user_title: string;
 
   constructor(

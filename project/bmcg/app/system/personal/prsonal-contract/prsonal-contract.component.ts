@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../../services/server/server.service';
 import { MessageService } from '../../services/message/message.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ContractImageComponent } from '../contract-image/contract-image.component';
 
 @Component({
   selector: 'app-prsonal-contract',
@@ -54,6 +55,7 @@ export class PrsonalContractComponent implements OnInit, OnDestroy {
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
+    this.loading = true;
     var obj = {
       address: 6876,
       user_id: this.user_id,
@@ -62,15 +64,15 @@ export class PrsonalContractComponent implements OnInit, OnDestroy {
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
-          if (res['num'] != 1) {
-            this.serverService.signout();
-            this.message(false, "", 1, this.messageService.close(this.lang));
-          } else {
+          if (res['num'] == 1) {
             this.activatedRoute.params.subscribe(
               (params: Params) => {
                 this.get_contract();
               }
             )
+          } else {
+            this.serverService.signout();
+            this.message(false, "", 1, this.messageService.close(this.lang));
           }
         }//end if
         else {
@@ -78,6 +80,10 @@ export class PrsonalContractComponent implements OnInit, OnDestroy {
         }
       }
     )
+  }
+
+  get_bg(id: number) {
+    this.contract_id = id;
   }
 
   get_contract() {
@@ -100,6 +106,17 @@ export class PrsonalContractComponent implements OnInit, OnDestroy {
         }
       }
     )
+  }
+
+  open_image(id: number, logo: string): any {
+    if (logo == '../../assets/img/default_image.png') {
+      return false;
+    }
+    this.dialog.open(ContractImageComponent, {
+      width: '60rem',
+      height: 'auto',
+      data: { id: id, logo: logo }
+    })
   }
 
   //**************************************************

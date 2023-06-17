@@ -78,11 +78,11 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
-          if (res['num'] != 1) {
+          if (res['num'] == 1) {
+            this.get_user_info();
+          } else {
             this.serverService.signout();
             this.message(false, "", 1, this.messageService.close(this.lang));
-          } else {
-            this.get_user_info();
           }
         }//end if
         else {

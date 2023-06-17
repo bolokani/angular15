@@ -57,19 +57,9 @@
 
 
                     <ng-container matColumnDef="for">
-                        <th mat-header-cell *matHeaderCellDef> بابت </th>
+                        <th mat-header-cell *matHeaderCellDef> رسید </th>
                         <td mat-cell *matCellDef="let x" class="cursor"> {{ x.payment_for_title }} </td>
                         <td mat-footer-cell *matFooterCellDef class="footer" [hidden]="true"></td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="attachment" class="no-print">
-                        <th mat-header-cell *matHeaderCellDef class="no-print"> ضمیمه </th>
-                        <td mat-cell *matCellDef="let x" class="cursor no-print">
-                            <span (click)="get_attachment(x.contract_cost2_id,'contract-invoice')">
-                                <mat-icon>attach_file</mat-icon>
-                            </span>
-                        </td>
-                        <td mat-footer-cell *matFooterCellDef class="footer no-print" [hidden]="true"></td>
                     </ng-container>
 
                     <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
@@ -95,10 +85,20 @@
                                                 <span class="title"> شماره پیگیری:</span> {{
                                                 x.finance_financial2_tracking_code }}
                                             </div>
+                                            <div class="example-element-position">
+                                                <span class="title"> ضمیمه:</span>
+                                                <span
+                                                    (click)="get_attachment(x.finance_financial2_id,'contract-finance')"
+                                                    class="cursor">
+                                                    <mat-icon>attach_file</mat-icon>
+                                                </span>
+                                            </div>
+
+
                                         </div>
                                         <div class="col-lg-6 col-xl-6 col-sm-6 col-sm-6 col-xs-12">
                                             <div class="example-element-position">
-                                                <span class="title"> بابت: </span> {{ x.payment_for_title }}
+                                                <span class="title"> رسید: </span> {{ x.payment_for_title }}
                                             </div>
                                             <div class="example-element-position">
                                                 <span class="right"> نوع تراکنش:</span> {{ x.finance_payment_type_title
@@ -107,6 +107,8 @@
                                             <div class="example-element-position">
                                                 <span class="title">توضیحات:</span> {{ x.finance_financial2_comment }}
                                             </div>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -125,7 +127,7 @@
             </div>
             <!-- **********************************************for cellphone************************************************************** -->
             <div class="row row3" *ngIf="list_record.length > 0">
-                <app-contract-invoice3-cellphone [obj]="{ list_record : list_record}"
+                <app-contract-invoice3-cellphone [obj]="{ list_record : list_record , contract_number : id}"
                     style="padding:0px !important"></app-contract-invoice3-cellphone>
             </div>
             <!-- ************************************************************************************************************ -->
@@ -134,7 +136,7 @@
                 <footer class="container-fluid footer">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <span class="noprint" style="float: left;" class="no-print">
+                            <span class="noprint" style="float: left;display: none;" class="no-print">
                                 <a href="javascript:window.print()" class="btn btn-default print-button"><i
                                         class="icon-printer"></i> پرینت</a>
                             </span>

@@ -17,6 +17,10 @@
 	body {
 		-webkit-print-color-adjust: exact !important;
 	}
+
+	@page {
+		padding: 0px !important;
+	}
 }
 
 
@@ -74,6 +78,11 @@ html {
 
 .mat-vertical-content {
 	text-align: right;
+}
+
+.undo {
+	float: left;
+	padding-left: 1rem;
 }
 
 //*************************************************************
@@ -318,6 +327,10 @@ a {
 	.container-xxl {
 		padding: 0px !important
 	}
+}
+
+.container-fluid {
+	padding: 0px;
 }
 
 
@@ -955,22 +968,10 @@ h1 {
 	background: linear-gradient(to right, #f45a43, #f25144, #f04846, #ee3f47, #eb3449)
 }
 
-.adver-datepicker1 {
-	position: absolute;
-	left: 19px !important;
-	top: 33px !important;
-}
-
-.adver-datepicker2 {
-	position: absolute;
-	left: 19px !important;
-	top: 27px !important;
-}
-
 .adver-datepicker3 {
 	position: absolute;
 	left: 0 !important;
-	top: 24px !important;
+	top: 2.3rem !important;
 }
 
 .adver_panding {
@@ -1260,9 +1261,6 @@ h1 {
 	cursor: pointer
 }
 
-button {
-	background: rgba(198, 28, 13, .5) !important;
-}
 
 .btn-success.disabled,
 .btn-success:disabled {
@@ -1540,6 +1538,7 @@ button:disabled {
 	color: #fff !important;
 	font-size: 0.7rem;
 }
+
 
 /*********************************************************************************************************************** */
 [dir=rtl] .mat-mdc-form-field {

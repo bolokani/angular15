@@ -1,0 +1,11 @@
+.matDialogContent {
+    overflow-y: auto;
+    max-height: 25rem !important;
+    min-height: 41rem;
+    padding: 0px !important
+}
+
+.close {
+    position: fixed;
+    color: #fff
+}

@@ -28,6 +28,7 @@ export class ContractProcessComponent implements OnInit, OnDestroy {
   public contract_number: string;
   public id: number;
   public isLinear = false;
+  public user_title: string;
   public list_process: any = [];
   @ViewChild('stepper', { static: false }) stepper: any;
 
@@ -50,7 +51,26 @@ export class ContractProcessComponent implements OnInit, OnDestroy {
       this.user_token = this.user_info.user_token;
     }
     this.get_user();
+    this.get_contract();
   }
+
+  get_contract() {
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6882, id: this.id }).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.contract_number = res['result'][0].contract_list_contract_number;
+            this.user_title = res['result'][0].user_title;
+          }
+          this.message(false, "", 1, this.messageService.close(1));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(1), 1, this.messageService.close(1));
+        }
+      }
+    )
+  }
+
 
   get_user() {
     if (this.serverService.check_internet() == false) {
@@ -67,11 +87,11 @@ export class ContractProcessComponent implements OnInit, OnDestroy {
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
-          if (res['num'] != 1) {
+          if (res['num'] == 1) {
+            this.get_process();
+          } else {
             this.serverService.signout();
             this.message(false, "", 1, this.messageService.close(this.lang));
-          } else {
-            this.get_process();
           }
         }//end if
         else {
@@ -104,7 +124,7 @@ export class ContractProcessComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.stepper.selectedIndex = 0;
+    //this.stepper.selectedIndex = 0;
   }
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {

@@ -1,10 +1,22 @@
-@media (min-width: 576px) {
+@media (min-width: 990px) {
     .mobile {
         display: none;
     }
 }
 
+@media (min-width: 576px) {
+    .backgroundImage {
+        border-radius: 0 0 0.9rem 0 !important;
+    }
+}
+
+
 @media (max-width: 576px) {
+
+    .backgroundImage {
+        border-radius: 0 0.9rem 0 0 !important;
+    }
+
     .row_invoice {
         padding-bottom: 1rem !important;
     }
@@ -13,6 +25,12 @@
         padding: 0px !important
     }
 
+    .link {
+        margin-top: 2rem !important;
+        min-width: 20%;
+        display: inline-block;
+        text-align: right;
+    }
 
 }
 
@@ -25,6 +43,14 @@
     min-height: 30rem;
     border-radius: 1rem;
     padding: 0px;
+}
+
+.row_invoice2 {
+    border: solid 2px #ef394e !important
+}
+
+.row_invoice:hover {
+    box-shadow: 0 0 10px 0 #bdbdbd !important;
 }
 
 .info-box {
@@ -60,7 +86,6 @@
     margin-bottom: 0.2rem;
     margin-top: 0.48rem;
     font-size: 0.85rem;
-
 }
 
 .div6 {
@@ -68,9 +93,13 @@
 }
 
 .row_invoice {
-    border: solid 2px #aca7a7;
+    border: solid 3px #aca7a7;
     margin-top: 1rem;
     border-radius: 1rem;
+}
+
+a {
+    color: #000
 }
 
 
@@ -102,7 +131,7 @@
 }
 
 .backgroundImage {
-    background-size: cover
+    background-size: cover;
 }
 
 .div2 {

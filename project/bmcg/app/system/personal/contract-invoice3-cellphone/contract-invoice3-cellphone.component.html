@@ -37,6 +37,12 @@
                     <div class="example-element-position">
                         توضیحات: {{ x.finance_financial2_comment }}
                     </div>
+                    <div class="example-element-position">
+                        ضمیمه:
+                        <span (click)="get_attachment(x.finance_financial2_id,'contract-finance')">
+                            <mat-icon>attach_file</mat-icon>
+                        </span>
+                    </div>
                 </div>
             </div>
         </td>

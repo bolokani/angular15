@@ -64,9 +64,10 @@ export class ContractInvoice3Component implements OnInit, OnDestroy {
   @Input('obj') public root_obj: any;
   //******************************************************************************
   public obj: any;
+
   //******************************************************************************
   public dataSource: any | undefined;
-  public columnsToDisplayWithExpand = ['cost_title', 'date', 'amount', 'for', 'attachment'];
+  public columnsToDisplayWithExpand = ['cost_title', 'date', 'amount', 'for'];
   public expandedElement: PeriodicElement | null;
   //******************************************************************************
   constructor(

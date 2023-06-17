@@ -5,12 +5,45 @@
 </div>
 
 <div class="container">
+
+  <div class="row row1">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-8 col-12" style="padding:0">
+      <div class="row">
+        <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+          <div class="breakpoint">
+            <span class="div1_span1"> شماره قرارداد
+            </span>
+            <span class="div1_span2">{{ contract_number
+              }}</span>
+          </div>
+        </div>
+        <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+          <div class="breakpoint">
+            <span class="div1_span1">نام کارفرما
+            </span>
+            <span class="div1_span2">{{ user_title }}</span>
+          </div>
+          <span class="undo cursor" [routerLink]="['/profile/contract']">
+            <mat-icon>
+              undo
+            </mat-icon>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div class="row" *ngFor="let x of list_record">
     <table class="table table-bordered">
       <tbody>
         <tr>
           <td class="right">نام کالا:</td>
-          <td class="center">{{ x.site_brand_title }} {{ x.site_tip_title }} {{ x.site_year_title }}</td>
+          <td class="center">{{ x.site_brand_title }} {{ x.site_tip_title }} {{ x.model_year }}</td>
+        </tr>
+        <tr>
+          <td class="right">سال ساخت:</td>
+          <td class="center">{{ x.site_year_title }}</td>
         </tr>
         <tr>
           <td class="right">شماره شاسی:</td>
@@ -43,10 +76,6 @@
         <tr>
           <td class="right">تاریخ پلاک:</td>
           <td class="center">{{ x.contract_list_plate_date }}</td>
-        </tr>
-        <tr>
-          <td class="right">شماره پلاک:</td>
-          <td class="center">--</td>
         </tr>
         <tr>
           <td class="right">تعداد روز شروع تا پلاک:</td>

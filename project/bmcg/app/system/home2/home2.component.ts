@@ -48,23 +48,7 @@ export class Home2Component implements OnInit, OnDestroy {
   public search: boolean = false;
   public obj: any;
 
-  public list_baner3: any = [
-    {
-      logo: "https://bmcg.ir/object/uploads/gallery/3.png"
-    },
-    {
-      logo: "https://bmcg.ir/object/uploads/gallery/1.png"
-    },
-    {
-      logo: "https://bmcg.ir/object/uploads/gallery/2.png"
-    },
-    {
-      logo: "https://bmcg.ir/object/uploads/gallery/4.png"
-    },
-    {
-      logo: "https://bmcg.ir/object/uploads/gallery/5.png"
-    },
-  ]
+  public list_baner3: any = []
   public header_baner1 = "https://bmcg.ir/object/uploads/gallery/right.png";
   public header_baner2 = "https://bmcg.ir/object/uploads/gallery/top.png";
   public header_baner3 = "https://bmcg.ir/object/uploads/gallery/bottom3.png";
@@ -83,6 +67,7 @@ export class Home2Component implements OnInit, OnDestroy {
     this.get_brand();
     this.get_tip();
     this.get_year();
+    this.get_baner3();
   }
 
   create_form() {
@@ -153,6 +138,23 @@ export class Home2Component implements OnInit, OnDestroy {
         if (res['status'] == 1) {
           for (var i = 0; i < res['num']; i++) {
             this.list_year.push(res['result'][i]);
+          }//end for
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_baner3() {
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6893, id: 122 }).subscribe(
+      (res: any) => {
+        this.list_baner3 = [];
+        if (res['status'] == 1) {
+          for (var i = 0; i < res['num']; i++) {
+            this.list_baner3.push(res['result'][i]);
           }//end for
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if

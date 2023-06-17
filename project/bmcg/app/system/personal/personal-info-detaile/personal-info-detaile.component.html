@@ -79,13 +79,20 @@
                 </label>
             </div>
 
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
-                <label for="birth_date">
-                    <div class="div_input">
-                        <span class="label"> تاریخ تولد </span>
-                    </div>
-                    <input class='input' formControlName='birth_date' autocomplete="off">
-                </label>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1" style="position:relative">
+                    <label for="birth_date">
+                        <div class="div_input">
+                            <span class="label"> تاریخ تولد </span>
+                        </div>
+                        <input class="wh-input form-control" [matDatepicker]="picker" formControlName="birth_date"
+                            autocomplete="off">
+                        <mat-datepicker-toggle matSuffix [for]="picker" class="adver-datepicker3">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </label>
+                </div>
+
             </div>
 
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">

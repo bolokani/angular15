@@ -32,6 +32,8 @@ export class ContractCommentComponent implements OnInit, OnDestroy {
   public export_code: any;
   public form1: FormGroup | any;
   public disable1: boolean = true;
+  public user_title: string;
+
 
 
   constructor(
@@ -56,6 +58,7 @@ export class ContractCommentComponent implements OnInit, OnDestroy {
     }
     this.create_form();
     this.get_user();
+    this.get_contract();
   }
 
   create_form() {
@@ -78,6 +81,24 @@ export class ContractCommentComponent implements OnInit, OnDestroy {
     */
   }
 
+  get_contract() {
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6882, id: this.id }).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.contract_number = res['result'][0].contract_list_contract_number;
+            this.user_title = res['result'][0].user_title;
+          }
+          this.message(false, "", 1, this.messageService.close(1));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(1), 1, this.messageService.close(1));
+        }
+      }
+    )
+  }
+
+
   get_user() {
     if (this.serverService.check_internet() == false) {
       this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
@@ -93,11 +114,11 @@ export class ContractCommentComponent implements OnInit, OnDestroy {
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
-          if (res['num'] != 1) {
+          if (res['num'] == 1) {
+            this.get_comments();
+          } else {
             this.serverService.signout();
             this.message(false, "", 1, this.messageService.close(this.lang));
-          } else {
-            this.get_comments();
           }
         }//end if
         else {

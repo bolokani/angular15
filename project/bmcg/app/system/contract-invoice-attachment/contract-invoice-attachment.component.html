@@ -19,7 +19,7 @@
                 *ngFor="let file of list_attachment;let i = index">
                 <div class="dz-preview dz-processing dz-image-preview dz-success dz-complete box box-right deopzone"
                     id="fileInput" [title]="file.site_attach_title">
-                    <div class="dz-image" style="border:solid 1px #ccc">
+                    <div class="dz-image">
 
                         <a href='{{ file.site_attach_site }}/{{ file.site_attach_name }}' target="_blank">
                             <span
@@ -46,7 +46,7 @@
                                 <i class="fas fa-file-video icone" style='color:black'></i>
                             </span>
                             <ng-template #other>
-                                <i class="fas fa-file-alt icone" style='color:black'></i>
+
                             </ng-template>
                         </a>
                     </div><!-- dz-image -->

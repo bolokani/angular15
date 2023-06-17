@@ -4,13 +4,45 @@
     </div>
 </div>
 
+<div class="row row1">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-8 col-12" style="padding:0">
+        <div class="row">
+            <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                <div class="breakpoint">
+                    <span class="div1_span1"> شماره قرارداد
+                    </span>
+                    <span class="div1_span2">{{ contract_number
+                        }}</span>
+                </div>
+            </div>
+            <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                <div class="breakpoint">
+                    <span class="div1_span1">نام کارفرما
+                    </span>
+                    <span class="div1_span2">{{ user_title }}</span>
+                </div>
+                <span class="undo cursor" [routerLink]="['/profile/contract']">
+                    <mat-icon>
+                        undo
+                    </mat-icon>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <mat-stepper orientation="vertical" [linear]="isLinear" class="stepper" #stepper>
         <ng-container *ngFor="let x of list_process;let i = index">
             <mat-step state="done" [completed]="false" [editable]="false" *ngIf="x.cprocess_status_done == 1">
-                <ng-template matStepLabel>{{ x.discharge_process_title }}</ng-template>
+                <ng-template matStepLabel>
+                    <span>{{ x.discharge_process_title }}</span>
+                </ng-template>
                 <div class="comment">
                     <span>{{ x.status }} </span>
+                    <a [href]="x.src" target="_blank" *ngIf="x.src" class="cursor">
+                        <span class="black"><mat-icon>attach_file</mat-icon></span>
+                    </a>
                 </div>
             </mat-step>
             <mat-step *ngIf="x.cprocess_status_doing == 1" [completed]="false" [editable]="false">

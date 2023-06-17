@@ -31,6 +31,7 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
   public mat_table_selectedRow: any;
   public mat_table_hoverRow: any;
   public sum2: number;
+  public user_title: string;
   public user_id: number;
   public access: boolean = false;
   public user_token: number;
@@ -61,6 +62,7 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
       this.user_token = this.user_info.user_token;
     }
     this.get_user();
+    this.get_contract();
   }
 
   get_user() {
@@ -77,11 +79,11 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
-          if (res['num'] != 1) {
+          if (res['num'] == 1) {
+            this.access = true;
+          } else {
             this.serverService.signout();
             this.access = false;
-          } else {
-            this.access = true;
           }
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
@@ -91,6 +93,25 @@ export class ContractInvoiceComponent implements OnInit, OnDestroy {
       }
     )
   }
+
+  get_contract() {
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6882, id: this.id }).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.contract_number = res['result'][0].contract_list_contract_number;
+            this.user_title = res['result'][0].user_title;
+          }
+          this.message(false, "", 1, this.messageService.close(1));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(1), 1, this.messageService.close(1));
+        }
+      }
+    )
+  }
+
+
 
   change(tab: number) {
     this.tab = tab;

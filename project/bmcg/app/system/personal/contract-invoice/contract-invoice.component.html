@@ -5,13 +5,42 @@
 </div>
 
 <div mat-dialog-content class="matDialogContent dialog-color" style="padding:0.2rem 0 !important;font-size: 0.88rem;">
+    <div class="row row1 no-print">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-8 col-12" style="padding:0">
+            <div class="row">
+                <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-xs-12 div3">
+                    <div class="breakpoint">
+                        <span class="div1_span1"> شماره قرارداد
+                        </span>
+                        <span class="div1_span2">{{ contract_number
+                            }}</span>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-xs-12 div3">
+                    <div class="breakpoint">
+                        <span class="div1_span1">نام کارفرما
+                        </span>
+                        <span class="div1_span2">{{ user_title }}</span>
+                    </div>
+                    <span class="undo cursor" [routerLink]="['/profile/contract']">
+                        <mat-icon>
+                            undo
+                        </mat-icon>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row no-print tabs">
             <div class="col-xl-12 col-xl-12 col-lg-12 col-md-12 col-xs-12 col1">
                 <div style="display: inline-block; vertical-align: top;">
                     <button class="search_button" [ngClass]="{active:tab == 1}" (click)="change(1)">فاکتور</button>
                     <button class="search_button" [ngClass]="{active:tab == 2}" (click)="change(2)">واریزی ها</button>
-                    <button class="search_button" [ngClass]="{active:tab == 3}" (click)="change(3)">صورتحساب</button>
+                    <a href="/invoice-contract2/{{ id }}" target="_blank">
+                        <button class="search_button">چاپ صورتحساب</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -24,28 +53,5 @@
             <app-contract-invoice3 [obj]="{ id : id }"></app-contract-invoice3>
         </ng-container>
         <!--**********************************************************************************************-->
-        <ng-container *ngIf="tab == 3">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div_sum"> میزان هزینه های این قرارداد :
-                <div class="price">
-                    <span class="yellow">{{ sum1 | number }} ریال</span>
-                </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div_sum">
-                میزان واریزی های این قرارداد :
-                <div class="price">
-                    <span class="yellow">{{ sum2 | number }} ریال</span>
-                </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div_sum">
-                جمع کل
-                <span *ngIf="(sum1 - sum2) >= 0">بدهکاری</span>
-                <span *ngIf="(sum1 - sum2) < 0">واریزی مازاد</span>
-                :
-                <div class="price yellow">
-                    {{ sum1 - sum2 | number }} ریال
-                </div>
-            </div>
-        </ng-container>
-
     </div>
 </div>

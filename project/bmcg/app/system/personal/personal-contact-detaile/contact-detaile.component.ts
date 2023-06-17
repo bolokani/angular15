@@ -45,6 +45,8 @@ export class ContactDetaileComponent implements OnInit, OnDestroy {
   public contract_number: string;
   public user_id: string;
   public user_token: string;
+  public user_title: string;
+
 
   constructor(
     public serverService: ServerService
@@ -74,6 +76,7 @@ export class ContactDetaileComponent implements OnInit, OnDestroy {
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
+    this.loading = true;
     var obj = {
       address: 6876,
       user_id: this.user_id,
@@ -82,11 +85,11 @@ export class ContactDetaileComponent implements OnInit, OnDestroy {
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
-          if (res['num'] != 1) {
+          if (res['num'] == 1) {
+            this.get_data();
+          } else {
             this.serverService.signout();
             this.message(false, "", 1, this.messageService.close(this.lang));
-          } else {
-            this.get_data();
           }
         }//end if
         else {
@@ -124,6 +127,8 @@ export class ContactDetaileComponent implements OnInit, OnDestroy {
             this.process_title = res['result'][0].discharge_process_title;
             this.delivery_date = res['result'][0].contract_list_delivery_date;
             this.recept_date = res['result'][0].contract_list_recept_date;
+            this.contract_number = res['result'][0].contract_list_contract_number;
+            this.user_title = res['result'][0].user_title;
             this.get_missed_day_plate(res['result'][0].contract_list_contract_date_main, res['result'][0].contract_list_plate_date_main);
           }
           this.message(false, "", 1, this.messageService.close(1));

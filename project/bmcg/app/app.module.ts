@@ -51,13 +51,14 @@ import { ProfileComponent } from './system/personal/profile/profile.component';
 import { CustomsPrintComponent } from './system/customs-print/customs-print.component';
 import { PersonalInfoComponent } from './system/personal/personal-info/personal-info.component';
 import { PersonalInfoDetaileComponent } from './system/personal/personal-info-detaile/personal-info-detaile.component';
-import { ContactChatComponent } from './system/main/contact-chat/contact-chat.component';
 import { PrsonalContractComponent } from './system/personal/prsonal-contract/prsonal-contract.component';
 import { MenuComponent } from './system/main/menu/menu.component';
 import { PersonalInvoice2Component } from './system/personal/personal-invoice2/personal-invoice2.component';
 import { PersonalInvoice2CellphoneComponent } from './system/personal/personal-invoice2-cellphone/personal-invoice2-cellphone.component';
 import { ContractInvoice3Component } from './system/personal/contract-invoice3/contract-invoice3.component';
 import { ContractInvoice3CellphoneComponent } from './system/personal/contract-invoice3-cellphone/contract-invoice3-cellphone.component';
+import { ContractCostInvoice2Component } from './system/personal/contract-cost-invoice2/contract-cost-invoice2.component';
+import { ContractImageComponent } from './system/personal/contract-image/contract-image.component';
 
 export const customCurrencyMaskConfig = {
   align: "auto",
@@ -74,6 +75,8 @@ export const customCurrencyMaskConfig = {
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
+  { path: "invoice-contract2/:id", component: ContractCostInvoice2Component },
+
 
   {
     path: "", component: HomeComponent, children: [
@@ -112,7 +115,9 @@ const routes: Routes = [
     Header2Component, ProfileComponent, ContractCommentComponent
     , ContractProcessComponent, ContractInvoiceComponent, ContractInvoiceAttachmentComponent
     , InvoicePrintComponent, InvoicePrintCellphoneComponent, ProfileMenuComponent, CustomsPrintComponent
-    , PersonalInfoComponent, PersonalInfoDetaileComponent, ContactChatComponent, PrsonalContractComponent, MenuComponent, PersonalInvoice2Component, PersonalInvoice2CellphoneComponent, ContractInvoice3Component, ContractInvoice3CellphoneComponent
+    , PersonalInfoComponent, PersonalInfoDetaileComponent, PrsonalContractComponent
+    , MenuComponent, PersonalInvoice2Component, PersonalInvoice2CellphoneComponent
+    , ContractInvoice3Component, ContractInvoice3CellphoneComponent, ContractCostInvoice2Component, ContractImageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })

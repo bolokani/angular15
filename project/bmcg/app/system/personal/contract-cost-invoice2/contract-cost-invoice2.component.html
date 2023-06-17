@@ -1,0 +1,248 @@
+<div class="container-fluid fluid2" style="padding-top:1rem;max-height: 100vh;">
+    <div class="invoice">
+        <div class="row containerInier">
+            <div class="div_loading" style="width:100%" [hidden]="!loading">
+                <div class="my-container">
+                    <mat-progress-bar mode="indeterminate" class="detaile"></mat-progress-bar>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-md-6 col-xs-6 div1 div-img2" style="padding-top:0.8rem">
+                    <img src="../../../../assets/img/logo2.png" class="img2">
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-md-6 col-xs-6 div1 address">
+                    <div class="address1" style="white-space:pre-wrap">
+                        <span>آدرس: </span>
+                        <span class="cellphone" [innerHTML]="fulladdress" style="white-space:pre-wrap">
+                        </span>
+                    </div>
+                    <div class="address1" style="white-space:pre-wrap">
+                        <span>تلفن: </span>
+                        <span class="cellphone" [innerHTML]="phone" style="white-space:pre-wrap">
+                        </span>
+
+                        <span style="margin-right:1rem">
+                            فکس:
+                        </span>
+                        <span class="cellphone" [innerHTML]="fax" style="white-space:pre-wrap">
+                        </span>
+                    </div>
+                    <div class="address1">
+                        <span>
+                            موبایل:
+                        </span>
+                        <span class="cellphone ltr" [innerHTML]="cellphone" style="white-space:pre-wrap;;">
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- ************************************************************************************************************ -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-md-12 col-xs-6 div2">
+                    <table class="table-header table-striped table table2">
+                        <tr>
+                            <td class="bg" style="width:25%">شماره قرارداد</td>
+                            <td style="width:25%">{{ contract_number }}</td>
+                            <td class="bg" style="width:25%">کارفرما</td>
+                            <td style="width:25%">{{ user_title }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bg">کالا</td>
+                            <td>{{ brand }} {{ tip }} {{ year_title }}</td>
+                            <td class="bg">تاریخ شروع قرارداد</td>
+                            <td>{{ contract_date }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bg">VIN وارداتی</td>
+                            <td>{{ vin }}</td>
+                            <td class="bg">تاریخ صورتحساب</td>
+                            <td>{{ plate_date }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bg">مدل (سال)</td>
+                            <td>{{ model_year }}</td>
+                            <td class="bg">نحوه شماره گذاری</td>
+                            <td>{{ hnumber_title }}</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <!-- ************************************************************************************************************ -->
+            <div class="row desktop">
+                <table class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <td class="text-center borderLeft headBg" style="width:5%">
+                                <span>ردیف</span>
+                            </td>
+                            <td class="text-center borderLeft headBg" style="width:15%"><span>نوع
+                                    سند</span></td>
+                            <td class="text-center borderLeft headBg" style="width:30%">
+                                <span>سرفصل هزینه</span>
+                            </td>
+                            <td class="text-center borderLeft headBg" style="width:15%">
+                                <span>مبلغ (ریال)</span>
+                            </td>
+                            <td class="text-center borderLeft headBg" style="width:35%">
+                                <span>توضیحات</span>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let x of list_cost;let i = index">
+                            <td class="text-center borderLeft">{{ i + 1 }}</td>
+                            <td class="text-center borderLeft">{{
+                                x.contract_cost_status_title }}</td>
+                            <td class="borderLeft" style="max-width:140px">
+                                {{ x.contract_cost2_title }}
+                            </td>
+                            <td class="text-center borderLeft">{{
+                                x.contract_cost2_price | number }}</td>
+                            <td class="text-center borderLeft right">{{
+                                x.contract_cost2_comment }}</td>
+                        </tr>
+                        <tr style="background-color: #ff40403d;">
+                            <td class="textRight borderLeft balance2" colspan="5">
+                                جمع کل هزینه ها
+                                <div class="balance">{{ sum1 | number }} ریال </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- ************************************************************************************************************ -->
+            <div class="row desktop" style="margin-top:2rem !important">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <td class="text-center borderLeft headBg" style="width:5%;">
+                                        <span>ردیف</span>
+                                    </td>
+                                    <td class="text-center borderLeft headBg" style="width:15%">
+                                        <span>نوع
+                                            سند</span>
+                                    </td>
+                                    <td class="text-center borderLeft headBg" style="width:15%">
+                                        <span>تاریخ</span>
+                                    </td>
+                                    <td class="text-center borderLeft headBg" style="width:15%">
+                                        <span>شماره
+                                            پیگیری</span>
+                                    </td>
+                                    <td class="text-center borderLeft headBg" style="width:15%">
+                                        <span>مبلغ (ریال)</span>
+                                    </td>
+                                    <td class="text-center borderLeft headBg" style="width:35%">
+                                        <span>رسید</span>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let x of list_finance;let i = index">
+                                    <td class="text-center borderLeft">
+                                        {{ i + 1 }}
+                                    </td>
+                                    <td class="text-center borderLeft">
+                                        {{ x.finance_document_title }}
+                                    </td>
+                                    <td class="text-center borderLeft">{{
+                                        x.finance_financial2_date3}}</td>
+                                    <td class="text-center borderLeft">{{ x.finance_financial2_tracking_code }}</td>
+                                    <td class="text-center borderLeft">{{
+                                        x.finance_financial2_amount | number }}</td>
+                                    <td class="text-center borderLeft right">{{ x.payment_for_title }}</td>
+                                </tr>
+                                <tr style="background-color: #cfeade;">
+                                    <td class="textRight borderLeft balance2" colspan="10">
+                                        جمع کل واریز
+                                        <div class="balance">{{ sum2 | number }}
+                                            ریال
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- **********************************************for cellphone************************************************************** -->
+            <div class="row row3" *ngIf="list_cost.length > 0">
+                <div class="invoice3"><span style="background: aquamarine;"> فاکتور : </span></div>
+                <div class="col-sm-12 invoice1" *ngFor="let x of list_cost">
+                    <div>نوع سند :
+                        <span> {{ x.contract_cost_status_title }} </span>
+                    </div>
+                    <div> سر فصل هزینه :
+                        <span> {{ x.contract_cost2_title }} </span>
+                    </div>
+                    <div> مبلغ :
+                        <span> {{ x.contract_cost2_price | number}} ریال</span>
+                    </div>
+                    <div> توضیحات:
+                        <span> {{ x.contract_cost2_comment }} </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 invoice2">
+                    جمع کل فاکتور : {{ sum1 | number }} ریال
+                </div>
+            </div>
+
+            <div class="row row3" *ngIf="list_finance.length > 0">
+                <div class="invoice3"><span style="background: aquamarine;"> واریزی ها : </span></div>
+                <div class="col-sm-12 invoice1" *ngFor="let x of list_finance">
+                    <div>نوع سند :
+                        <span> {{ x.finance_document_title }} </span>
+                    </div>
+                    <div> تاریخ :
+                        <span> {{ x.finance_financial2_date3 }} </span>
+                    </div>
+                    <div> شماره پیگیری :
+                        <span> {{ x.finance_financial2_tracking_code }}</span>
+                    </div>
+                    <div> مبلغ (ریال) :
+                        <span> {{ x.finance_financial2_amount | number }} ریال</span>
+                    </div>
+                    <div> رسید :
+                        <span> {{ x.payment_for_title }} </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 invoice2">
+                    جمع کل واریزی ها : {{ sum2 | number }} ریال
+                </div>
+            </div>
+            <!-- ************************************************************************************************************ -->
+            <div class="row" style="margin:2rem 0 !important">
+                <div class="col-lg-12">
+                    <table class="table table-condensed table-striped">
+                        <tbody>
+                            <tr style="background-color: #eef300;">
+                                <td class="textRight borderLeft remain balance2" colspan="10">
+                                    مانده حساب :
+                                    {{ sum1 - sum2 | number }} ریال
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- *************************************************************************************************************-->
+                    <footer class="container-fluid footer">
+
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <span class="noprint" style="float: left;">
+                                    <a href="javascript:window.print()" class="btn btn-default print-button"><i
+                                            class="icon-printer"></i> پرینت</a>
+                                </span>
+                                www.truckbama.ir
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

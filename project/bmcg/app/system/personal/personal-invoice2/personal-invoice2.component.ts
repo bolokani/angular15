@@ -50,6 +50,10 @@ export class PersonalInvoice2Component implements OnInit, OnDestroy {
   public cellphone!: string;
   public contract_date!: string;
   public list_record: any = [];
+  public plate_date: string;
+  public contract_number: string;
+  public model_year: string;
+  public hnumber_title: string;
   @Input('obj') public root_obj: any;
   //******************************************************************************
   public list_cost2: any = [];
@@ -78,8 +82,61 @@ export class PersonalInvoice2Component implements OnInit, OnDestroy {
     if (this.root_obj) {
       this.id = this.root_obj.id;
     }
+    this.get_contract();
     this.get_cost2();
+    this.get_setting();
   }//end ngOnInit 
+
+  get_setting() {
+    var obj = { address: 6877, id: this.id }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1 && res['num'] == 1) {
+          this.fulladdress = res['result'][0].site_setting_fulladdress;
+          this.phone = res['result'][0].site_setting_phone;
+          this.cellphone = res['result'][0].site_setting_cellphone;
+          this.fax = res['result'][0].site_setting_fax;
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang))
+
+        }
+      }
+    )
+  }//end get_setting
+
+  get_contract() {
+    var obj = {
+      address: 6878
+      , id: this.id
+      , user_token: this.user_token
+      , user_id: this.user_id
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1 && res['num'] == 1) {
+          this.contract_number = res['result'][0].contract_list_contract_number;
+          this.contract_date = res['result'][0].contract_list_contract_date;
+          this.plate_date = res['result'][0].contract_list_plate_date;
+          this.brand = res['result'][0].site_brand_title;
+          this.model_year = res['result'][0].model_year;
+          this.tip = res['result'][0].site_tip_title;
+          this.hnumber_title = res['result'][0].site_hnumber_title;
+          this.year_title = res['result'][0].site_year_title;
+          this.color = res['result'][0].site_brand_color;
+          this.status_title = res['result'][0].site_astatus_title;
+          this.user_title = res['result'][0].user_title;
+          this.vin = res['result'][0].contract_list_vin;
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang))
+
+        }
+      }
+    )
+  }//end get_contract
 
   get_cost2() {
     this.loading = true;

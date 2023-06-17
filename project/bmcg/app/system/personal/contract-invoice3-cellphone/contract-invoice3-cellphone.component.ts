@@ -1,6 +1,10 @@
 import { Component, OnInit, OnDestroy, Inject, Input } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ServerService } from '../../services/server/server.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ContractInvoiceAttachmentComponent } from '../../contract-invoice-attachment/contract-invoice-attachment.component';
+
+
 
 @Component({
   selector: 'app-contract-invoice3-cellphone',
@@ -17,11 +21,14 @@ import { ServerService } from '../../services/server/server.service';
 export class ContractInvoice3CellphoneComponent implements OnInit {
   @Input('obj') public root_obj: any;
   public sum1: number = 0;
+  public contract_number: number;
   dataSource: any;
   columnsToDisplayWithExpand = ['cost_title', 'amount'];
   expandedElement: PeriodicElement | null;
 
-  constructor(public serverService: ServerService) {
+  constructor(
+    public serverService: ServerService
+    , public dialog: MatDialog) {
     this.serverService.get_invoice_print_cellphone().subscribe(
       (res) => {
         if (res) {
@@ -33,6 +40,7 @@ export class ContractInvoice3CellphoneComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource = this.root_obj.list_record;
+    this.contract_number = this.root_obj.contract_number;
     this.get_sum1();
   }
 
@@ -43,7 +51,20 @@ export class ContractInvoice3CellphoneComponent implements OnInit {
     }
   }
 
+  get_attachment(id: number, path: string) {
+    var width = '23rem';
+    if (window.innerWidth > 576) {
+      width = '50rem';
+    }
+    this.dialog.open(ContractInvoiceAttachmentComponent, {
+      'width': width,
+      'height': 'auto',
+      data: { id: id, contract_number: this.contract_number, path: path }
+    })
+  }
+
 }
+
 
 export interface PeriodicElement {
   cost_title: string;

@@ -4,10 +4,10 @@
 	text-align: right;
 }
 
-/*
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}*/
+.container {
+	max-width: 100% !important
+}
+
 
 @media only screen and (max-width: 576px) {
 	.container {
@@ -15,6 +15,34 @@ tr:nth-child(even) {
 	}
 
 }
+
+.div1_span1 {
+	font-size: 0.85rem;
+}
+
+
+
+.div1 {
+	margin-top: 1rem;
+	height: 3rem;
+	border-bottom: solid 1px #e0e0e6;
+	padding: 0.2rem;
+	padding-right: 1rem;
+}
+
+.breakpoint {
+	display: inline-block;
+	margin: 0 0rem 0 1rem
+}
+
+.row1 {
+	border: solid 1px #ccc;
+	background-color: #2C3F6E;
+	color: #fff;
+	margin-bottom: 2rem !important;
+
+}
+
 
 table tr td {
 	text-align: right;

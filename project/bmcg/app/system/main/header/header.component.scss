@@ -42,7 +42,7 @@ body {
   }
 }
 
-@media screen and (max-width : 1200px) {
+@media screen and (max-width : 992px) {
   .menu-desktop {
     display: none !important;
   }
@@ -447,13 +447,6 @@ body {
   padding-top: 1rem
 }
 
-
-@media (min-width: 1024px) {
-  .container1 {
-    padding: 0 65px !important;
-  }
-}
-
 .container1 {
   margin: 0 auto;
   padding: 0 80px;
@@ -694,12 +687,27 @@ a {
 }
 
 /* *************************************************************** */
-@media (min-width: 1024px) {
+@media (min-width: 992px) {
   .site-header .main-nav {
     height: 70px;
     position: relative;
     border-bottom: 1px solid #008f70;
   }
+
+  .main-nav2 {
+    padding-top: 1.5rem
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1024px) {
+  .main-nav2 {
+    padding-top: 0.5rem
+  }
+}
+
+.main-nav2 {
+  width: 100%;
+  height: 6rem;
 }
 
 .site-header .main-nav {
@@ -787,7 +795,6 @@ a {
   padding: 0;
   float: right;
   height: 100%;
-  margin: 0 60px 0 0px;
 }
 
 @media (min-width: 1024px) {
@@ -811,7 +818,7 @@ a {
 }
 
 .active {
-  color: #008F70 !important;
+  color: #ef394e !important;
 }
 
 .site-header .main-nav .main-nav__links>li {
@@ -932,7 +939,7 @@ a {
   .site-header .main-nav {
     height: 4rem;
     position: relative;
-    border-bottom: 1px solid #008f70;
+    border-bottom: 1px solid #ef394e;
   }
 }
 
@@ -1005,7 +1012,7 @@ a {
 
 
 /************************************  for scroll and adding new class to manu *******************************/
-@media (max-width:1024px) {
+@media (max-width:992px) {
   .ul1 {
     display: none !important;
   }

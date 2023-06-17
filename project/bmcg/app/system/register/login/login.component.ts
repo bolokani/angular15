@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   public sent_code: boolean = false;
   public show_input_name: boolean = false;
   public need_to_validation: boolean = false;
+  public tp: number = 0;
 
   constructor(
     public serverService: ServerService
@@ -44,6 +45,11 @@ export class LoginComponent implements OnInit {
   }//end consructor
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(
+      (params: Params) => {
+        this.tp = params['tp'];
+      }
+    )
     if (this.user_info) {
       this.get_user(this.user_info.user_id, this.user_info.user_token);
     } else {
@@ -157,11 +163,15 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         if (res['status'] == 1) {
           if (res['num'] == 1) {
-            //this.send_sms(res['result'][0].user_code);
-            this.sent_code = true;
-            this.form2.patchValue({
-              'code': res['result'][0].user_code
-            })
+            if (this.tp == 1) {
+              this.form2.patchValue({
+                'code': res['result'][0].user_code
+              })
+              this.sent_code = true;
+            } else {
+              this.send_sms(res['result'][0].user_code);
+              this.sent_code = true;
+            }
             this.message(false, "", 1, this.messageService.close(1));
           }
         }//end if
@@ -175,7 +185,7 @@ export class LoginComponent implements OnInit {
 
   send_sms(code: number) {
     var obj = {
-      address: 1990,
+      address: 6894,
       code: code,
       cellphone: this.form1.value.cellphone
     }

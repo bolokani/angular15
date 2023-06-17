@@ -1,5 +1,7 @@
 @media print {
-
+    * {
+        color: #000 !important
+    }
 
     html {
         overflow: hidden;
@@ -8,7 +10,6 @@
     .fluid2 {
         overflow-y: visible !important;
     }
-
 
 
     .divider1 {
@@ -74,8 +75,12 @@
         border: solid 1px #000;
     }
 
+    .invoice table .borderLeft {
+        font-size: 0.8rem !important;
+    }
+
     .div1 {
-        min-height: 8rem !important;
+        min-height: 7.5rem !important;
     }
 
     .invoice .containerInier {
@@ -95,14 +100,8 @@
     }
 
     .brand {
-        color: #000
+        color: #fff !important
     }
-}
-
-
-.loading2 {
-    text-align: center;
-    padding-top: 2rem;
 }
 
 .brand {
@@ -143,6 +142,7 @@
 .address1 {
     text-align: right;
     line-height: 1.7rem;
+    font-size: 0.8rem;
 }
 
 .fluid2 {
@@ -235,7 +235,8 @@ video {
 
 .table-header tr td {
     padding: 0.5rem 0rem !important;
-    font-weight: bold
+    font-weight: 700;
+    text-align: center;
 }
 
 .balance {
@@ -248,6 +249,7 @@ video {
 
 .cellphone {
     display: inline-block;
+    direction: ltr;
 }
 
 
@@ -273,13 +275,6 @@ video {
 .row3 * {
     font-family: irsans2 !important;
     font-size: 0.78rem
-}
-
-.table tr td {
-    font-size: 0.78rem;
-    text-align: center;
-    direction: rtl;
-    padding: 0.5rem 1rem !important;
 }
 
 @media only screen and (max-width:576px) {
@@ -364,7 +359,7 @@ video {
     }
 }
 
-@media only screen and (min-width: 576px) {
+@media only screen and (min-width: 800px) {
     .input-search {
         width: 30rem;
     }
@@ -391,10 +386,6 @@ video {
 
     .row3 {
         display: none
-    }
-
-    .cellphone {
-        display: none;
     }
 }
 
@@ -625,7 +616,8 @@ p {
 .remain {
     padding: 0 1.1rem;
     background-color: yellow;
-    margin-top: 1rem
+    margin-top: 1rem;
+    font-size: 1.1rem !important
 }
 
 .invoice table {
@@ -634,8 +626,7 @@ p {
 }
 
 .invoice table .headBg {
-    background-color: #26396A;
-    color: #fff
+    background-color: #ff0;
 }
 
 .invoice table .borderLeft {
@@ -680,16 +671,4 @@ p {
 
 html {
     overflow-y: auto !important;
-}
-
-@media only screen and (min-width: 600px) {
-    .fluid2 {
-        padding: 0rem 4rem !important
-    }
-}
-
-.none {
-    text-align: center;
-    padding-top: 4rem !important;
-    overflow-y: hidden
 }
