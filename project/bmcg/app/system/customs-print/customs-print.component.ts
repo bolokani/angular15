@@ -53,6 +53,8 @@ export class CustomsPrintComponent implements OnInit, OnDestroy {
   public count_record!: number;
   public exchange_rate!: string;
   public sum!: string;
+  public customs_cpt: number = 0;
+  public value_custom: number = 0;
   //******************************************************************************
   public list_cost: any = [];
   public obj: any;
@@ -127,6 +129,8 @@ export class CustomsPrintComponent implements OnInit, OnDestroy {
             this.year_title = res['result'][0].site_tip_title;
             this.editor_date = res['result'][0].site_customs_editor_date;
             this.brand_color = res['result'][0].site_brand_color;
+            this.customs_cpt = res['result'][0].site_customs_cpt;
+            this.value_custom = res['result'][0].site_customs_value_custom;
             this.exchange_rate = res['result'][0].site_customs_exchange_rate;
             this.sum = res['result'][0].site_customs_sum;
             this.tax = res['result'][0].site_customs_tax;

@@ -31,20 +31,28 @@
                                         year_title }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="center">نرخ یورو گمرکی (ریال)</td>
+                                    <td class="center">ارزش گمرکی کالا (یورو)</td>
+                                    <td class="center">{{ customs_cpt | number }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="center">نرخ گمرکی یورو (ریال)</td>
                                     <td class="center">{{ exchange_rate | number }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="center">ارزش گمرکی کالا (ریال)</td>
+                                    <td class="center">{{ value_custom | number }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="center hilight">جمع حقوق گمرکی (ریال)</td>
+                                    <td class="center hilight"> {{ sum | number }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="center hilight">2% مالیات علی الحساب (ریال) </td>
+                                    <td class="center hilight">{{ tax | number }}</td>
                                 </tr>
                                 <tr>
                                     <td class="center">آخرین بروزرسانی</td>
                                     <td class="center">{{ editor_date }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="center">جمع حقوق گمرکی (ریال)</td>
-                                    <td class="center"> {{ sum | number }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="center">2% مالیات علی الحساب (ریال) </td>
-                                    <td class="center">{{ tax | number }}</td>
                                 </tr>
                             </tbody>
 

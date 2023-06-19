@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
       this.get_user();
     }
     //this.get_logo();
-    this.logo = "https://truckbama.com/assets/img/logo2.png";
+    this.logo = "../../../../assets/img/logo2-new.png";
   }
 
   get_user() {

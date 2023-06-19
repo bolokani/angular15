@@ -7,7 +7,8 @@
 
     <div class="left">
         <a class="navbar-brand" style="padding:0px 0px;float:left !important" [routerLink]="['/']">
-            <img [src]="logo" style="max-width:10rem" title="گروه تجاری با ما" alt="گروه تجاری با ما">
+            <img [src]="logo" style="max-width:14rem;object-fit:contain" title="گروه تجاری با ما"
+                alt="گروه تجاری با ما">
         </a>
     </div>
 
@@ -23,8 +24,16 @@
                     <a class="nav-link">درباره ما</a>
                 </li>
                 <li class="nav-item nav-item1" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    [routerLink]="['/login']" routerLinkActive="active">
+                    [routerLink]="['/login']" routerLinkActive="active" *ngIf="!user_cellphone">
                     <a class="nav-link">ورود</a>
+                </li>
+                <li class="nav-item nav-item1" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    [routerLink]="['/profile/info']" routerLinkActive="active" *ngIf="user_cellphone">
+                    <a class="nav-link">ورود به صفحه شخصی</a>
+                </li>
+                <li class="nav-item nav-item1" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    (click)="serverService.signout()" routerLinkActive="active" *ngIf="user_cellphone">
+                    <a class="nav-link">خروج</a>
                 </li>
             </span>
         </ul>

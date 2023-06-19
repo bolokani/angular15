@@ -20,8 +20,10 @@ export class Header2Component implements OnInit {
   public subscription: Subscription;
   public username: any;
   public user_id: number = 0;
+  public user_token: number = 0;
   public show_bascket: boolean = false;
   public logo: string;
+  public user_cellphone: string;
 
   constructor(
     public router: Router
@@ -39,9 +41,11 @@ export class Header2Component implements OnInit {
   ngOnInit() {
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
+      this.user_token = this.user_info.user_token;
     }
     //this.get_logo();
-    this.logo = "https://truckbama.com/assets/img/logo2.png";
+    this.get_user();
+    this.logo = "../../../../assets/img/logo2-new.png";
   }
 
   get_logo() {
@@ -59,80 +63,28 @@ export class Header2Component implements OnInit {
     )
   }
 
-
-  go_to_course(id: number, title: string) {
-    var title1 = "";
-    var title_arr = title.split(" ");
-    for (var i = 0; i < title_arr.length; i++) {
-      title1 += title_arr[i];
-      title1 += "-";
+  get_user() {
+    this.loading = true;
+    var obj = {
+      address: 6871
+      , user_id: this.user_id
+      , user_token: this.user_token
     }
-    this.router.navigate(['/detaile', id, title1])
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.user_cellphone = res['result'][0].user_cellphone;
+          }
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
   }
 
-  go_to_about(title: string) {
-    var title_array = title.split(" ");
-    var title1: any = '';
-
-    for (var i = 0; i < title_array.length; i++) {
-      title1 += title_array[i];
-      title1 += "-";
-    }
-    this.router.navigate(['/about-us', title1])
-  }
-
-  go_to_short_movie(title: string) {
-    var title_array = title.split(" ");
-    var title1: any = '';
-
-    for (var i = 0; i < title_array.length; i++) {
-      title1 += title_array[i];
-      title1 += "-";
-    }
-    this.router.navigate(['/all-courses', title1])
-  }
-
-  go_to_short_movie1(id: number, title: string) {
-    var title_array = title.split(" ");
-    var title1: any = '';
-
-    for (var i = 0; i < title_array.length; i++) {
-      title1 += title_array[i];
-      title1 += "-";
-    }
-    this.router.navigate(['/free', id, title1])
-  }
-
-  go_to_short_movie2(id: number, title: string) {
-    var title_array = title.split(" ");
-    var title1: any = '';
-
-    for (var i = 0; i < title_array.length; i++) {
-      title1 += title_array[i];
-      title1 += "-";
-    }
-    this.router.navigate(['/download', id, title1])
-  }
-
-  go_to_gallery(id: number, title: string) {
-    var title_array = title.split(" ");
-    var title1: any = '';
-    for (var i = 0; i < title_array.length; i++) {
-      title1 += title_array[i];
-      title1 += "-";
-    }
-    this.router.navigate(['/gallery', id, title1])
-  }
-
-  go_to_photo_gallery(title: string) {
-    var title_array = title.split(" ");
-    var title1: any = '';
-    for (var i = 0; i < title_array.length; i++) {
-      title1 += title_array[i];
-      title1 += "-";
-    }
-    this.router.navigate(['/photo-gallery', title1])
-  }
 
   menu() {
     $(document).ready(function () {
