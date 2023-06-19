@@ -5,7 +5,7 @@
     border-radius: 1rem;
     max-width: 28rem;
     margin: 0 auto !important;
-    height: 25rem
+    height: 24rem
 }
 
 .login-div {
@@ -55,8 +55,21 @@ label {
 
     label {
         width: 100% !important;
-        margin: 10px 0px
+        margin: 10px 0px;
     }
+
+    .help-block {
+        padding-bottom: 1.3rem;
+    }
+
+    .return {
+        padding-top: 0.5rem !important
+    }
+
+    label {
+        padding: 0rem 1.4rem 0rem 1.4rem
+    }
+
 
 }
 

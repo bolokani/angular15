@@ -713,7 +713,7 @@ a {
 .site-header .main-nav {
   -webkit-transition: all .4s ease;
   transition: all .4s ease;
-  background: #fff !important;
+  background: rgb(255, 255, 255, 0.85)
 }
 
 @media (min-width: 1024px) {
@@ -749,7 +749,7 @@ a {
   -webkit-box-pack: justify;
   justify-content: space-between;
   position: relative;
-  padding-top: 0.8rem;
+  padding-top: 0rem;
 }
 
 @media (min-width: 1200px) {
