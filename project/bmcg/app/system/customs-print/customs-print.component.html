@@ -24,11 +24,10 @@
                             <tbody>
                                 <tr>
                                     <td class="center td">شرح کالا</td>
-                                    <td class="center" [ngStyle]="{backgroundColor:brand_color}" style="color:#fff">{{
-                                        brand_title
-                                        }} {{
-                                        tip_title }} {{
-                                        year_title }}</td>
+                                    <td class="center" [ngStyle]="{backgroundColor:brand_color}" style="color:#fff">
+                                        {{ brand_title}}
+                                        {{ tip_title }}
+                                        {{ year_title }}</td>
                                 </tr>
                                 <tr>
                                     <td class="center">ارزش گمرکی کالا (یورو)</td>
@@ -39,7 +38,7 @@
                                     <td class="center">{{ exchange_rate | number }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="center">ارزش گمرکی کالا (ریال)</td>
+                                    <td class="center">ارزش اظهار کالا (ریال)</td>
                                     <td class="center">{{ value_custom | number }}</td>
                                 </tr>
                                 <tr>
@@ -51,7 +50,7 @@
                                     <td class="center hilight">{{ tax | number }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="center">آخرین بروزرسانی</td>
+                                    <td class="center">تاریخ بروزرسانی</td>
                                     <td class="center">{{ editor_date }}</td>
                                 </tr>
                             </tbody>

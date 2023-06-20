@@ -17,9 +17,9 @@
                     <mat-progress-bar mode="indeterminate" class="detaile"></mat-progress-bar>
                 </div>
             </div>
-            <div class="row">
+            <div class="row only-print">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-md-6 col-xs-6 div1 div-img2" style="padding-top:0.8rem">
-                    <img src="../../../assets/img/logo2.png" class="img2">
+                    <img src="../../../assets/img/logo2-new.png" class="img2">
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-md-6 col-xs-6 div1 address">
                     <div class="address1" style="white-space:pre-wrap">
@@ -48,26 +48,26 @@
                 </div>
             </div>
             <!-- ************************************************************************************************************ -->
-            <div class="row desktop">
+            <div class="row desktop only-print">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-md-12 col-xs-6 div2">
                     <table class="table-header table-striped table table2">
                         <tr>
-                            <td class="bg" style="width:25%">نرخ ارز گمرکی</td>
-                            <td style="width:25%">{{ exchange_rate | number }}</td>
-                            <td class="bg" style="width:25%">کارفرما</td>
-                            <td style="width:25%">{{ user_title }}</td>
-                        </tr>
-                        <tr>
                             <td class="bg">کالا</td>
                             <td>{{ brand }} {{ tip }} {{ year_title }}</td>
-                            <td class="bg">تاریخ پیش فاکتور</td>
-                            <td>{{ date }}</td>
+                            <td class="bg" style="width:25%">نرخ ارزش گمرکی (ریال)</td>
+                            <td style="width:25%">{{ exchange_rate | number }}</td>
                         </tr>
                         <tr>
-                            <td class="bg">VIN وارداتی</td>
-                            <td>{{ vin }}</td>
-                            <td class="bg">نحوه شماره گذاری</td>
-                            <td></td>
+                            <td class="bg">ارزش گمرکی (یورو)</td>
+                            <td>{{ cpt | number}}</td>
+                            <td class="bg" style="width:25%">تاریخ بروزرسانی</td>
+                            <td style="width:25%">{{ invoice_date }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bg">ارزش گمرکی (ریال)</td>
+                            <td>{{ value_custom | number}}</td>
+                            <td class="bg">کارفرما</td>
+                            <td>{{ user_title }}</td>
                         </tr>
                     </table>
                 </div>

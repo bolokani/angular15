@@ -9,7 +9,9 @@
         overflow-y: visible !important;
     }
 
-
+    .only-print {
+        display: inline-block !important;
+    }
 
     .divider1 {
         display: none;
@@ -99,6 +101,9 @@
     }
 }
 
+.only-print {
+    display: none;
+}
 
 .loading2 {
     text-align: center;

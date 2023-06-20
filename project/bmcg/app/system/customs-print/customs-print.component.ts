@@ -126,7 +126,7 @@ export class CustomsPrintComponent implements OnInit, OnDestroy {
           if (res['num'] == 1) {
             this.brand_title = res['result'][0].site_brand_title;
             this.tip_title = res['result'][0].site_tip_title;
-            this.year_title = res['result'][0].site_tip_title;
+            this.year_title = res['result'][0].site_year_title;
             this.editor_date = res['result'][0].site_customs_editor_date;
             this.brand_color = res['result'][0].site_brand_color;
             this.customs_cpt = res['result'][0].site_customs_cpt;

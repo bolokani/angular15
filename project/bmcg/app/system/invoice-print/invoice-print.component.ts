@@ -39,6 +39,9 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
   public invoice_date!: string;
   public invoice_number!: string;
   public exchange_rate!: number;
+  public value_custom: number = 0;
+  public cpt: number = 0;
+
   public brand!: String;
   public tip!: String;
   public year_title!: String;
@@ -99,7 +102,7 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
           if (res['num'] == 1) {
             this.id = res['result'][0].site_invoice_id;
             this.get_cost2();
-            this.get_invoice();
+            this.get_invoice(obj);
             this.get_setting();
             this.message(false, "", 1, this.messageService.close(this.lang));
           } else {
@@ -114,22 +117,19 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
     )
   }
 
-  get_invoice() {
-    var obj = { address: 6840, id: this.id }
-    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+  get_invoice(obj: any) {
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6840, id: this.id }).subscribe(
       (res: any) => {
         if (res['status'] == 1 && res['num'] == 1) {
-          this.invoice_date = res['date'];
+          this.invoice_date = res['result'][0].site_invoice_editor_date;
           this.invoice_number = res['result'][0].site_invoice_id;
           this.brand = res['result'][0].site_brand_title;
           this.color = res['result'][0].site_brand_color;
           this.tip = res['result'][0].site_tip_title;
           this.year_title = res['result'][0].site_year_title;
-          this.exchange_rate = res['result'][0].site_invoice_exchange_rate;
           this.vin = res['result'][0].site_brand_vin11;
           this.user_title = res['result'][0].site_invoice_user;
-          this.date = res['date'];
-          this.message(false, "", 1, this.messageService.close(this.lang));
+          this.get_cusomes(obj);
         }//end if
         else {
           this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang))
@@ -138,6 +138,34 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
       }
     )
   }//end get_cost2
+
+  get_cusomes(obj: any) {
+    var obj1 = {
+      address: 6895,
+      brand: obj.brand,
+      tip: obj.tip,
+      year: obj.year,
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj1).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.exchange_rate = res['result'][0].site_customs_exchange_rate;
+            this.cpt = res['result'][0].site_customs_cpt;
+            this.value_custom = res['result'][0].site_customs_value_custom;
+          } else {
+            this.exchange_rate = 0;
+            this.cpt = 0;
+            this.value_custom = 0;
+          }
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
 
   get_cost2() {
     var obj = { address: 6839, code: this.id }
