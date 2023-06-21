@@ -41,6 +41,9 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
   public exchange_rate!: number;
   public value_custom: number = 0;
   public cpt: number = 0;
+  public customs_sum: number = 0;
+  public customs_tax: number = 0;
+
 
   public brand!: String;
   public tip!: String;
@@ -101,7 +104,6 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
         if (res['status'] == 1) {
           if (res['num'] == 1) {
             this.id = res['result'][0].site_invoice_id;
-            this.get_cost2();
             this.get_invoice(obj);
             this.get_setting();
             this.message(false, "", 1, this.messageService.close(this.lang));
@@ -153,6 +155,10 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
             this.exchange_rate = res['result'][0].site_customs_exchange_rate;
             this.cpt = res['result'][0].site_customs_cpt;
             this.value_custom = res['result'][0].site_customs_value_custom;
+
+            this.customs_sum = res['result'][0].site_customs_sum;
+            this.customs_tax = res['result'][0].site_customs_tax;
+            this.get_cost2();
           } else {
             this.exchange_rate = 0;
             this.cpt = 0;
@@ -175,6 +181,12 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
         if (res['status'] == 1) {
           this.sum1 = 0;
           for (var i = 0; i < res['num']; i++) {
+            if (res['result'][i].contract_cost_customs_license == 1) {
+              res['result'][i].invoice_cost2_price = this.customs_sum;
+            }
+            if (res['result'][i].contract_cost_tax == 1) {
+              res['result'][i].invoice_cost2_price = this.customs_tax;
+            }
             this.list_cost.push(res['result'][i]);
           }//end for
           this.get_sum1();
