@@ -103,6 +103,19 @@
     }
 }
 
+@media only screen and (min-width: 576px) and (max-width: 1200px) {
+    .fluid2 {
+        padding: 0 1rem;
+    }
+
+}
+
+@media only screen and (min-width: 1200px) {
+    .fluid2 {
+        padding: 0 4rem;
+    }
+}
+
 
 .loading2 {
     text-align: center;
@@ -382,10 +395,6 @@ video {
 
     .home-div6 {
         min-height: 9.35rem
-    }
-
-    .fluid2 {
-        padding: 0 9rem;
     }
 
     .home-div4 {
@@ -697,11 +706,8 @@ html {
     overflow-y: auto !important;
 }
 
-@media only screen and (min-width: 600px) {
-    .fluid2 {
-        padding: 0rem 4rem !important
-    }
-}
+
+
 
 .none {
     text-align: center;
