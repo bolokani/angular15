@@ -1,0 +1,59 @@
+h1 {
+    color: rgba(0, 0, 0, .87);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.container1 {
+    padding: 2rem 1rem 8rem 1rem;
+    min-height: 40rem;
+}
+
+.comment {
+    font-size: 0.85rem;
+}
+
+.carousel-item {
+    background-size: cover;
+    background-position: center;
+}
+
+.subtitle {
+    color: rgba(0, 0, 0, .56);
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 2;
+    margin: 8px 0 16px;
+    padding: 0
+}
+
+.p1 {
+    color: rgba(0, 0, 0, .56)
+}
+
+.button1 {
+    background-color: #a62626 !important;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .56);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 1rem;
+    font-weight: 500;
+    height: 2.5rem;
+    justify-content: center;
+    line-height: normal;
+    min-width: 6rem;
+    overflow: hidden;
+    padding: 0 16px;
+    position: relative;
+    -webkit-transition: color .36s ease, background-color .36s ease, box-shadow .36s ease, border-color .36s ease, -webkit-transform .36s ease;
+    transition: color .36s ease, background-color .36s ease, box-shadow .36s ease, border-color .36s ease, -webkit-transform .36s ease;
+    transition: color .36s ease, background-color .36s ease, box-shadow .36s ease, border-color .36s ease, transform .36s ease;
+    transition: color .36s ease, background-color .36s ease, box-shadow .36s ease, border-color .36s ease, transform .36s ease, -webkit-transform .36s ease;
+}

@@ -1,0 +1,23 @@
+<header class="site-header no-print" id='fix_menu'>
+    <div class="main-nav">
+        <nav role="navigation" class="container1 menu-desktop">
+            <div class="site-logo__wrapper cursor" [routerLink]="['/']">
+                <a class="site-logo" title="Home" [ngStyle]="{'background-image':'url( ' + logo + ')'}"></a>
+            </div>
+            <div class="main-nav2">
+                <div style="float: left;margin-top:0.4rem">
+                    <app-menu></app-menu>
+                </div>
+                <ul class="main-nav__links main-nav__links--closed ul1">
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="main-nav__link" [routerLink]="['/']">صفحه نخست</a>
+                    </li>
+                    <li class="cursor" routerLinkActive="active" [routerLink]="['/about/درباره-ما']">
+                        <a class="main-nav__link">درباره ما</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- ********************************************************************************************************************************* -->

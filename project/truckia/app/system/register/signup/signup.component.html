@@ -1,0 +1,40 @@
+<!-- Page banner -->
+
+
+<div class="signin-section ptb-100">
+    <div class="container" style="padding-top:5rem">
+        <div class="signup-form">
+            <h3>ایجاد حساب کاربری</h3>
+            <form [formGroup]="form1" (ngSubmit)="signup()" [hidden]="valid_email">
+                <div class="form-group">
+                    <div class="signout-div1">نام کاربری:</div>
+                    <input type="text" name="user" formControlName="user" autocomplete="off" class="form-control">
+                </div>
+                <div class="form-group">
+                    <div class="signout-div1">پست الکترونیک:</div>
+                    <input type="email" name="email" formControlName="email" autocomplete="off" class="form-control">
+                </div>
+                <div class="form-group">
+                    <div class="signout-div1">رمزعبور:</div>
+                    <input type="text" name="password" formControlName="password" autocomplete="off"
+                        class="form-control">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="checkme">
+                    <label class="form-check-label" for="checkme">مرا بخاطر بسپار</label>
+                </div>
+                <div class="send-btn">
+                    <button type="submit" class="default-btn-one" [disabled]="!form1.valid">ثبت نام</button>
+                    <div class="spinner-border text-dark" role="status" [hidden]="!loading_sign">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <br>
+                <span class="signup-login">حساب کاربری داری؟ <a [routerLink]="['/login']">وارد شوید!</a></span>
+            </form>
+            <div class="div1" [hidden]="!valid_email">
+                ثبت نام شما با موفقیت انجام شد . لینک تایید ایمیل برای شما ارسال شده است.
+            </div>
+        </div>
+    </div>
+</div>

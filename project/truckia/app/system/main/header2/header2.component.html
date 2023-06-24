@@ -1,0 +1,41 @@
+<!-- Toggler/collapsibe Button -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light phone no-print" style="padding:0px">
+    <div class="right" style="padding:0.5rem 2.6rem">
+        <mat-icon class="menu_icon" data-toggle="collapse" data-target="#navbarSupportedContent">menu</mat-icon>
+        <app-menu></app-menu>
+    </div>
+
+    <div class="left">
+        <a class="navbar-brand" style="padding:0px 0px;float:left !important" [routerLink]="['/']">
+            <img [src]="logo" style="max-width:14rem;object-fit:contain" title="گروه تجاری با ما"
+                alt="گروه تجاری با ما">
+        </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav navbar-nav1">
+            <span>
+                <li class="nav-item nav-item1" data-target="#navbarSupportedContent" data-toggle="collapse"
+                    [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    <a class="nav-link">صفحه نخست</a>
+                </li>
+                <li class="nav-item nav-item1" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    [routerLink]="['/about','درباره-ما']" routerLinkActive="active">
+                    <a class="nav-link">درباره ما</a>
+                </li>
+                <li class="nav-item nav-item1" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    [routerLink]="['/login']" routerLinkActive="active" *ngIf="!user_cellphone">
+                    <a class="nav-link">ورود</a>
+                </li>
+                <li class="nav-item nav-item1" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    [routerLink]="['/profile/info']" routerLinkActive="active" *ngIf="user_cellphone">
+                    <a class="nav-link">ورود به صفحه شخصی</a>
+                </li>
+                <li class="nav-item nav-item1" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    (click)="serverService.signout()" routerLinkActive="active" *ngIf="user_cellphone">
+                    <a class="nav-link">خروج</a>
+                </li>
+            </span>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,45 @@
+.preloader {
+	position: fixed;
+	z-index: 9999999;
+	background-color: #f45a43;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	text-align: center
+}
+
+.preloader .spinner {
+	width: 60px;
+	height: 60px;
+	background-color: #fff;
+	margin: 0 auto;
+	-webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+	animation: sk-rotateplane 1.2s infinite ease-in-out;
+	position: absolute;
+	left: 0;
+	top: 40%;
+	-webkit-transform: translateY(-40%);
+	transform: translateY(-40%);
+	right: 0
+}
+
+
+.mat-checkbox-inner-container {
+	margin-right: 3px !important;
+	margin-left: 3px !important
+}
+
+.mat-checkbox-layout {
+	vertical-align: text-bottom
+}
+
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+	background-color: #5BA4CF !important
+}
+
+.mat-checkbox {
+	display: contents;
+	vertical-align: sub;
+}

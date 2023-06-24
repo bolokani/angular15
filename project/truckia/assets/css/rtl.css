@@ -1,0 +1,490 @@
+.single-tours-item .single-tours-content span {
+  float: left;
+}
+.single-tours-item .single-tours-content span i {
+  margin-right: auto;
+  margin-left: 4px;
+}
+.news-details .article-content .blog-list {
+  padding-left: auto;
+  padding-right: 0;
+}
+
+.news-details .article-content .blog-list li {
+  margin-right: auto;
+  margin-left: 25px;
+}
+
+.news-details .article-content .blog-list li:last-child {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.news-details .article-content .blog-list i {
+  margin-right: auto;
+  margin-left: 4px;
+}
+.sidebar .widget.widget-instagram-feed .instagram-feed li {
+  float: right;
+}
+
+
+.signup-form form .form-control {
+    color: #777 !important;
+}
+.login-form form .form-control {
+    color: #777 !important;
+}
+
+
+
+
+.navbar-brand {
+	margin-right: 0
+}
+.povo-nav::before {
+	right: -20px;
+	left: 0
+}
+.povo-nav .navbar ul {
+	padding-right: 0
+}
+.povo-nav .navbar .navbar-nav .nav-item:first-child a {
+	margin-right: 0;
+	margin-left: 16px
+}
+.povo-nav .navbar .navbar-nav .nav-item:last-child a {
+	margin-left: 0;
+	margin-right: 16px
+}
+.povo-nav .navbar .navbar-nav .nav-item .dropdown-menu {
+	right: 0;
+	left: auto;
+	text-align: right
+}
+.povo-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu {
+	right: 220px;
+	left: auto
+}
+.povo-nav .others-options .nice-select {
+	padding-right: 10px;
+	padding-left: 20px
+}
+.nice-select {
+	padding-right: 18px;
+	padding-left: 30px;
+	text-align: right!important
+}
+.nice-select:after {
+	left: 10px;
+	right: auto
+}
+.nice-select .option {
+	text-align: right
+}
+.modal.right.fade.show .modal-dialog {
+	left: 0;
+	right: auto
+}
+.modal.right.fade .modal-dialog {
+	left: -420px;
+	right: auto
+}
+.modal.right .modal-dialog .modal-content .modal-header .close {
+
+}
+.modal.right .modal-dialog .modal-content .modal-body .modal-contact-info li {
+	padding-right: 36px;
+	padding-left: 0
+}
+.modal.right .modal-dialog .modal-content .modal-body .modal-contact-info li i {
+	right: 0;
+	left: auto
+}
+.modal.right .modal-dialog .modal-content .modal-body .social-links li a {
+	margin-left: 5px;
+	margin-right: 0
+}
+.main-slides .main-banner .main-form form .nice-select {
+
+}
+.main-slides .main-banner .main-form form .select-box i {
+
+}
+.main-slides .main-banner .main-form form .banner-icon i {
+
+}
+.main-slides .main-banner .main-form form .form-group .form-control {
+
+}
+.banner-video {
+	text-align: left
+}
+.popular-area .popular-content .popular-icon i {
+	left: 0;
+	right: auto
+}
+.testimonial-image img {
+	text-align: left;
+	left: 0;
+	right: auto
+}
+.testimonial-image .bar-image {
+	left: 30px;
+	right: auto
+}
+.testimonial-slider .owl-prev {
+	left: 24%;
+	right: auto
+}
+.testimonial-slider .owl-next {
+	left: 20%;
+	right: auto
+}
+.footer-info .newsletter-content i {
+
+}
+.menu-item .quick-menu {
+	padding-right: 0
+}
+.footer-item .footer-links {
+	padding-right: 0
+}
+.footer-item .footer-links .footer-links i {
+	margin: 0 0 0 4px
+}
+.search-form .search-btn {
+	left: 0;
+	right: auto
+}
+.video-banner .banner-video .video-btn {
+
+}
+.video-banner .banner-video .video-text {
+
+}
+.video-banner .main-banner-content {
+
+}
+.video-banner .banner-form form .select-box i {
+
+}
+.video-banner .banner-form form .nice-select {
+
+}
+.video-banner .banner-form form .form-group .form-control {
+
+}
+.video-banner .banner-form form .banner-icon i {
+
+}
+.arround-img-wrapper .arround-img-1 img {
+
+}
+.arround-img-wrapper .arround-img-2 {
+
+}
+.tips-content {
+	margin-right: auto;
+	margin-left: 30px
+}
+.destinations-area .destinations-content .destinations-icon i {
+	left: 0;
+	right: auto
+}
+.go-top {
+	left: 15px;
+	right: auto
+}
+.benefits-item .benefits-content .view-btn {
+	left: 0;
+	right: auto
+}
+.benefits-item .benefits-image .discount-content {
+	left: 6px;
+	right: auto
+}
+.luxury-item .restaurents-text .restaurents-btn {
+	left: 0;
+	right: auto
+}
+.luxury-item .restaurents-text i {
+	margin-left: 5px;
+	margin-right: 0
+}
+.about-img-wrapper {
+	text-align: left
+}
+.about-img-wrapper .about-img-1 img {
+	left: 35px;
+	right: auto;
+	border-right: 30px solid #fff;
+	border-left: none
+}
+.about-img-wrapper .about-img-2 img {
+	right: -136px;
+	left: auto
+}
+.mission-area .mission-list {
+	padding-right: 0
+}
+.mission-area .mission-list i {
+	margin-right: 0;
+	margin-left: 5px;
+	float: right;
+	top: -5px
+}
+.tours-form form button {
+	left: 0;
+	right: auto
+}
+.tours-where {
+	padding-right: 0
+}
+.tours-where .text-left {
+	float: left
+}
+.tours-price .price-list {
+	padding-right: 0
+}
+.tours-price .price-list .form-check {
+	padding-right: 20px;
+	padding-left: 0
+}
+.tours-price .price-list .form-check .form-check-input {
+	margin-right: -1.25rem;
+	margin-left: 0
+}
+.tours-item .tours-content .tours-list {
+	padding-right: 0
+}
+.tours-item .tours-content .tours-list li {
+	padding-left: 10px;
+	padding-right: 0
+}
+.tours-item .tours-content .tours-list li:last-child {
+	padding-left: 0
+}
+.tours-item .tours-content .tours-review {
+	padding-right: 0
+}
+.tours-item .tours-content .tours-review li {
+	padding-left: 10px;
+	padding-right: 0
+}
+.tours-item .tours-content .tours-review li:last-child {
+	padding-left: 0
+}
+.single-details .details-list {
+	padding-right: 0
+}
+.single-tours-item .single-tours .tours-list {
+	padding-right: 0
+}
+.single-tours-item .single-tours .tours-list li {
+	padding-left: 10px;
+	padding-right: 0
+}
+.single-tours-item .single-tours .tours-list li:last-child {
+	padding-left: 0
+}
+.single-tours-item .single-tours-content {
+	padding-right: 0
+}
+.single-tours-item .single-tours-content i {
+	margin-left: 4px;
+	margin-right: 0
+}
+.faq-accordion .accordion .accordion-item .accordion-title {
+	padding: 12px 15px 12px 35px
+}
+.faq-accordion .accordion .accordion-item .accordion-title i {
+	left: 15px;
+	right: auto
+}
+.form-check {
+	padding-right: 1.25rem;
+	padding-left: 0
+}
+.form-check .form-check-input {
+	margin-right: -1.25rem;
+	margin-left: 0
+}
+.text-right {
+	text-align: left!important
+}
+.coming-soon-content form .submit-btn {
+	left: 3px;
+	right: auto
+}
+.newsletterForm .newsletter-btn {
+
+}
+.sidebar .widget.widget-search form button {
+	left: 0;
+	right: auto
+}
+.sidebar .widget.widget-recent-entries ul li {
+	padding-right: 100px;
+	padding-left: 0
+}
+.sidebar .widget.widget-recent-entries ul li a img {
+	right: 0;
+	left: auto
+}
+.sidebar .widget.widget-recent-entries ul li i {
+	float: right;
+	margin-left: 5px;
+	margin-right: 0
+}
+.sidebar .widget.widget-categories ul li i {
+	float: right;
+	margin-left: 5px;
+	margin-right: 0
+}
+.blog-details .article-content .blog-list li {
+	margin-left: 25px;
+	margin-right: 0
+}
+.blog-details .article-content .blog-list li:last-child {
+	margin-left: 0
+}
+.blog-details .article-content .blog-list i {
+	margin-left: 4px;
+	margin-right: 0
+}
+.blog-details .article-content .blockquote {
+	padding-right: 100px;
+	padding-left: 0
+}
+.blog-details .article-content .blockquote i {
+	right: 30px;
+	left: auto
+}
+.post-comments .single-comment {
+
+}
+.post-comments .single-comment .comment-img {
+
+}
+.post-comments .single-comment.left-m {
+
+}
+.post-comments .single-comment .comment-content a {
+
+}
+.searchmodal button.close {
+	left: 20px;
+	right: auto
+}
+.main-slides .main-banner .banner-video {
+	text-align: left
+}
+.form-check .form-check-input {
+	float: right
+}
+@media only screen and (max-width:767px) {
+	.mean-container a.meanmenu-reveal {
+		left: 15px!important;
+		right: auto!important
+	}
+	.mean-container .mean-nav ul li a {
+		text-align: right
+	}
+	.mean-container .mean-nav ul li a.mean-expand {
+		width: 90%;
+		text-align: left;
+		left: 0;
+		right: auto
+	}
+	.povo-mobile-nav .logo {
+		right: 15px!important;
+		left: auto!important
+	}
+	.main-slides .main-banner .main-form form .banner-icon i {
+
+	}
+	.testimonial-slider .testimonial-area {
+		padding-right: 20px!important
+	}
+	.testimonial-slider .owl-prev {
+		left: 30px!important;
+		right: auto!important
+	}
+	.testimonial-slider .owl-next {
+		left: 0!important;
+		right: auto!important
+	}
+	.video-banner .banner-form form .banner-icon i {
+
+	}
+	.arround-img-wrapper .arround-img-2 {
+
+	}
+	.subscribe-btn {
+		left: 11px!important;
+		right: auto!important
+	}
+	.about-img-wrapper .about-img-2 img {
+		right: -15px!important;
+		left: auto!important
+	}
+}
+@media only screen and (min-width:768px) and (max-width:991px) {
+	.mean-container a.meanmenu-reveal {
+		left: 15px!important;
+		right: auto!important
+	}
+	.mean-container .mean-nav ul li a {
+		text-align: right
+	}
+	.mean-container .mean-nav ul li a.mean-expand {
+		width: 90%;
+		text-align: left;
+		left: 0;
+		right: auto
+	}
+	.povo-mobile-nav .logo {
+		right: 15px!important;
+		left: auto!important
+	}
+	.main-slides .main-banner .main-form form .banner-icon i {
+
+	}
+	.testimonial-slider .testimonial-area {
+		padding-right: 20px!important
+	}
+	.testimonial-slider .owl-prev {
+		left: 30px!important;
+		right: auto!important
+	}
+	.testimonial-slider .owl-next {
+		left: 0!important;
+		right: auto!important
+	}
+	.video-banner .banner-form form .banner-icon i {
+
+	}
+	.arround-img-wrapper .arround-img-2 {
+
+	}
+	.subscribe-btn {
+		left: 11px!important;
+		right: auto!important
+	}
+	.about-img-wrapper .about-img-2 img {
+		right: -15px!important;
+		left: auto!important
+	}
+}
+@media only screen and (min-width:992px) and (max-width:1199px) {
+	.video-banner .main-banner-content {
+
+	}
+	.arround-img-wrapper .arround-img-1 img {
+
+	}
+	.arround-img-wrapper .arround-img-2 {
+
+	}
+}

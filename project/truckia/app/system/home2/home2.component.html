@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="row no-print">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 header">
+            با ما؛ واردات انواع کامیون های اروپایی ولوو، داف و رنو
+        </div>
+    </div>
+
+    <div class="row row1 no-print">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 home-div3">
+            <div class="row">
+                <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box1 home-box5"
+                    style="padding:0px !important">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box1 home-box7">
+                        <img [src]="header_baner1" style="height: 24rem;" *ngIf="header_baner1">
+                    </div>
+                </div>
+                <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box1 home-box6 home-box4">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box2 home-box3">
+                        <span *ngIf="header_baner2">
+                            <span>
+                                <img [src]="header_baner2">
+                            </span>
+                        </span>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box8 hidden-1200">
+                        <img [src]="header_baner3" *ngIf="header_baner3">
+                    </div>
+                </div>
+            </div>
+            <!-- ****************************************************************************************************************************** -->
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 home-box9">
+            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item" data-bs-interval="3000" *ngFor="let x of list_baner3;let i = index"
+                        [ngClass]="{active:i == 0}">
+                        <img [src]="x.logo" class="d-block w-100" alt=" " title=" ">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 home-box8 hidden-lg">
+                <img [src]="header_baner3" *ngIf="header_baner3" class="hidden-bigger-1200">
+            </div>
+        </div>
+    </div>
+
+</div>

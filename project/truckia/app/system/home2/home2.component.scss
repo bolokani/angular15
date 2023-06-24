@@ -1,0 +1,299 @@
+@media only screen and (max-width: 1200px) {
+    .hidden-1200 {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .fluid2 {
+        padding: 0rem 1rem !important
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 1200px) {
+    .home-box8 {
+        margin-top: 0.75rem;
+    }
+
+    .hidden-bigger-1200 {
+        height: 11.99rem !important;
+    }
+
+    .row2 {
+        padding: 0px 1rem !important
+    }
+
+    .container {
+        max-width: 100rem;
+    }
+
+    .fluid2 {
+        padding: 0 1rem;
+    }
+
+}
+
+
+
+
+@media only screen and (min-width: 1200px) {
+    .hidden-bigger-1200 {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .td {
+        width: 70% !important
+    }
+
+    .home-div3 {
+        padding-left: 0 !important;
+    }
+
+    .home-box1 {
+        padding: 0px !important;
+    }
+
+    .home-box2 {
+        margin-bottom: 1rem;
+    }
+
+    .home-box9 {
+        padding: 0 0.6rem
+    }
+
+    .carousel-inner {
+        height: 21rem
+    }
+
+}
+
+@media only screen and (max-width: 1200px) {
+    .home-box4 {
+        margin-top: 1rem;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .row2 {
+        padding: 0px 4rem;
+        margin-top: 2rem !important
+    }
+
+    .home-box9 {
+        padding-right: 0px
+    }
+
+    .carousel-inner {
+        height: 24rem
+    }
+
+}
+
+
+.td {
+    width: 50%
+}
+
+.td2 {
+    width: 25%
+}
+
+.search-box {
+    padding: 0px
+}
+
+.search_button {
+    background-color: #26396A !important;
+    color: #fff !important
+}
+
+.header {
+    font-size: 2.2rem;
+    color: #002060;
+    padding-top: 2rem;
+    font-weight: 550;
+    text-align: center;
+    word-spacing: -4px;
+    color: #26396A;
+}
+
+.row3 {
+    margin-top: 2rem !important;
+    background: transparent;
+    padding: 0 4rem;
+}
+
+.bg {
+    min-height: 26rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 4rem;
+    text-align: center;
+}
+
+.h1 {
+    font-size: 3.2rem;
+    color: #fff;
+    text-align: center;
+    background-color: #26396A;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-top-right-radius: 2.9rem !important;
+    border-top-left-radius: 2.9rem !important
+}
+
+
+.row1 {
+    margin-top: 2rem !important
+}
+
+
+
+.input1 {
+    width: 40rem;
+    height: 3rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+
+.box-input {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.form-control {
+    font-size: 1.1rem;
+}
+
+.background-sky {
+    background: linear-gradient(145deg, #002060, #0551e9);
+    color: #000000de;
+}
+
+.carousel {
+    padding: 0px !important
+}
+
+.carousel-item {
+    max-height: 25rem;
+    height: 24rem;
+}
+
+.home-box8 {
+    padding: 0.3rem 0;
+}
+
+.home-box8-2 {
+    height: 12rem !important;
+    margin-top: 0.7rem;
+}
+
+.carousel-item img {
+    max-height: 25rem;
+    height: 24rem;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    min-height: 480px;
+    height: 80vh;
+    max-height: 560px;
+    box-sizing: border-box;
+    padding: 48px 48px 32px;
+    overflow: hidden;
+    transform: skewY(8deg);
+    transform-origin: 100%;
+}
+
+.img1 {
+    width: 5rem
+}
+
+.img2 {
+    width: 7rem
+}
+
+.img3 {
+    width: 9rem;
+}
+
+.tabs {
+    text-align: center;
+    color: #002060;
+    font-size: 2rem;
+    word-spacing: -4px;
+}
+
+.tab1 {
+    text-align: right;
+}
+
+.tab2 {
+    text-align: left;
+}
+
+.active {
+    border-bottom: solid 1px
+}
+
+.no-record {
+    font-size: 0.85rem;
+}
+
+.div-img {
+    text-align: center;
+    z-index: 9;
+}
+
+.div-img2 {
+    padding-top: 1.4rem
+}
+
+
+
+.home-div3 {
+    padding-left: 0rem !important;
+}
+
+.search {
+    padding: 0px 0 1rem 0;
+    border: solid 2px;
+    border-top-right-radius: 3rem;
+    border-top-left-radius: 3rem;
+}
+
+.home-box1 {
+    padding: 0 0rem 0 0.5rem !important;
+}
+
+.home-box1 img {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+}
+
+.home-box8 img {
+    width: 100%;
+    height: 11.7rem;
+    object-fit: cover;
+}
+
+.home-box3 {
+    padding: 0 !important;
+}
+
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled),
+button:not(:disabled) {
+    z-index: 0;
+}
