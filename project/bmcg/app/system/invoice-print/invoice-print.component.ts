@@ -40,10 +40,10 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
   public invoice_number!: string;
   public exchange_rate!: number;
   public value_custom: number = 0;
+  public value_custom2: number = 0;
   public cpt: number = 0;
   public customs_sum: number = 0;
   public customs_tax: number = 0;
-
 
   public brand!: String;
   public tip!: String;
@@ -155,6 +155,7 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
             this.exchange_rate = res['result'][0].site_customs_exchange_rate;
             this.cpt = res['result'][0].site_customs_cpt;
             this.value_custom = res['result'][0].site_customs_value_custom;
+            this.value_custom2 = res['result'][0].site_customs_value_custom2;
 
             this.customs_sum = res['result'][0].site_customs_sum;
             this.customs_tax = res['result'][0].site_customs_tax;
@@ -187,6 +188,11 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
             if (res['result'][i].contract_cost_tax == 1) {
               res['result'][i].invoice_cost2_price = this.customs_tax;
             }
+            if (res['result'][i].contract_cost_value_custom == 1) {
+              res['result'][i].invoice_cost2_price = this.value_custom;
+            }
+
+
             this.list_cost.push(res['result'][i]);
           }//end for
           this.get_sum1();
