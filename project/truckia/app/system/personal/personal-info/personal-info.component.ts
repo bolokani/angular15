@@ -23,16 +23,27 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   public form1: FormGroup;
   public token: number;
-  public user_title: String;
-  public user_cellphone: String;
-  public user_watsup: String;
-  public user_phone: String;
-  public user_code_meli: String;
-  public user_id_number: String;
-  public user_birth_date: String;
-  public user_address: String;
-  public user_code_posti: number;
   public user_token: number;
+  public list_record: any = [];
+
+  public company_title: string;
+  public company_national_id: string;
+  public company_economic_code: string;
+  public company_rnumber: string;
+  public company_date_registeration: string;
+  public company_ceo: string;
+  public company_national_code_ceo: string;
+  public company_birth_date: string;
+  public company_cellphone: string;
+  public company_cellphone2: string;
+  public user_phone: string;
+  public company_phone: string;
+  public company_adress: string;
+  public company_code_posti: string;
+  public company_email: string;
+  public company_work_place: string;
+  public state_title: string;
+
 
   constructor(
     public serverService: ServerService
@@ -56,7 +67,6 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
       }
     )
 
-    this.create_form();
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
       this.user_token = this.user_info.user_token;
@@ -79,6 +89,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
       (res: any) => {
         if (res['status'] == 1) {
           if (res['num'] == 1) {
+            this.company_cellphone = res['result'][0].user_cellphone;
             this.get_user_info();
           } else {
             this.serverService.signout();
@@ -93,21 +104,46 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   }
 
   get_user_info() {
-    var obj = { address: 6541, user_id: this.user_id, token: this.token }
+    var obj = { address: 6903, user_id: this.user_id, user_token: this.user_token }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
           if (res['num'] == 1) {
-            this.user_title = res['result'][0].user_title;
-            this.user_cellphone = res['result'][0].user_cellphone;
-            this.user_watsup = res['result'][0].user_watsup;
+            this.company_title = res['result'][0].site_company_title;
+            this.company_national_id = res['result'][0].site_company_national_id;
+            this.company_economic_code = res['result'][0].site_company_economic_code;
+            this.company_rnumber = res['result'][0].site_company_rnumber;
+            this.company_date_registeration = res['result'][0].site_company_date_registeration;
+            this.company_ceo = res['result'][0].site_company_ceo;
+            this.company_national_code_ceo = res['result'][0].site_company_national_code_ceo;
+            this.company_birth_date = res['result'][0].site_company_birth_date;
+            this.company_cellphone2 = res['result'][0].site_company_cellphone2;
             this.user_phone = res['result'][0].user_phone;
-            this.user_code_meli = res['result'][0].user_code_meli;
-            this.user_id_number = res['result'][0].user_id_number;
-            this.user_birth_date = res['result'][0].user_birth_date;
-            this.user_code_posti = res['result'][0].user_code_posti;
-            this.user_address = res['result'][0].user_address;
+            this.company_phone = res['result'][0].site_company_phone;
+            this.company_adress = res['result'][0].site_company_adress;
+            this.company_code_posti = res['result'][0].site_company_code_posti;
+            this.company_email = res['result'][0].site_company_email;
+            this.company_work_place = res['result'][0].site_company_work_place;
+            this.state_title = res['result'][0].site_state_title;
+          } else {
+            this.company_title = '-';
+            this.company_national_id = '-';
+            this.company_economic_code = '-';
+            this.company_rnumber = '-';
+            this.company_date_registeration = '-';
+            this.company_ceo = '-';
+            this.company_national_code_ceo = '-';
+            this.company_birth_date = '-';
+            this.company_cellphone2 = '-';
+            this.user_phone = '-';
+            this.company_phone = '-';
+            this.company_adress = '-';
+            this.company_code_posti = '-';
+            this.company_email = '-';
+            this.company_work_place = '-';
+            this.state_title = '-';
           }
+
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
@@ -117,23 +153,10 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     )
   }
 
-  create_form() {
-    this.form1 = new FormGroup({
-      'name': new FormControl(null, [Validators.required]),
-      'cellphone': new FormControl(null, [Validators.required, Validators.pattern('[0-9]{1,}'), Validators.minLength(11)]),
-      'watsup': new FormControl(null, [Validators.pattern('[0-9]{1,}'), Validators.minLength(11)]),
-      'birth_date': new FormControl(null),
-      'phone': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
-      'code_meli': new FormControl(null, [Validators.required, Validators.minLength(10)]),
-      'id_number': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
-      'code_posti': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
-      'address': new FormControl(null),
-    })
-  }
 
   open() {
     const dialogRef = this.dialog.open(PersonalInfoDetaileComponent, {
-      width: '24rem',
+      width: '50rem',
       height: 'auto',
       hasBackdrop: true,
       data: { user_id: this.user_id }
@@ -141,16 +164,22 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(
       (res) => {
         if (res) {
-          this.user_title = res.user_title;
-          this.user_cellphone = res.user_cellphone;
-          this.user_code_meli = res.user_code_meli;
-          this.user_watsup = res.user_watsup;
-          this.user_phone = res.user_phone;
-          this.user_id_number = res.user_id_number;
-          this.user_birth_date = res.user_birth_date;
-          this.user_code_posti = res.user_code_posti;
-          this.user_code_meli = res.user_code_meli;
-          this.user_address = res.user_address;
+          this.company_title = res.site_company_title;
+          this.company_national_id = res.site_company_national_id;
+          this.company_economic_code = res.site_company_economic_code;
+          this.company_rnumber = res.site_company_rnumber;
+          this.company_date_registeration = res.site_company_date_registeration;
+          this.company_ceo = res.site_company_ceo;
+          this.company_national_code_ceo = res.site_company_national_code_ceo;
+          this.company_birth_date = res.site_company_birth_date;
+          this.company_cellphone2 = res.site_company_cellphone2;
+          this.user_phone = res.company_user_phone;
+          this.company_phone = res.site_company_phone;
+          this.company_adress = res.site_company_adress;
+          this.company_code_posti = res.site_company_code_posti;
+          this.company_email = res.site_company_email;
+          this.company_work_place = res.site_company_work_place;
+          this.state_title = res.site_state_title;
         }
       }
     )

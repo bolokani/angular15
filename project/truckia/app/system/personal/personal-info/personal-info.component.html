@@ -11,80 +11,139 @@
 
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 box">
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 info-box info-box2">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <p class="title">نام و نام خانوادگی</p>
-                            <p class="subtitle">{{ user_title }}</p>
+                            <p class="title">نام شرکت</p>
+                            <p class="subtitle">{{ company_title }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 info-box">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <p class="title">شماره همراه</p>
-                            <p class="subtitle">{{ user_cellphone }}</p>
+                            <p class="title">شناسه ملی</p>
+                            <p class="subtitle">{{ company_national_id }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 info-box info-box2">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <p class="title">کد اقتصادی</p>
+                            <p class="subtitle">{{ company_economic_code }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <p class="title">شماره ثبت</p>
+                            <p class="subtitle">{{ company_rnumber }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <p class="title">تاریخ ثبت</p>
+                            <p class="subtitle">{{ company_date_registeration }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <p class="title">مدیرعامل</p>
+                            <p class="subtitle">{{ company_ceo }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <p class="title">کد ملی</p>
-                            <p class="subtitle">{{ user_code_meli }}</p>
+                            <p class="subtitle">{{ company_national_code_ceo }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 info-box">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <p class="title">واتس آپ</p>
-                            <p class="subtitle">{{ user_watsup }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 info-box info-box2">
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <p class="title">تلفن ثابت</p>
-                            <p class="subtitle">{{ user_phone }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 info-box">
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <p class="title">شماره شناسنامه</p>
-                            <p class="subtitle">{{ user_id_number }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 info-box info-box2">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <p class="title">تاریخ تولد</p>
-                            <p class="subtitle">{{ user_birth_date }}</p>
+                            <p class="subtitle">{{ company_birth_date }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 info-box">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <p class="title">موبایل</p>
+                            <p class="subtitle">{{ company_cellphone }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <p class="title">موبایل دیگر</p>
+                            <p class="subtitle">{{ company_cellphone2 }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <p class="title">تلفن ثابت</p>
+                            <p class="subtitle">{{ company_phone }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <p class="title">آدرس کامل</p>
+                            <p class="subtitle">{{ company_adress }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <p class="title">کد پستی</p>
-                            <p class="subtitle">{{ user_code_posti }}</p>
+                            <p class="subtitle">{{ company_code_posti }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 info-box">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <p class="title">آدرس</p>
-                            <p class="subtitle">{{ user_address }}</p>
+                            <p class="title">ایمیل</p>
+                            <p class="subtitle">{{ company_email }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <p class="title">محل فعالیت</p>
+                            <p class="subtitle">{{ company_work_place }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <p class="title">استان</p>
+                            <p class="subtitle">{{ state_title }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
     </div>
 
 </div>

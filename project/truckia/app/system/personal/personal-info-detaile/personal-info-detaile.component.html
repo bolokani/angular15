@@ -19,99 +19,144 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
                 لطفا اطلاعات شناسایی خود را وارد کنید. موارد ستاره دار اجباری می باشد.
             </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
                 <label for="title">
                     <div class="div_input">
-                        <span class="label">نام و نام خانوادگی</span>
-                        <span><mat-icon class="star">star</mat-icon></span>
+                        <span class="label">نام شرکت</span>
                     </div>
-                    <input class='input' formControlName='title' autocomplete="off" required>
+                    <input class='input' formControlName='title' autocomplete="off">
                 </label>
             </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
-                <label for="cellphone">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                <label for="national_id">
                     <div class="div_input">
-                        <span class="label"> شماره همراه - غیر قابل ویرایش
-                            <span><mat-icon class="star">star</mat-icon></span>
-                        </span>
+                        <span class="label">شناسه ملی</span>
                     </div>
-                    <input class='input' formControlName='cellphone' autocomplete="off">
+                    <input class='input' formControlName='national_id' autocomplete="off"
+                        (keypress)="serverService.get_number($event)">
                 </label>
             </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
-                <label for="code_meli">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                <label for="economic_code">
                     <div class="div_input">
-                        <span class="label"> کد ملی </span>
-                        <span><mat-icon class="star">star</mat-icon></span>
+                        <span class="label">کد اقتصادی</span>
                     </div>
-                    <input class='input' formControlName='code_meli' autocomplete="off" length="10" minlength="10"
-                        maxlength="10" (keypress)="serverService.get_number($event)">
+                    <input class='input' formControlName='economic_code' autocomplete="off"
+                        (keypress)="serverService.get_number($event)">
                 </label>
             </div>
-
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
-                <label for="watsup">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                <label for="rnumber">
                     <div class="div_input">
-                        <span class="label">واتس آپ</span>
+                        <span class="label">شماره ثبت</span>
                     </div>
-                    <input class='input' formControlName='watsup' autocomplete="off" length="11" minlength="11"
-                        maxlength="11" (keypress)="serverService.get_number($event)">
+                    <input class='input' formControlName='rnumber' autocomplete="off"
+                        (keypress)="serverService.get_number($event)">
                 </label>
             </div>
-
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1" style="position:relative">
+                <label for="date_registeration">
+                    <div class="div_input">
+                        <span class="label"> تاریخ ثبت </span>
+                    </div>
+                    <input class="wh-input" [matDatepicker]="picker2" formControlName="date_registeration"
+                        autocomplete="off" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker2" class="adver-datepicker3">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </label>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                <label for="ceo">
+                    <div class="div_input">
+                        <span class="label">مدیرعامل</span>
+                    </div>
+                    <input class='input' formControlName='ceo' autocomplete="off">
+                </label>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                <label for="national_code_ceo">
+                    <div class="div_input">
+                        <span class="label">کد ملی</span>
+                    </div>
+                    <input class='input' formControlName='national_code_ceo' autocomplete="off"
+                        (keypress)="serverService.get_number($event)" minlength="10" maxlength="10">
+                </label>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1" style="position:relative">
+                <label for="birth_date">
+                    <div class="div_input">
+                        <span class="label"> تاریخ تولد </span>
+                    </div>
+                    <input class="wh-input" [matDatepicker]="picker" formControlName="birth_date" autocomplete="off"
+                        readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker" class="adver-datepicker3">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </label>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                <label for="cellphone2">
+                    <div class="div_input">
+                        <span class="label">موبایل دیگر</span>
+                    </div>
+                    <input class='input' formControlName='cellphone2' autocomplete="off"
+                        (keypress)="serverService.get_number($event)" minlength="11" maxlength="11">
+                </label>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
                 <label for="phone">
                     <div class="div_input">
-                        <span class="label"> تلفن ثابت </span>
+                        <span class="label">تلفن ثابت</span>
                     </div>
                     <input class='input' formControlName='phone' autocomplete="off"
                         (keypress)="serverService.get_number($event)">
                 </label>
             </div>
-
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
-                <label for="id_number">
+            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-12 div1">
+                <label for="adress">
                     <div class="div_input">
-                        <span class="label"> شماره شناسنامه </span>
+                        <span class="label">آدرس کامل</span>
                     </div>
-                    <input class='input' formControlName='id_number' autocomplete="off"
-                        (keypress)="serverService.get_number($event)">
+                    <input class='input' formControlName='adress' autocomplete="off">
                 </label>
             </div>
-
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1" style="position:relative">
-                    <label for="birth_date">
-                        <div class="div_input">
-                            <span class="label"> تاریخ تولد </span>
-                        </div>
-                        <input class="wh-input form-control" [matDatepicker]="picker" formControlName="birth_date"
-                            autocomplete="off">
-                        <mat-datepicker-toggle matSuffix [for]="picker" class="adver-datepicker3">
-                        </mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </label>
-                </div>
-
-            </div>
-
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
                 <label for="code_posti">
                     <div class="div_input">
-                        <span class="label"> کد پستی </span>
+                        <span class="label">کد پستی</span>
                     </div>
-                    <input class='input' formControlName='code_posti' autocomplete="off" length="10" minlength="10"
-                        maxlength="10" (keypress)="serverService.get_number($event)">
+                    <input class='input' formControlName='code_posti' autocomplete="off"
+                        (keypress)="serverService.get_number($event)" minlength="10" maxlength="10">
                 </label>
             </div>
-
-
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div1">
-                <label for="addres">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                <label for="email">
                     <div class="div_input">
-                        <span class="label"> آدرس </span>
+                        <span class="label">ایمیل</span>
                     </div>
-                    <input class='input' formControlName='addres' autocomplete="off">
+                    <input class='input' formControlName='email' autocomplete="off">
+                </label>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                <label for="work_place">
+                    <div class="div_input">
+                        <span class="label">محل فعالیت</span>
+                    </div>
+                    <input class='input' formControlName='work_place' autocomplete="off">
+                </label>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                <label for="state">
+                    <div class="div_input">
+                        <span class="label">استان</span>
+                    </div>
+                    <select class='input' formControlName='state'>
+                        <option></option>
+                        <option *ngFor="let x of list_state" [value]="x.site_state_id">
+                            {{ x.site_state_title }}
+                        </option>
+                    </select>
                 </label>
             </div>
 

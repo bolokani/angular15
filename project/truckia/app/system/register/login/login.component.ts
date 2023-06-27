@@ -118,9 +118,9 @@ export class LoginComponent implements OnInit {
             this.create_code(res['result'][0].user_id);
           }
           else {
-            var pe_message = "این شماره همراه در سیستم وجود ندارد";
-            this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
-            //this.create_user();
+            //var pe_message = "این شماره همراه در سیستم وجود ندارد";
+            //this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
+            this.create_user();
           }
 
         }//end if
@@ -135,7 +135,7 @@ export class LoginComponent implements OnInit {
 
   create_user(): any {
     var obj = {
-      address: 1994,
+      address: 6907,
       cellphone: this.form1.value.cellphone
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
@@ -219,13 +219,7 @@ export class LoginComponent implements OnInit {
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1 && res['num'] == 1) {
-          if (res['result'][0].user_title) {
-            this.set_status(res);
-          } else {
-            this.id = res['result'][0].user_id;
-            this.show_input_name = true;
-          }
-
+          this.set_status(res);
           this.message(false, "", 1, this.messageService.close(1));
         }//end if
         else {
