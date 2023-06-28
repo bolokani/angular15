@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../../services/server/server.service';
 import { MessageService } from '../../services/message/message.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CompanyDetaile2Component } from '../company-detaile2/company-detaile2.component';
 
 @Component({
   selector: 'app-company-list',
@@ -19,18 +20,8 @@ export class CompanyListComponent implements OnInit, OnDestroy {
   public user_id: number | undefined;
   public user_token: number | undefined;
   public subscription: Subscription;
-  public activeTab: number;
-  public tab_id: number;
-  public list_orders: any = [];
-  public date: String;
-  public tracking_code: String;
-  public amount: number;
-  public discount: number;
-  public list_invoice: any = [];
-  public list_tab: any = [];
   public list_company: any = [];
   public company_id: number;
-
 
   constructor(
     public serverService: ServerService
@@ -91,17 +82,39 @@ export class CompanyListComponent implements OnInit, OnDestroy {
         this.list_company = [];
         if (res['status'] == 1) {
           for (var i = 0; i < res['num']; i++) {
-            if (res['result'][i].logo) {
-              res['result'][i].logo = this.serverService.get_site() + "/" + res['result'][i].logo;
-            } else {
-              res['result'][i].logo = this.serverService.get_default_image();
-            }
+            res['result'][i].logo = this.serverService.get_default_image();
             this.list_company.push(res['result'][i]);
           }//end for
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
           this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  open(i: number, type_task: number, id: number) {
+    const dialogRef = this.dialog.open(CompanyDetaile2Component, {
+      width: '50rem',
+      height: 'auto',
+      hasBackdrop: true,
+      data: { user_id: this.user_id, type_task: type_task, id: id }
+    });
+    dialogRef.afterClosed().subscribe(
+      (res) => {
+        if (res) {
+          if (type_task == 1) {
+            res.logo = this.serverService.get_default_image();
+            this.list_company.unshift(res)
+          } else {
+            this.list_company[i].site_company_title = res.site_company_title;
+            this.list_company[i].site_company_ceo = res.site_company_ceo;
+            this.list_company[i].site_company_national_id = res.site_company_national_id;
+            this.list_company[i].site_company_economic_code = res.site_company_economic_code;
+            this.list_company[i].site_company_rnumber = res.site_company_rnumber;
+            this.list_company[i].site_company_date_registeration = res.site_company_date_registeration;
+          }
         }
       }
     )

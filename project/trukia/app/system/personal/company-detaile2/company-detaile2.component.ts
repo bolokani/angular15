@@ -22,6 +22,7 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
   public subscription: Subscription;
   public update_form1: FormGroup;
   public id: number;
+  public type_task: number;
   public list_state: any = [];
 
   constructor(
@@ -33,6 +34,7 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
     , public matSnackBar: MatSnackBar) {
     if (dialog_data) {
       this.id = dialog_data.id;
+      this.type_task = dialog_data.type_task;
     }
   }//end consructor
 
@@ -42,7 +44,9 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
       this.user_token = this.user_info.user_token;
     }
     this.creare_form1();
-    this.get_user_info();
+    if (this.type_task == 2) {
+      this.get_company_detaile();
+    }
     this.get_state();
   }
 
@@ -68,8 +72,8 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
     })
   }
 
-  get_user_info() {
-    var obj = { address: 6904, user_id: this.user_id, user_token: this.user_token }
+  get_company_detaile() {
+    var obj = { address: 6904, user_id: this.user_id, user_token: this.user_token, id: this.id }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
@@ -91,8 +95,6 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
               'work_place': res['result'][0].site_company_work_place,
               'state': res['result'][0].site_company_state,
             })
-            this.id = res['result'][0].site_company_id;
-          } else {
           }
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
@@ -104,10 +106,11 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
   }
 
   save() {
-    if (this.id > 0) {
-      this.update();
-    } else {
+    if (this.type_task == 1) {
       this.insert();
+    }
+    else if (this.type_task == 2) {
+      this.update();
     }
   }
 

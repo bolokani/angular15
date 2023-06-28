@@ -90,8 +90,15 @@ html {
 }
 
 //*************************************************************
+.btn {
+	padding-top: 0.6rem;
+	height: 2.5rem;
+	background-color: #ED1B34;
+	color: #fff;
+	font-size: 0.8rem;
+}
 
-
+//*************************************************************
 .content *:not(mat-icon, i) {
 	font-family: irsans !important;
 }

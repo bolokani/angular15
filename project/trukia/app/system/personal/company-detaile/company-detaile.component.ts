@@ -157,7 +157,7 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
       width: '50rem',
       height: 'auto',
       hasBackdrop: true,
-      data: { user_id: this.user_id }
+      data: { user_id: this.user_id, type_task: 2, id: this.id }
     });
     dialogRef.afterClosed().subscribe(
       (res) => {

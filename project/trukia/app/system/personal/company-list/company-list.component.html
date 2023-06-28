@@ -13,17 +13,15 @@
                     <div class="line"></div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 box1 company-new">
-                    <span class="cursor">درج جدید شرکت</span>
+                    <button class="btn cursor" (click)="open(0,1,1)">درج جدید شرکت</button>
                 </div>
-
             </div>
             <div class="row row1">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div4">
                     <ul class="ul2 box2">
                         <div class="row" style="margin-bottom:1rem !important">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 div2"
-                                *ngFor="let x of list_company"
-                                [routerLink]="['/profile/company-detaile',x.site_company_id]">
+                                *ngFor="let x of list_company;let i = index">
                                 <div class="row row_invoice cursor"
                                     [ngClass]="{row_invoice2:x.site_company_id == company_id }"
                                     (click)="get_bg(x.site_company_id)">
@@ -87,13 +85,20 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                            <div class="col-xl-2 col-lg-12 col-md-12 col-sm-12 detaile">
+                                                <div [routerLink]="['/profile/company-detaile',x.site_company_id]"
+                                                    class="cursor link btn1">
+                                                    جزئیات
+                                                </div>
+
+                                                <div (click)="open(i,2,x.site_company_id)" class="cursor link btn2">
+                                                    ویرایش
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-
-
                             <div class="row" *ngIf="list_company.length == 0">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" class="preview1">
