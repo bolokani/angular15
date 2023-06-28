@@ -6,14 +6,14 @@ import { ServerService } from '../../services/server/server.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from '../../services/message/message.service';
 import { MatDialog } from '@angular/material/dialog';
-import { PersonalInfoDetaileComponent } from '../personal-info-detaile/personal-info-detaile.component';
+import { CompanyDetaile2Component } from '../company-detaile2/company-detaile2.component';
 
 @Component({
-  selector: 'app-personal-info',
-  templateUrl: './personal-info.component.html',
-  styleUrls: ['./personal-info.component.scss']
+  selector: 'app-company-detaile',
+  templateUrl: './company-detaile.component.html',
+  styleUrls: ['./company-detaile.component.scss']
 })
-export class PersonalInfoComponent implements OnInit, OnDestroy {
+export class CompanyDetaileComponent implements OnInit, OnDestroy {
   public user_info: any = JSON.parse(<any>localStorage.getItem('user_info'));
   public lang = JSON.parse(<any>localStorage.getItem('lang'));
   public server: any = this.serverService.get_server();
@@ -43,6 +43,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   public company_email: string;
   public company_work_place: string;
   public state_title: string;
+  public id: number;
 
 
   constructor(
@@ -58,12 +59,9 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   }//end consructor
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(
+    this.activatedRoute.params.subscribe(
       (params: Params) => {
-        this.token = params['token'];
-        if (this.token) {
-          this.get_user();
-        }
+        this.id = params['id'];
       }
     )
 
@@ -104,7 +102,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   }
 
   get_user_info() {
-    var obj = { address: 6903, user_id: this.user_id, user_token: this.user_token }
+    var obj = { address: 6903, user_id: this.user_id, user_token: this.user_token, id: this.id }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
@@ -155,7 +153,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 
 
   open() {
-    const dialogRef = this.dialog.open(PersonalInfoDetaileComponent, {
+    const dialogRef = this.dialog.open(CompanyDetaile2Component, {
       width: '50rem',
       height: 'auto',
       hasBackdrop: true,

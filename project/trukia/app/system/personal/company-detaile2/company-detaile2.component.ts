@@ -8,11 +8,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from '../../services/message/message.service';
 
 @Component({
-  selector: 'app-personal-info-detaile',
-  templateUrl: './personal-info-detaile.component.html',
-  styleUrls: ['./personal-info-detaile.component.scss']
+  selector: 'app-company-detaile2',
+  templateUrl: './company-detaile2.component.html',
+  styleUrls: ['./company-detaile2.component.scss']
 })
-export class PersonalInfoDetaileComponent implements OnInit, OnDestroy {
+export class CompanyDetaile2Component implements OnInit, OnDestroy {
   public user_info: any = JSON.parse(<any>localStorage.getItem('user_info'));
   public lang = JSON.parse(<any>localStorage.getItem('lang'));
   public server: any = this.serverService.get_server();
@@ -28,7 +28,7 @@ export class PersonalInfoDetaileComponent implements OnInit, OnDestroy {
     public serverService: ServerService
     , public router: Router
     , public messageService: MessageService
-    , public matDialogRef: MatDialogRef<PersonalInfoDetaileComponent>
+    , public matDialogRef: MatDialogRef<CompanyDetaile2Component>
     , @Inject(MAT_DIALOG_DATA) public dialog_data: any
     , public matSnackBar: MatSnackBar) {
     if (dialog_data) {

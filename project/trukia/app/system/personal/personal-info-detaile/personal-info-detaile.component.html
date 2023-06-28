@@ -1,0 +1,131 @@
+<div class="div_loading">
+    <div class="my-container" [hidden]="!loading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+</div>
+
+<form [formGroup]="update_form1" (ngSubmit)="save()">
+    <div mat-dialog-content style="padding-right:0px !important;padding-left:0px !important">
+        <div class="row" style="margin-bottom: 1rem;">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="title">
+                    <span>ثبت اطلاعات شناسایی</span>
+                    <span class="fleft cursor" (click)="close()"><mat-icon>close</mat-icon></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="max-height: 25rem;overflow-y: scroll;">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                لطفا اطلاعات شناسایی خود را وارد کنید. موارد ستاره دار اجباری می باشد.
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                <label for="title">
+                    <div class="div_input">
+                        <span class="label">نام و نام خانوادگی</span>
+                        <span><mat-icon class="star">star</mat-icon></span>
+                    </div>
+                    <input class='input' formControlName='title' autocomplete="off" required>
+                </label>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                <label for="cellphone">
+                    <div class="div_input">
+                        <span class="label"> شماره همراه - غیر قابل ویرایش
+                            <span><mat-icon class="star">star</mat-icon></span>
+                        </span>
+                    </div>
+                    <input class='input' formControlName='cellphone' autocomplete="off">
+                </label>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                <label for="code_meli">
+                    <div class="div_input">
+                        <span class="label"> کد ملی </span>
+                        <span><mat-icon class="star">star</mat-icon></span>
+                    </div>
+                    <input class='input' formControlName='code_meli' autocomplete="off" length="10" minlength="10"
+                        maxlength="10" (keypress)="serverService.get_number($event)">
+                </label>
+            </div>
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                <label for="watsup">
+                    <div class="div_input">
+                        <span class="label">واتس آپ</span>
+                    </div>
+                    <input class='input' formControlName='watsup' autocomplete="off" length="11" minlength="11"
+                        maxlength="11" (keypress)="serverService.get_number($event)">
+                </label>
+            </div>
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                <label for="phone">
+                    <div class="div_input">
+                        <span class="label"> تلفن ثابت </span>
+                    </div>
+                    <input class='input' formControlName='phone' autocomplete="off"
+                        (keypress)="serverService.get_number($event)">
+                </label>
+            </div>
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                <label for="id_number">
+                    <div class="div_input">
+                        <span class="label"> شماره شناسنامه </span>
+                    </div>
+                    <input class='input' formControlName='id_number' autocomplete="off"
+                        (keypress)="serverService.get_number($event)">
+                </label>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1" style="position:relative">
+                    <label for="birth_date">
+                        <div class="div_input">
+                            <span class="label"> تاریخ تولد </span>
+                        </div>
+                        <input class="wh-input form-control" [matDatepicker]="picker" formControlName="birth_date"
+                            autocomplete="off">
+                        <mat-datepicker-toggle matSuffix [for]="picker" class="adver-datepicker3">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                <label for="code_posti">
+                    <div class="div_input">
+                        <span class="label"> کد پستی </span>
+                    </div>
+                    <input class='input' formControlName='code_posti' autocomplete="off" length="10" minlength="10"
+                        maxlength="10" (keypress)="serverService.get_number($event)">
+                </label>
+            </div>
+
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div1">
+                <label for="addres">
+                    <div class="div_input">
+                        <span class="label"> آدرس </span>
+                    </div>
+                    <input class='input' formControlName='addres' autocomplete="off">
+                </label>
+            </div>
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
+                <label style='text-align:center;width:auto'>
+                    <button type="submit" class="btn cursor" [disabled]="!update_form1.valid || loading">
+                        <span>ویرایش اطلاعات</span>
+                        <div class="spinner-border spinner-border-sm" role="status" [hidden]="!loading">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </button>
+                </label>
+            </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
+
+        </div>
+    </div>
+</form>
