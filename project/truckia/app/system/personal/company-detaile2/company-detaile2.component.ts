@@ -52,7 +52,7 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
 
   creare_form1() {
     this.update_form1 = new FormGroup({
-      'title': new FormControl(null),
+      'title': new FormControl(null, [Validators.required]),
       'type': new FormControl(null),
       'national_id': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
       'rnumber': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),

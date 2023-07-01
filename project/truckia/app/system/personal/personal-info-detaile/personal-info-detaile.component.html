@@ -42,7 +42,6 @@
                 <label for="code_meli">
                     <div class="div_input">
                         <span class="label"> کد ملی </span>
-                        <span><mat-icon class="star">star</mat-icon></span>
                     </div>
                     <input class='input' formControlName='code_meli' autocomplete="off" length="10" minlength="10"
                         maxlength="10" (keypress)="serverService.get_number($event)">

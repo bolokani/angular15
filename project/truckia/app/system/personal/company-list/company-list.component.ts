@@ -119,6 +119,30 @@ export class CompanyListComponent implements OnInit, OnDestroy {
       }
     )
   }
+
+  close(i: number, id: number) {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    var confirm_delete = window.confirm(this.messageService.message_delete_accept(this.lang));
+    if (confirm_delete == true) {
+      this.loading = true;
+      this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6913, id: id }).subscribe(
+        (res: any) => {
+          if (res['status'] == 1) {
+            this.list_company.splice(i, 1);
+            this.message(false, "", 1, this.messageService.close(this.lang));
+          }//end if
+          else {
+            this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+          }
+        }
+      )
+    }
+
+  }
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {
     if (type == 1) this.loading = false;
