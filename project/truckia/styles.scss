@@ -403,6 +403,10 @@ adver-mat-menu-panel {
 	height: 2rem !important
 }
 
+input:disabled {
+	background-color: #ccc !important;
+}
+
 /******************************************************************************************* */
 
 .article-content * {

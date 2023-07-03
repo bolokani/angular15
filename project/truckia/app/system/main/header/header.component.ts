@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
       this.get_user();
     }
     //this.get_logo();
-    this.logo = "../../../../assets/img/logo2-new.png";
+    this.logo = "../../../../assets/img/logo4.png";
   }
 
   get_user() {

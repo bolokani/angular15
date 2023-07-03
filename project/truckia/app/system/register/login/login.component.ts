@@ -42,6 +42,8 @@ export class LoginComponent implements OnInit {
     this.create_form();
     this.create_form2();
     this.create_form3();
+    var title = " ورود | ثبت نام";
+    this.serverService.set_metas(title, title, '', '');
   }//end consructor
 
   ngOnInit() {
@@ -118,8 +120,6 @@ export class LoginComponent implements OnInit {
             this.create_code(res['result'][0].user_id);
           }
           else {
-            //var pe_message = "این شماره همراه در سیستم وجود ندارد";
-            //this.message(true, this.messageService.message(this.lang, pe_message, ''), 1, this.messageService.close(this.lang));
             this.create_user();
           }
 
@@ -192,8 +192,8 @@ export class LoginComponent implements OnInit {
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
-          //this.sent_code = true;
-          //this.message(false, "", 1, this.messageService.close(1));
+          this.sent_code = true;
+          this.message(false, "", 1, this.messageService.close(1));
         }//end if
         else {
           var pe_message = "نام کاربری و یا رمز عبور معتبر نمیباشد";
@@ -219,7 +219,14 @@ export class LoginComponent implements OnInit {
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1 && res['num'] == 1) {
-          this.set_status(res);
+          if (res['result'][0].user_title) {
+            this.set_status(res);
+          }
+          else {
+            this.id = res['result'][0].user_id;
+            this.show_input_name = true;
+          }
+
           this.message(false, "", 1, this.messageService.close(1));
         }//end if
         else {
@@ -232,9 +239,9 @@ export class LoginComponent implements OnInit {
 
   login_form3() {
     var obj = {
-      address: 2028,
+      address: 6914,
       code: this.form2.value.code,
-      cellphone: '09039812978',
+      cellphone: this.form1.value.cellphone,
       name: this.form3.value.name
       , id: this.id
     }

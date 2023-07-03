@@ -63,6 +63,7 @@ import { PersonalAddressComponent } from './pages/personal/personal-address/pers
 import { ShopBascketSelectAddressComponent } from './pages/shop/shop-bascket/shop-bascket-select-address/shop-bascket-select-address.component';
 import { PersonalOrdersDetaileComponent } from './pages/personal/personal-orders-detaile/personal-orders-detaile.component';
 import { PersonalOrdersInvoiceComponent } from './pages/personal/personal-orders-invoice/personal-orders-invoice.component';
+import { GoodsCatePropertyCommentComponent } from './pages/goods-cate-property-comment/goods-cate-property-comment.component';
 
 /*
 import { ShopCartComponent } from './pages/shop/shop-bascket/shop-cart/shop-cart.component';
@@ -115,7 +116,7 @@ const routes: Routes = [
     Header2Component,
     Page404Component, ShopBascketPegiriComponent, ShopBascketAddressComponent,
     HeaderBascketComponent, AllGoodsListComponent, AllGoodsDetaileComponent, AllGoodsDetaileImagesComponent
-    , ShopProductComponent, ShopProductDetaileComponent, ShopOrderComponent, ShopStepperComponent, Home2Component, ProfileMenuComponent, AllGoodsGroupComponent, ContentDetaileComponent, QuestionComponent, ProfileComponent, PersonalHomeComponent, PersonalInfoComponent, PersonalOrdersComponent, PersonalInfoDetaileComponent, PersonalAddressComponent, ShopBascketSelectAddressComponent, PersonalOrdersDetaileComponent, PersonalOrdersInvoiceComponent
+    , ShopProductComponent, ShopProductDetaileComponent, ShopOrderComponent, ShopStepperComponent, Home2Component, ProfileMenuComponent, AllGoodsGroupComponent, ContentDetaileComponent, QuestionComponent, ProfileComponent, PersonalHomeComponent, PersonalInfoComponent, PersonalOrdersComponent, PersonalInfoDetaileComponent, PersonalAddressComponent, ShopBascketSelectAddressComponent, PersonalOrdersDetaileComponent, PersonalOrdersInvoiceComponent, GoodsCatePropertyCommentComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })

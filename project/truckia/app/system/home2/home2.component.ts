@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../services/server/server.service';
 import { MessageService } from '../services/message/message.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -47,6 +48,7 @@ export class Home2Component implements OnInit, OnDestroy {
   public count_record: number = 0;
   public search: boolean = false;
   public obj: any;
+  public header_title: any;
 
   public list_baner3: any = []
   public header_baner1 = "https://bmcg.ir/object/uploads/gallery/right.png";
@@ -59,11 +61,38 @@ export class Home2Component implements OnInit, OnDestroy {
     , public dialog: MatDialog
     , public messageService: MessageService
     , public activatedRoute: ActivatedRoute
+    , public sanitizer: DomSanitizer
     , public matSnackBar: MatSnackBar) {
   }//end consructor
 
   ngOnInit() {
     this.get_baner3();
+    this.get_header_title();
+    var title = " انجمن وارد کنندگان خودروهای سنگین";
+    this.serverService.set_metas(title, title, '', 'mohammad zamani');
+  }
+
+  get_header_title() {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    this.loading = true;
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6866, id: 53 }).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.header_title = this.sanitizer.bypassSecurityTrustHtml(res['result'][0].site_content_comment);
+
+          }
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
   }
 
 

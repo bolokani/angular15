@@ -1,0 +1,62 @@
+.title {
+    padding-right: 0.5rem;
+    vertical-align: top;
+    padding-top: 0.4rem !important;
+    display: inline;
+    position: absolute;
+}
+
+.content {
+    padding-top: 1rem;
+    color: #404265;
+    font-size: 0.88rem;
+    line-height: 2.4rem;
+}
+
+
+
+
+label {
+    width: 100%;
+}
+
+.input:focus {
+    outline: solid 1px #344673 !important;
+}
+
+.input {
+    height: 2.6rem;
+    background-color: #fafafa;
+    margin-bottom: 4px;
+    width: 100%;
+    font-size: 0.87rem !important;
+    border: 1px solid #ccc;
+    margin-top: 0px !important;
+    border-radius: 0.4rem;
+    padding-right: 0.6rem;
+    ;
+}
+
+
+.div2 {
+    padding-left: 0.5rem !important;
+    text-align: left;
+    margin-top: 1rem;
+}
+
+.btn {
+    padding-top: 0.6rem;
+    height: 2.5rem;
+    background-color: #ED1B34;
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+.div1 {
+    padding: 0.5rem 0.5rem !important;
+}
+
+.star {
+    color: #ED1B34;
+    font-size: 0.7rem;
+}

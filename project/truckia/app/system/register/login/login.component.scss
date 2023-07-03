@@ -5,7 +5,7 @@
     border-radius: 1rem;
     max-width: 28rem;
     margin: 0 auto !important;
-    height: 24rem
+    min-height: 24rem
 }
 
 .login-div {
@@ -63,7 +63,8 @@ label {
     }
 
     .return {
-        padding-top: 0.5rem !important
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
     }
 
     label {
@@ -91,7 +92,8 @@ label {
 }
 
 .return {
-    padding-top: 2rem
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .btn {
@@ -117,6 +119,7 @@ label {
     font-size: 15px;
     line-height: 40px;
     margin-top: 0px;
+    color: #26396A
 }
 
 .input {

@@ -108,7 +108,14 @@
                 <span *ngFor="let x of list_property">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 right">
-                            <p class="p1">{{ x.wharehouse_cate_property_title }}</p>
+                            <p class="p1">
+                                {{ x.wharehouse_cate_property_title }}
+                                <span *ngIf="x.wharehouse_cate_property_comment"
+                                    (click)="get_comment(x.wharehouse_cate_property_id,x.wharehouse_cate_property_title)"
+                                    class="cursor">
+                                    <mat-icon>info</mat-icon>
+                                </span>
+                            </p>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 left">
                             <p>

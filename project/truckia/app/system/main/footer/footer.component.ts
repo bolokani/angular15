@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../../services/server/server.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MessageService } from '../../services/message/message.service';
 
 
 @Component({
@@ -18,30 +19,52 @@ export class FooterComponent implements OnInit, OnDestroy {
   public loading = false;
   public user_id: number | undefined;
   public subscription: Subscription;
-  public footer_contact: any;
+  public footer_contact_text: any;
   public list_footer_content: any = [];
 
   constructor
     (public serverService: ServerService
       , public router: Router
       , public matSnackBar: MatSnackBar
+      , public messageService: MessageService
       , public sanitizer: DomSanitizer,
     ) { }//end consructor
 
   ngOnInit() {
+    this.get_footer_contact();
   }
 
+  get_footer_contact() {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    this.loading = true;
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6866, id: 52 }).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.footer_contact_text = this.sanitizer.bypassSecurityTrustHtml(res['result'][0].site_content_comment);
+          }
+          this.message(false, "", 1, this.messageService.close(this.lang));
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
   //**************************************************
-  message(validation: boolean, en_message: string, pe_message: string, type: number, en_action: string, pe_action: string) {
+  message(validation: boolean, message: string, type: number, action: string) {
     if (type == 1) this.loading = false;
     if (validation == true) {
-      if (this.lang == 1) this.matSnackBar.open(pe_message, pe_action, { duration: 2000 });
-      if (this.lang == 2) this.matSnackBar.open(en_message, en_action, { duration: 2000 });
+      this.matSnackBar.open(message, action, { duration: 5000 });
     }//end if
     else {
       //this.matSnackBar.dismiss();
     }
-  }
+  }//end 
   //*******************************************************************************
   ngOnDestroy(): void {
     if (this.subscription) {

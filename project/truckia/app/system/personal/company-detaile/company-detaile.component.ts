@@ -27,6 +27,7 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
   public list_record: any = [];
 
   public company_title: string;
+  public company_type: string;
   public company_national_id: string;
   public company_economic_code: string;
   public company_rnumber: string;
@@ -87,7 +88,6 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
       (res: any) => {
         if (res['status'] == 1) {
           if (res['num'] == 1) {
-            this.company_cellphone = res['result'][0].user_cellphone;
             this.get_user_info();
           } else {
             this.serverService.signout();
@@ -108,6 +108,7 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
         if (res['status'] == 1) {
           if (res['num'] == 1) {
             this.company_title = res['result'][0].site_company_title;
+            this.company_type = res['result'][0].company_type_title;
             this.company_national_id = res['result'][0].site_company_national_id;
             this.company_economic_code = res['result'][0].site_company_economic_code;
             this.company_rnumber = res['result'][0].site_company_rnumber;
@@ -115,6 +116,7 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
             this.company_ceo = res['result'][0].site_company_ceo;
             this.company_national_code_ceo = res['result'][0].site_company_national_code_ceo;
             this.company_birth_date = res['result'][0].site_company_birth_date;
+            this.company_cellphone = res['result'][0].site_company_cellphone;
             this.company_cellphone2 = res['result'][0].site_company_cellphone2;
             this.user_phone = res['result'][0].user_phone;
             this.company_phone = res['result'][0].site_company_phone;
@@ -124,6 +126,7 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
             this.company_work_place = res['result'][0].site_company_work_place;
             this.state_title = res['result'][0].site_state_title;
           } else {
+            this.company_type = '-';
             this.company_title = '-';
             this.company_national_id = '-';
             this.company_economic_code = '-';
@@ -162,6 +165,7 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(
       (res) => {
         if (res) {
+          this.company_type = res.company_type_title;
           this.company_title = res.site_company_title;
           this.company_national_id = res.site_company_national_id;
           this.company_economic_code = res.site_company_economic_code;
@@ -171,6 +175,7 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
           this.company_national_code_ceo = res.site_company_national_code_ceo;
           this.company_birth_date = res.site_company_birth_date;
           this.company_cellphone2 = res.site_company_cellphone2;
+          this.company_cellphone = res.site_company_cellphone;
           this.user_phone = res.company_user_phone;
           this.company_phone = res.site_company_phone;
           this.company_adress = res.site_company_adress;

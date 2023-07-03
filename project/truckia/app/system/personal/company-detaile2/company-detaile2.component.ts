@@ -53,12 +53,12 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
   creare_form1() {
     this.update_form1 = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
-      'type': new FormControl(null),
       'national_id': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
       'rnumber': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
       'economic_code': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
       'ceo': new FormControl(null),
       'national_code_ceo': new FormControl(null, [Validators.pattern('[0-9]{1,10}')]),
+      'cellphone': new FormControl(null, [Validators.pattern('[0-9]{1,11}')]),
       'cellphone2': new FormControl(null, [Validators.pattern('[0-9]{1,11}')]),
       'email': new FormControl(null, [Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]),
       'work_place': new FormControl(null),
@@ -69,6 +69,7 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
       'date_registeration': new FormControl(null),
       'birth_date': new FormControl(null),
       'state': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
+      'type': new FormControl(2, [Validators.pattern('[0-9]{1,}')]),
     })
   }
 
@@ -87,6 +88,7 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
               'ceo': res['result'][0].site_company_ceo,
               'national_code_ceo': res['result'][0].site_company_national_code_ceo,
               'birth_date': res['result'][0].site_company_birth_date,
+              'cellphone': res['result'][0].site_company_cellphone,
               'cellphone2': res['result'][0].site_company_cellphone2,
               'phone': res['result'][0].site_company_phone,
               'adress': res['result'][0].site_company_adress,
@@ -94,6 +96,7 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
               'email': res['result'][0].site_company_email,
               'work_place': res['result'][0].site_company_work_place,
               'state': res['result'][0].site_company_state,
+              'type': res['result'][0].site_company_type,
             })
           }
           this.message(false, "", 1, this.messageService.close(this.lang));
@@ -133,6 +136,7 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
       , ceo: this.update_form1.value.ceo
       , national_code_ceo: this.update_form1.value.national_code_ceo
       , birth_date: this.update_form1.value.birth_date
+      , cellphone: this.update_form1.value.cellphone
       , cellphone2: this.update_form1.value.cellphone2
       , phone: this.update_form1.value.phone
       , adress: this.update_form1.value.adress
@@ -140,6 +144,7 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
       , email: this.update_form1.value.email
       , work_place: this.update_form1.value.work_place
       , state: this.update_form1.value.state
+      , type: this.update_form1.value.type
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
@@ -180,6 +185,7 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
       , ceo: this.update_form1.value.ceo
       , national_code_ceo: this.update_form1.value.national_code_ceo
       , birth_date: this.update_form1.value.birth_date
+      , cellphone: this.update_form1.value.cellphone
       , cellphone2: this.update_form1.value.cellphone2
       , phone: this.update_form1.value.phone
       , adress: this.update_form1.value.adress
@@ -187,6 +193,7 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
       , email: this.update_form1.value.email
       , work_place: this.update_form1.value.work_place
       , state: this.update_form1.value.state
+      , type: this.update_form1.value.type
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {

@@ -63,9 +63,18 @@ html {
   outline: none !important;
 }
 
+.close {
+  float: right;
+  cursor: pointer
+}
+
 body {
   overflow-x: hidden;
   background: #fff !important
+}
+
+.mat-dialog-bg1 {
+  background-color: #F1F2F4;
 }
 
 .cdk-global-scrollblock {
@@ -382,7 +391,18 @@ button[disabled] {
   background-color: #f35854;
 }
 
-.div_loading {}
+.container-loading {
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
+
+
+.mat-progress-bar:not(.detaile) {
+  position: fixed !important;
+  top: 0px !important;
+  z-index: 999999 !important;
+}
 
 .loading {
   min-height: 10px !important;
@@ -693,12 +713,6 @@ a {
   padding-top: 12px !important;
   padding-right: 18px !important
 }
-
-.close {
-  float: left;
-  cursor: pointer
-}
-
 
 
 /* ****************** */

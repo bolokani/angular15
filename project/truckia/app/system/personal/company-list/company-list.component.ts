@@ -109,6 +109,7 @@ export class CompanyListComponent implements OnInit, OnDestroy {
             this.list_company.unshift(res)
           } else {
             this.list_company[i].site_company_title = res.site_company_title;
+            this.list_company[i].company_type_title = res.company_type_title;
             this.list_company[i].site_company_ceo = res.site_company_ceo;
             this.list_company[i].site_company_national_id = res.site_company_national_id;
             this.list_company[i].site_company_economic_code = res.site_company_economic_code;

@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2, Inject } from '@angular/core';
-import { Router, ActivatedRoute, Params, NavigationEnd } from '@angular/router';
+import { Component, OnInit, OnDestroy, ElementRef, Renderer2, Inject } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../services/server/server.service';
@@ -8,6 +8,7 @@ import { DOCUMENT } from '@angular/common';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog'
 import { AllGoodsDetaileImagesComponent } from '../all-goods-detaile-images/all-goods-detaile-images.component';
+import { GoodsCatePropertyCommentComponent } from '../goods-cate-property-comment/goods-cate-property-comment.component';
 
 
 @Component({
@@ -212,6 +213,14 @@ export class AllGoodsDetaileComponent implements OnInit, OnDestroy {
         }
       }
     )
+  }
+
+  get_comment(id: number, title: string) {
+    this.dialog.open(GoodsCatePropertyCommentComponent, {
+      width: '50rem',
+      height: 'auto',
+      data: { id: id, title: title }
+    })
   }
 
 
