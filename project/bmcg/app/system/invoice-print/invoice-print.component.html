@@ -54,7 +54,7 @@
                         <tr>
                             <td class="bg">کالا</td>
                             <td>{{ brand }} {{ tip }} {{ year_title }}</td>
-                            <td class="bg" style="width:25%">نرخ ارزش گمرکی (ریال)</td>
+                            <td class="bg" style="width:25%">نرخ یورو گمرکی (ریال)</td>
                             <td style="width:25%">{{ exchange_rate | number }}</td>
                         </tr>
                         <tr>
@@ -64,7 +64,7 @@
                             <td style="width:25%">{{ invoice_date }}</td>
                         </tr>
                         <tr>
-                            <td class="bg">ارزش اظهار کالا</td>
+                            <td class="bg">ارزش اظهار گمرکی (ریال)</td>
                             <td>{{ value_custom2 | number}}</td>
                             <td class="bg">کارفرما</td>
                             <td>{{ user_title }}</td>
@@ -75,30 +75,30 @@
             <!-- **********************************************for cellphone************************************************************** -->
             <div class="row cellphone no-print">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-md-12 col-xs-6 div2">
-                    <table class="table-header table-striped table table2">
+                    <table class="table-header table-striped table table2" style="direction: rtl;margin-top:1rem">
                         <tr>
-                            <td class="bg" style="width:25%">نرخ ارز گمرکی</td>
+                            <td class="bg" style="width:25%">کالا</td>
+                            <td style="width:25%">{{ brand }} {{ tip }} {{ year_title }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bg" style="width:25%">نرخ یورو گمرکی (ریال)</td>
                             <td style="width:25%">{{ exchange_rate | number }}</td>
                         </tr>
                         <tr>
-                            <td class="bg" style="width:25%">کارفرما</td>
-                            <td style="width:25%">{{ user_title }}</td>
+                            <td class="bg">ارزش گمرکی کالا (یورو)</td>
+                            <td>{{ cpt | number }}</td>
                         </tr>
                         <tr>
-                            <td class="bg">کالا</td>
-                            <td>{{ brand }} {{ tip }} {{ year_title }}</td>
+                            <td class="bg">تاریخ بروزرسانی</td>
+                            <td>{{ invoice_date }}</td>
                         </tr>
                         <tr>
-                            <td class="bg">تاریخ پیش فاکتور</td>
-                            <td>{{ date }}</td>
+                            <td class="bg">ارزش اظهار گمرکی (ریال)</td>
+                            <td>{{ value_custom2 | number }}</td>
                         </tr>
                         <tr>
-                            <td class="bg">VIN وارداتی</td>
-                            <td>{{ vin }}</td>
-                        </tr>
-                        <tr>
-                            <td class="bg">نحوه شماره گذاری</td>
-                            <td></td>
+                            <td class="bg">کارفرما</td>
+                            <td>{{ user_title }}</td>
                         </tr>
                     </table>
                 </div>
