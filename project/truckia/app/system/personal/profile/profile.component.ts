@@ -36,6 +36,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.loading = res;
       }
     )
+
+    this.serverService.get_user().subscribe(
+      (res) => {
+        this.get_user();
+      }
+    )
   }//end consructor
 
   ngOnInit() {

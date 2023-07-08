@@ -16,194 +16,247 @@
         </div>
 
         <div class="row" style="max-height: 25rem;overflow-y: scroll;">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
-                لطفا اطلاعات شناسایی خود را وارد کنید. موارد ستاره دار اجباری می باشد.
-            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                    لطفا اطلاعات شناسایی خود را وارد کنید. موارد ستاره دار اجباری می باشد.
+                </div>
 
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
-                <label for="type">
-                    <div class="div_input">
-                        <span class="label">
-                            نوع شرکت
-                            <span><mat-icon class="star">star</mat-icon></span>
-                        </span>
-                    </div>
-                    <select class='input' formControlName='type'>
-                        <option [value]="1">حقیقی</option>
-                        <option [value]="2">حقوقی</option>
-                    </select>
-                </label>
-            </div>
-
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
-                <label for="title">
-                    <div class="div_input">
-                        <span class="label">
-                            نام شرکت
-                            <span><mat-icon class="star">star</mat-icon></span>
-                        </span>
-                    </div>
-                    <input class='input' formControlName='title' autocomplete="off">
-                </label>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
-                <label for="national_id">
-                    <div class="div_input">
-                        <span class="label">شناسه ملی</span>
-                    </div>
-                    <input class='input' formControlName='national_id' autocomplete="off"
-                        (keypress)="serverService.get_number($event)"
-                        [attr.disabled]="update_form1.get('type')!.value == 1 ? true : null">
-                </label>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
-                <label for="economic_code">
-                    <div class="div_input">
-                        <span class="label">کد اقتصادی</span>
-                    </div>
-                    <input class='input' formControlName='economic_code' autocomplete="off"
-                        (keypress)="serverService.get_number($event)">
-                </label>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
-                <label for="rnumber">
-                    <div class="div_input">
-                        <span class="label">شماره ثبت</span>
-                    </div>
-                    <input class='input' formControlName='rnumber' autocomplete="off"
-                        (keypress)="serverService.get_number($event)"
-                        [attr.disabled]="update_form1.get('type')!.value == 1 ? true : null">
-                </label>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1" style="position:relative">
-                <label for="date_registeration">
-                    <div class="div_input">
-                        <span class="label"> تاریخ ثبت </span>
-                    </div>
-                    <input class="wh-input" [matDatepicker]="picker2" formControlName="date_registeration"
-                        autocomplete="off" readonly
-                        [attr.disabled]="update_form1.get('type')!.value == 1 ? true : null">
-                    <mat-datepicker-toggle matSuffix [for]="picker2" class="adver-datepicker3"
-                        [hidden]="update_form1.get('type')!.value == 1">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #picker2 [hidden]="update_form1.get('type')!.value == 1"></mat-datepicker>
-                </label>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
-                <label for="ceo">
-                    <div class="div_input">
-                        <span class="label">مدیرعامل</span>
-                    </div>
-                    <input class='input' formControlName='ceo' autocomplete="off">
-                </label>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
-                <label for="national_code_ceo">
-                    <div class="div_input">
-                        <span class="label">کد ملی</span>
-                    </div>
-                    <input class='input' formControlName='national_code_ceo' autocomplete="off"
-                        (keypress)="serverService.get_number($event)" minlength="10" maxlength="10">
-                </label>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1" style="position:relative">
-                <label for="birth_date">
-                    <div class="div_input">
-                        <span class="label"> تاریخ تولد </span>
-                    </div>
-                    <input class="wh-input" [matDatepicker]="picker" formControlName="birth_date" autocomplete="off"
-                        readonly>
-                    <mat-datepicker-toggle matSuffix [for]="picker" class="adver-datepicker3">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </label>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
-                <label for="cellphone">
-                    <div class="div_input">
-                        <span class="label">موبایل</span>
-                    </div>
-                    <input class='input' formControlName='cellphone' autocomplete="off"
-                        (keypress)="serverService.get_number($event)" minlength="11" maxlength="11">
-                </label>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
-                <label for="cellphone2">
-                    <div class="div_input">
-                        <span class="label">موبایل دیگر</span>
-                    </div>
-                    <input class='input' formControlName='cellphone2' autocomplete="off"
-                        (keypress)="serverService.get_number($event)" minlength="11" maxlength="11">
-                </label>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
-                <label for="phone">
-                    <div class="div_input">
-                        <span class="label">تلفن ثابت</span>
-                    </div>
-                    <input class='input' formControlName='phone' autocomplete="off"
-                        (keypress)="serverService.get_number($event)">
-                </label>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
-                <label for="state">
-                    <div class="div_input">
-                        <span class="label">استان</span>
-                    </div>
-                    <select class='input' formControlName='state'>
-                        <option></option>
-                        <option *ngFor="let x of list_state" [value]="x.site_state_id">
-                            {{ x.site_state_title }}
-                        </option>
-                    </select>
-                </label>
-            </div>
-            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-12 div1">
-                <label for="adress">
-                    <div class="div_input">
-                        <span class="label">آدرس کامل</span>
-                    </div>
-                    <input class='input' formControlName='adress' autocomplete="off">
-                </label>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
-                <label for="code_posti">
-                    <div class="div_input">
-                        <span class="label">کد پستی</span>
-                    </div>
-                    <input class='input' formControlName='code_posti' autocomplete="off"
-                        (keypress)="serverService.get_number($event)" minlength="10" maxlength="10">
-                </label>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
-                <label for="email">
-                    <div class="div_input">
-                        <span class="label">ایمیل</span>
-                    </div>
-                    <input class='input' formControlName='email' autocomplete="off">
-                </label>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
-                <label for="work_place">
-                    <div class="div_input">
-                        <span class="label">محل فعالیت</span>
-                    </div>
-                    <input class='input' formControlName='work_place' autocomplete="off">
-                </label>
-            </div>
-
-
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
-                <label style='text-align:center;width:auto'>
-                    <button type="submit" class="btn cursor" [disabled]="!update_form1.valid || loading">
-                        <span>ذخیره</span>
-                        <div class="spinner-border spinner-border-sm" role="status" [hidden]="!loading">
-                            <span class="visually-hidden">Loading...</span>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                    <label for="type">
+                        <div class="div_input">
+                            <span class="label">
+                                نوع شرکت
+                                <span><mat-icon class="star">star</mat-icon></span>
+                            </span>
                         </div>
-                    </button>
-                </label>
-            </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
+                        <select class='input' formControlName='type' (change)="change_type()">
+                            <option [value]="1">حقیقی</option>
+                            <option [value]="2">حقوقی</option>
+                        </select>
+                    </label>
+                </div>
 
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                    <label for="title">
+                        <div class="div_input">
+                            <span class="label">
+                                نام شرکت
+                                <span><mat-icon class="star">star</mat-icon></span>
+                            </span>
+                        </div>
+                        <input class='input' formControlName='title' autocomplete="off">
+                    </label>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                    <label for="national_id">
+                        <div class="div_input">
+                            <span class="label">شناسه ملی</span>
+                        </div>
+                        <input class='input' formControlName='national_id' autocomplete="off"
+                            (keypress)="serverService.get_number($event)"
+                            [attr.disabled]="update_form1.get('type')!.value == 1 ? true : null">
+                    </label>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                    <label for="economic_code">
+                        <div class="div_input">
+                            <span class="label">کد اقتصادی</span>
+                        </div>
+                        <input class='input' formControlName='economic_code' autocomplete="off"
+                            (keypress)="serverService.get_number($event)">
+                    </label>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                    <label for="rnumber">
+                        <div class="div_input">
+                            <span class="label">شماره ثبت</span>
+                        </div>
+                        <input class='input' formControlName='rnumber' autocomplete="off"
+                            (keypress)="serverService.get_number($event)"
+                            [attr.disabled]="update_form1.get('type')!.value == 1 ? true : null">
+                    </label>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1" style="position:relative">
+                    <label for="date_registeration">
+                        <div class="div_input">
+                            <span class="label"> تاریخ ثبت </span>
+                        </div>
+                        <input class="wh-input" [matDatepicker]="picker2" formControlName="date_registeration"
+                            autocomplete="off" readonly
+                            [attr.disabled]="update_form1.get('type')!.value == 1 ? true : null">
+                        <mat-datepicker-toggle matSuffix [for]="picker2" class="adver-datepicker3"
+                            [hidden]="update_form1.get('type')!.value == 1">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker2 [hidden]="update_form1.get('type')!.value == 1"></mat-datepicker>
+                    </label>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                    <label for="ceo">
+                        <div class="div_input">
+                            <span class="label">مدیرعامل</span>
+                        </div>
+                        <input class='input' formControlName='ceo' autocomplete="off">
+                    </label>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                    <label for="national_code_ceo">
+                        <div class="div_input">
+                            <span class="label">کد ملی</span>
+                        </div>
+                        <input class='input' formControlName='national_code_ceo' autocomplete="off"
+                            (keypress)="serverService.get_number($event)" minlength="10" maxlength="10">
+                    </label>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1" style="position:relative">
+                    <label for="birth_date">
+                        <div class="div_input">
+                            <span class="label"> تاریخ تولد </span>
+                        </div>
+                        <input class="wh-input" [matDatepicker]="picker" formControlName="birth_date" autocomplete="off"
+                            readonly>
+                        <mat-datepicker-toggle matSuffix [for]="picker" class="adver-datepicker3">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </label>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                    <label for="cellphone">
+                        <div class="div_input">
+                            <span class="label">موبایل</span>
+                        </div>
+                        <input class='input' formControlName='cellphone' autocomplete="off"
+                            (keypress)="serverService.get_number($event)" minlength="11" maxlength="11">
+                    </label>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                    <label for="cellphone2">
+                        <div class="div_input">
+                            <span class="label">موبایل دیگر</span>
+                        </div>
+                        <input class='input' formControlName='cellphone2' autocomplete="off"
+                            (keypress)="serverService.get_number($event)" minlength="11" maxlength="11">
+                    </label>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                    <label for="phone">
+                        <div class="div_input">
+                            <span class="label">تلفن ثابت</span>
+                        </div>
+                        <input class='input' formControlName='phone' autocomplete="off"
+                            (keypress)="serverService.get_number($event)">
+                    </label>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                    <label for="state">
+                        <div class="div_input">
+                            <span class="label">استان</span>
+                        </div>
+                        <select class='input' formControlName='state' (change)="get_city()">
+                            <option></option>
+                            <option *ngFor="let x of list_state" [value]="x.site_state_id">
+                                {{ x.site_state_title }}
+                            </option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                    <label for="city">
+                        <div class="div_input">
+                            <span class="label">شهرستان</span>
+                        </div>
+                        <select class='input' formControlName='city'>
+                            <option></option>
+                            <option *ngFor="let x of list_city" [value]="x.site_city_id">
+                                {{ x.site_city_title }}
+                            </option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                    <label for="code_posti">
+                        <div class="div_input">
+                            <span class="label">کد پستی</span>
+                        </div>
+                        <input class='input' formControlName='code_posti' autocomplete="off"
+                            (keypress)="serverService.get_number($event)" minlength="10" maxlength="10">
+                    </label>
+                </div>
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-12 div1">
+                    <label for="adress">
+                        <div class="div_input">
+                            <span class="label">آدرس کامل</span>
+                        </div>
+                        <input class='input' formControlName='adress' autocomplete="off">
+                    </label>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 div1">
+                    <label for="email">
+                        <div class="div_input">
+                            <span class="label">ایمیل</span>
+                        </div>
+                        <input class='input' formControlName='email' autocomplete="off">
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-md-3 col-lg-3 col-sm-3 col-xs-12 pe' style="padding-right: 0;">
+                    <div class='wh-label logo_title'> کارت ملی</div>
+                    <mat-card class="example-card logo cursor backgroundImage"
+                        style="padding:3px 16px 7px 16px;width:100%;height:10rem"
+                        [ngStyle]="{'background-image':'url( ' + logo_national_card + ')'}" (click)="logo2.click()"
+                        accept="image/*">
+                        <mat-card-header style="display:inline" class="pe1" [ngClass]="{en1:lang==2}">
+                        </mat-card-header>
+                    </mat-card>
+                    <span (click)="delete_logo_national_card()" *ngIf="logo_national_card_bin == true"><i
+                            class="far fa-trash-alt icon" style="margin: 0px 4px;"></i></span>
+                    <input type="file" (change)="change_logo_national_card($event)" style="display: none;" #logo2
+                        accept="image/*">
+                </div><!-- col-md-3 col-lg-3 col-sm-3 col-xs-12 pe  -->
+
+
+                <div class='col-md-3 col-lg-3 col-sm-3 col-xs-12 pe' style="padding-right: 0;">
+                    <div class='wh-label logo_title'> کارت بازرگانی</div>
+                    <mat-card class="example-card logo cursor backgroundImage"
+                        style="padding:3px 16px 7px 16px;width:100%;height:10rem"
+                        [ngStyle]="{'background-image':'url( ' + logo_business_card + ')'}" (click)="logo.click()"
+                        accept="image/*">
+                        <mat-card-header style="display:inline" class="pe1" [ngClass]="{en1:lang==2}">
+                        </mat-card-header>
+                    </mat-card>
+                    <span (click)="delete_logo_business_card()" *ngIf="logo_business_card_bin == true"><i
+                            class="far fa-trash-alt icon" style="margin: 0px 4px;"></i></span>
+                    <input type="file" (change)="change_logo_business_card($event)" style="display: none;" #logo
+                        accept="image/*">
+                </div><!-- col-md-3 col-lg-3 col-sm-3 col-xs-12 pe  -->
+
+                <div class='col-md-3 col-lg-3 col-sm-3 col-xs-12 pe' style="padding-right: 0;">
+                    <div class='wh-label logo_title'>روزنامه رسمی</div>
+                    <mat-card class="example-card logo cursor backgroundImage"
+                        style="padding:3px 16px 7px 16px;width:100%;height:10rem"
+                        [ngStyle]="{'background-image':'url( ' + logo_official_newspaper + ')'}" (click)="logo3.click()"
+                        accept="image/*">
+                        <mat-card-header style="display:inline" class="pe1" [ngClass]="{en1:lang==2}">
+                        </mat-card-header>
+                    </mat-card>
+                    <span (click)="delete_logo_official_newspaper()" *ngIf="logo_official_newspaper_bin == true"><i
+                            class="far fa-trash-alt icon" style="margin: 0px 4px;"></i></span>
+                    <input type="file" (change)="change_logo_official_newspaper($event)" style="display: none;" #logo3
+                        accept="image/*">
+                </div><!-- col-md-3 col-lg-3 col-sm-3 col-xs-12 pe  -->
+            </div>
         </div>
+
     </div>
+    <div mat-dialog-actions align="start" class="pe1 matDialogActions" [ngClass]="{en1:lang==2}"
+        style="padding-right:25px">
+        <label style='text-align:center;width:auto'>
+            <button type="submit" class="btn cursor" [disabled]="!update_form1.valid || loading || status_info != 3">
+                <span>ذخیره</span>
+                <div class="spinner-border spinner-border-sm" role="status" [hidden]="!loading">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </button>
+        </label>
+    </div><!-- row -->
 </form>

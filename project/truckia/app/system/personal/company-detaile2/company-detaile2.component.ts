@@ -6,6 +6,7 @@ import { ServerService } from '../../services/server/server.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from '../../services/message/message.service';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-company-detaile2',
@@ -24,6 +25,20 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
   public id: number;
   public type_task: number;
   public list_state: any = [];
+  public list_city: any = [];
+  public result: any;
+  public status_info: number;
+  public logo_business_card: string = this.serverService.get_default_image();
+  public logo_business_card_bin: boolean = false;
+  public logo_business_card_info: any;
+
+  public logo_national_card: string = this.serverService.get_default_image();
+  public logo_national_card_bin: boolean = false;
+  public logo_national_card_info: any;
+
+  public logo_official_newspaper: string = this.serverService.get_default_image();
+  public logo_official_newspaper_bin: boolean = false;
+  public logo_official_newspaper_info: any;
 
   constructor(
     public serverService: ServerService
@@ -43,11 +58,42 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
       this.user_id = this.user_info.user_id;
       this.user_token = this.user_info.user_token;
     }
+    this.get_user();
     this.creare_form1();
-    if (this.type_task == 2) {
-      this.get_company_detaile();
+  }
+
+  get_user() {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    this.loading = true;
+    var obj = {
+      address: 6876,
+      user_id: this.user_id,
+      user_token: this.user_token
     }
-    this.get_state();
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.status_info = res['result'][0].user_status_info;
+            if (this.type_task == 2) {
+              this.get_data();
+            } else {
+              this.get_state();
+            }
+          } else {
+            this.serverService.signout();
+            this.message(false, "", 1, this.messageService.close(this.lang));
+          }
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
   }
 
   creare_form1() {
@@ -61,7 +107,6 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
       'cellphone': new FormControl(null, [Validators.pattern('[0-9]{1,11}')]),
       'cellphone2': new FormControl(null, [Validators.pattern('[0-9]{1,11}')]),
       'email': new FormControl(null, [Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]),
-      'work_place': new FormControl(null),
       'adress': new FormControl(null),
       'code_posti': new FormControl(null, [Validators.pattern('[0-9]{1,10}')]),
       'comment': new FormControl(null),
@@ -69,11 +114,13 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
       'date_registeration': new FormControl(null),
       'birth_date': new FormControl(null),
       'state': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
+      'city': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
       'type': new FormControl(2, [Validators.pattern('[0-9]{1,}')]),
     })
   }
 
-  get_company_detaile() {
+  get_data() {
+    this.loading = true;
     var obj = { address: 6904, user_id: this.user_id, user_token: this.user_token, id: this.id }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
@@ -94,9 +141,94 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
               'adress': res['result'][0].site_company_adress,
               'code_posti': res['result'][0].site_company_code_posti,
               'email': res['result'][0].site_company_email,
-              'work_place': res['result'][0].site_company_work_place,
-              'state': res['result'][0].site_company_state,
               'type': res['result'][0].site_company_type,
+            })
+          }
+          this.logo_business_card_info = {
+            site: res['result'][0].site_company_site,
+            path: res['result'][0].site_company_logo_business_card
+          }
+          if (res['result'][0].site_company_logo_business_card) {
+            this.logo_business_card = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_business_card;
+            this.logo_business_card_bin = true;
+          }
+          else {
+            this.logo_business_card = this.serverService.get_default_image();
+            this.logo_business_card_bin = false;
+          }
+
+          this.logo_national_card_info = {
+            site: res['result'][0].site_company_site,
+            path: res['result'][0].site_company_logo_national_card
+          }
+          if (res['result'][0].site_company_logo_national_card) {
+            this.logo_national_card = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_national_card;
+            this.logo_national_card_bin = true;
+          }
+          else {
+            this.logo_national_card = this.serverService.get_default_image();
+            this.logo_national_card_bin = false;
+          }
+
+          this.logo_official_newspaper_info = {
+            site: res['result'][0].site_company_site,
+            path: res['result'][0].site_company_logo_official_newspaper
+          }
+          if (res['result'][0].site_company_logo_official_newspaper) {
+            this.logo_official_newspaper = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_official_newspaper;
+            this.logo_official_newspaper_bin = true;
+          }
+          else {
+            this.logo_official_newspaper = this.serverService.get_default_image();
+            this.logo_official_newspaper_bin = false;
+          }
+          this.result = res['result'][0];
+          this.get_state();
+        }//end iff
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_state() {
+    var obj = { address: 6908 }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          for (var i = 0; i < res['num']; i++) {
+            this.list_state.push(res['result'][i]);
+          }
+          if (this.type_task == 2) {
+            this.update_form1.patchValue({
+              'state': this.result.site_city_state
+            })
+          }
+          this.get_city();
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_city() {
+    var obj = {
+      address: 6922
+      , state: this.update_form1.value.state
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        this.list_city = [];
+        if (res['status'] == 1) {
+          for (var i = 0; i < res['num']; i++) {
+            this.list_city.push(res['result'][i]);
+          }
+          if (this.type_task == 2) {
+            this.update_form1.patchValue({
+              'city': this.result.site_company_city,
             })
           }
           this.message(false, "", 1, this.messageService.close(this.lang));
@@ -107,6 +239,8 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
       }
     )
   }
+
+
 
   save() {
     if (this.type_task == 1) {
@@ -142,9 +276,13 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
       , adress: this.update_form1.value.adress
       , code_posti: this.update_form1.value.code_posti
       , email: this.update_form1.value.email
-      , work_place: this.update_form1.value.work_place
       , state: this.update_form1.value.state
+      , city: this.update_form1.value.city
       , type: this.update_form1.value.type
+      , site: this.serverService.get_site()
+      , business_card_info: this.logo_business_card_info
+      , official_newspaper_info: this.logo_official_newspaper_info
+      , national_card_info: this.logo_national_card_info
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
@@ -191,9 +329,13 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
       , adress: this.update_form1.value.adress
       , code_posti: this.update_form1.value.code_posti
       , email: this.update_form1.value.email
-      , work_place: this.update_form1.value.work_place
       , state: this.update_form1.value.state
+      , city: this.update_form1.value.city
       , type: this.update_form1.value.type
+      , site: this.serverService.get_site()
+      , business_card_info: this.logo_business_card_info
+      , official_newspaper_info: this.logo_official_newspaper_info
+      , national_card_info: this.logo_national_card_info
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
@@ -217,25 +359,110 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
     )
   }
 
-  get_state() {
-    var obj = { address: 6908 }
-    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
-      (res: any) => {
-        if (res['status'] == 1) {
-          for (var i = 0; i < res['num']; i++) {
-            this.list_state.push(res['result'][i]);
+  change_type() {
+    this.update_form1.patchValue({
+      'rnumber': null,
+      'date_registeration': null,
+      'national_id': null
+    })
+  }
+
+
+  close() {
+    this.matDialogRef.close();
+  }
+  //************************************************************* */
+  change_logo_business_card(event: any) {
+    var selectedFile = <File>event.target.files[0];
+    var fd = new FormData();
+    fd.append("image", selectedFile, selectedFile.name);
+    this.serverService.post_address_file(this.server, "uploadImage", fd).subscribe(
+      (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          ///this.uploadedAvaterProgess = (event.loaded / event.total) * 100;
+        }
+        else if (event.type === HttpEventType.Response) {
+          var a = <any>event.body;
+          this.logo_business_card = this.serverService.get_site_upload_image() + "/" + this.serverService.get_path_upload_image() + a.result.filename;
+          this.logo_business_card_bin = true;
+          this.logo_business_card_info = {
+            'site': this.serverService.get_site_upload_image(),
+            'path': this.serverService.get_path_upload_image() + a.result.filename
           }
-          this.message(false, "", 1, this.messageService.close(this.lang));
-        }//end if
-        else {
-          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
         }
       }
     )
   }
 
-  close() {
-    this.matDialogRef.close();
+  delete_logo_business_card() {
+    this.logo_business_card = this.serverService.get_default_image();
+    this.logo_business_card_bin = false;
+    this.logo_business_card_info = {
+      path: '',
+      site: ''
+    }
+  }
+  //************************************************ */
+  change_logo_national_card(event: any) {
+    var selectedFile = <File>event.target.files[0];
+    var fd = new FormData();
+    fd.append("image", selectedFile, selectedFile.name);
+    this.serverService.post_address_file(this.server, "uploadImage", fd).subscribe(
+      (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          ///this.uploadedAvaterProgess = (event.loaded / event.total) * 100;
+        }
+        else if (event.type === HttpEventType.Response) {
+          var a = <any>event.body;
+          this.logo_national_card = this.serverService.get_site_upload_image() + "/" + this.serverService.get_path_upload_image() + a.result.filename;
+          this.logo_national_card_bin = true;
+          this.logo_national_card_info = {
+            'site': this.serverService.get_site_upload_image(),
+            'path': this.serverService.get_path_upload_image() + a.result.filename
+          }
+        }
+      }
+    )
+  }
+
+  delete_logo_national_card() {
+    this.logo_national_card = this.serverService.get_default_image();
+    this.logo_national_card_bin = false;
+    this.logo_national_card_info = {
+      path: '',
+      site: ''
+    }
+  }
+  //**************************************************
+  change_logo_official_newspaper(event: any) {
+    var selectedFile = <File>event.target.files[0];
+    var fd = new FormData();
+    fd.append("image", selectedFile, selectedFile.name);
+    this.serverService.post_address_file(this.server, "uploadImage", fd).subscribe(
+      (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          ///this.uploadedAvaterProgess = (event.loaded / event.total) * 100;
+        }
+        else if (event.type === HttpEventType.Response) {
+          var a = <any>event.body;
+          this.logo_official_newspaper = this.serverService.get_site_upload_image() + "/" + this.serverService.get_path_upload_image() + a.result.filename;
+          this.logo_official_newspaper_bin = true;
+          this.logo_official_newspaper_info = {
+            'site': this.serverService.get_site_upload_image(),
+            'path': this.serverService.get_path_upload_image() + a.result.filename
+          }
+        }
+      }
+    )
+  }
+
+  delete_logo_official_newspaper() {
+    this.logo_official_newspaper = this.serverService.get_default_image();
+    this.logo_official_newspaper_bin = false;
+    this.logo_official_newspaper_info = {
+      path: '',
+      site: ''
+    }
   }
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {

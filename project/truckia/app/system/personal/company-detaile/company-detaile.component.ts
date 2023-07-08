@@ -42,9 +42,16 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
   public company_adress: string;
   public company_code_posti: string;
   public company_email: string;
-  public company_work_place: string;
   public state_title: string;
+  public city_title: string;
   public id: number;
+  public logo_official_newspaper: String;
+  public logo_national_card: String;
+  public logo_business_card: String;
+  public site_logo: String;
+  public count: number = 1;
+  public current: any;
+  public list_gallery: any = [];
 
 
   constructor(
@@ -88,7 +95,7 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
       (res: any) => {
         if (res['status'] == 1) {
           if (res['num'] == 1) {
-            this.get_user_info();
+            this.get_data();
           } else {
             this.serverService.signout();
             this.message(false, "", 1, this.messageService.close(this.lang));
@@ -101,7 +108,7 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
     )
   }
 
-  get_user_info() {
+  get_data() {
     var obj = { address: 6903, user_id: this.user_id, user_token: this.user_token, id: this.id }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
@@ -123,8 +130,8 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
             this.company_adress = res['result'][0].site_company_adress;
             this.company_code_posti = res['result'][0].site_company_code_posti;
             this.company_email = res['result'][0].site_company_email;
-            this.company_work_place = res['result'][0].site_company_work_place;
             this.state_title = res['result'][0].site_state_title;
+            this.city_title = res['result'][0].site_city_title;
           } else {
             this.company_type = '-';
             this.company_title = '-';
@@ -141,10 +148,21 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
             this.company_adress = '-';
             this.company_code_posti = '-';
             this.company_email = '-';
-            this.company_work_place = '-';
             this.state_title = '-';
+            this.city_title = '-';
           }
-
+          if (res['result'][0].site_company_logo_national_card) {
+            this.logo_national_card = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_national_card;
+            this.list_gallery.push({ logo: this.logo_national_card, title: 'کارت ملی' });
+          }
+          if (res['result'][0].site_company_logo_business_card) {
+            this.logo_business_card = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_business_card;
+            this.list_gallery.push({ logo: this.logo_business_card, title: 'کارت بازرگانی' });
+          }
+          if (res['result'][0].site_company_logo_official_newspaper) {
+            this.logo_official_newspaper = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_official_newspaper;
+            this.list_gallery.push({ logo: this.logo_official_newspaper, title: 'روزنامه رسمی' });
+          }
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
@@ -181,11 +199,68 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
           this.company_adress = res.site_company_adress;
           this.company_code_posti = res.site_company_code_posti;
           this.company_email = res.site_company_email;
-          this.company_work_place = res.site_company_work_place;
           this.state_title = res.site_state_title;
+          this.city_title = res.site_city_title;
+          this.list_gallery = [];
+          if (res.site_company_logo_national_card) {
+            this.logo_national_card = res.site_company_logo_site + "/" + res.site_company_logo_national_card;
+            this.list_gallery.push({ logo: this.logo_national_card, title: 'کارت ملی' });
+          }
+          if (res.site_company_logo_business_card) {
+            this.logo_business_card = res.site_company_logo_site + "/" + res.site_company_logo_business_card;
+            this.list_gallery.push({ logo: this.logo_business_card, title: 'کارت بازرگانی' });
+          }
+          if (res.site_company_logo_official_newspaper) {
+            this.logo_official_newspaper = res.site_company_logo_site + "/" + res.site_company_logo_official_newspaper;
+            this.list_gallery.push({ logo: this.logo_official_newspaper, title: 'روزنامه رسمی' });
+          }
         }
       }
     )
+  }
+  //************************************************************************************************** 1 *************************************
+  openModal(id: any) {
+    if (window.innerWidth > 768) {
+      var x = <any>document.getElementById('myModalone');
+      x.style.display = "block";
+    }
+
+  }//end openModal
+
+  plusSlides(mySlides: any, dot: any, n: any) {
+    this.current = this.current + (n);
+    var slides = document.getElementsByClassName(mySlides);
+    var dots = document.getElementsByClassName("dot");
+    if (this.current > slides.length) { this.current = 1; }
+    if (this.current < 1) { this.current = slides.length; }
+    this.showSlides(mySlides, dot, this.current);
+  }//end plusSlides
+
+  currentSlide(mySlides: any, dot: any, n: any) {
+    this.current = n;
+    this.showSlides(mySlides, dot, n);
+  }//end currentSlide  
+
+  showSlides(mySlides: any, dot: any, n: any) {
+    var i;
+    var slideIndex = n;
+    var slides = document.getElementsByClassName(mySlides);
+    var dots = document.getElementsByClassName(dot);
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length };
+    for (i = 0; i < slides.length; i++) {
+      (<HTMLElement>slides[i]).style.display = "none";
+    }//end for
+    for (i = 0; i < dots.length; i++) {
+      dots[i].classList.remove("active");
+    }//end for
+    (<HTMLElement>slides[slideIndex - 1]).style.display = "block";
+    dots[slideIndex - 1].classList.add("active");
+  }//end showSlides 
+
+  close_modal(myModal: any) {
+    var x = <any>document.getElementById(myModal);
+    x.style.display = "none";
   }
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {

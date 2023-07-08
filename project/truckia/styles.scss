@@ -398,6 +398,22 @@ adver-mat-menu-panel {
 	left: 37% !important
 }
 
+.mdc-dialog .mdc-dialog__content {
+	padding: 0px !important
+}
+
+.mat-horizontal-stepper-header {
+	padding: 0 0px 0 15px !important
+}
+
+.btn {
+	padding-top: 0.4rem;
+	height: 2rem;
+	background-color: #ED1B34;
+	color: #fff;
+	font-size: 0.8rem;
+}
+
 .mat-step-icon {
 	width: 2rem !important;
 	height: 2rem !important

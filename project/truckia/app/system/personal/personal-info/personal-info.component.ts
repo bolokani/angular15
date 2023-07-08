@@ -33,6 +33,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   public user_address: String;
   public user_code_posti: number;
   public user_token: number;
+  @ViewChild('stepper', { static: true }) stepper: any;
 
   constructor(
     public serverService: ServerService
@@ -41,7 +42,6 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     , public matSnackBar: MatSnackBar
     , public messageService: MessageService
     , public activatedRoute: ActivatedRoute) {
-
 
 
   }//end consructor
@@ -55,6 +55,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
         }
       }
     )
+
 
     this.create_form();
     if (this.user_info) {
@@ -108,6 +109,8 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
             this.user_code_posti = res['result'][0].user_code_posti;
             this.user_address = res['result'][0].user_address;
           }
+          this.stepper.selectedIndex = res['result'][0].user_status_info - 1;
+          this.serverService.send_user()
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
@@ -141,16 +144,8 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(
       (res) => {
         if (res) {
-          this.user_title = res.user_title;
-          this.user_cellphone = res.user_cellphone;
-          this.user_code_meli = res.user_code_meli;
-          this.user_watsup = res.user_watsup;
-          this.user_phone = res.user_phone;
-          this.user_id_number = res.user_id_number;
-          this.user_birth_date = res.user_birth_date;
-          this.user_code_posti = res.user_code_posti;
-          this.user_code_meli = res.user_code_meli;
-          this.user_address = res.user_address;
+
+          this.get_user_info();
         }
       }
     )

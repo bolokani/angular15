@@ -16,115 +16,166 @@
         </div>
 
         <div class="row" style="max-height: 25rem;overflow-y: scroll;">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
-                لطفا اطلاعات شناسایی خود را وارد کنید. موارد ستاره دار اجباری می باشد.
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
-                <label for="title">
-                    <div class="div_input">
-                        <span class="label">نام و نام خانوادگی</span>
-                        <span><mat-icon class="star">star</mat-icon></span>
-                    </div>
-                    <input class='input' formControlName='title' autocomplete="off" required>
-                </label>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
-                <label for="cellphone">
-                    <div class="div_input">
-                        <span class="label"> شماره همراه - غیر قابل ویرایش
-                            <span><mat-icon class="star">star</mat-icon></span>
-                        </span>
-                    </div>
-                    <input class='input' formControlName='cellphone' autocomplete="off">
-                </label>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
-                <label for="code_meli">
-                    <div class="div_input">
-                        <span class="label"> کد ملی </span>
-                    </div>
-                    <input class='input' formControlName='code_meli' autocomplete="off" length="10" minlength="10"
-                        maxlength="10" (keypress)="serverService.get_number($event)">
-                </label>
-            </div>
-
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
-                <label for="watsup">
-                    <div class="div_input">
-                        <span class="label">واتس آپ</span>
-                    </div>
-                    <input class='input' formControlName='watsup' autocomplete="off" length="11" minlength="11"
-                        maxlength="11" (keypress)="serverService.get_number($event)">
-                </label>
-            </div>
-
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
-                <label for="phone">
-                    <div class="div_input">
-                        <span class="label"> تلفن ثابت </span>
-                    </div>
-                    <input class='input' formControlName='phone' autocomplete="off"
-                        (keypress)="serverService.get_number($event)">
-                </label>
-            </div>
-
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
-                <label for="id_number">
-                    <div class="div_input">
-                        <span class="label"> شماره شناسنامه </span>
-                    </div>
-                    <input class='input' formControlName='id_number' autocomplete="off"
-                        (keypress)="serverService.get_number($event)">
-                </label>
-            </div>
-
             <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1" style="position:relative">
-                    <label for="birth_date">
-                        <div class="div_input">
-                            <span class="label"> تاریخ تولد </span>
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                        لطفا اطلاعات شناسایی خود را وارد کنید. موارد ستاره دار اجباری می باشد.
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                        <label for="title">
+                            <div class="div_input">
+                                <span class="label">نام و نام خانوادگی</span>
+                                <span><mat-icon class="star">star</mat-icon></span>
+                            </div>
+                            <input class='input' formControlName='title' autocomplete="off" required>
+                        </label>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                        <label for="cellphone">
+                            <div class="div_input">
+                                <span class="label"> شماره همراه - غیر قابل ویرایش
+                                    <span><mat-icon class="star">star</mat-icon></span>
+                                </span>
+                            </div>
+                            <input class='input' formControlName='cellphone' autocomplete="off">
+                        </label>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                        <label for="code_meli">
+                            <div class="div_input">
+                                <span class="label"> کد ملی </span>
+                            </div>
+                            <input class='input' formControlName='code_meli' autocomplete="off" length="10"
+                                minlength="10" maxlength="10" (keypress)="serverService.get_number($event)">
+                        </label>
+                    </div>
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                        <label for="watsup">
+                            <div class="div_input">
+                                <span class="label">واتس آپ</span>
+                            </div>
+                            <input class='input' formControlName='watsup' autocomplete="off" length="11" minlength="11"
+                                maxlength="11" (keypress)="serverService.get_number($event)">
+                        </label>
+                    </div>
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                        <label for="phone">
+                            <div class="div_input">
+                                <span class="label"> تلفن ثابت </span>
+                            </div>
+                            <input class='input' formControlName='phone' autocomplete="off"
+                                (keypress)="serverService.get_number($event)">
+                        </label>
+                    </div>
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                        <label for="id_number">
+                            <div class="div_input">
+                                <span class="label"> شماره شناسنامه </span>
+                            </div>
+                            <input class='input' formControlName='id_number' autocomplete="off"
+                                (keypress)="serverService.get_number($event)">
+                        </label>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1" style="position:relative">
+                            <label for="birth_date">
+                                <div class="div_input">
+                                    <span class="label"> تاریخ تولد </span>
+                                </div>
+                                <input class="wh-input form-control" [matDatepicker]="picker"
+                                    formControlName="birth_date" autocomplete="off">
+                                <mat-datepicker-toggle matSuffix [for]="picker" class="adver-datepicker3">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </label>
                         </div>
-                        <input class="wh-input form-control" [matDatepicker]="picker" formControlName="birth_date"
-                            autocomplete="off">
-                        <mat-datepicker-toggle matSuffix [for]="picker" class="adver-datepicker3">
-                        </mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </label>
+
+                    </div>
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                        <label for="code_posti">
+                            <div class="div_input">
+                                <span class="label"> کد پستی </span>
+                            </div>
+                            <input class='input' formControlName='code_posti' autocomplete="off" length="10"
+                                minlength="10" maxlength="10" (keypress)="serverService.get_number($event)">
+                        </label>
+                    </div>
+
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div1">
+                        <label for="addres">
+                            <div class="div_input">
+                                <span class="label"> آدرس </span>
+                            </div>
+                            <input class='input' formControlName='addres' autocomplete="off">
+                        </label>
+                    </div>
                 </div>
-
             </div>
+            <div class="row">
+                <div class='col-md-12 col-lg-12 col-sm-12 col-xs-12 pe' style="margin-top:1rem">
+                    <div class='wh-label logo_title'>عکس کاربری</div>
+                    <mat-card class="example-card logo cursor backgroundImage"
+                        style="padding:3px 16px 7px 16px;width:100%;height:10rem"
+                        [ngStyle]="{'background-image':'url( ' + user_logo + ')'}" (click)="logo2.click()"
+                        accept="image/*">
+                        <mat-card-header style="display:inline" class="pe1" [ngClass]="{en1:lang==2}">
+                        </mat-card-header>
+                    </mat-card>
+                    <span (click)="delete_user_logo()" *ngIf="user_logo_bin == true"><i class="far fa-trash-alt icon"
+                            style="margin: 0px 4px;"></i></span>
+                    <input type="file" (change)="change_user_logo($event)" style="display: none;" #logo2
+                        accept="image/*">
+                </div><!-- col-md-12 col-lg-12 col-sm-12 col-xs-12 pe  -->
 
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
-                <label for="code_posti">
-                    <div class="div_input">
-                        <span class="label"> کد پستی </span>
-                    </div>
-                    <input class='input' formControlName='code_posti' autocomplete="off" length="10" minlength="10"
-                        maxlength="10" (keypress)="serverService.get_number($event)">
-                </label>
+
+                <div class='col-md-12 col-lg-12 col-sm-12 col-xs-12 pe' style="margin-top:1rem">
+                    <div class='wh-label logo_title'>عکس 3 * 4 </div>
+                    <mat-card class="example-card logo cursor backgroundImage"
+                        style="padding:3px 16px 7px 16px;width:100%;height:10rem"
+                        [ngStyle]="{'background-image':'url( ' + user_logo2 + ')'}" (click)="logo.click()"
+                        accept="image/*">
+                        <mat-card-header style="display:inline" class="pe1" [ngClass]="{en1:lang==2}">
+                        </mat-card-header>
+                    </mat-card>
+                    <span (click)="delete_user_logo2()" *ngIf="user_logo2_bin == true"><i class="far fa-trash-alt icon"
+                            style="margin: 0px 4px;"></i></span>
+                    <input type="file" (change)="change_user_logo2($event)" style="display: none;" #logo
+                        accept="image/*">
+                </div><!-- col-md-12 col-lg-12 col-sm-12 col-xs-12 pe  -->
+
+                <div class='col-md-12 col-lg-12 col-sm-12 col-xs-12 pe' style="margin-top:1rem">
+                    <div class='wh-label logo_title'> عکس کارت ملی </div>
+                    <mat-card class="example-card logo cursor backgroundImage"
+                        style="padding:3px 16px 7px 16px;width:100%;height:10rem"
+                        [ngStyle]="{'background-image':'url( ' + logo_card_meli + ')'}" (click)="logo3.click()"
+                        accept="image/*">
+                        <mat-card-header style="display:inline" class="pe1" [ngClass]="{en1:lang==2}">
+                        </mat-card-header>
+                    </mat-card>
+                    <span (click)="delete_logo_card_meli()" *ngIf="logo_card_meli_bin == true"><i
+                            class="far fa-trash-alt icon" style="margin: 0px 4px;"></i></span>
+                    <input type="file" (change)="change_logo_card_meli($event)" style="display: none;" #logo3
+                        accept="image/*">
+                </div><!-- col-md-12 col-lg-12 col-sm-12 col-xs-12 pe  -->
             </div>
-
-
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 div1">
-                <label for="addres">
-                    <div class="div_input">
-                        <span class="label"> آدرس </span>
-                    </div>
-                    <input class='input' formControlName='addres' autocomplete="off">
-                </label>
-            </div>
-
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
-                <label style='text-align:center;width:auto'>
-                    <button type="submit" class="btn cursor" [disabled]="!update_form1.valid || loading">
-                        <span>ویرایش اطلاعات</span>
-                        <div class="spinner-border spinner-border-sm" role="status" [hidden]="!loading">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                    </button>
-                </label>
-            </div><!-- col-md-12 col-sm-12 col-xs-12 col-sm-12 -->
-
         </div>
+    </div>
+
+    <div mat-dialog-actions align="start" class="pe1 matDialogActions" [ngClass]="{en1:lang==2}"
+        style="padding-right:25px">
+        <label style='text-align:center;width:auto'>
+            <button type="submit" class="btn cursor" [disabled]="!update_form1.valid || loading">
+                <span>ویرایش اطلاعات</span>
+                <div class="spinner-border spinner-border-sm" role="status" [hidden]="!loading">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </button>
+        </label>
     </div>
 </form>

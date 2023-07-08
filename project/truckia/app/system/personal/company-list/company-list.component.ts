@@ -22,6 +22,7 @@ export class CompanyListComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   public list_company: any = [];
   public company_id: number;
+  public status_info: number;
 
   constructor(
     public serverService: ServerService
@@ -55,6 +56,7 @@ export class CompanyListComponent implements OnInit, OnDestroy {
       (res: any) => {
         if (res['status'] == 1) {
           if (res['num'] == 1) {
+            this.status_info = res['result'][0].user_status_info;
             this.activatedRoute.params.subscribe(
               (params: Params) => {
                 this.get_company();
@@ -95,11 +97,12 @@ export class CompanyListComponent implements OnInit, OnDestroy {
   }
 
   open(i: number, type_task: number, id: number) {
+
     const dialogRef = this.dialog.open(CompanyDetaile2Component, {
       width: '50rem',
       height: 'auto',
       hasBackdrop: true,
-      data: { user_id: this.user_id, type_task: type_task, id: id }
+      data: { user_id: this.user_id, type_task: type_task, id: id, status_info: this.status_info }
     });
     dialogRef.afterClosed().subscribe(
       (res) => {

@@ -25,7 +25,15 @@ export class ProfileMenuComponent implements OnInit, OnDestroy {
     , public router: Router
     , public matSnackBar: MatSnackBar
     , public messageService: MessageService
-  ) { }//end consructor
+  ) {
+
+    this.serverService.get_user().subscribe(
+      (res) => {
+        this.get_user();
+      }
+    )
+
+  }//end consructor
 
   ngOnInit() {
     if (this.user_info) {

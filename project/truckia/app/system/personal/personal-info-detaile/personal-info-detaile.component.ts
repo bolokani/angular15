@@ -6,6 +6,7 @@ import { ServerService } from '../../services/server/server.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from '../../services/message/message.service';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-personal-info-detaile',
@@ -22,6 +23,18 @@ export class PersonalInfoDetaileComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   public update_form1: FormGroup;
   public id: number;
+
+  public user_logo2: string = this.serverService.get_default_image();
+  public user_logo2_bin: boolean = false;
+  public user_logo2_info: any;
+
+  public user_logo: string = this.serverService.get_default_image();
+  public user_logo_bin: boolean = false;
+  public user_logo_info: any;
+
+  public logo_card_meli: string = this.serverService.get_default_image();
+  public logo_card_meli_bin: boolean = false;
+  public logo_card_meli_info: any;
 
   constructor(
     public serverService: ServerService
@@ -86,6 +99,45 @@ export class PersonalInfoDetaileComponent implements OnInit, OnDestroy {
               code_posti: res['result'][0].user_code_posti,
               addres: res['result'][0].user_address,
             })
+
+            this.user_logo2_info = {
+              site: res['result'][0].user_logo_site,
+              path: res['result'][0].user_logo2
+            }
+            if (res['result'][0].user_logo2) {
+              this.user_logo2 = res['result'][0].user_logo_site + "/" + res['result'][0].user_logo2;
+              this.user_logo2_bin = true;
+            }
+            else {
+              this.user_logo2 = this.serverService.get_default_image();
+              this.user_logo2_bin = false;
+            }
+
+            this.user_logo_info = {
+              site: res['result'][0].user_logo_site,
+              path: res['result'][0].user_logo
+            }
+            if (res['result'][0].user_logo) {
+              this.user_logo = res['result'][0].user_logo_site + "/" + res['result'][0].user_logo;
+              this.user_logo_bin = true;
+            }
+            else {
+              this.user_logo = this.serverService.get_default_image();
+              this.user_logo_bin = false;
+            }
+
+            this.logo_card_meli_info = {
+              site: res['result'][0].site_company_site,
+              path: res['result'][0].user_logo_card_meli
+            }
+            if (res['result'][0].user_logo_card_meli) {
+              this.logo_card_meli = res['result'][0].user_logo_site + "/" + res['result'][0].user_logo_card_meli;
+              this.logo_card_meli_bin = true;
+            }
+            else {
+              this.logo_card_meli = this.serverService.get_default_image();
+              this.logo_card_meli_bin = false;
+            }
           } else {
             //this.router.navigate(['/login']);
           }
@@ -117,6 +169,10 @@ export class PersonalInfoDetaileComponent implements OnInit, OnDestroy {
       , birth_date: this.update_form1.value.birth_date
       , code_posti: this.update_form1.value.code_posti
       , addres: this.update_form1.value.addres
+      , site: this.serverService.get_site()
+      , user_logo2: this.user_logo2_info
+      , logo_card_meli: this.logo_card_meli_info
+      , user_logo: this.user_logo_info
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
@@ -142,6 +198,99 @@ export class PersonalInfoDetaileComponent implements OnInit, OnDestroy {
 
   close() {
     this.matDialogRef.close();
+  }
+
+  change_user_logo2(event: any) {
+    var selectedFile = <File>event.target.files[0];
+    var fd = new FormData();
+    fd.append("image", selectedFile, selectedFile.name);
+    this.serverService.post_address_file(this.server, "uploadImage", fd).subscribe(
+      (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          ///this.uploadedAvaterProgess = (event.loaded / event.total) * 100;
+        }
+        else if (event.type === HttpEventType.Response) {
+          var a = <any>event.body;
+          this.user_logo2 = this.serverService.get_site_upload_image() + "/" + this.serverService.get_path_upload_image() + a.result.filename;
+          this.user_logo2_bin = true;
+          this.user_logo2_info = {
+            'site': this.serverService.get_site_upload_image(),
+            'path': this.serverService.get_path_upload_image() + a.result.filename
+          }
+        }
+      }
+    )
+  }
+
+  delete_user_logo2() {
+    this.user_logo2 = this.serverService.get_default_image();
+    this.user_logo2_bin = false;
+    this.user_logo2_info = {
+      path: '',
+      site: ''
+    }
+  }
+  //************************************************ */
+  change_user_logo(event: any) {
+    var selectedFile = <File>event.target.files[0];
+    var fd = new FormData();
+    fd.append("image", selectedFile, selectedFile.name);
+    this.serverService.post_address_file(this.server, "uploadImage", fd).subscribe(
+      (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          ///this.uploadedAvaterProgess = (event.loaded / event.total) * 100;
+        }
+        else if (event.type === HttpEventType.Response) {
+          var a = <any>event.body;
+          this.user_logo = this.serverService.get_site_upload_image() + "/" + this.serverService.get_path_upload_image() + a.result.filename;
+          this.user_logo_bin = true;
+          this.user_logo_info = {
+            'site': this.serverService.get_site_upload_image(),
+            'path': this.serverService.get_path_upload_image() + a.result.filename
+          }
+        }
+      }
+    )
+  }
+
+  delete_user_logo() {
+    this.user_logo = this.serverService.get_default_image();
+    this.user_logo_bin = false;
+    this.user_logo_info = {
+      path: '',
+      site: ''
+    }
+  }
+  //**************************************************
+  change_logo_card_meli(event: any) {
+    var selectedFile = <File>event.target.files[0];
+    var fd = new FormData();
+    fd.append("image", selectedFile, selectedFile.name);
+    this.serverService.post_address_file(this.server, "uploadImage", fd).subscribe(
+      (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          ///this.uploadedAvaterProgess = (event.loaded / event.total) * 100;
+        }
+        else if (event.type === HttpEventType.Response) {
+          var a = <any>event.body;
+          this.logo_card_meli = this.serverService.get_site_upload_image() + "/" + this.serverService.get_path_upload_image() + a.result.filename;
+          this.logo_card_meli_bin = true;
+          this.logo_card_meli_info = {
+            'site': this.serverService.get_site_upload_image(),
+            'path': this.serverService.get_path_upload_image() + a.result.filename
+          }
+        }
+      }
+    )
+  }
+
+  delete_logo_card_meli() {
+    this.logo_card_meli = this.serverService.get_default_image();
+    this.logo_card_meli_bin = false;
+    this.logo_card_meli_info = {
+      path: '',
+      site: ''
+    }
   }
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {

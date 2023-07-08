@@ -1,9 +1,27 @@
 <div class="container-fluid" style="padding:0px">
+
+
+
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 alarm_box">
             <mat-icon style="vertical-align: middle !important;">info</mat-icon>
             برای افزایش امنیت حساب کاربری خود و جلوگیری از سوءاستفاده، لطفا هویت خود را مشخص کنید
         </div>
+
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 padding0">
+            <mat-horizontal-stepper class="stepper" #stepper>
+                <mat-step [completed]="false">
+                    <ng-template matStepLabel>در انتظار تکمیل اطلاعات</ng-template>
+                </mat-step>
+                <mat-step [completed]="false">
+                    <ng-template matStepLabel>در انتظار تایید</ng-template>
+                </mat-step>
+                <mat-step [completed]="false">
+                    <ng-template matStepLabel>تایید حساب کاربری</ng-template>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </div>
+
 
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 edit_box">
             <span (click)="open()" class="cursor">ویرایش</span>

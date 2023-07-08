@@ -38,6 +38,13 @@ export class MenuComponent implements OnInit {
         this.status = res;
       }
     )
+
+
+    this.serverService.get_user().subscribe(
+      (res) => {
+        this.get_user();
+      }
+    )
   }
 
   ngOnInit() {

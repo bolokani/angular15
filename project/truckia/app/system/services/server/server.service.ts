@@ -19,11 +19,16 @@ export class ServerService {
   public sb_invoice_print2 = new Subject<any>();
   public sb_invoice_print_cellphone = new Subject<any>();
   public sb_loading = new Subject<any>();
+  public sb_info_stepper = new Subject<any>();
 
 
 
-  constructor(private http: HttpClient, private matSnackBar: MatSnackBar, private router: Router
-    , private meta: Meta, private title: Title) { }
+  constructor(
+    private http: HttpClient
+    , private matSnackBar: MatSnackBar
+    , private router: Router
+    , private meta: Meta
+    , private title: Title) { }
 
   post_address(server: any, address: string, obj: any) {
     var token = ""
@@ -139,6 +144,14 @@ export class ServerService {
 
   get_invoice_print2(): Observable<any> {
     return this.sb_invoice_print2.asObservable();
+  }
+  //********************************************************** */
+  send_info_stepper(value: any): void {
+    this.sb_info_stepper.next(value);
+  }//end send_username
+
+  get_info_stepper(): Observable<any> {
+    return this.sb_info_stepper.asObservable();
   }
   //********************************************************** */
   send_loading(value: boolean): void {

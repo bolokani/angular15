@@ -6,6 +6,17 @@
 
 <div class="container-fluid">
     <div class="row">
+
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 alarm_box" *ngIf="status_info == 1">
+            <mat-icon style="vertical-align: middle !important;">info</mat-icon>
+            اطلاعات کاربری شما در وضعیت "در انتظار تکمیل اطلاعات" می باشد.لطفا از منوی سمت راست گزینه "پنل کاربری من"
+            اطلاعات خود را تکمیل کنید.
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 alarm_box" *ngIf="status_info == 2">
+            <mat-icon style="vertical-align: middle !important;">info</mat-icon>
+            اطلاعات کاربری شما در وضعیت "در انتظار تایید" می باشد.لطفا تا زمان تایید حساب کاربری صبور باشید..
+        </div>
+
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 box">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 box1">
@@ -13,7 +24,8 @@
                     <div class="line"></div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 box1 company-new">
-                    <button class="btn cursor" (click)="open(0,1,1)">درج جدید شرکت</button>
+                    <button class="btn cursor" (click)="open(0,1,1)" [attr.disabled]="status_info != 3">درج جدید
+                        شرکت</button>
                 </div>
             </div>
             <div class="row row1">
@@ -30,7 +42,7 @@
                                         style="min-height: 8rem;">
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-8 col-8" style="padding:0">
-                                        <span (click)="close(i,x.site_company_id)">
+                                        <span (click)="close(i,x.site_company_id)" *ngIf="status_info == 3">
                                             <mat-icon>close</mat-icon>
                                         </span>
                                         <div class="row">

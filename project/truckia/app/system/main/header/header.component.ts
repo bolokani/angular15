@@ -37,6 +37,7 @@ export class HeaderComponent implements OnInit {
         this.status = res;
       }
     )
+
   }
 
   ngOnInit() {
@@ -59,6 +60,7 @@ export class HeaderComponent implements OnInit {
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1 && res['num'] == 1) {
+
           if (res['result'][0].user_logo) {
             this.user_logo = res['result'][0].user_logo_site + "/" + res['result'][0].user_logo;
           } else {
