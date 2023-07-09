@@ -45,7 +45,7 @@ export class Header2Component implements OnInit {
     }
     //this.get_logo();
     this.get_user();
-    this.logo = "../../../../assets/img/logo2-new.png";
+    this.logo = "../../../../assets/img/logo4.png";
   }
 
   get_logo() {

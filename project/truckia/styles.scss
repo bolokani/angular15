@@ -43,6 +43,7 @@ html {
 	font-size: 1rem;
 }
 
+
 .color-white {
 	color: #fff
 }
@@ -88,6 +89,7 @@ html {
 	float: left;
 	padding-left: 1rem;
 }
+
 
 //*************************************************************
 .btn {
@@ -1723,4 +1725,13 @@ input.ng-invalid.ng-touched {
 body {
 	margin: 0;
 	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+//***********************************************************************
+@media only screen and (max-width:576px) {
+
+	.stepper-label .mat-step-header .mat-step-label,
+	.mat-step-header .mat-step-optional {
+		display: none !important;
+	}
 }

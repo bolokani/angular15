@@ -33,7 +33,10 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   public user_address: String;
   public user_code_posti: number;
   public user_token: number;
+  public list_gallery: any = [];
   @ViewChild('stepper', { static: true }) stepper: any;
+  public current: any;
+
 
   constructor(
     public serverService: ServerService
@@ -110,7 +113,19 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
             this.user_address = res['result'][0].user_address;
           }
           this.stepper.selectedIndex = res['result'][0].user_status_info - 1;
-          this.serverService.send_user()
+          if (res['result'][0].user_logo) {
+            var x1 = res['result'][0].user_logo_site + "/" + res['result'][0].user_logo;
+            this.list_gallery.push({ logo: x1, title: 'عکس کاربری' });
+          }
+          if (res['result'][0].user_logo2) {
+            var x2 = res['result'][0].user_logo_site + "/" + res['result'][0].user_logo2;
+            this.list_gallery.push({ logo: x2, title: 'عکس 4 * 3 ' });
+          }
+          if (res['result'][0].user_logo_card_meli) {
+            var x3 = res['result'][0].user_logo_site + "/" + res['result'][0].user_logo_card_meli;
+            this.list_gallery.push({ logo: x3, title: '  عکس کارت ملی ' });
+          }
+          this.serverService.send_user();
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
@@ -149,6 +164,50 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
         }
       }
     )
+  }
+  //**************************************************** */
+  openModal(id: any) {
+    if (window.innerWidth > 768) {
+      var x = <any>document.getElementById('myModalone');
+      x.style.display = "block";
+    }
+
+  }//end openModal
+
+  plusSlides(mySlides: any, dot: any, n: any) {
+    this.current = this.current + (n);
+    var slides = document.getElementsByClassName(mySlides);
+    var dots = document.getElementsByClassName("dot");
+    if (this.current > slides.length) { this.current = 1; }
+    if (this.current < 1) { this.current = slides.length; }
+    this.showSlides(mySlides, dot, this.current);
+  }//end plusSlides
+
+  currentSlide(mySlides: any, dot: any, n: any) {
+    this.current = n;
+    this.showSlides(mySlides, dot, n);
+  }//end currentSlide  
+
+  showSlides(mySlides: any, dot: any, n: any) {
+    var i;
+    var slideIndex = n;
+    var slides = document.getElementsByClassName(mySlides);
+    var dots = document.getElementsByClassName(dot);
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length };
+    for (i = 0; i < slides.length; i++) {
+      (<HTMLElement>slides[i]).style.display = "none";
+    }//end for
+    for (i = 0; i < dots.length; i++) {
+      dots[i].classList.remove("active");
+    }//end for
+    (<HTMLElement>slides[slideIndex - 1]).style.display = "block";
+    dots[slideIndex - 1].classList.add("active");
+  }//end showSlides 
+
+  close_modal(myModal: any) {
+    var x = <any>document.getElementById(myModal);
+    x.style.display = "none";
   }
   //**************************************************
   message(validation: boolean, message: string, type: number, action: string) {
