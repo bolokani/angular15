@@ -52,6 +52,7 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
   public count: number = 1;
   public current: any;
   public list_gallery: any = [];
+  @ViewChild('stepper', { static: true }) stepper: any;
 
 
   constructor(
@@ -114,6 +115,7 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
       (res: any) => {
         if (res['status'] == 1) {
           if (res['num'] == 1) {
+            this.list_gallery = [];
             this.company_title = res['result'][0].site_company_title;
             this.company_type = res['result'][0].company_type_title;
             this.company_national_id = res['result'][0].site_company_national_id;
@@ -151,17 +153,26 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
             this.state_title = '-';
             this.city_title = '-';
           }
+          this.stepper.selectedIndex = res['result'][0].site_company_status - 1;
+          if (res['result'][0].site_company_logo_ceo) {
+            var logo_ceo = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_ceo;
+            this.list_gallery.push({ logo: logo_ceo, title: 'عکس 4 * 3 مدیرعامل' });
+          }
           if (res['result'][0].site_company_logo_national_card) {
-            this.logo_national_card = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_national_card;
-            this.list_gallery.push({ logo: this.logo_national_card, title: 'کارت ملی' });
+            var logo_national_card = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_national_card;
+            this.list_gallery.push({ logo: logo_national_card, title: 'کارت ملی' });
           }
           if (res['result'][0].site_company_logo_business_card) {
-            this.logo_business_card = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_business_card;
-            this.list_gallery.push({ logo: this.logo_business_card, title: 'کارت بازرگانی' });
+            var logo_business_card = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_business_card;
+            this.list_gallery.push({ logo: logo_business_card, title: 'کارت بازرگانی' });
           }
           if (res['result'][0].site_company_logo_official_newspaper) {
-            this.logo_official_newspaper = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_official_newspaper;
-            this.list_gallery.push({ logo: this.logo_official_newspaper, title: 'روزنامه رسمی' });
+            var logo_official_newspaper = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_official_newspaper;
+            this.list_gallery.push({ logo: logo_official_newspaper, title: 'روزنامه رسمی' });
+          }
+          if (res['result'][0].site_company_logo_membership) {
+            var logo_membership = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_membership;
+            this.list_gallery.push({ logo: logo_membership, title: 'تعهد نامه عضویت' });
           }
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
@@ -183,37 +194,7 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(
       (res) => {
         if (res) {
-          this.company_type = res.company_type_title;
-          this.company_title = res.site_company_title;
-          this.company_national_id = res.site_company_national_id;
-          this.company_economic_code = res.site_company_economic_code;
-          this.company_rnumber = res.site_company_rnumber;
-          this.company_date_registeration = res.site_company_date_registeration;
-          this.company_ceo = res.site_company_ceo;
-          this.company_national_code_ceo = res.site_company_national_code_ceo;
-          this.company_birth_date = res.site_company_birth_date;
-          this.company_cellphone2 = res.site_company_cellphone2;
-          this.company_cellphone = res.site_company_cellphone;
-          this.user_phone = res.company_user_phone;
-          this.company_phone = res.site_company_phone;
-          this.company_adress = res.site_company_adress;
-          this.company_code_posti = res.site_company_code_posti;
-          this.company_email = res.site_company_email;
-          this.state_title = res.site_state_title;
-          this.city_title = res.site_city_title;
-          this.list_gallery = [];
-          if (res.site_company_logo_national_card) {
-            this.logo_national_card = res.site_company_logo_site + "/" + res.site_company_logo_national_card;
-            this.list_gallery.push({ logo: this.logo_national_card, title: 'کارت ملی' });
-          }
-          if (res.site_company_logo_business_card) {
-            this.logo_business_card = res.site_company_logo_site + "/" + res.site_company_logo_business_card;
-            this.list_gallery.push({ logo: this.logo_business_card, title: 'کارت بازرگانی' });
-          }
-          if (res.site_company_logo_official_newspaper) {
-            this.logo_official_newspaper = res.site_company_logo_site + "/" + res.site_company_logo_official_newspaper;
-            this.list_gallery.push({ logo: this.logo_official_newspaper, title: 'روزنامه رسمی' });
-          }
+          this.get_data();
         }
       }
     )

@@ -119,7 +119,7 @@
             </div>
             <div class="row">
                 <div class='col-md-12 col-lg-12 col-sm-12 col-xs-12 pe' style="margin-top:1rem">
-                    <div class='wh-label logo_title'>عکس کاربری</div>
+                    <div class='wh-label logo_title'>عکس 4 * 3 </div>
                     <mat-card class="example-card logo cursor backgroundImage"
                         style="padding:3px 16px 7px 16px;width:100%;height:10rem"
                         [ngStyle]="{'background-image':'url( ' + user_logo + ')'}" (click)="logo2.click()"
@@ -130,22 +130,6 @@
                     <span (click)="delete_user_logo()" *ngIf="user_logo_bin == true"><i class="far fa-trash-alt icon"
                             style="margin: 0px 4px;"></i></span>
                     <input type="file" (change)="change_user_logo($event)" style="display: none;" #logo2
-                        accept="image/*">
-                </div><!-- col-md-12 col-lg-12 col-sm-12 col-xs-12 pe  -->
-
-
-                <div class='col-md-12 col-lg-12 col-sm-12 col-xs-12 pe' style="margin-top:1rem">
-                    <div class='wh-label logo_title'>عکس 4 * 3 </div>
-                    <mat-card class="example-card logo cursor backgroundImage"
-                        style="padding:3px 16px 7px 16px;width:100%;height:10rem"
-                        [ngStyle]="{'background-image':'url( ' + user_logo2 + ')'}" (click)="logo.click()"
-                        accept="image/*">
-                        <mat-card-header style="display:inline" class="pe1" [ngClass]="{en1:lang==2}">
-                        </mat-card-header>
-                    </mat-card>
-                    <span (click)="delete_user_logo2()" *ngIf="user_logo2_bin == true"><i class="far fa-trash-alt icon"
-                            style="margin: 0px 4px;"></i></span>
-                    <input type="file" (change)="change_user_logo2($event)" style="display: none;" #logo
                         accept="image/*">
                 </div><!-- col-md-12 col-lg-12 col-sm-12 col-xs-12 pe  -->
 

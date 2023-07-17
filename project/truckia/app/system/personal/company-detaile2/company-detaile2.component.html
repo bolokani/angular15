@@ -199,6 +199,22 @@
                 </div>
             </div>
             <div class="row">
+
+                <div class='col-md-3 col-lg-3 col-sm-3 col-xs-12 pe' style="padding-right: 0;">
+                    <div class='wh-label logo_title'>عکس 4 * 3 مدیرعامل</div>
+                    <mat-card class="example-card logo cursor backgroundImage"
+                        style="padding:3px 16px 7px 16px;width:100%;height:10rem"
+                        [ngStyle]="{'background-image':'url( ' + logo_ceo + ')'}" (click)="logo4.click()"
+                        accept="image/*">
+                        <mat-card-header style="display:inline" class="pe1" [ngClass]="{en1:lang==2}">
+                        </mat-card-header>
+                    </mat-card>
+                    <span (click)="delete_logo_ceo()" *ngIf="logo_ceo_bin == true"><i class="far fa-trash-alt icon"
+                            style="margin: 0px 4px;"></i></span>
+                    <input type="file" (change)="change_logo_ceo($event)" style="display: none;" #logo4
+                        accept="image/*">
+                </div><!-- col-md-3 col-lg-3 col-sm-3 col-xs-12 pe  -->
+
                 <div class='col-md-3 col-lg-3 col-sm-3 col-xs-12 pe' style="padding-right: 0;">
                     <div class='wh-label logo_title'> کارت ملی</div>
                     <mat-card class="example-card logo cursor backgroundImage"
@@ -244,6 +260,22 @@
                     <input type="file" (change)="change_logo_official_newspaper($event)" style="display: none;" #logo3
                         accept="image/*">
                 </div><!-- col-md-3 col-lg-3 col-sm-3 col-xs-12 pe  -->
+
+                <div class='col-md-3 col-lg-3 col-sm-3 col-xs-12 pe' style="padding-right: 0;">
+                    <div class='wh-label logo_title'>تعهد نامه عضویت</div>
+                    <mat-card class="example-card logo cursor backgroundImage"
+                        style="padding:3px 16px 7px 16px;width:100%;height:10rem"
+                        [ngStyle]="{'background-image':'url( ' + logo_membership + ')'}" (click)="logo5.click()"
+                        accept="image/*">
+                        <mat-card-header style="display:inline" class="pe1" [ngClass]="{en1:lang==2}">
+                        </mat-card-header>
+                    </mat-card>
+                    <span (click)="delete_logo_membership()" *ngIf="logo_membership_bin == true"><i
+                            class="far fa-trash-alt icon" style="margin: 0px 4px;"></i></span>
+                    <input type="file" (change)="change_logo_membership($event)" style="display: none;" #logo5
+                        accept="image/*">
+                </div><!-- col-md-3 col-lg-3 col-sm-3 col-xs-12 pe  -->
+
             </div>
         </div>
 
@@ -251,7 +283,8 @@
     <div mat-dialog-actions align="start" class="pe1 matDialogActions" [ngClass]="{en1:lang==2}"
         style="padding-right:25px">
         <label style='text-align:center;width:auto'>
-            <button type="submit" class="btn cursor" [disabled]="!update_form1.valid || loading || status_info != 3">
+            <button type="submit" class="btn cursor"
+                [disabled]="!update_form1.valid || loading || (status_info != 3 && type_task == 1)">
                 <span>ذخیره</span>
                 <div class="spinner-border spinner-border-sm" role="status" [hidden]="!loading">
                     <span class="visually-hidden">Loading...</span>

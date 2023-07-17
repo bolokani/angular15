@@ -22,7 +22,6 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   public user_id: number | undefined;
   public subscription: Subscription;
   public form1: FormGroup;
-  public token: number;
   public user_title: String;
   public user_cellphone: String;
   public user_watsup: String;
@@ -52,38 +51,38 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(
       (params: Params) => {
-        this.token = params['token'];
-        if (this.token) {
-          this.get_user();
-        }
+        this.user_token = params['token'];
+
       }
     )
 
-
     this.create_form();
-    if (this.user_info) {
+
+    if (this.user_token) {
+      this.get_user_token();
+    }
+    else if (this.user_info) {
       this.user_id = this.user_info.user_id;
       this.user_token = this.user_info.user_token;
-      this.get_user();
+      this.get_user(this.user_id, this.user_token);
     }
   }
 
-  get_user() {
+  get_user_token() {
     if (this.serverService.check_internet() == false) {
       this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
       return;
     }//end if
     else { this.matSnackBar.dismiss(); }
     var obj = {
-      address: 6876,
-      user_id: this.user_id,
+      address: 6923,
       user_token: this.user_token
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
           if (res['num'] == 1) {
-            this.get_user_info();
+            this.get_user_info(res['result'].user_id, this.user_token);
           } else {
             this.serverService.signout();
             this.message(false, "", 1, this.messageService.close(this.lang));
@@ -96,8 +95,36 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     )
   }
 
-  get_user_info() {
-    var obj = { address: 6541, user_id: this.user_id, token: this.token }
+  get_user(user_id: any, user_token: number) {
+    if (this.serverService.check_internet() == false) {
+      this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
+      return;
+    }//end if
+    else { this.matSnackBar.dismiss(); }
+    var obj = {
+      address: 6876,
+      user_id: user_id,
+      user_token: user_token
+    }
+    this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+          if (res['num'] == 1) {
+            this.get_user_info(user_id, user_token);
+          } else {
+            this.serverService.signout();
+            this.message(false, "", 1, this.messageService.close(this.lang));
+          }
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
+  get_user_info(user_id: any, user_token: number) {
+    var obj = { address: 6541, user_id: user_id, token: user_token }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
@@ -112,14 +139,11 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
             this.user_code_posti = res['result'][0].user_code_posti;
             this.user_address = res['result'][0].user_address;
           }
+          this.list_gallery = [];
           this.stepper.selectedIndex = res['result'][0].user_status_info - 1;
           if (res['result'][0].user_logo) {
             var x1 = res['result'][0].user_logo_site + "/" + res['result'][0].user_logo;
-            this.list_gallery.push({ logo: x1, title: 'عکس کاربری' });
-          }
-          if (res['result'][0].user_logo2) {
-            var x2 = res['result'][0].user_logo_site + "/" + res['result'][0].user_logo2;
-            this.list_gallery.push({ logo: x2, title: 'عکس 4 * 3 ' });
+            this.list_gallery.push({ logo: x1, title: 'عکس 4 * 3' });
           }
           if (res['result'][0].user_logo_card_meli) {
             var x3 = res['result'][0].user_logo_site + "/" + res['result'][0].user_logo_card_meli;
@@ -159,8 +183,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(
       (res) => {
         if (res) {
-
-          this.get_user_info();
+          this.get_user_info(this.user_id, this.user_token);
         }
       }
     )

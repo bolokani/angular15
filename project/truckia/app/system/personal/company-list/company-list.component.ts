@@ -84,7 +84,11 @@ export class CompanyListComponent implements OnInit, OnDestroy {
         this.list_company = [];
         if (res['status'] == 1) {
           for (var i = 0; i < res['num']; i++) {
-            res['result'][i].logo = this.serverService.get_default_image();
+            if (res['result'][i].site_company_logo_ceo) {
+              res['result'][i].logo = res['result'][i].site_company_logo_site + "/" + res['result'][i].site_company_logo_ceo;
+            } else {
+              res['result'][i].logo = this.serverService.get_default_image();
+            }
             this.list_company.push(res['result'][i]);
           }//end for
           this.message(false, "", 1, this.messageService.close(this.lang));
@@ -97,7 +101,6 @@ export class CompanyListComponent implements OnInit, OnDestroy {
   }
 
   open(i: number, type_task: number, id: number) {
-
     const dialogRef = this.dialog.open(CompanyDetaile2Component, {
       width: '50rem',
       height: 'auto',
@@ -108,7 +111,13 @@ export class CompanyListComponent implements OnInit, OnDestroy {
       (res) => {
         if (res) {
           if (type_task == 1) {
-            res.logo = this.serverService.get_default_image();
+            if (res.site_company_logo_ceo) {
+              res.logo = res.site_company_logo_site + "/" + res.site_company_logo_ceo;
+
+            }
+            else {
+              res.logo = this.serverService.get_default_image();
+            }
             this.list_company.unshift(res)
           } else {
             this.list_company[i].site_company_title = res.site_company_title;
@@ -118,6 +127,12 @@ export class CompanyListComponent implements OnInit, OnDestroy {
             this.list_company[i].site_company_economic_code = res.site_company_economic_code;
             this.list_company[i].site_company_rnumber = res.site_company_rnumber;
             this.list_company[i].site_company_date_registeration = res.site_company_date_registeration;
+            if (res.site_company_logo_ceo) {
+              this.list_company[i].logo = res.site_company_logo_site + "/" + res.site_company_logo_ceo;
+
+            } else {
+              this.list_company[i].logo = this.serverService.get_default_image();
+            }
           }
         }
       }

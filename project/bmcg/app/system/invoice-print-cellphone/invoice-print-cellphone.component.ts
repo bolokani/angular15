@@ -29,7 +29,9 @@ export class InvoicePrintCellphoneComponent implements OnInit {
     this.serverService.get_invoice_print_cellphone().subscribe(
       (res) => {
         if (res) {
-          this.dataSource.data = res.list_cost;
+          this.dataSource = [];
+          this.dataSource = res.list_cost;
+          this.get_sum1(res.list_cost);
         }
       }
     )
@@ -37,13 +39,14 @@ export class InvoicePrintCellphoneComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource = this.root_obj.list_cost;
-    this.get_sum1();
+    this.get_sum1(this.root_obj.list_cost);
+
   }
 
-  get_sum1() {
+  get_sum1(list_cost: any) {
     this.sum1 = 0;
-    for (var i = 0; i < this.root_obj.list_cost.length; i++) {
-      this.sum1 = this.sum1 + this.root_obj.list_cost[i].invoice_cost2_price;
+    for (var i = 0; i < list_cost.length; i++) {
+      this.sum1 = this.sum1 + list_cost[i].invoice_cost2_price;
     }
   }
 

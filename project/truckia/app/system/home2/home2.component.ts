@@ -97,6 +97,7 @@ export class Home2Component implements OnInit, OnDestroy {
 
 
   get_baner3() {
+    this.loading = true;
     this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6893, id: 122 }).subscribe(
       (res: any) => {
         this.list_baner3 = [];

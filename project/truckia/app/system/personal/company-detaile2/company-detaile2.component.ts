@@ -36,9 +36,17 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
   public logo_national_card_bin: boolean = false;
   public logo_national_card_info: any;
 
+  public logo_ceo: string = this.serverService.get_default_image();
+  public logo_ceo_bin: boolean = false;
+  public logo_ceo_info: any;
+
   public logo_official_newspaper: string = this.serverService.get_default_image();
   public logo_official_newspaper_bin: boolean = false;
   public logo_official_newspaper_info: any;
+
+  public logo_membership: string = this.serverService.get_default_image();
+  public logo_membership_bin: boolean = false;
+  public logo_membership_info: any;
 
   constructor(
     public serverService: ServerService
@@ -170,6 +178,19 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
             this.logo_national_card_bin = false;
           }
 
+          this.logo_ceo_info = {
+            site: res['result'][0].site_company_site,
+            path: res['result'][0].site_company_logo_ceo
+          }
+          if (res['result'][0].site_company_logo_ceo) {
+            this.logo_ceo = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_ceo;
+            this.logo_ceo_bin = true;
+          }
+          else {
+            this.logo_ceo = this.serverService.get_default_image();
+            this.logo_ceo_bin = false;
+          }
+
           this.logo_official_newspaper_info = {
             site: res['result'][0].site_company_site,
             path: res['result'][0].site_company_logo_official_newspaper
@@ -182,6 +203,20 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
             this.logo_official_newspaper = this.serverService.get_default_image();
             this.logo_official_newspaper_bin = false;
           }
+
+          this.logo_membership_info = {
+            site: res['result'][0].site_company_site,
+            path: res['result'][0].site_company_logo_membership
+          }
+          if (res['result'][0].site_company_logo_membership) {
+            this.logo_membership = res['result'][0].site_company_logo_site + "/" + res['result'][0].site_company_logo_membership;
+            this.logo_membership_bin = true;
+          }
+          else {
+            this.logo_membership = this.serverService.get_default_image();
+            this.logo_membership_bin = false;
+          }
+
           this.result = res['result'][0];
           this.get_state();
         }//end iff
@@ -282,7 +317,9 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
       , site: this.serverService.get_site()
       , business_card_info: this.logo_business_card_info
       , official_newspaper_info: this.logo_official_newspaper_info
+      , membership_info: this.logo_membership_info
       , national_card_info: this.logo_national_card_info
+      , ceo_info: this.logo_ceo_info
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
@@ -335,7 +372,9 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
       , site: this.serverService.get_site()
       , business_card_info: this.logo_business_card_info
       , official_newspaper_info: this.logo_official_newspaper_info
+      , membership_info: this.logo_membership_info
       , national_card_info: this.logo_national_card_info
+      , ceo_info: this.logo_ceo_info
     }
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
@@ -433,6 +472,37 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
       site: ''
     }
   }
+  //*************************************************** */
+  change_logo_ceo(event: any) {
+    var selectedFile = <File>event.target.files[0];
+    var fd = new FormData();
+    fd.append("image", selectedFile, selectedFile.name);
+    this.serverService.post_address_file(this.server, "uploadImage", fd).subscribe(
+      (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          ///this.uploadedAvaterProgess = (event.loaded / event.total) * 100;
+        }
+        else if (event.type === HttpEventType.Response) {
+          var a = <any>event.body;
+          this.logo_ceo = this.serverService.get_site_upload_image() + "/" + this.serverService.get_path_upload_image() + a.result.filename;
+          this.logo_ceo_bin = true;
+          this.logo_ceo_info = {
+            'site': this.serverService.get_site_upload_image(),
+            'path': this.serverService.get_path_upload_image() + a.result.filename
+          }
+        }
+      }
+    )
+  }
+
+  delete_logo_ceo() {
+    this.logo_ceo = this.serverService.get_default_image();
+    this.logo_ceo_bin = false;
+    this.logo_ceo_info = {
+      path: '',
+      site: ''
+    }
+  }
   //**************************************************
   change_logo_official_newspaper(event: any) {
     var selectedFile = <File>event.target.files[0];
@@ -460,6 +530,37 @@ export class CompanyDetaile2Component implements OnInit, OnDestroy {
     this.logo_official_newspaper = this.serverService.get_default_image();
     this.logo_official_newspaper_bin = false;
     this.logo_official_newspaper_info = {
+      path: '',
+      site: ''
+    }
+  }
+  //**************************************************
+  change_logo_membership(event: any) {
+    var selectedFile = <File>event.target.files[0];
+    var fd = new FormData();
+    fd.append("image", selectedFile, selectedFile.name);
+    this.serverService.post_address_file(this.server, "uploadImage", fd).subscribe(
+      (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          ///this.uploadedAvaterProgess = (event.loaded / event.total) * 100;
+        }
+        else if (event.type === HttpEventType.Response) {
+          var a = <any>event.body;
+          this.logo_membership = this.serverService.get_site_upload_image() + "/" + this.serverService.get_path_upload_image() + a.result.filename;
+          this.logo_membership_bin = true;
+          this.logo_membership_info = {
+            'site': this.serverService.get_site_upload_image(),
+            'path': this.serverService.get_path_upload_image() + a.result.filename
+          }
+        }
+      }
+    )
+  }
+
+  delete_logo_membership() {
+    this.logo_membership = this.serverService.get_default_image();
+    this.logo_membership_bin = false;
+    this.logo_membership_info = {
       path: '',
       site: ''
     }

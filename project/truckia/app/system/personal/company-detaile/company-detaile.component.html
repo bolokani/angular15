@@ -5,13 +5,27 @@
             برای افزایش امنیت حساب کاربری خود و جلوگیری از سوءاستفاده، لطفا هویت خود را مشخص کنید
         </div>
 
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 padding0">
+            <mat-horizontal-stepper class="stepper stepper-label" #stepper>
+                <mat-step [completed]="false">
+                    <ng-template matStepLabel>در انتظار تکمیل اطلاعات</ng-template>
+                </mat-step>
+                <mat-step [completed]="false">
+                    <ng-template matStepLabel>در انتظار تایید</ng-template>
+                </mat-step>
+                <mat-step [completed]="false">
+                    <ng-template matStepLabel>تایید عضویت</ng-template>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </div>
+
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 edit_box">
             <span (click)="open()" class="cursor">ویرایش</span>
         </div>
 
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 box">
             <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <p class="title">نوع شرکت</p>
@@ -19,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <p class="title">نام شرکت</p>
@@ -27,7 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <p class="title">شناسه ملی</p>
@@ -35,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <p class="title">کد اقتصادی</p>
@@ -43,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <p class="title">شماره ثبت</p>
@@ -51,7 +65,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <p class="title">تاریخ ثبت</p>
@@ -59,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <p class="title">مدیرعامل</p>
@@ -67,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <p class="title">کد ملی</p>
@@ -75,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <p class="title">تاریخ تولد</p>
@@ -141,7 +155,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 info-box info-box2">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 info-box info-box2">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <p class="title">شهرستان</p>
@@ -156,8 +170,8 @@
 
 <div class="container-fluid fluid1 fluid-margin " style="padding: 0px !important;">
     <div class="row home-row1">
-        <div class='col-xl-12 col-lg-12 col-md-12 col-xs-12 col-sm-12 padd-mobile marg-mobile padding-project'>
-            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4 col-xs-3 gallery-div"
+        <div class='col-xl-12 col-lg-12 col-md-12 col-12 col-sm-12 padd-mobile marg-mobile padding-project'>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4 col-12 gallery-div"
                 *ngFor="let x of list_gallery;let i = index" style="min-width:20%">
                 <div class="title1">{{ x.title }}</div>
                 <img src="{{ x.logo }}" (click)="openModal(1);currentSlide('mySlides','dot',i+1);"
