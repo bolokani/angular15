@@ -146,6 +146,7 @@ export class CustomsPrintComponent implements OnInit, OnDestroy {
             this.tax = "";
             this.count_record = 0;
           }
+          this.set_log();
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {
@@ -154,6 +155,20 @@ export class CustomsPrintComponent implements OnInit, OnDestroy {
       }
     )
   }
+
+  set_log() {
+    this.loading = true;
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6899, id: this.id }).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
+
   //*******************************************************************************
   message(validation: boolean, message: string, type: number, action: string) {
     if (type == 1) {

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { identity, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServerService } from '../../services/server/server.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';

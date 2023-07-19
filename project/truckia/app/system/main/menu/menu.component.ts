@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -31,6 +31,7 @@ export class MenuComponent implements OnInit {
     public router: Router
     , public serverService: ServerService
     , public messageService: MessageService
+    , public activatedRoute: ActivatedRoute
     , public dialog: MatDialog
     , public matSnackBar: MatSnackBar) {
     this.serverService.get_status().subscribe(
@@ -38,7 +39,6 @@ export class MenuComponent implements OnInit {
         this.status = res;
       }
     )
-
 
     this.serverService.get_user().subscribe(
       (res) => {
@@ -48,6 +48,20 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(
+      (params: Params) => {
+        if (params['userId']) {
+          this.user_id = params['userId'];
+          this.user_token = params['token'];
+          var obj = {
+            user_id: params['userId'],
+            user_token: params['token'],
+          };
+          localStorage.setItem("lang", JSON.stringify(1));
+          localStorage.setItem('user_info', JSON.stringify(obj));
+        }
+      }
+    )
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
       this.user_token = this.user_info.user_token;
@@ -109,48 +123,6 @@ export class MenuComponent implements OnInit {
   }
 
 
-  go_to_course(id: number, title: string) {
-    var title1 = "";
-    var title_arr = title.split(" ");
-    for (var i = 0; i < title_arr.length; i++) {
-      title1 += title_arr[i];
-      title1 += "-";
-    }
-    this.router.navigate(['/detaile', id, title1])
-  }
-
-  go_to_about(title: string) {
-    var title_array = title.split(" ");
-    var title1: any = '';
-
-    for (var i = 0; i < title_array.length; i++) {
-      title1 += title_array[i];
-      title1 += "-";
-    }
-    this.router.navigate(['/about-us', title1])
-  }
-
-  go_to_gallery(id: number, title: string) {
-    var title_array = title.split(" ");
-    var title1: any = '';
-    for (var i = 0; i < title_array.length; i++) {
-      title1 += title_array[i];
-      title1 += "-";
-    }
-    this.router.navigate(['/gallery', id, title1])
-  }
-
-
-  go_to_photo_gallery(title: string) {
-    var title_array = title.split(" ");
-    var title1: any = '';
-    for (var i = 0; i < title_array.length; i++) {
-      title1 += title_array[i];
-      title1 += "-";
-    }
-    this.router.navigate(['/photo-gallery', title1])
-  }
-
   menu() {
     $(document).ready(function () {
       if (<any>$(window).scrollTop() > 0) {
@@ -174,7 +146,7 @@ export class MenuComponent implements OnInit {
   message(validation: boolean, message: string, type: number, action: string) {
     if (type == 1) this.loading = false;
     if (validation == true) {
-      this.matSnackBar.open(message, action, { duration: 8000 });
+      this.matSnackBar.open(message, action, { duration: 3000 });
     }//end if
     else {
       //this.matSnackBar.dismiss();

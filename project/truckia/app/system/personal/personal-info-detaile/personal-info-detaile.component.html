@@ -19,7 +19,9 @@
             <div class="row">
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
-                        لطفا اطلاعات شناسایی خود را وارد کنید. موارد ستاره دار اجباری می باشد.
+                        لطفا اطلاعات شناسایی خود را وارد کنید. موارد
+                        <span style="color:red">ستاره دار</span>
+                        اجباری می باشد.
                     </div>
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
                         <label for="title">
@@ -44,9 +46,10 @@
                         <label for="code_meli">
                             <div class="div_input">
                                 <span class="label"> کد ملی </span>
+                                <span><mat-icon class="star">star</mat-icon></span>
                             </div>
                             <input class='input' formControlName='code_meli' autocomplete="off" length="10"
-                                minlength="10" maxlength="10" (keypress)="serverService.get_number($event)">
+                                minlength="10" maxlength="10" (keypress)="serverService.get_number($event)" required>
                         </label>
                     </div>
 
@@ -74,9 +77,10 @@
                         <label for="id_number">
                             <div class="div_input">
                                 <span class="label"> شماره شناسنامه </span>
+                                <span><mat-icon class="star">star</mat-icon></span>
                             </div>
                             <input class='input' formControlName='id_number' autocomplete="off"
-                                (keypress)="serverService.get_number($event)">
+                                (keypress)="serverService.get_number($event)" required>
                         </label>
                     </div>
 
@@ -85,9 +89,10 @@
                             <label for="birth_date">
                                 <div class="div_input">
                                     <span class="label"> تاریخ تولد </span>
+                                    <span><mat-icon class="star">star</mat-icon></span>
                                 </div>
                                 <input class="wh-input form-control" [matDatepicker]="picker"
-                                    formControlName="birth_date" autocomplete="off">
+                                    formControlName="birth_date" autocomplete="off" required>
                                 <mat-datepicker-toggle matSuffix [for]="picker" class="adver-datepicker3">
                                 </mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
@@ -100,9 +105,10 @@
                         <label for="code_posti">
                             <div class="div_input">
                                 <span class="label"> کد پستی </span>
+                                <span><mat-icon class="star">star</mat-icon></span>
                             </div>
                             <input class='input' formControlName='code_posti' autocomplete="off" length="10"
-                                minlength="10" maxlength="10" (keypress)="serverService.get_number($event)">
+                                minlength="10" maxlength="10" (keypress)="serverService.get_number($event)" required>
                         </label>
                     </div>
 
@@ -111,8 +117,9 @@
                         <label for="addres">
                             <div class="div_input">
                                 <span class="label"> آدرس </span>
+                                <span><mat-icon class="star">star</mat-icon></span>
                             </div>
-                            <input class='input' formControlName='addres' autocomplete="off">
+                            <input class='input' formControlName='addres' autocomplete="off" required>
                         </label>
                     </div>
                 </div>

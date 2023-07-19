@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -28,6 +28,7 @@ export class Header2Component implements OnInit {
   constructor(
     public router: Router
     , public serverService: ServerService
+    , public activatedRoute: ActivatedRoute
     , public dialog: MatDialog
     , public messageService: MessageService
     , public matSnackBar: MatSnackBar) {
@@ -39,29 +40,29 @@ export class Header2Component implements OnInit {
   }
 
   ngOnInit() {
-    if (this.user_info) {
-      this.user_id = this.user_info.user_id;
-      this.user_token = this.user_info.user_token;
-    }
-    //this.get_logo();
-    this.get_user();
-    this.logo = "../../../../assets/img/logo4.png";
-  }
-
-  get_logo() {
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 2148, id: 46 }).subscribe(
-      (res: any) => {
-        if (res['status'] == 1) {
-          if (res['num'] == 1) {
-            this.logo = res['result'][0].site_baner_site_logo + "/" + res['result'][0].site_baner_logo;
-          }
-        }//end if
-        else {
-          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+    this.activatedRoute.queryParams.subscribe(
+      (params: Params) => {
+        if (params['userId']) {
+          this.user_id = params['userId'];
+          this.user_token = params['token'];
+          var obj = {
+            user_id: params['userId'],
+            user_token: params['token'],
+          };
+          localStorage.setItem("lang", JSON.stringify(1));
+          localStorage.setItem('user_info', JSON.stringify(obj));
         }
       }
     )
+    if (this.user_info) {
+      this.user_id = this.user_info.user_id;
+      this.user_token = this.user_info.user_token;
+      this.get_user();
+    }
+    this.logo = "../../../../assets/img/logo4.png";
   }
+
+
 
   get_user() {
     this.loading = true;
@@ -105,19 +106,16 @@ export class Header2Component implements OnInit {
       })//end scroll
     })
   }
+
   message(validation: boolean, message: string, type: number, action: string) {
     if (type == 1) this.loading = false;
     if (validation == true) {
-      this.matSnackBar.open(message, action, { duration: 8000 });
+      this.matSnackBar.open(message, action, { duration: 3000 });
     }//end if
     else {
       //this.matSnackBar.dismiss();
     }
   }//end 
-
-  signout() {
-
-  }
 
   oclose() {
     $(document).ready(function () {

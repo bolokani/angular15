@@ -61,13 +61,13 @@ export class PersonalInfoDetaileComponent implements OnInit, OnDestroy {
     this.update_form1 = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
       'cellphone': new FormControl({ value: null, disabled: true }, [Validators.pattern('[0-9]{1,}'), Validators.required]),
-      'code_meli': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
+      'code_meli': new FormControl(null, [Validators.pattern('[0-9]{1,}'), Validators.required]),
       'watsup': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
       'phone': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
-      'id_number': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
-      'birth_date': new FormControl(null),
-      'code_posti': new FormControl(null, [Validators.pattern('[0-9]{1,}')]),
-      'addres': new FormControl(null),
+      'id_number': new FormControl(null, [Validators.pattern('[0-9]{1,}'), Validators.required]),
+      'birth_date': new FormControl(null, [Validators.required]),
+      'code_posti': new FormControl(null, [Validators.pattern('[0-9]{1,}'), Validators.required]),
+      'addres': new FormControl(null, [Validators.required]),
     })
   }
 

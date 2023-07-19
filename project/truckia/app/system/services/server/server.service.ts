@@ -20,6 +20,7 @@ export class ServerService {
   public sb_invoice_print_cellphone = new Subject<any>();
   public sb_loading = new Subject<any>();
   public sb_info_stepper = new Subject<any>();
+  public sb_count_company = new Subject<any>();
 
 
 
@@ -152,6 +153,14 @@ export class ServerService {
 
   get_info_stepper(): Observable<any> {
     return this.sb_info_stepper.asObservable();
+  }
+  //********************************************************** */
+  send_count_company(value: any): void {
+    this.sb_count_company.next(value);
+  }//end send_username
+
+  get_count_company(): Observable<any> {
+    return this.sb_count_company.asObservable();
   }
   //********************************************************** */
   send_loading(value: boolean): void {

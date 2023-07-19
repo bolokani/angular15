@@ -47,6 +47,7 @@ import { MenuComponent } from './system/main/menu/menu.component';
 import { CompanyListComponent } from './system/personal/company-list/company-list.component';
 import { CompanyDetaileComponent } from './system/personal/company-detaile/company-detaile.component';
 import { CompanyDetaile2Component } from './system/personal/company-detaile2/company-detaile2.component';
+import { PersonalMissionComponent } from './system/personal/personal-mission/personal-mission.component';
 
 export const customCurrencyMaskConfig = {
   align: "auto",
@@ -71,6 +72,7 @@ const routes: Routes = [
           { path: "info", component: PersonalInfoComponent },
           { path: "my-company", component: CompanyListComponent },
           { path: "company-detaile/:id", component: CompanyDetaileComponent },
+          { path: "mission", component: PersonalMissionComponent },
         ]
       },
       { path: "about/:title", component: AboutComponent },
@@ -96,7 +98,7 @@ const routes: Routes = [
     Header2Component, ProfileComponent
     , ProfileMenuComponent
     , PersonalInfoComponent, PersonalInfoDetaileComponent
-    , MenuComponent, CompanyListComponent, CompanyDetaileComponent, CompanyDetaile2Component
+    , MenuComponent, CompanyListComponent, CompanyDetaileComponent, CompanyDetaile2Component, PersonalMissionComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })

@@ -46,28 +46,28 @@
                                 [routerLinkActiveOptions]="{exact: true}">
                                 <a>
                                     <i class="fa fa-user"></i>
-                                    <span class="nav-label"> شرکتهای من</span>
+                                    <span class="nav-label"> شرکتهای من
+                                        <span class="red">{{ count_company }}</span>
+                                    </span>
                                 </a>
                             </li>
                             <li routerLinkActive="active" class="cursor">
                                 <a>
                                     <i class="fa fa-user"></i>
-                                    <span class="nav-label">اطلاعات کامیون های من</span>
+                                    <span class="nav-label">اطلاعات کامیون های من
+                                        <span class="red">به زودی</span>
+                                    </span>
                                 </a>
                             </li>
                             <li routerLinkActive="active" class="cursor">
                                 <a>
                                     <i class="fa fa-user"></i>
-                                    <span class="nav-label">اطلاعات کامیون های من</span>
+                                    <span class="nav-label">اساسنامه انجمن
+                                        <span class="red">به زودی</span>
+                                    </span>
                                 </a>
                             </li>
-                            <li routerLinkActive="active" class="cursor">
-                                <a>
-                                    <i class="fa fa-user"></i>
-                                    <span class="nav-label">اساسنامه انجمن</span>
-                                </a>
-                            </li>
-                            <li routerLinkActive="active" class="cursor">
+                            <li routerLinkActive="active" class="cursor" [routerLink]="['/profile/mission']">
                                 <a>
                                     <i class="fa fa-user"></i>
                                     <span class="nav-label">مرام نامه اخلاقی انجمن</span>
@@ -76,7 +76,9 @@
                             <li routerLinkActive="active" class="cursor">
                                 <a>
                                     <i class="fa fa-user"></i>
-                                    <span class="nav-label">رای گیری</span>
+                                    <span class="nav-label">رای گیری
+                                        <span class="red">به زودی</span>
+                                    </span>
                                 </a>
                             </li>
                             <li routerLinkActive="active" class="cursor">

@@ -196,6 +196,7 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
             this.list_cost.push(res['result'][i]);
           }//end for
           this.get_sum1();
+          this.set_log();
           this.dataSource = new MatTableDataSource(this.list_cost);
           this.serverService.send_invoice_print_cellphone({ list_cost: this.list_cost });
           this.message(false, "", 1, this.messageService.close(this.lang));
@@ -207,6 +208,19 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
       }
     )
   }//end get_cost2
+
+  set_log() {
+    this.loading = true;
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6898, id: this.id }).subscribe(
+      (res: any) => {
+        if (res['status'] == 1) {
+        }//end if
+        else {
+          this.message(true, this.messageService.erorr_in_load(this.lang), 1, this.messageService.close(this.lang));
+        }
+      }
+    )
+  }
 
   get_setting() {
     var obj = { address: 6842, id: this.id }

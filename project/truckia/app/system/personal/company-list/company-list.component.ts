@@ -119,6 +119,7 @@ export class CompanyListComponent implements OnInit, OnDestroy {
               res.logo = this.serverService.get_default_image();
             }
             this.list_company.unshift(res)
+            this.serverService.send_count_company({});
           } else {
             this.list_company[i].site_company_title = res.site_company_title;
             this.list_company[i].company_type_title = res.company_type_title;
@@ -139,7 +140,7 @@ export class CompanyListComponent implements OnInit, OnDestroy {
     )
   }
 
-  close(i: number, id: number) {
+  delete(i: number, id: number) {
     if (this.serverService.check_internet() == false) {
       this.message(true, this.messageService.internet(this.lang), 1, this.messageService.close(this.lang));
       return;
@@ -152,6 +153,7 @@ export class CompanyListComponent implements OnInit, OnDestroy {
         (res: any) => {
           if (res['status'] == 1) {
             this.list_company.splice(i, 1);
+            this.serverService.send_count_company({});
             this.message(false, "", 1, this.messageService.close(this.lang));
           }//end if
           else {

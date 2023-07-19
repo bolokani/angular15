@@ -39,7 +39,7 @@ export class ProfileMenuComponent implements OnInit, OnDestroy {
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
       this.user_token = this.user_info.user_token;
-      this.get_user();
+      //this.get_user();
     }
   }
 
