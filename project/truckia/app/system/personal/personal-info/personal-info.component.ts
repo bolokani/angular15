@@ -66,6 +66,8 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
       this.user_token = this.user_info.user_token;
       this.get_user(this.user_id, this.user_token);
     }
+    var title = "پتل کاربری من";
+    this.serverService.set_metas(title, title, '', 'mohammad zamani');
   }
 
   get_user_token() {

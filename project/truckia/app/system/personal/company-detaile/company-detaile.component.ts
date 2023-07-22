@@ -72,6 +72,7 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
       (params: Params) => {
         this.id = params['id'];
       }
+
     )
 
     if (this.user_info) {
@@ -79,6 +80,8 @@ export class CompanyDetaileComponent implements OnInit, OnDestroy {
       this.user_token = this.user_info.user_token;
       this.get_user();
     }
+    var title = "جزئیات شرکت های  من";
+    this.serverService.set_metas(title, title, '', 'mohammad zamani');
   }
 
   get_user() {

@@ -39,7 +39,7 @@ export class ProfileMenuComponent implements OnInit, OnDestroy {
     if (this.user_info) {
       this.user_id = this.user_info.user_id;
       this.user_token = this.user_info.user_token;
-      //this.get_user();
+      this.get_user();
     }
   }
 
@@ -53,12 +53,7 @@ export class ProfileMenuComponent implements OnInit, OnDestroy {
     this.subscription = this.serverService.post_address(this.server, 'new_address', obj).subscribe(
       (res: any) => {
         if (res['status'] == 1 && res['num'] == 1) {
-          if (res['result'][0].user_title) {
-            this.user_title = res['result'][0].user_title;
-          } else {
-            this.user_title = res['result'][0].user_cellphone;
-          }
-
+          this.user_title = res['result'][0].user_title;
           this.message(false, "", 1, this.messageService.close(this.lang));
         }//end if
         else {

@@ -42,6 +42,8 @@ export class PersonalMissionComponent implements OnInit {
     } else {
       this.serverService.signout();
     }
+    var title = "مرام نامه اخلاقی انجمن";
+    this.serverService.set_metas(title, title, '', 'mohammad zamani');
   }
 
   get_user() {

@@ -37,7 +37,10 @@ export class CompanyListComponent implements OnInit, OnDestroy {
       this.user_id = this.user_info.user_id
       this.user_token = this.user_info.user_token
     }
+    var title = "شرکت های  من";
+    this.serverService.set_metas(title, title, '', 'mohammad zamani');
     this.get_user();
+
   }
 
   get_user() {
