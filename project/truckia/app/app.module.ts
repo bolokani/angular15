@@ -48,6 +48,9 @@ import { CompanyListComponent } from './system/personal/company-list/company-lis
 import { CompanyDetaileComponent } from './system/personal/company-detaile/company-detaile.component';
 import { CompanyDetaile2Component } from './system/personal/company-detaile2/company-detaile2.component';
 import { PersonalMissionComponent } from './system/personal/personal-mission/personal-mission.component';
+import { MembershipListComponent } from './system/personal/membership/membership-list/membership-list.component';
+import { MembershipDetaileComponent } from './system/personal/membership/membership-detaile/membership-detaile.component';
+import { MembershipDetaile2Component } from './system/personal/membership/membership-detaile2/membership-detaile2.component';
 
 export const customCurrencyMaskConfig = {
   align: "auto",
@@ -73,6 +76,8 @@ const routes: Routes = [
           { path: "my-company", component: CompanyListComponent },
           { path: "company-detaile/:id", component: CompanyDetaileComponent },
           { path: "mission", component: PersonalMissionComponent },
+          { path: "membership", component: MembershipListComponent },
+          { path: "membership-detaile/:id", component: MembershipDetaileComponent },
         ]
       },
       { path: "about/:title", component: AboutComponent },
@@ -98,7 +103,7 @@ const routes: Routes = [
     Header2Component, ProfileComponent
     , ProfileMenuComponent
     , PersonalInfoComponent, PersonalInfoDetaileComponent
-    , MenuComponent, CompanyListComponent, CompanyDetaileComponent, CompanyDetaile2Component, PersonalMissionComponent
+    , MenuComponent, CompanyListComponent, CompanyDetaileComponent, CompanyDetaile2Component, PersonalMissionComponent, MembershipListComponent, MembershipDetaileComponent, MembershipDetaile2Component
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })

@@ -83,6 +83,9 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    if (this.user_info) {
+      this.user_id = this.user_info.user_id;
+    }
     this.get_id({ brand: this.root_obj.brand, tip: this.root_obj.tip, year: this.root_obj.year });
   }//end ngOnInit 
 
@@ -211,7 +214,7 @@ export class InvoicePrintComponent implements OnInit, OnDestroy {
 
   set_log() {
     this.loading = true;
-    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6898, id: this.id }).subscribe(
+    this.subscription = this.serverService.post_address(this.server, 'new_address', { address: 6898, id: this.id, user_id: this.user_id }).subscribe(
       (res: any) => {
         if (res['status'] == 1) {
         }//end if

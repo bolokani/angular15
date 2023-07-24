@@ -1,0 +1,83 @@
+<div class="div_loading">
+    <div class="my-container" [hidden]="!loading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+</div>
+
+<form [formGroup]="form1" (ngSubmit)="save()">
+    <div mat-dialog-content style="padding-right:0px !important;padding-left:0px !important">
+        <div class="row" style="margin-bottom: 1rem;">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div1">
+                <div class="title">
+                    <span>ثبت اطلاعات حق عضویت</span>
+                    <span class="fleft cursor" (click)="close()"><mat-icon>close</mat-icon></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="max-height: 25rem;overflow-y: scroll;">
+            <div class="row" style="padding-top:1rem">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
+                    لطفا اطلاعات حق عضویت خود را وارد کنید. موارد
+                    <span class="red">ستاره دار</span>
+                    اجباری می باشد.
+                </div>
+
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2" style="position:relative">
+                    <label for="date3">
+                        <div class="div_input">
+                            <span class="label"> تاریخ </span>
+                        </div>
+                        <input class="wh-input" [matDatepicker]="picker2" formControlName="date3" autocomplete="off"
+                            readonly style="padding-right:0.5rem">
+                        <mat-datepicker-toggle matSuffix [for]="picker2" class="adver-datepicker4">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </label>
+                </div>
+
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
+                    <label for="tracking_code">
+                        <div class="div_input">
+                            <span class="label">کد رهگیری</span>
+                        </div>
+                        <input class='input' formControlName='tracking_code' autocomplete="off"
+                            (keypress)="serverService.get_number($event)">
+                    </label>
+                </div>
+
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
+                    <label for="amount">
+                        <div class="div_input">
+                            <span class="label">مبلغ به ریال</span>
+                        </div>
+                        <input class='input' formControlName='amount' autocomplete="off" currencyMask>
+                    </label>
+                </div>
+
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 div2">
+                    <label for="comment">
+                        <div class="div_input">
+                            <span class="label">توضیحات </span>
+                        </div>
+                        <input class='input' formControlName='comment' autocomplete="off">
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div mat-dialog-actions align="start" class="pe1 matDialogActions" [ngClass]="{en1:lang==2}"
+        style="padding-right:25px">
+        <label style='text-align:center;width:auto'>
+            <button type="submit" class="btn cursor"
+                [disabled]="!form1.valid || loading || (status_info != 3 && type_task == 1)">
+                <span>ذخیره</span>
+                <div class="spinner-border spinner-border-sm" role="status" [hidden]="!loading">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </button>
+        </label>
+    </div><!-- row -->
+</form>

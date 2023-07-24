@@ -1,0 +1,61 @@
+.title {
+    border-bottom: solid 1px #e0e0e6;
+    padding: 1rem 0 1rem 0;
+    color: #000
+}
+
+.content {
+    padding-top: 1rem;
+    color: #404265;
+    font-size: 0.88rem;
+    line-height: 2.4rem;
+    padding: 0px
+}
+
+label {
+    width: 100%;
+}
+
+.input:focus {
+    outline: solid 1px #344673 !important;
+}
+
+.input {
+    height: 2.6rem;
+    background-color: #fafafa;
+    margin-bottom: 4px;
+    width: 100%;
+    font-size: 0.87rem !important;
+    border: 1px solid #ccc;
+    margin-top: 0px !important;
+    border-radius: 0.4rem;
+    padding-right: 0.6rem;
+    ;
+}
+
+
+.btn {
+    padding-top: 0.4rem;
+    height: 2rem;
+    background-color: #ED1B34;
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+.div2 {
+    padding: 0 !important;
+    margin-top: 1rem;
+}
+
+.div1 {
+    padding: 0.5rem 0.5rem !important;
+}
+
+.star {
+    color: #ED1B34;
+    font-size: 0.7rem;
+}
+
+.red {
+    color: #ED1B34
+}
